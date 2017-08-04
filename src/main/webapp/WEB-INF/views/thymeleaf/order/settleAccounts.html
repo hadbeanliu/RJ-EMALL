@@ -1,0 +1,388 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh" class="no-js">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui" />
+<meta name="apple-mobile-web-app-title" content="电商原型" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />
+<title>结算页</title>
+<link data-th-href="@{/Ebusiness/style/layout.css}" href="style/layout.css" rel="stylesheet" type="text/css" />
+<link data-th-href="@{/Ebusiness/style/themes.less}" href="style/themes.less" rel="stylesheet" type="text/less" />
+<link data-th-href="@{/Ebusiness/style/master.css}" href="style/master.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" data-th-href="@{/Ebusiness/style/font-awesome.min.css}" href="style/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" data-th-href="@{/Ebusiness/style/highslide.css}" href="style/highslide.css" />
+
+<script data-th-src="@{/Ebusiness/javascript/vendor/modernizr.js}" src="javascript/vendor/modernizr.js"></script>
+<script data-th-src="@{/Ebusiness/javascript/vendor/jquery.js}" src="javascript/vendor/jquery.js"></script>
+<script data-th-src="@{/Ebusiness/javascript/less-1.7.3.min.js}" src="javascript/less-1.7.3.min.js"></script>
+<script data-th-src="@{/Ebusiness/javascript/es5-shim-2.1.0.min.js}" src="javascript/es5-shim-2.1.0.min.js"></script>
+
+<script>var Cfg = { contextPath: '/emall' }</script>
+<script data-th-src="@{/cij/js/rongji.js}" src="../cij/js/rongji.js"></script>
+<script data-th-src="@{/cij/js/m/order.js}" src="../cij/js/m/order.js"></script>
+</head>
+<body>
+<div id="layout">
+    <div class="wrapper" id="frame_wrapper">
+        <div class="header" id="frame_header" include="include.html">
+            <div class="row collapse" id="frame_header_row1">
+                <div class="large-12" id="frame_header_col1">
+                    <nav class="top-bar" data-topbar="" role="navigation" id="data_top_bar">
+                        <ul class="title-area">
+                            <li class="name">
+                                <div class="logo"><img src="images/logo_expand.png" /></div>
+                            </li>
+                            <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+                        </ul>
+                        <section class="top-bar-section clearfix">
+                            <ul class="left clearfix">
+                                <li class="active"><a href="index.html">首页</a></li>
+                                <li class="has-dropdown"> <a href="#">培训</a>
+                                    <ul class="dropdown">
+                                        <li><a href="#">培训预告</a></li>
+                                        <li><a href="#">课程推荐</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-dropdown"><a href="#">文档</a>
+                                    <ul class="dropdown">
+                                        <li><a href="#">实施文档</a></li>
+                                        <li><a href="#">开发文档</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="ActivityList.html">活动</a></li>
+                                <li><a href="#">发现</a></li>
+                                <li><a href="TopicList.html">话题</a></li>
+                            </ul>
+                            <ul class="right">
+                                <li class="has-form">
+                                    <div class="search">
+                                        <form>
+                                            <input name="" class="inp" id="topsearch" type="text" placeholder="输入查询内容" accesskey="s" title="输入查询内容" x-webkit-speech="" x-webkit-grammar="builtin:translate" lang="zh-CN" />
+                                            <i class="fa fa-search" onClick="showSearch()" title="搜索"></i>
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
+                        </section>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!--end header-->
+        
+        <div class="main" role="main" aria-label="主体区块" id="frame_main">
+            <div class="row">
+                <div class="settleA-header white-bg">
+                    <div class="name"><a href="#">结算页</a></div>
+                    <div class="icon">
+                    	<span></span>
+                        <ul class="step clearfix">
+                        	<li>我的购物车</li>
+                            <li class="split">&nbsp;</li>
+                            <li>填写订单信息</li>
+                            <li class="split">&nbsp;</li>
+                            <li>选择支付方式</li>
+                            <li class="split">&nbsp;</li>
+                            <li>订单支付成功</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="settleA-box white-bg E_buyInfo">
+                    <div class="selectAddr">
+                    	<h3>选择收货地址</h3>
+                    	<ul class="large-block-grid-4 medium-block-grid-3 small-block-grid-1">
+                        	<li class="default">
+                            	<div class="address-item">
+                                    <div class="names"><b>福建省-福州市</b><span>（程春萍 收）</span></div>
+                                    <div class="details"><p>鼓楼区软件大道89号A区15座</p><span>18950475787</span></div>
+                                    <div class="btns"><a class="edit">修改地址</a><span class="addr">默认地址</span></div>
+                                </div>
+                            </li>
+                            <li>
+                            	<div class="address-item">
+                                    <div class="names"><b>福建省-福州市</b><span>（程春萍 收）</span></div>
+                                    <div class="details"><p>鼓楼区五凤兰亭2期10号楼708室</p><span>18950475787</span></div>
+                                    <div class="btns"><a class="edit">修改地址</a><span class="addr">设为默认地址</span></div>
+                                </div>
+                            </li>
+                            <li>
+                            	<div class="address-item">
+                                    <div class="names"><b>福建省-福州市</b><span>（程春萍 收）</span></div>
+                                    <div class="details"><p>鼓楼区五凤兰亭2期10号楼708室</p><span>18950475787</span></div>
+                                    <div class="btns"><a class="edit">修改地址</a><span class="addr">设为默认地址</span></div>
+                                </div>
+                            </li>
+                            <li>
+                            	<div class="address-item">
+                                    <div class="names"><b>福建省-福州市</b><span>（程春萍 收）</span></div>
+                                    <div class="details"><p>鼓楼区五凤兰亭2期10号楼708室</p><span>18950475787</span></div>
+                                    <div class="btns"><a class="edit">修改地址</a><span class="addr">设为默认地址</span></div>
+                                </div>
+                            </li>
+                            <li>
+                            	<div class="address-item">
+                                    <div class="names"><b>福建省-福州市</b><span>（程春萍 收）</span></div>
+                                    <div class="details"><p>鼓楼区五凤兰亭2期10号楼708室</p><span>18950475787</span></div>
+                                    <div class="btns"><a class="edit">修改地址</a><span class="addr">设为默认地址</span></div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="addBtn clearfix">
+                        	<a href="#" class="button success radius tiny toggle"><i class="fa fa-fw fa-chevron-down"></i>展开</a>
+                            <a href="#" class="button secondary radius tiny right"><i class="fa fa-fw fa-plus"></i>新增收货地址</a>
+                        </div>
+                    </div>
+                    <div class="dis-way">
+                    	<h3>配送方式</h3>
+                    	<ul>
+                        	<li class="clearfix">
+                            	<label class="radio label-radio square" for="expressage"><input type="radio" name="common" id="expressage" checked="" /><i class="icon-check"></i>普通快递</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pay-way">
+                    	<h3>支付方式</h3>
+                    	<ul>
+                        	<li class="clearfix">
+                            	<label class="radio label-radio square" for="online"><input type="radio" name="pay" id="online" value="online" checked="" /><i class="icon-check"></i>在线支付</label>
+                                <span class="tip">即时到账，支持绝大数银行借记卡及部分银行信用卡</span>
+                                
+                            </li>
+                            <li class="clearfix">
+                            	<label class="radio label-radio square" for="cash"><input type="radio" name="pay" id="cash" value="cash" /><i class="icon-check"></i>货到付款</label>
+                                <span class="tip">送货上门后再收款，支持现金、银行卡支付</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="invoice">
+                    	<h3>发票信息</h3>
+                        <ul>
+                        	<li class="clearfix">
+                            	<label class="radio label-checkbox square" for="openInvoice"><input type="checkbox" name="invoice" value="yes" id="openInvoice" /><i class="icon-check"></i>我要开发票</label>
+                                <table cellpadding="0" cellspacing="0" width="100%" class="" border="0">
+									<tbody>
+                                  	    <tr>
+                                            <td class="tit" valign="top"><span class="alert">*</span> 发票类型</td>
+                                            <td class="con">
+                                                <label class="label-radio square" for="invoice_common">
+                                                	<input type="radio" name="invoiceType" value="0" class="iradio" id="invoice_common" checked="" />
+                                                    <i class="icon-check"></i>增值税普通发票
+                                                </label>
+                                                <label class="label-radio square" for="invoice_special">
+                                                	<input type="radio" name="invoiceType" value="1" class="iradio" id="invoice_special" disabled="" />
+	                                                <i class="icon-check"></i>增值税专用发票
+                                                </label>
+                                                <a class="apply" href="#" target="_blank">【申请增票资质】</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tit" valign="top"><span class="alert">*</span> 发票对象</td>
+                                            <td class="con">
+                                                <label class="label-radio square" for="invoice_person">
+                                                	<input class="iradio" type="radio" name="invoiceTarget" value="person" id="invoice_person" checked="" />
+	                                                <i class="icon-check"></i>个人
+                                                </label>
+                                                <span class="remark">
+                                                    <input class="itext" type="text" name="unitName" placeholder="姓名" />
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tit" vlign="top">&nbsp;</td>
+                                            <td class="con">
+                                                <label class="label-radio square" for="invoice_unit">
+                                                	<input class="iradio" type="radio" name="invoiceTarget" value="unit" id="invoice_unit" /> 
+                                                	<i class="icon-check"></i>单位
+                                                </label>
+                                                <span class="remark">
+                                                	<input class="itext" type="text" name="" placeholder="名称" />
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tit"><span class="alert">*</span> 发票内容</td>
+                                            <td class="con">
+                                                <select name="invoiceCon" class="iselect">
+                                                	<option value="goodsDetail" selected="">商品明细</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                    			</table>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="detail-list">
+                    	<h3>商品清单</h3>
+                        <a href="myCart.html" class="return-cart button secondary tiny"><i class="fa fa-fw fa-arrow-left"></i>返回购物车</a>
+                        <table class="dl-table" cellpadding="0" cellspacing="0" width="100%">
+                        	<thead>
+                            	<tr><th class="shop-name" colspan="6">
+                                	<a href="#">欣韵车品专营店</a>
+                                    <a class="font-warning font-normal"><i class="fa fa-comment fa-fw"></i></a>
+                                </th></tr>
+                            </thead>
+                        	<tbody>
+                            	<tr data-th-each="vo : ${orderGoods}" class="goods-item">
+                                	<td class="img"><a href="#"><img data-th-src="${vo.goodsImage}" src="images/merchandise01.jpg" alt="" /></a></td>
+                                    <td class="name"><a href="#" data-th-text="${vo.goodsTitle}">嘉实多（Castrol）金嘉护 10W-40 4L机油润滑油SN</a></td>
+                                    <td class="spe"><span data-th-text="${vo.skuId}">10W-40 4L机油润滑油SN</span></td>
+                                    <td class="price">¥<span data-th-text="${vo.purchasePrice}">168.00</span></td>
+                                    <td class="num"><span data-th-text="${vo.purchaseQuantity}">x1</span></td>
+                                    <td class="storage"><span>有货</span></td>
+                                </tr>
+                                <!-- 
+                                <tr class="goods-item">
+                                	<td class="img"><a href="#"><img src="images/merchandise04.gif" alt="" /></a></td>
+                                    <td class="name"><a href="#">壳牌（shell） 全新防伪 超凡喜力车用轮滑油</a></td>
+                                    <td class="spe"><span>机用轮滑油 黄壳HX6 10W40 4L</span></td>
+                                    <td class="price">¥<span>148.00</span></td>
+                                    <td class="num"><span>x2</span></td>
+                                    <td class="storage"><span>有货</span></td>
+                                </tr>
+                                 -->
+                            </tbody>
+                            <tfoot>
+                            	<tr>
+                                	<td class="remark" colspan="6">
+                                    	<input class="rtext" type="text" name="remark" maxlength="50" value="" placeholder="添加订单备注" />
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <!-- 
+                        <table class="dl-table" cellpadding="0" cellspacing="0" width="100%">
+                        	<thead>
+                            	<tr><th class="shop-name" colspan="6">
+                                	<a href="#">欣韵车品专营店</a>
+                                    <a class="font-warning font-normal"><i class="fa fa-comment fa-fw"></i></a>
+                                </th></tr>
+                            </thead>
+                        	<tbody>
+                            	<tr class="goods-item">
+                                	<td class="img"><a href="#"><img src="images/merchandise01.jpg" alt="" /></a></td>
+                                    <td class="name"><a href="#">嘉实多（Castrol）金嘉护 10W-40 4L机油润滑油SN</a></td>
+                                    <td class="spe"><span>10W-40 4L机油润滑油SN</span></td>
+                                    <td class="price">¥<span>168.00</span></td>
+                                    <td class="num"><span>x1</span></td>
+                                    <td class="storage"><span>有货</span></td>
+                                </tr>
+                                <tr class="goods-item">
+                                	<td class="img"><a href="#"><img src="images/merchandise04.gif" alt="" /></a></td>
+                                    <td class="name"><a href="#">壳牌（shell） 全新防伪 超凡喜力车用轮滑油</a></td>
+                                    <td class="spe"><span>机用轮滑油 黄壳HX6 10W40 4L</span></td>
+                                    <td class="price">¥<span>148.00</span></td>
+                                    <td class="num"><span>x2</span></td>
+                                    <td class="storage"><span>有货</span></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                            	<tr>
+                                	<td class="remark" colspan="6">
+                                    	<input class="rtext" type="text" name="remark" maxlength="50" value="" placeholder="添加订单备注" />
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                         -->
+                    </div>
+                    <div class="coupon">
+                    	<h3>使用优惠券<span>（仅用一张）</span></h3>
+                        <div class="row">
+                        	<div class="large-8 medium-8 columns">
+                            	<div class="coupon-con">
+                                	<ul>
+                                    	<li>
+                                        	<input class="coupon-code" type="text" value="" placeholder="请输入优惠券码" />
+                                            <a href="#" class="tip">实体优惠券码小帮手<i class="fa fa-fw fa-question-circle"></i></a>
+                                        </li>
+                                        <li>
+                                        	<input class="ver-code" type="text" value="" placeholder="验证码" />
+                                            <img src="images/ver_01.jpg" alt="" class="ver-img" />
+                                            <a href="#" class="ver-btn">换一张</a>
+                                        </li>
+                                        <li><a href="#" class="coupon-btn button secondary tiny">确定</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="large-4 medium-4 columns">
+                            	<ul class="order">
+                                	<li>商品总价<span class="total-price">¥<num>2980.00</num></span></li>
+                                    <li>促销优惠<span class="discount-price">¥<num>0.00</num></span></li>
+                                    <li>使用优惠券<span class="coupon-price">¥<num>0.00</num></span></li>
+                                    <li>运费<span class="trans-price">¥<num>0.00</num></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit clearfix">
+                    	<a href="payPage.html" class="submit-btn button alert tiny radius E_SubmitOrder">提交订单</a>
+                        <span class="total-price">应付总额：<i>¥<num>2980.00</num></i></span>
+                        <span class="tip">由于价格可能会发生变化，请核对后在提交订单</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end main-->
+        
+        <div class="footer" id="frame_footer" role="contentinfo" include="include.html">
+            <div class="row" id="frame_footer_wrapper">
+                <div class="copyright" id="data_copyright"> Copyright © 2004-2015  榕基软件 </div>
+            </div>
+        </div>
+        <!--end footer-->
+        <div class="go" id="frame_go"><a title="返回顶部" class="gotop" id="goTop"></a> <a title="返回底部" class="gobottom" id="goBottom"></a></div>
+        <div id="frame_javascript">
+            <div id="data_javascript"> 
+                <script src="javascript/foundation.min.js"></script> 
+                <script src="javascript/others.js"></script> 
+                <!-- <script>
+				  $(document).foundation();
+				  
+				  //收货地址管理
+				  $('.selectAddr').find('.address-item').each(function(){
+					  var $this = $(this);
+					  $this.on('click','.btns .addr',function(e){
+						  $this.parent().siblings('.default').css('display','list-item');
+						  $this.parent().siblings().removeClass('default');
+						  $(this).parents('li').addClass('default');
+						  
+					  });
+				  });
+				  
+				  $('.selectAddr').find('.addBtn').on('click','.toggle',function(e){
+					    e.preventDefault();
+						var scrollHeight = 0, 
+						    $this = $(this).find('.fa');
+					    if(document.body.clientWidth < 624){
+							$('.selectAddr').find('li:not(.default)').slideToggle(200);
+							$('.selectAddr').find('ul').css({'overflow':'visible','maxHeight':'none'});
+						}
+						
+						if($this.hasClass('fa-chevron-down')){
+							$(this).html('<i class="fa fa-fw fa-chevron-up"></i>收起');
+							if(document.body.clientWidth > 623){
+								$('.selectAddr').find('ul').css({'overflow':'visible','maxHeight':'none'});
+							}
+							scrollHeight= $(document).scrollTop();
+						}else{
+							$(this).html('<i class="fa fa-fw fa-chevron-down"></i>展开');
+							if(document.body.clientWidth > 623){
+								$('.selectAddr').find('ul').css({'overflow':'hidden','maxHeight':'130px'});
+							}
+							window.scrollTo(0,scrollHeight);
+						}
+						
+				  });
+				</script>  -->
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+</body>
+</html>

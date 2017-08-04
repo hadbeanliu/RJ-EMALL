@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<display-name>RJ EMALL</display-name>
+	
+	<context-param>
+		<param-name>contextInitializerClasses</param-name>
+		<param-value>com.rongji.rjskeleton.support.init.SkeletonApplicationContextInitializer</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	
+	<servlet>
+		<servlet-name>rjskeleton-springmvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextInitializerClasses</param-name>
+			<param-value>com.rongji.rjskeleton.support.init.SkeletonApplicationContextInitializer</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>rjskeleton-springmvc</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+	
+	<session-config>
+		<session-timeout>60</session-timeout>
+	</session-config>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<filter>
+		<filter-name>loginFilter</filter-name>
+		<filter-class>com.rongji.cms.emall.support.filter.DFishSSOFilter</filter-class>
+		<init-param>
+			<param-name>SSO_SERVER_PAGE</param-name>
+			<param-value>http://192.168.21.199:8888</param-value>
+		</init-param>
+		<init-param>
+			<param-name>SSO_SERVER_INTERFACE</param-name>
+			<param-value>http://192.168.21.199:8888/dfish-servman</param-value>
+		</init-param>
+		<init-param>
+			<param-name>exceptURI</param-name>
+			<param-value>/;/sso_ws/*;/inventory/*;/cij/*;/tpl/*;/user/loginout.htm;/user/social/callbackSocial.htm;/user/social/vo_getMedie.json;/user/novalidate/*;/pay/provider_weixinpay/*;/pay/provider_alipay/*</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ACCOUNT</param-name>
+			<param-value>DFISH</param-value>
+		</init-param>
+		<init-param>
+			<param-name>PASSWORD</param-name>
+			<param-value>123ABC</param-value>
+		</init-param>
+		<init-param>
+			<param-name>SYSMARK</param-name>
+			<param-value>EMALL</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>loginFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>loginFilter</filter-name>
+		<url-pattern>/red.jsp</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>sessionFilter</filter-name>
+		<filter-class>com.rongji.sso.core.filter.SessionFilter</filter-class>
+		<init-param>
+			<param-name>sessionType</param-name>
+			<!-- 可选值：request_session , redis_session -->
+			<param-value>redis_session</param-value>
+		</init-param>
+		<init-param>
+			<!-- 最大有效时间 ，单位：秒 -->
+			<param-name>maxInactiveInterval</param-name>
+			<param-value>1800</param-value>
+		</init-param>
+		<init-param>
+			<!-- redis服务器地址 -->
+			<param-name>redisUrl</param-name>
+			<param-value>192.168.14.141:6379</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>sessionFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<servlet>
+		<servlet-name>SSOWebServlet</servlet-name>
+		<servlet-class>com.rongji.sso.server.SSOWebServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SSOWebServlet</servlet-name>
+		<url-pattern>/sso_ws/*</url-pattern>
+	</servlet-mapping>
+	
+	<error-page>
+        <error-code>404</error-code>
+        <location>/404.jsp</location>
+    </error-page>
+
+	<error-page>
+        <error-code>500</error-code>
+        <location>/error.jsp</location>
+    </error-page>
+</web-app>

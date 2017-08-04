@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh" class="no-js">
+<head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta name="keywords" content=" " />
+    <meta name="description" content="" />
+	<title>我的分享</title>
+	<link data-th-href="|${tempPath}style/font-awesome.min.css|" href="style/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/wSelect.less|"  href="style/wSelect.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}style/themes.less|"  href="style/themes.less" rel="stylesheet" type="text/less" />
+	<link href="/emall/cij/datatables/css/dataTables.foundation.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}datatables-extend/css/dataTables.response.less|"  href="datatables-extend/css/dataTables.response.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}datatables-extend/css/daterangepicker-f5.less|"  href="datatables-extend/css/daterangepicker-f5.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}style/layout.css|"  href="style/layout.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/master.css|"  href="style/master.css" rel="stylesheet" type="text/css" />
+
+	<script data-th-src="|${tempPath}javascript/less-1.7.3.min.js|" src="javascript/less-1.7.3.min.js"></script>
+	<script data-th-src="|${tempPath}javascript/modernizr.js|" src="javascript/modernizr.js"></script>
+	<script data-th-inline="javascript">
+	Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/ '/emall';
+	Cfg.tempPath = /*[[ ${tempPath} ]]*/ '/emall/tpl/001/';
+	</script>
+</head>
+<body>
+<div id="layout">
+    <div class="wrapper" id="frame_wrapper">
+        <div class="off-canvas-wrap" data-offcanvas="" id="frame_canvas_wrap">
+            <div class="inner-wrap" id="frame_inner_wrap">  
+                <div class="left-off-canvas-menu hide-for-large" id="frame_canvas_menu" data-set="data_accordion"></div>
+                <div class="header" id="frame_header" include="include.html" data-th-include="${tempInternalPath + 'include-user'} :: #frame_header">
+                </div>
+                <!--end header-->
+                
+                <div class="main" role="main" aria-label="主体区块" id="frame_main">
+                    <div class="row" id="frame_main_row1">
+                        <div class="small-12 medium-2 large-2 columns" id="frame_main_col1">
+                            <div id="frame_accordion" include="include.html" data-th-include="${tempInternalPath + 'include-user'} :: #frame_accordion">
+                            </div>
+                        </div>
+                        <div class="small-12 medium-10 large-10 columns" id="frame_main_col2">
+                            <div class="list-position" id="frame_position">
+                                <div id="data_list_addr" class="c-addr">
+                                    <a href="#" target="_self">账户管理</a>&frasl;<a href="#" target="_self">分享绑定</a>
+                                </div>
+                            </div>
+                            <div id="data_datatable">
+                                <!--datatable-->
+                                <div id="commodity_post_page">
+                                    <section class="panel">
+                                        <header class="panel-heading">
+                                            分享绑定
+                                        </header>
+                                        <div class="border-solid"></div>
+                                        <div class="panel-body">
+                                            <div class="row border-dashed-share-bind text-al-center">
+                                                <div class="large-2 small-4 columns left">
+                                                    <img src="/emall/tpl/dsww/001/images/pic-10-1.png" alt="" class="left border-img-le"/>
+                                                </div>
+                                                <div class="large-2 small-4 columns">
+                                                    <p class="p-font-25 left">QQ空间</p>
+                                                </div>
+                                                <div class="large-6 small-12 columns font-14-red text-al-left margin-t ">
+                                                    <ul class="share-binding-ul-li QQzone">
+                                                    </ul>
+                                                </div>
+                                                <div class="large-2 small-12 columns" id="QQzonebtn">
+                                                    <button class="btn-safe-center-apply btn-share-binding-two btn-10-undone" >立即设置</button>
+                                                </div>
+                                            </div>
+                                            <div class="row border-dashed-share-bind text-al-center">
+                                                <div class="large-2 small-4 columns left">
+                                                    <img src="/emall/tpl/dsww/001/images/pic-10-3.png" alt="" class="left border-img-le"/>
+                                                </div>
+                                                <div class="large-2 small-4 columns">
+                                                    <p class="p-font-25 left">新浪微博</p>
+                                                </div>
+                                                <div class="large-6 small-12 columns font-14-red text-al-left margin-t ">
+                                                    <ul class="share-binding-ul-li sina">
+                                                    </ul>
+                                                </div>
+                                                <div class="large-2 small-12 columns" id="sinabtn">
+                                                    <button class="btn-safe-center-apply  btn-10-undone"  >服务申请中</button>
+                                                </div>
+                                            </div>
+                                            <div class="row border-dashed-share-bind text-al-center">
+                                                <div class="large-2 small-4 columns left">
+                                                    <img src="/emall/tpl/dsww/001/images/pic-10-4.png" alt="" class="left border-img-le"/>
+                                                </div>
+                                                <div class="large-2 small-4 columns">
+                                                    <p class="p-font-25 left">腾讯微博</p>
+                                                </div>
+                                                <div class="large-6 small-12 columns font-14-red text-al-left margin-t ">
+                                                    <ul class="share-binding-ul-li TXblog">
+                                                    </ul>
+                                                </div>
+                                                <div class="large-2 small-12 columns" id="TXblogbtn">
+                                                    <button class="btn-safe-center-apply btn-share-binding-two btn-10-undone" >立即设置</button>
+                                                </div>
+                                            </div>
+                                            <div class="row border-dashed-share-bind text-al-center">
+                                                <div class="large-2 small-4 columns left">
+                                                    <img src="/emall/tpl/dsww/001/images/pic-10-5.png" alt="" class="left border-img-le"/>
+                                                </div>
+                                                <div class="large-2 small-4 columns">
+                                                    <p class="p-font-25 left">人人网</p>
+                                                </div>
+                                                <div class="large-6 small-12 columns font-14-red text-al-left margin-t ">
+                                                    <ul class="share-binding-ul-li renren">
+                                                    </ul>
+                                                </div>
+                                                <div class="large-2 small-12 columns" id="renrenbtn">
+                                                <button class="btn-safe-center-apply btn-10-undone" >服务申请中</button>
+                                                </div>
+                                            </div>
+                                            <div class="row border-dashed-share-bind text-al-center">
+                                                <div class="large-2 small-4 columns left">
+                                                    <img src="/emall/tpl/dsww/001/images/pic-10-6.png" alt="" class="left border-img-le"/>
+                                                </div>
+                                                <div class="large-2 small-4 columns">
+                                                    <p class="p-font-25 left">开心网</p>
+                                                </div>
+                                                <div class="large-6 small-12 columns font-14-red text-al-left margin-t ">
+                                                    <ul class="share-binding-ul-li kaixin">
+                                                    </ul>
+                                                </div>
+                                                <div class="large-2 small-12 columns" id="kaixinbtn">
+                                                <button class="btn-safe-center-apply btn-10-undone" >服务申请中</button>
+                                                </div>
+                                            </div>
+                                            <div class="row border-dashed-share-bind text-al-center" style="border-bottom: none">
+                                                <div class="large-2 small-4 columns left">
+                                                    <img src="/emall/tpl/dsww/001/images/pic-10-7.png" alt="" class="left border-img-le"/>
+                                                </div>
+                                                <div class="large-2 small-4 columns">
+                                                    <p class="p-font-25 left">豆瓣</p>
+                                                </div>
+                                                <div class="large-6 small-12 columns font-14-red text-al-left margin-t ">
+                                                    <ul class="share-binding-ul-li douban">
+                                                    </ul>
+                                                </div>
+                                                <div class="large-2 small-12 columns" id="doubanbtn">
+                                                <button class="btn-safe-center-apply btn-share-binding-two btn-10-undone" >立即设置</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+
+                                <div id="share-order" class="reveal-modal tiny openModal v_share" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+                                    <form>
+                                        <div class="row dele">
+                                            <div class="small-12 columns">
+                                                 <div class="alert-box-share-binding-head">
+                                                    <p>温馨提示</p>
+                                                </div>
+                                                <div class="alert-box-share-binding-content">
+                                                    <!-- <p>设置失败，请重新设置</p> -->
+                                                    <p class="text-center margin-t">完成设置</p>
+                                                    <a class="close-reveal-modal right button radius tiny secondary margin-r v_oper_do_delete" aria-label="Close">确定</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                                </div>
+
+                                <div id="delete_warning" class="reveal-modal tiny v_del_waring warning-panel" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+                                    <div class="row">
+                                        <div class="small-4 columns">
+                                            <div class="row">
+                                                <div class="small-12 columns">
+                                                    <i class="fa font-warning fa-warning font-i"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="small-8 columns">
+                                            <div class="row">
+                                                <div class="small-12 columns">
+                                                    确定要删除吗？
+                                                </div>
+                                            </div>
+                                            <div class="row dele">
+                                                <div class="small-12 columns">
+                                                    <a class="right button radius tiny v_oper_do_delete">确定</a>
+                                                    <a class="close-reveal-modal right button radius tiny secondary margin-r close_btn" aria-label="Close">取消</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end main-->
+                <div class="footer" id="frame_footer" role="contentinfo" include="include.html" data-th-include="${tempInternalPath + 'include'} :: #frame_footer">
+                </div>
+                <!--end footer--> 
+                
+                <div class="go" id="frame_go"><a title="返回顶部" class="gotop" id="goTop"></a> <a title="返回底部" class="gobottom" id="goBottom"></a></div>
+                
+                <div id="frame_exit_off"><a class="exit-off-canvas"></a></div>
+            </div>
+        </div>
+        <div id="frame_javascript">
+           <div data-th-include="${tempInternalPath + 'include'} :: #base_javascript"></div>
+           <div data-th-include="${tempInternalPath + 'include'} :: #datatable_javascript"></div>
+            <div id="data_javascript">
+                <script data-th-src="|${tempPath}javascript/jquery-2.1.3.js|" src="javascript/jquery-2.1.3.js" type="text/javascript" charset="utf8"></script>
+				<script data-th-src="|${tempPath}javascript/AppendAround.js|" src="javascript/AppendAround.js" type="text/javascript" charset="utf8"></script>
+                <script data-th-src="|${tempPath}javascript/swiper.min.js|" src="javascript/swiper.min.js" type="text/javascript" charset="utf8"></script>
+                <!-- <script data-th-src="|${tempPath}javascript/others.js|" src="javascript/others.js" type="text/javascript" charset="utf8"></script> -->
+                <script src="/emall/cij/datatables/js/jquery.dataTables.js" type="text/javascript" charset="utf8"></script>
+                <script src="/emall/cij/datatables/js/dataTables.foundation.js" type="text/javascript" charset="utf8"></script>
+                <script src="/emall/cij/foundation/js/foundation.min.js"></script>
+                <script src="/emall/cij/js/jquery.datatable.page.js"></script>
+                <script data-th-src="|${tempPath}datatables-extend/js/foundation.extend.js|" src="datatables-extend/js/foundation.extend.js"></script>
+                <script data-th-src="|${tempPath}datatables-extend/js/moment.min.js|" src="datatables-extend/js/moment.min.js"></script>
+                <script data-th-src="|${tempPath}datatables-extend/js/daterangepicker.js|" src="datatables-extend/js/daterangepicker.js"></script>
+                <script data-th-src="@{/cij/js/m/social.js}" src="/emall/cij/js/m/social.js"></script>
+                <script>
+                $(document).foundation();
+				$(".bar_apply").appendAround();
+				var swiper = new Swiper('.swiper-container', {
+					scrollbar: '.swiper-scrollbar',
+					slidesPerView: 'auto',
+					mousewheelControl: true,
+					freeMode: true
+				});
+
+//                    $('.btn-share-binding-one').on('click',function() {
+//                        $('#delete_warning').foundation('reveal','open');
+//                    });
+
+               
+
+
+                </script>
+            </div>
+        </div>
+   </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	
+	<include resource="rjskeleton-logback-included-console.xml"/>
+	
+	<!-- TRACE DEBUG INFO WARN ERROR -->
+	<logger name="com.rongji" level="DEBUG" />
+	
+</configuration>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh" class="no-js">
+<head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta name="keywords" content=" " />
+    <meta name="description" content="" />
+	<title>支付方式</title>
+	<link data-th-href="|${tempPath}style/font-awesome.min.css|" href="style/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/themes.less|" href="style/themes.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="@{/cij/datatables/css/dataTables.foundation.css}" href="/emall/cij/datatables/css/dataTables.foundation.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}datatables-extend/css/dataTables.response.less|"  href="datatables-extend/css/dataTables.response.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}datatables-extend/css/daterangepicker-f5.less|"  href="datatables-extend/css/daterangepicker-f5.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}style/layout.css|"  href="style/layout.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/master.css|"  href="style/master.css" rel="stylesheet" type="text/css" />
+
+	<script data-th-src="|${tempPath}javascript/less-1.7.3.min.js|" src="javascript/less-1.7.3.min.js"></script>
+	<script data-th-src="|${tempPath}javascript/modernizr.js|" src="javascript/modernizr.js"></script>
+	<script data-th-inline="javascript">
+	Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/ '/emall';
+	Cfg.tempPath = /*[[ ${tempPath} ]]*/ '/emall/tpl/001/';
+	</script>
+</head>
+<body>
+<div id="layout">
+    <div class="wrapper" id="frame_wrapper">
+        <div class="off-canvas-wrap" data-offcanvas="" id="frame_canvas_wrap">
+            <div class="inner-wrap" id="frame_inner_wrap">  
+                <div class="left-off-canvas-menu hide-for-large" id="frame_canvas_menu" data-set="data_accordion"></div>
+                <div class="header" id="frame_header" include="include.html" data-th-include="${tempInternalPath + 'include-seller'} :: #frame_header">
+                </div>
+                <!--end header-->
+                
+                <div class="main" role="main" aria-label="主体区块" id="frame_main">
+                    <div class="row" id="frame_main_row1">
+                        <div class="small-12 medium-2 large-2 columns" id="frame_main_col1">
+                            <div id="frame_accordion" include="include.html" data-th-include="${tempInternalPath + 'include-seller'} :: #frame_accordion">
+                            </div>
+                        </div>
+                        <div class="small-12 medium-10 large-10 columns" id="frame_main_col2">
+                            <div class="list-position" id="frame_position">
+                                <div id="data_list_addr" class="c-addr">
+                                    <a href="#" target="_self">我是卖家</a>&frasl;<a href="#" target="_self">店铺管理</a>&frasl;<a href="#" target="_self">支付方式</a>
+                                </div>
+                            </div>
+                            <div id="data_datatable">
+                                <!--datatable-->
+                                <div id="user_page">
+                                    <section class="panel">
+                                    	<header class="panel-heading">
+                                            支付方式
+                                            <span class="tools right" style="display:none;">
+                                                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                                                <a href="javascript:;" class="fa fa-times"></a>
+                                             </span>
+                                        </header>
+                                        <div class="panel-body">
+	                                        <ul class="button-group tabs" data-tab="">
+												<li class="tab-title active"><a id="used_payment_tab" href="#used_payment">已开通支付方式</a></li>
+												<li class="tab-title"><a href="#providers">全部支付方式</a></li>
+											</ul>
+                                        	<div class="tabs-content">
+                                        	<div class="content active" id="used_payment">
+	                                            <div class="margin-t table_bar clearfix">
+                                                    <div class="bar_left hide-for-small" data-set="data_bar_apply">
+                                                        <div class="left bar_apply">
+                                    <!--                    
+                                                            <div class="button radius tiny left v_oper_add"><i class="fa fa-plus"></i><span>添加</span></div>
+                                    -->
+                                                            <div class="apply">
+                                                                <select id="select_change">
+                                                                    <option>批量操作</option>
+                                                                    <option value="v_oper_del">删除</option>
+                                                                </select>
+                                                                <div class="button radius tiny left" data-v-oper-id="select_change">应用</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="bar_right" style="top:0">
+                                                        <div class="search">
+                                                          <input name="payServiceProviderTitle-lk" class="inp v_oper_quick_search" id="topsearch" type="text" placeholder="请输入..." accesskey="s" title="请输入查询内容" x-webkit-speech="" x-webkit-grammar="builtin:translate" lang="zh-CN" style="display: block;" />
+                                                          <!--<i class="fa fa-filter v_oper_advanced_search" title="高级"></i>-->
+                                                          <i class="fa fa-search v_oper_click_quick_search" title="搜索"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+	                                            <!--加载中...-->
+	                                            <div class="v_page_processing row">
+	                                                <div class="small-12 medium-6 large-6 columns"></div>
+	                                                <div class="small-12 medium-6 large-6 columns"></div>
+	                                                <div id="DataTables_Table_0_processing" class="dataTables_processing">
+	                                                    <span class="fa-stack fa-lg">
+	                                                      <i class="fa fa-square fa-stack-2x"></i>
+	                                                      <i class="fa fa-spinner fa-spin fa-stack-1x fa-inverse"></i>
+	                                                    </span><br/>
+	                                                    <span>数据加载中...</span>
+	                                                </div>
+	                                            </div>
+	                                            <div class="margin-t table_bar hide-for-large clearfix bar_apply_wrap" data-set="data_bar_apply"></div>
+	                                            <div class="v_table simple"></div>
+	                                            <div id="alipay_edit_form" class="reveal-modal large openModal v_edit_form" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+											      <form data-abide="" method="post" enctype="multipart/form-data">
+											          <h3>支付宝配置</h3>
+											          <input type="hidden" name="id" />
+											          <input type="hidden" name="payServiceProviderCode" />
+											          <div class="model_wrap">
+											          <div class="row">
+											            <div class="small-12 columns int">
+											                <label>合作身份者ID
+											                    <input type="text" name="partner" required="" pattern="\d{16}" placeholder="以2088开头由16位纯数字组成的字符串" />
+											                </label>
+											                <small class="error">合作身份者ID不正确！</small>
+											            </div>
+											          </div>
+											          <div class="row">
+											            <div class="small-12 columns int">
+											                <label>收款支付宝账号
+											                    <input type="text" name="sellerEmail" required="" placeholder="邮箱" />
+											                </label>
+											                <small class="error">收款支付宝账号不正确！</small>
+											            </div>
+											          </div>
+											          <div class="row">
+											            <div class="small-12 columns int">
+											                <label>商户的私钥
+											                    <input type="text" name="key" required="" placeholder="" />
+											                </label>
+											                <small class="error">商户的私钥不能为空！</small>
+											            </div>
+											          </div>
+											          <div class="row">
+											            <div class="small-12 columns int">
+											                <label>支付宝的公钥 移动支付需要
+											                    <input type="text" name="publicKey" placeholder="" />
+											                </label>
+											                <small class="error">支付宝的公钥不能为空！</small>
+											            </div>
+											          </div>
+											          <div class="row">
+											            <div class="small-12 columns int">
+											                <label>商户证书，RSA密钥PKCS8格式(rsa_private_key.pem) 移动支付需要
+											                    <input type="file" name="certFile" placeholder="移动支付需要" />
+											                </label>
+											            </div>
+											          </div>
+											          </div>
+											          <div class="row confirm">
+											            <div class="small-12 columns">
+											                <a class="right button radius tiny v_oper_submit">保存</a>
+											                <a class="close-reveal-modal right button radius tiny secondary margin-r" aria-label="Close">取消</a>
+											            </div>
+											          </div>
+											      </form>
+											      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+											    </div>
+											    <div id="weixinpay_edit_form" class="reveal-modal large openModal v_edit_form" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+											      <form data-abide="" method="post" enctype="multipart/form-data">
+											          <h3>微信支付配置</h3>
+											          <input type="hidden" name="id" />
+											          <input type="hidden" name="payServiceProviderCode" />
+											          <div class="model_wrap">
+											          <div class="row">
+											            <div class="small-12 columns int">
+											                <label>公众账号ID
+											                    <input type="text" name="appId" required="" placeholder="公众帐号身份的唯一标识。审核通过后，在微信发送的邮件中查看。" />
+											                </label>
+											                <small class="error">合作身份者ID不正确！</small>
+											            </div>
+											          </div>
+											          <div class="row">
+											            <div class="small-12 columns int">
+											                <label>商户API密钥
+											                    <input type="text" name="key" required="" placeholder="在API调用时用来按照指定规则对您的请求参数进行签名, 可验证商户唯一身份" />
+											                </label>
+											                <small class="error">签名秘钥不能为空！</small>
+											            </div>
+											          </div>
+											          <div class="row">
+											            <div class="small-12 columns int">
+											                <label>商户ID
+											                    <input type="text" name="mchId" required="" placeholder="商户ID，成功申请微信支付功能之后通过官方发出的邮件获得" />
+											                </label>
+											                <small class="error">商户ID不能为空！</small>
+											            </div>
+											          </div>
+											          <div class="row">
+											            <div class="small-12 columns int">
+											                <label>商户证书，pkcs12格式(apiclient_cert.p12)
+											                    <input type="file" name="certFile" placeholder="微信支付接口中，涉及资金回滚的接口会使用到商户证书，包括退款、撤销接口" />
+											                </label>
+											                <small class="error">商户证书不能为空！</small>
+											            </div>
+											          </div>
+											          </div>
+											          <div class="row confirm">
+											            <div class="small-12 columns">
+											                <a class="right button radius tiny v_oper_submit">保存</a>
+											                <a class="close-reveal-modal right button radius tiny secondary margin-r" aria-label="Close">取消</a>
+											            </div>
+											          </div>
+											      </form>
+											      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+												</div>
+												<!--确认删除警告-->
+			                                    <div id="delete_warning" class="reveal-modal tiny v_del_waring warning-panel" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+			                                      <div class="row">
+			                                        <div class="small-4 columns">
+			                                          <div class="row">
+			                                            <div class="small-12 columns">
+			                                                <i class="fa font-warning fa-warning font-i"></i>
+			                                            </div>
+			                                          </div>
+			                                        </div>
+			                                        <div class="small-8 columns">
+			                                          <div class="row">
+			                                            <div class="small-12 columns">
+			                                                确定要删除吗？
+			                                            </div>
+			                                          </div>
+			                                          <div class="row dele">
+			                                            <div class="small-12 columns">
+			                                                <a class="right button radius tiny v_oper_do_delete">确定</a>
+			                                                <a class="close-reveal-modal right button radius tiny secondary margin-r close_btn" aria-label="Close">取消</a>
+			                                            </div>
+			                                          </div>
+			                                        </div>
+			                                      </div>
+			                                      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+			                                    </div>
+			                                    <!--操作成功提示框-->
+			                                    <div class="fixed v_info_success">
+			                                        <div class="row">
+			                                            <div class="large-12 columns" id="operate_alert_into">
+			                                                <div data-alert="" class="success alert-box warning radius nomarg v_show_oper_info">
+			                                                    <div><i class="fa fa-fw fa-check"></i><span class="v_show_info">操作成功.</span></div>
+			                                                </div>
+			                                            </div>
+			                                        </div>
+			                                    </div>
+			                                    <!--未选中提示框-->
+			                                    <div class="fixed v_info_fail">
+			                                        <div class="row">
+			                                            <div class="large-12 columns" id="error_alert_into">
+			                                                <div data-alert="" class="error alert-box warning radius nomarg v_show_oper_info">
+			                                                    <div><i class="fa fa-fw fa-exclamation-circle"></i><span class="v_show_info">未选择.</span></div>
+			                                                </div>
+			                                            </div>
+			                                        </div>
+			                                    </div>
+			                                    <div class="fixed v_info_warning">
+			                                        <div class="row">
+			                                            <div class="large-12 columns" id="error_alert_into">
+			                                                <div data-alert="" class="error alert-box warning radius nomarg v_show_oper_info">
+			                                                    <div><i class="fa fa-fw fa-exclamation-circle"></i><span class="v_show_info">未选择.</span></div>
+			                                                </div>
+			                                            </div>
+			                                        </div>
+			                                    </div>
+	                                        </div>
+	                                        <div class="content" id="providers">
+												<div class="margin-t v_table simple"></div>
+											</div>
+											</div>
+	                                    </div>
+                                    </section>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end main-->
+                
+                <div class="footer" id="frame_footer" role="contentinfo" include="include.html" data-th-include="${tempInternalPath + 'include'} :: #frame_footer">
+                </div>
+                <!--end footer--> 
+                
+                <div class="go" id="frame_go"><a title="返回顶部" class="gotop" id="goTop"></a> <a title="返回底部" class="gobottom" id="goBottom"></a></div>
+                
+                <div id="frame_exit_off"><a class="exit-off-canvas"></a></div>
+            </div>
+        </div>
+        <div id="frame_javascript">
+        	<div data-th-include="${tempInternalPath + 'include'} :: #base_javascript"></div>
+        	<div data-th-include="${tempInternalPath + 'include'} :: #datatable_javascript"></div>
+            <div id="data_javascript">
+ 				<script>
+ 				$(document).foundation();
+ 				$(".bar_apply").appendAround();
+ 				</script>
+                <script data-th-src="@{/cij/js/m/seller.payment.js}" src="/emall/cij/js/m/seller.payment.js"></script>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

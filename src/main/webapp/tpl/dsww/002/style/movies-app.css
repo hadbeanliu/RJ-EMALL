@@ -1,0 +1,557 @@
+body, html {
+	position: relative;
+	height: 100%;
+}
+
+/*
+ * Swiper - Mobile Touch Slider CSS
+ * http://www.idangero.us/sliders/swiper
+ *
+ * Vladimir Kharlampidi, The iDangero.us
+ * http://www.idangero.us/
+ * 
+ * Copyright 2012-2013, Vladimir Kharlampidi
+ * The iDangero.us
+ * http://www.idangero.us
+ *
+ * Licensed under GPL & MIT
+ *
+*/
+
+/* ===============================================================
+Basic Swiper Styles 
+================================================================*/
+.swiper-container {
+	margin:0 auto;
+	position:relative;
+	overflow:hidden;
+	-webkit-backface-visibility:hidden;
+	-moz-backface-visibility:hidden;
+	-ms-backface-visibility:hidden;
+	-o-backface-visibility:hidden;
+	backface-visibility:hidden;
+	/* Fix of Webkit flickering */
+	z-index:1;
+}
+.swiper-wrapper {
+	margin: 0;
+	position:relative;
+	width:100%;
+	max-height:100%;
+	-webkit-transition-property:-webkit-transform, left, top;
+	-webkit-transition-duration:0s;
+	-webkit-transform:translate3d(0px, 0, 0);
+	-webkit-transition-timing-function:ease;
+	-moz-transition-property:-moz-transform, left, top;
+	-moz-transition-duration:0s;
+	-moz-transform:translate3d(0px, 0, 0);
+	-moz-transition-timing-function:ease;
+	-o-transition-property:-o-transform, left, top;
+	-o-transition-duration:0s;
+	-o-transform:translate3d(0px, 0, 0);
+	-o-transition-timing-function:ease;
+	-o-transform:translate(0px, 0px);
+	-ms-transition-property:-ms-transform, left, top;
+	-ms-transition-duration:0s;
+	-ms-transform:translate3d(0px, 0, 0);
+	-ms-transition-timing-function:ease;
+	transition-property:transform, left, top;
+	transition-duration:0s;
+	transform:translate3d(0px, 0, 0);
+	transition-timing-function:ease;
+}
+.swiper-free-mode > .swiper-wrapper {
+	-webkit-transition-timing-function: ease-out;
+	-moz-transition-timing-function: ease-out;
+	-ms-transition-timing-function: ease-out;
+	-o-transition-timing-function: ease-out;
+	transition-timing-function: ease-out;
+	margin: 0 auto;
+}
+.swiper-slide {
+	float: left;
+}
+/* IE10 Windows Phone 8 Fixes */
+.swiper-wp8-horizontal {
+	-ms-touch-action: pan-y;
+}
+.swiper-wp8-vertical {
+	-ms-touch-action: pan-x;
+}
+/* ===============================================================
+Your custom styles, here you need to specify container's and slide's
+sizes, pagination, etc.
+================================================================*/
+.swiper-container {
+	/* Specify Swiper's Size: */
+
+	width:100%;
+	height: 100%;
+}
+.swiper-slide {
+	position: relative;/* Specify Slides's Size: *//*width: 100%;
+	height: 100%;*/
+}
+.swiper-slide-active {
+/* Specific active slide styling: */
+	
+}
+.swiper-slide-active {
+/* Specific visible slide styling: */	
+
+}
+/* ===============================================================
+Pagination Styles
+================================================================*/
+.swiper-pagination-switch {
+/* Stylize pagination button: */	
+
+}
+.swiper-active-switch {
+/* Specific active button style: */	
+	
+}
+.swiper-visible-switch {
+/* Specific visible button style: */	
+	
+}
+.swiper-content {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+.swiper-content .inner {
+	display: -ms-flexbox;
+	-ms-flex-orient: vertical;
+	-ms-flex-pack: center;
+	-ms-flex-align: center;
+	display: -moz-box;
+	-moz-box-orient: vertical;
+	-moz-box-pack: center;
+	-moz-box-align: center;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-box-pack: center;
+	-webkit-box-align: center;
+	display: box;
+	box-orient: vertical;
+	box-pack: center;
+	box-align: center;
+	text-align: center;
+	overflow: hidden;
+	margin:0 auto;
+	height: 100%;
+	width: 100%;
+	max-height: 400px;
+}
+.swiper-content .inner img {
+	width: 100%;
+	height:auto;
+	max-width: 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
+.picGalleryWrapper .swiper-content .inner img {
+	width: auto;
+	max-height:100%;
+	max-width: 100%;
+	display: inline-block;
+	vertical-align: middle;
+	height: auto;
+}
+.picGalleryWrapper .swiper-content .inner img {
+	box-shadow: 0 2px 5px 1px #000;
+	-moz-box-shadow: 0 2px 5px 1px #000;
+}
+.swiper-content a {
+	font-size: 20px;
+	position: absolute;
+	bottom: 10px;
+	right: 30px;
+	color: #888;
+	text-decoration: none;
+}
+.swiper-content .movie-pic {
+	width: 110px;
+	height: auto;
+}
+.swiper-content .movie-text {
+	margin-left: 120px;
+}
+.swiper-nav {
+	height: 75px;
+	position: absolute;
+	left: 0;
+	bottom: 10px;
+	width: 100%;
+	/* background: #e9e9e9; */
+	/* box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3) inset; */
+}
+.picGalleryWrapper .swiper-nav {
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.6);
+	opacity: 1;
+	height: 95px;
+	padding:10px 0;
+}
+.swiper-nav .swiper-slide {
+	width: 62px;
+	height: 75px;
+	text-align: center;
+	position: relative;
+}
+.picGalleryWrapper .swiper-nav .swiper-slide {
+	width: 78px;
+	height: 95px;
+	text-align: center;
+	position: relative;
+}
+
+.picGalleryWrapper .swiper-nav .swiper-slide {
+	opacity: 0.6;
+}
+.swiper-nav .swiper-slide:hover {
+	opacity: 1;
+	cursor:pointer;
+}
+.swiper-nav .swiper-slide, .swiper-nav .angle {
+	-webkit-transition: 300ms;
+	-moz-transition: 300ms;
+	-ms-transition: 300ms;
+	-o-transition: 300ms;
+	transition: 300ms;
+	/* width: 100%; */    display: -ms-flexbox;
+	-ms-flex-orient: vertical;
+	-ms-flex-pack: center;
+	-ms-flex-align: center;
+	display: -moz-box;
+	-moz-box-orient: vertical;
+	-moz-box-pack: center;
+	-moz-box-align: center;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-box-pack: center;
+	-webkit-box-align: center;
+	display: box;
+	box-orient: vertical;
+	box-pack: center;
+	box-align: center;
+	text-align: center;
+	max-height: 100%;
+	max-width: 100%;
+	overflow: hidden;
+	height: 100%;/* box-shadow: 0px 1px 2px #000; */
+}
+.swiper-nav .angle {
+	width: 0;
+	height: 0;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 6px solid #fff;
+	position: absolute;
+	left: 50%;
+	margin-left: -3px;
+	top: -1px;
+	opacity: 0;
+}
+.picGalleryWrapper .swiper-nav .angle {
+	display:none;
+}
+.swiper-nav .active-nav {
+	/* background: #bbb; */
+	/* box-shadow: 0px 2px 5px rgba(102, 102, 102, 0.3) inset; */
+}
+.picGalleryWrapper .swiper-nav .active-nav {
+	background: none;
+	box-shadow: none;
+	border: 5px solid #73B4E0;
+	opacity:1;
+}
+.swiper-nav .active-nav .angle {
+	opacity: 1;
+}
+.swiper-nav .swiper-wrapper {
+	margin: 0 auto;
+}
+.picGallery .swiper-nav img {
+	width: 50px;
+	height: 50px;
+}
+.picGallery .swiper-nav .active-nav {
+	padding: 2px;
+}
+.picGallery .swiper-nav .active-nav img,.picGallery .swiper-nav .swiper-slide:hover img {
+	border:2px solid #cf2a0e;
+	width: 54px;
+	height: 54px;
+}
+.picGalleryWrapper .swiper-nav img {
+	max-width: 68px;
+	max-height: 75px;
+}
+.picGalleryWrapper .swiper-nav .active-nav img {
+	max-width: 68px;
+	max-height: 68px;
+}
+.swiper-nav .title {
+	margin: 0 5px;
+	font-size: 10px;
+	font-weight: bold;
+	position: relative;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+.order-number {
+	position:absolute;
+	font-size:20px;
+	top:10%;
+	left:2%;
+	z-index:999;
+	color:#000;
+	float:left;
+}
+.current-number {
+	float:left;
+}
+.total-number {
+	float:left;
+}
+.arrow-left {
+	background: url(../images/back-128.png);
+	background-size: 60px 70px;
+	position: absolute;
+	left: 0%;
+	top: 35%;
+	width: 60px;
+	height: 70px;
+	z-index:999;
+}
+.arrow-right {
+	background: url(../images/forward-128.png);
+	background-size: 60px 70px;
+	position: absolute;
+	right: 0;
+	top: 35%;
+	width: 60px;
+	height: 70px;
+	z-index:999;
+}
+.picGallery {
+	position: relative;
+	height: 499px;
+	width: 100%;
+	padding: 15px 15px 0 1px;
+}
+.picGallery .arrow-left, .picGallery .arrow-right {
+	display:none;
+}
+.picGallery:hover .arrow-left, .picGallery:hover .arrow-right {
+	display:block;
+}
+.picGallery .arrow-left:hover, .picGallery .arrow-right:hover {
+	background-color: rgba(0, 0, 0, 0.3);
+	transition: all linear .2s;
+	-webkit-transition: all linear .2s;
+	-ms-transition: all linear .2s;
+	-moz-transition: all linear .2s;
+	-o-transition: all linear .2s;
+}
+@media only screen and (max-width: 768px) {
+.arrow-left, .arrow-right {
+	display:none;
+}
+.picGallery {
+	height:332px;
+}
+.picGallery:hover .arrow-left, .picGallery:hover .arrow-right {
+	display:none;
+}
+.picGallery .arrow-left:hover, .picGallery .arrow-right:hover {
+	display:none;
+}
+.picGalleryWrapper .pagination,.picGallery .pagination {
+	position: absolute;
+	z-index: 20;
+	bottom: 10px;
+	width: 100%;
+	text-align: center;
+}
+.picGallery .swiper-nav{
+	position:fixed;
+	top:-999px;
+}
+.picGalleryWrapper .swiper-pagination-switch,.picGallery .swiper-pagination-switch {
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	border-radius: 8px;
+	background: #555;
+	margin: 0 5px;
+	opacity: 0.8;
+	cursor: pointer;
+}
+.picGalleryWrapper .swiper-active-switch,.picGallery .swiper-active-switch {
+	background: #f04124;
+}
+.picGalleryWrapper .swiper-nav {
+	bottom: -200px;
+}
+.swiper-content .inner{
+	max-height: 280px;
+}
+.swiper-content .inner img{
+	height:280px;
+	width:auto;
+}
+}
+.closeGallery {
+	display:none;
+}
+.picGalleryWrapper {
+	position:fixed;
+	left:0;
+	top:0;
+	height:100%;
+	width:100%;
+	background:rgba(0, 0, 0, 0.9);
+	margin:0;
+	z-index:100;
+}
+.picGalleryWrapper .inner {
+	height:100%;
+	max-width:100%;
+	max-height:100%;
+}
+.picGallery .swiper-content .inner img:hover {
+	cursor: -webkit-zoom-in; 
+	cursor: -moz-zoom-in;  
+}
+.picGalleryWrapper .swiper-content .inner img:hover {
+	cursor: -webkit-zoom-out; 
+	cursor: -moz-zoom-out;  
+}
+.picGalleryWrapper .arrow-left {
+	position: absolute;
+	top: 50%;
+	width: 80px;
+	height: 90px;
+	margin-top: -75px;
+	z-index: 10;
+	cursor: pointer;
+	-moz-background-size: 75px 70px;
+	-webkit-background-size: 75px 70px;
+	background-size: 75px 70px;
+	background-position: center;
+	background-repeat: no-repeat;
+	right: auto;
+	left: 0;
+	opacity: .5;
+}
+.picGalleryWrapper .arrow-right {
+	position: absolute;
+	top: 50%;
+	width: 80px;
+	height: 90px;
+	margin-top: -75px;
+	z-index: 10;
+	cursor: pointer;
+	-moz-background-size: 75px 70px;
+	-webkit-background-size: 75px 70px;
+	background-size: 75px 70px;
+	background-position: center;
+	background-repeat: no-repeat;
+	right: 0;
+	left: auto;
+	opacity: .5;
+}
+.picGalleryWrapper .arrow-right:hover, .picGalleryWrapper .arrow-left:hover {
+	background-color: #000;
+	transition: all linear .2s;
+	-webkit-transition: all linear .2s;
+	-ms-transition: all linear .2s;
+	-moz-transition: all linear .2s;
+	-o-transition: all linear .2s;
+}
+.picGalleryWrapper .closeGallery {
+	text-align: center;
+	cursor: pointer;
+	background: url(../images/cancel-128.png) no-repeat 5px 5px;
+	display: block;
+	position: absolute !important;
+	width: 45px !important;
+	height: 45px !important;
+	overflow: hidden;
+	right: 0px;
+	top: 0;
+	font-size: 0;
+	text-indent: 100%;
+	white-space: nowrap;
+	background-size: 35px 35px;
+	opacity: 0.8;
+	z-index: 2;
+}
+.picGalleryWrapper .closeGallery .fa-times {
+	color:#fff;
+	font-size: 40px;
+}
+
+.rotate {
+	display:none;
+}
+.picGalleryWrapper .rotate {
+	z-index: 2;
+	display:block;
+	position:fixed;
+	right: 10px;
+	bottom: 100px;
+	width: 75px;
+}
+.picGalleryWrapper .rotate .rotate-right {
+	background: url(../images/rotate.png) no-repeat -20px -22px;
+	display:block;
+	width: 100px;
+	height: 20px;
+	line-height:20px;
+	color: #fff;
+	padding-left: 23px;
+	font-size: 12px;
+	opacity: 0.5;
+}
+@media only screen and (max-width: 768px) {
+.picGalleryWrapper .rotate {
+	display:none;
+}
+.picGallery .swiper-content .inner img:hover {
+	cursor: auto; 
+}
+.picGalleryWrapper .swiper-content .inner img:hover {
+	cursor: auto; 
+}
+}
+@media screen and (max-width:640px){
+	.swiper-content .inner img{
+		height:250px;
+		width:auto;
+	}
+	.swiper-content .inner{
+		max-height: 250px;
+	}
+	.picGallery .pagination{
+		bottom:0;
+	}
+	.picGallery {
+	    height: 284px;
+        padding: 10px 10px 0;
+	}
+	.picGallery .pagination {
+	  bottom: 0;
+	  height: 24px;
+	  line-height: 24px;
+	}
+	.picGalleryWrapper .swiper-content .inner{
+		max-height:100%;
+	}
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta charset="utf-8" />
+	
+	<!-- If you delete this meta tag World War Z will become a reality -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<title>用户注册</title>
+	<!-- If you are using the CSS version, only link these 2 files, you may add app.css to use for your overrides if you like -->
+	<link data-th-href="@{/cij/foundation/css/normalize.css}" rel="stylesheet" href="css/normalize.css" />
+	<link data-th-href="@{/cij/foundation/css/foundation.css}" rel="stylesheet" href="css/foundation.css" />
+	<link data-th-href="@{/cij/foundation-icons/foundation-icons.css}" rel="stylesheet" href="css/foundation.css" />
+    
+	<link data-th-href="@{/cij/css/font-awesome.min.css}" rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+	<link data-th-href="@{/cij/css/themes.less}" rel="stylesheet" type="text/less" href="css/themes.less" />
+
+	<!-- If you are using the gem version, you need this only -->
+	<link data-th-href="@{/cij/css/app.css}" rel="stylesheet" href="css/app.css" />
+
+	<!-- DataTables CSS
+	<link data-th-href="@{/cij/datatables/css/jquery.dataTables.css}" rel="stylesheet" type="text/css" href="/datatables/media/css/jquery.dataTables.css" />
+	 -->
+	<link data-th-href="@{/cij/datatables/css/dataTables.foundation.css}" rel="stylesheet" type="text/css" href="dataTables.foundation.css" />
+	<link data-th-href="@{/cij/datatables-extend/css/dataTables.response.css}" rel="stylesheet" type="text/css" href="dataTables.response.css" />
+	<link data-th-href="@{/cij/datatables-extend/css/daterangepicker-f5.less}" rel="stylesheet" type="text/less" href="daterangepicker-f5.less" />
+	
+	<script data-th-inline="javascript">
+	Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/ '';
+	</script>
+	<script data-th-src="@{/cij/js/less-1.7.3.min.js}" src="js/less-1.7.3.min.js"></script>
+	<script data-th-src="@{/cij/foundation/js/vendor/modernizr.js}" src="js/vendor/modernizr.js"></script>
+</head>
+<body>
+<!-- 
+<div class="button" onClick="showTip()" style="width:200px;margin:0 auto;display:block;">提示框</div>
+ -->
+ <div id="reg">
+  <form data-abide="" class="form">
+		<div class="row">
+		    <div class="row">
+            <div class="small-12 columns int">
+                <label>用户名
+                    <input type="text" class="checkNmae" name="loginName" required="" pattern="" />
+                </label>
+                <small class="error">用户名不能为空！</small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns int">
+                <label>密码
+                    <input type="password" name="password" id="password" required=""  />
+                </label>
+                <small class="error">请输入密码！</small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns int">
+                <label>确认密码
+                    <input type="password" id="confirmPassword" placeholder="确认密码" name="confirmPassword" required="" data-equalto="password" />
+                </label>
+                <small class="error">确认密码不一致！</small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns int">
+                <label>手机号码
+                    <input type="text" name="mobiletel" required="" pattern="" />
+                </label>
+                <small class="error">手机号码不能为空！</small>
+            </div>
+            <input type="button" class="getcode" value="获取短信验证码"  />
+          </div>
+          <div class="row">
+            <div class="small-12 columns int">
+                <label>验证码
+                    <input type="text" name="code" class="checkcode" />
+                </label>
+                <small class="error">验证码不能为空！</small>
+            </div>
+          </div>
+		    <div>
+					<input type="button" class="social_ajax_submit" value="注册" />
+			</div>
+		</div>
+  </form>
+  <input id="psmaRefID" type="hidden" data-th-value="${psmaRefID}"/>
+  <input id="psmrID" type="hidden" data-th-value="${psmrID}"/>
+  <input id="socialUserId" type="hidden" data-th-value="${socialUserId}"/>
+    <form data-abide="" class="o_form">
+		<div class="row">
+		<h>已有账号直接绑定</h>
+		    <div class="row">
+            <div class="small-12 columns int">
+                <label>用户名
+                    <input type="text" name="loginName" required="" pattern="" />
+                </label>
+                <small class="error">用户名不能为空！</small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns int">
+                <label>密码
+                    <input type="password" name="password" id="password" required=""  />
+                </label>
+                <small class="error">请输入密码！</small>
+            </div>
+          </div>
+		    <div>
+					<input type="button" class="button small radius v_ajax_submit" value="绑定账号" onclick="bind_user();" />
+			</div>
+		</div>
+  </form>
+  
+</div>
+
+	<script data-th-src="@{/cij/jquery/jquery-2.1.3.js}" src="js/vendor/jquery.js"></script>
+	
+	<!-- DataTables -->
+	<script data-th-src="@{/cij/datatables/js/jquery.dataTables.js}" type="text/javascript" charset="utf8" src="/DataTables-1.10.6/media/js/jquery.dataTables.js"></script>
+	<script data-th-src="@{/cij/datatables/js/dataTables.foundation.js}" type="text/javascript" charset="utf8" src="dataTables.foundation.js"></script>
+
+	<script data-th-src="@{/cij/foundation/js/foundation.min.js}" src="js/foundation.min.js"></script>
+	<script data-th-src="@{/cij/js/jquery.datatable.page.js}" src="js/jquery.datatable.page.js"></script>
+
+	<script data-th-src="@{/cij/datatables-extend/js/moment.min.js}" src="js/moment.min.js"></script>
+	<script data-th-src="@{/cij/datatables-extend/js/daterangepicker.js}" src="js/daterangepicker.js"></script>
+    
+	<script>
+	$(document).foundation();
+	</script>
+	<script data-th-src="@{/cij/js/rongji.js}" src=""></script>
+	<script data-th-src="@{/cij/js/m/reg.js}" src=""></script>
+	<script data-th-src="@{/cij/js/thymeleaf.js}" src=""></script>
+	<script data-th-src="@{/cij/thymol/thymol-full.js}" src=""></script>
+</body>
+</html>

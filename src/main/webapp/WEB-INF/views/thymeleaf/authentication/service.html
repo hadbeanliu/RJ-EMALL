@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+
+<!-- If you delete this meta tag World War Z will become a reality -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>服务认证</title>
+<!-- If you are using the CSS version, only link these 2 files, you may add app.css to use for your overrides if you like -->
+<link data-th-href="@{/cij/foundation/css/normalize.css}"
+	rel="stylesheet" href="css/normalize.css" />
+<link data-th-href="@{/cij/foundation/css/foundation.css}"
+	rel="stylesheet" href="css/foundation.css" />
+<link data-th-href="@{/cij/foundation-icons/foundation-icons.css}"
+	rel="stylesheet" href="css/foundation.css" />
+
+<link data-th-href="@{/cij/css/font-awesome.min.css}" rel="stylesheet"
+	type="text/css" href="css/font-awesome.min.css" />
+<link data-th-href="@{/cij/css/themes.less}" rel="stylesheet"
+	type="text/less" href="css/themes.less" />
+
+<!-- If you are using the gem version, you need this only -->
+<link data-th-href="@{/cij/css/app.css}" rel="stylesheet"
+	href="css/app.css" />
+
+<!-- DataTables CSS
+	<link data-th-href="@{/cij/datatables-1.10.6/css/jquery.dataTables.css}" rel="stylesheet" type="text/css" href="/DataTables-1.10.6/media/css/jquery.dataTables.css" />
+	 -->
+<link data-th-href="@{/cij/datatables/css/dataTables.foundation.css}"
+	rel="stylesheet" type="text/css" href="dataTables.foundation.css" />
+<link
+	data-th-href="@{/cij/datatables-extend/css/dataTables.response.css}"
+	rel="stylesheet" type="text/css" href="dataTables.response.css" />
+
+<script data-th-inline="javascript">
+	Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/'';
+</script>
+<script data-th-src="@{/cij/js/less-1.7.3.min.js}"
+	src="js/less-1.7.3.min.js"></script>
+<script data-th-src="@{/cij/foundation/js/vendor/modernizr.js}"
+	src="js/vendor/modernizr.js"></script>
+</head>
+<body>
+	<div id="service" class="row" style="padding-top: 20px">
+		<h3>服务认证</h3>
+		<!-- reveal-modal -->
+		<div class="v_form" data-reveal="" aria-labelledby="modalTitle"
+			aria-hidden="true" role="dialog">
+
+			<form data-abide="ajax" id="form">
+			<input type="hidden" name="authentications" title="认证指数" value="3" />
+				<div class="row">
+					<div class="large-12 columns">
+						<label>服务认证方式</label>
+						<div class="large-12 columns">
+							<input id="checkbox1" name="checkbox" type="checkbox"
+								value="担保支付" checked="checked" /><label for="checkbox1">担保支付</label>
+							<input id="checkbox2" name="checkbox" type="checkbox"
+								value="7天包换" checked="checked" /><label for="checkbox2">7天包换</label>
+							<input id="checkbox3" name="checkbox" type="checkbox"
+								value="即刻到账" checked="checked" /><label for="checkbox3">即刻到账</label>
+							<input id="checkbox4" name="checkbox" type="checkbox"
+								value="全国联保" /><label for="checkbox4">全国联保</label> <input
+								id="checkbox5" name="checkbox" type="checkbox" value="消费者运费险" /><label
+								for="checkbox5">消费者运费险</label> <input id="checkbox6"
+								name="checkbox" type="checkbox" value="正品保障" /><label
+								for="checkbox6">正品保障</label> <input id="checkbox7"
+								name="checkbox" type="checkbox" value="提供发票" /><label
+								for="checkbox7">提供发票</label>
+						</div>
+						<label>其他认证方式</label>
+						<div class="large-12 columns">
+							<input id="s" type="text" name="s" pattern="^[^/]*$" data-abide-validator="getValue"/> <small
+								class="error">认证方式不能为空且输入的内容不能包含/</small>
+						</div>
+						<input id="authenticationService" type="hidden"
+							name="authenticationService" /> <small
+							class="error">认证方式不能为空</small>
+							<!-- 假设当前的用户编号为00000007 -->
+							<!-- <input id="userId" type="hidden" name="userId" data-th-value="${uid}"/> -->
+							<!-- 假设当前的企业编号为00000001 -->
+						<input id="cid" type="hidden" name="id" data-th-value="${companyId}"/>
+					</div>
+				</div>
+				<div class="row v_userbtn">
+					<div class="large-12 columns">
+						<button type="submit" class="medium button radius v_add_submit">提交审核</button>
+					</div>
+				</div>
+			</form>
+			<!--           <a class="close-reveal-modal" aria-label="Close">&#215;</a> -->
+		</div>
+	</div>
+	<input type="hidden" id="auth" title="认证指数" value="3" />
+	
+	<script data-th-src="@{/cij/jquery/jquery-2.1.3.js}"
+		src="js/vendor/jquery.js"></script>
+<!-- DataTables -->
+	<script data-th-src="@{/cij/datatables/js/jquery.dataTables.js}" type="text/javascript" charset="utf8" src="/DataTables-1.10.6/media/js/jquery.dataTables.js"></script>
+	<script data-th-src="@{/cij/datatables/js/dataTables.foundation.js}" type="text/javascript" charset="utf8" src="dataTables.foundation.js"></script>
+
+	<script data-th-src="@{/cij/foundation/js/foundation.min.js}"
+		src="js/foundation.min.js"></script>
+
+	<script data-th-src="@{/cij/js/thymeleaf.js}" src=""></script>
+	<script data-th-src="@{/cij/thymol/thymol-full.js}" src=""></script>
+	<script data-th-src="@{/cij/js/validate.js}"
+		src="js/validate.js"></script>
+	<script data-th-src="@{/cij/js/formproperty.init.js}" src="js/formproperty.init.js"></script>
+	<script data-th-src="@{/cij/js/rongji.js}" src=""></script>
+	<script data-th-src="@{/cij/js/m/authentication.js}" src=""></script>
+	<script>
+		$(document).foundation({
+			abide : {
+				validators : {
+					getValue : function(el, required, parent) {
+						var value1 = document.getElementById("s").value;
+						var obj = document.getElementsByName('checkbox');
+						//取到对象数组后，我们来循环检测它是不是被选中    
+						var s = '';
+						for ( var i = 0; obj.length > i; i++) {
+							if (obj[i].checked) s += obj[i].value + '/'; //如果选中，将value添加到变量s中    
+						}
+						
+						document.getElementById("authenticationService").value = s + el.value;
+						var values = document.getElementById("authenticationService").value;
+						if(values == "") return false;
+						else return true;
+					},
+				}
+			}
+		});
+	</script>
+	<script>
+		$(document).foundation();
+// 		$("#service").selection({
+// 			url : "/emall/authentication"
+// 		});
+// 		$("#service").validator({
+// 			url : "/emall/authentication"
+// 		});
+	</script>
+	<script data-th-src="@{/cij/js/thymeleaf.js}" src=""></script>
+	<script data-th-src="@{/cij/thymol/thymol-full.js}" src=""></script>
+</body>
+</html>

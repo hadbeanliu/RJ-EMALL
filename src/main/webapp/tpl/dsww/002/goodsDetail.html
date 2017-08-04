@@ -1,0 +1,1692 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh" class="no-js">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+<meta name="apple-mobile-web-app-title" content="电商原型">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no" name="format-detection">
+<title>商品详情页</title>
+<link href="style/layout.css" rel="stylesheet" type="text/css" />
+<link href="style/themes.less" rel="stylesheet" type="text/less" />
+<link href="style/master.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="style/swiper.css">
+<link rel="stylesheet" type="text/css" href="style/movies-app.css">
+<link rel="stylesheet" href="style/font-awesome.min.css">
+
+<script src="javascript/vendor/modernizr.js"></script>
+<script src="javascript/vendor/jquery.js"></script>
+<script src="javascript/less-1.7.3.min.js"></script>
+<script src="javascript/es5-shim-2.1.0.min.js"></script>
+<script src="javascript/jquery.lazyload.js"></script>
+<script src="javascript/AppendAround.js"></script>
+<script src="javascript/category-list.js"></script>
+</head>
+<body>
+<div id="layout">
+    <div class="wrapper" id="frame_wrapper">
+        <div class="header" id="frame_header" jsp="true">
+            <div class="tool-bar hide-for-small" id="frame_tool_bar">
+                <div class="row clearfix" id="frame_tb_row">
+                    <div id="data_main_site" class="left">
+                        <div class="drop-bar hide-for-small" id="drop-bar1">
+                            <div class="drop-bar-tit"><i class="fa fa-mobile fa-2x"></i>手机文玩</div>
+                            <div class="drop-bar-con mobile-inter">
+                                <div class="qr-code"><img src="images/qr-code.png" /></div>
+                                <a>扫一扫，下载文玩客户端</a>
+                            </div>
+                        </div>
+                        <div class="drop-bar" id="drop-bar2">
+                            <div class="drop-bar-tit p-color">a1234</div>
+                            <div class="drop-bar-con user-inter">
+                                <ul>
+                                    <li><a href="#" title="账户管理"><i class="fa fa-gear"></i>账户管理</a></li>
+                                    <li><a href="#" title="退出"><i class="fa fa-power-off"></i>退出</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="drop-bar" id="drop-bar5">
+                            <div class="drop-bar-tit"><i class="fa fa-envelope"></i>消息</div>
+                            <div class="drop-bar-con mini-new">
+                                <div class="mini-new-hd">
+                                    <strong>
+                                        最新的消息：
+                                    </strong>
+                                </div>
+                                <ul class="mini-new-bd">
+                                    <li>
+                                        <div class="mini-new-img">
+                                            <a target="_top" href="#">
+                                                <img src="images/new1.png" alt="物流助手">
+                                            </a>
+                                        </div>
+                                        <div class="mini-new-count">
+                                            <a class="font-alert">2015-7-8 15:34:50</a>
+                                        </div>
+                                        <div class="mini-new-title">
+                                            <a target="_top" href="#" title="物流助手">物流助手</a>
+                                        </div>
+                                        <div class="mini-new-del">
+                                            <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                        </div>
+                                        <div class="mini-new-info">
+                                            <span title="您购买的手链已签收,签收人是易栈服务点代签，感谢使用申通快递，期待再次为您服务" >您购买的手链已签收,签收人是易栈服务点代签，感谢使用申通快递，期待再次为您服务</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="mini-new-img">
+                                            <a target="_top" href="#">
+                                                <img src="images/new2.png" alt="优惠活动">
+                                            </a>
+                                        </div>
+                                        <div class="mini-new-count">
+                                            <a class="font-alert">2015-7-8 15:34:50</a>
+                                        </div>
+                                        <div class="mini-new-title">
+                                            <a target="_top" href="#" title="优惠活动">优惠活动</a>
+                                        </div>
+                                        <div class="mini-new-del">
+                                            <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                        </div>
+                                        <div class="mini-new-info">
+                                            <span title="您有一张优惠券，将于2015-9-1 24:00:00过期，请尽快使用。" >您有一张优惠券，将于2015-9-1 24:00:00过期，请尽快使用。</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="mini-new-img">
+                                            <a target="_top" href="#">
+                                                <img src="images/new3.png" alt="菩提韵">
+                                            </a>
+                                        </div>
+                                        <div class="mini-new-count">
+                                            <a class="font-alert">2015-7-8 15:34:50</a>
+                                        </div>
+                                        <div class="mini-new-title">
+                                            <a target="_top" href="#" title="菩提韵"><span class="label round margin-r left">店铺</span>菩提韵</a>
+                                        </div>
+                                        <div class="mini-new-del">
+                                            <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                        </div>
+                                        <div class="mini-new-info">
+                                            <span title="亲，购得顺心，舒心，放心还有开心！祝您购物愉快，天天漂亮！" >亲，购得顺心，舒心，放心还有开心！祝您购物愉快，天天漂亮！</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="mini-new-img">
+                                            <a target="_top" href="#">
+                                                <img src="images/new1.png" alt="物流助手">
+                                            </a>
+                                        </div>
+                                        <div class="mini-new-count">
+                                            <a class="font-alert">2015-7-8 15:34:50</a>
+                                        </div>
+                                        <div class="mini-new-title">
+                                            <a target="_top" href="#" title="物流助手">物流助手</a>
+                                        </div>
+                                        <div class="mini-new-del">
+                                            <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                        </div>
+                                        <div class="mini-new-info">
+                                            <span title="您购买的手链已签收,签收人是易栈服务点代签，感谢使用申通快递，期待再次为您服务" >您购买的手链已签收,签收人是易栈服务点代签，感谢使用申通快递，期待再次为您服务</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="mini-new-img">
+                                            <a target="_top" href="#">
+                                                <img src="images/new2.png" alt="优惠活动">
+                                            </a>
+                                        </div>
+                                        <div class="mini-new-count">
+                                            <a class="font-alert">2015-7-8 15:34:50</a>
+                                        </div>
+                                        <div class="mini-new-title">
+                                            <a target="_top" href="#" title="优惠活动">优惠活动</a>
+                                        </div>
+                                        <div class="mini-new-del">
+                                            <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                        </div>
+                                        <div class="mini-new-info">
+                                            <span title="您有一张优惠券，将于2015-9-1 24:00:00过期，请尽快使用。" >您有一张优惠券，将于2015-9-1 24:00:00过期，请尽快使用。</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="mini-new-ft">
+                                    <p class="left">
+                                        <strong>
+                                            您还有15条消息
+                                        </strong>
+                                    </p>
+                                    <p class="right">
+                                        <a target="_top" href="#" class="button">查看我的消息</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="data_maininfo" class="right">
+                        <div class="drop-bar hide-for-small" id="drop-bar7">
+                            <div class="drop-bar-tit"><i class="fa fa-navicon"></i>网站导航</div>
+                            <div class="drop-bar-con webnav">
+                                <div class="menu-bd-panel">
+                                    <div class="mod mod-a">
+                                        <div class="mod-wrap">
+                                            <div class="mod-hd">
+                                                <h4>
+                                                    资讯
+                                                </h4>
+                                            </div>
+                                            <div class="mod-bd">
+                                                <ul>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            市场动态
+                                                            <i class="hot">
+                                                            </i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            行业新闻
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            文玩欣赏
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            行业展会
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mod mod-b">
+                                        <div class="mod-wrap">
+                                            <div class="mod-hd">
+                                                <h4>
+                                                    商城
+                                                </h4>
+                                            </div>
+                                            <div class="mod-bd">
+                                                <ul>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            商城公告
+                                                            <i class="hot">
+                                                            </i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            热门商家
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            今日团购
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            精选众筹
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            正在拍卖
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            品牌街
+                                                            <i class="new">
+                                                            </i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            购物指南
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            支付方式
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            天下保障
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            商家服务
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mod mod-c">
+                                        <div class="mod-wrap">
+                                            <div class="mod-hd">
+                                                <h4>
+                                                    百科
+                                                </h4>
+                                            </div>
+                                            <div class="mod-bd">
+                                                <ul>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            常识
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            文化
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            鉴赏
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            导购
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            保养
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            工艺
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            行业知识
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mod mod-d">
+                                        <div class="mod-wrap">
+                                            <div class="mod-hd">
+                                                <h4>
+                                                    知道
+                                                </h4>
+                                            </div>
+                                            <div class="mod-bd">
+                                                <ul>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            热点问题
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            待解决问题
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            已解决问题
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            知道达人
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mod mod-e">
+                                        <div class="mod-wrap">
+                                            <div class="mod-hd">
+                                                <h4>
+                                                    发现
+                                                </h4>
+                                            </div>
+                                            <div class="mod-bd">
+                                                <ul>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            热门话题
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            广场
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            标签
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:(0)">
+                                                            发现达人
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="drop-bar hide-for-small" id="drop-bar6">
+                            <div class="drop-bar-tit">客服中心</div>
+                            <div class="drop-bar-con service-center">
+                                <ul>
+                                    <li><a href="#" title="帮助中心">帮助中心</a></li>
+                                    <li><a href="#" title="售后服务">售后服务</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="drop-bar" id="drop-bar5">
+                            <div class="drop-bar-tit"><i class="fa fa-shopping-cart"></i>购物车</div>
+                            <div class="drop-bar-con mini-cart">
+                                <div class="mini-cart-hd">
+                                    <strong>
+                                        最近加入的宝贝：
+                                    </strong>
+                                </div>
+                                <ul class="mini-cart-bd">
+                                    <li>
+                                        <div class="mini-cart-img">
+                                            <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                <img src="images/1.jpg" alt="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                            </a>
+                                        </div>
+                                        <div class="mini-cart-count">
+                                            <a class="font-alert">¥49.00</a>
+                                        </div>
+                                        <div class="mini-cart-title">
+                                            <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链
+                                            </a>
+                                        </div>
+                                        <div class="mini-cart-del">
+                                            <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                        </div>
+                                        <div class="mini-cart-info">
+                                            <span title="颜色:白色Z&nbsp;尺码:180/XXL">颜色:白色Z&nbsp;尺码:180/XXL</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="mini-cart-img">
+                                            <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                <img src="images/1.jpg" alt="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                            </a>
+                                        </div>
+                                        <div class="mini-cart-count">
+                                            <a class="font-alert">¥49.00</a>
+                                        </div>
+                                        <div class="mini-cart-title">
+                                            <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链
+                                            </a>
+                                        </div>
+                                        <div class="mini-cart-del">
+                                            <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                        </div>
+                                        <div class="mini-cart-info">
+                                            <span title="颜色:白色Z&nbsp;尺码:180/XXL">颜色:白色Z&nbsp;尺码:180/XXL</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="mini-cart-img">
+                                            <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                <img src="images/1.jpg" alt="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                            </a>
+                                        </div>
+                                        <div class="mini-cart-count">
+                                            <a class="font-alert">¥49.00</a>
+                                        </div>
+                                        <div class="mini-cart-title">
+                                            <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链
+                                            </a>
+                                        </div>
+                                        <div class="mini-cart-del">
+                                            <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                        </div>
+                                        <div class="mini-cart-info">
+                                            <span title="颜色:白色Z&nbsp;尺码:180/XXL">颜色:白色Z&nbsp;尺码:180/XXL</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="mini-cart-img">
+                                            <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                <img src="images/1.jpg" alt="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                            </a>
+                                        </div>
+                                        <div class="mini-cart-count">
+                                            <a class="font-alert">¥49.00</a>
+                                        </div>
+                                        <div class="mini-cart-title">
+                                            <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链
+                                            </a>
+                                        </div>
+                                        <div class="mini-cart-del">
+                                            <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                        </div>
+                                        <div class="mini-cart-info">
+                                            <span title="颜色:白色Z&nbsp;尺码:180/XXL">颜色:白色Z&nbsp;尺码:180/XXL</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="mini-cart-img">
+                                            <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                <img src="images/1.jpg" alt="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                            </a>
+                                        </div>
+                                        <div class="mini-cart-count">
+                                            <a class="font-alert">¥49.00</a>
+                                        </div>
+                                        <div class="mini-cart-title">
+                                            <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链
+                                            </a>
+                                        </div>
+                                        <div class="mini-cart-del">
+                                            <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                        </div>
+                                        <div class="mini-cart-info">
+                                            <span title="颜色:白色Z&nbsp;尺码:180/XXL">颜色:白色Z&nbsp;尺码:180/XXL</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="mini-cart-ft">
+                                    <p class="left">
+                                        <strong>
+                                            购物车里还有5件宝贝
+                                        </strong>
+                                    </p>
+                                    <p class="right">
+                                        <a target="_top" href="#" class="button">查看我的购物车</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="drop-bar" id="drop-bar4">
+                            <div class="drop-bar-tit">我的文玩</div>
+                            <div class="drop-bar-con my-play">
+                                <div class="my-info clearfix">
+                                    <div class="my-info-logo"><img src="images/head.png" /></div>
+                                    <div class="my-info-name">
+                                        <span><a>sexydumpling</a></span>
+                                        <span><i class="fa fa-diamond font-alert no-margin"></i><i class="fa fa-diamond font-alert no-margin"></i><i class="fa fa-diamond font-alert no-margin"></i></span>
+                                    </div>
+                                </div>
+                                <div class="my-order-state clearfix">
+                                    <ul>
+                                        <li>
+                                            <span>0</span>
+                                            <a>待付款</a>
+                                        </li>
+                                        <li class="cutline">|</li>
+                                        <li>
+                                            <span>0</span>
+                                            <a>待发货</a>
+                                        </li>
+                                        <li class="cutline">|</li>
+                                        <li>
+                                            <span>0</span>
+                                            <a>待收货</a>
+                                        </li>
+                                        <li class="cutline">|</li>
+                                        <li>
+                                            <span>0</span>
+                                            <a>待评价</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="my-other-info clearfix">
+                                    <ul>
+                                        <li><a href="#" title="我的订单">我的订单</a></li>
+                                        <li><a href="#" title="我的关注">我的关注</a></li>
+                                        <li><a href="#" title="我的优惠券">我的优惠券</a></li>
+                                        <li><a href="#" title="我的足迹">我的足迹</a></li>
+                                    </ul>
+                                </div>
+                                <div class="my-recent-view clearfix">
+                                    <div class="my-view-tit clearfix">
+                                        <a href="#" title="最近浏览" class="left">最近浏览</a>
+                                        <a href="#" title="查看更多最近浏览" class="right">更多></a>
+                                    </div>
+                                    <ul class="clearfix">
+                                        <li><img src="images/1.jpg"/></li>
+                                        <li><img src="images/1.jpg"/></li>
+                                        <li><img src="images/1.jpg"/></li>
+                                        <li><img src="images/1.jpg"/></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="top-banner" id="frame_top_banner">
+                <div class="row relative" id="data_top_banner">
+                    <div class="large-3 medium-3 logo columns">
+                        <div class="banner-img"><a href="#" title="文玩天下">文玩天下</a></div>
+                    </div>
+                    <div class="large-9 medium-9 search-box columns">
+                        <div class="row nom-small">
+                            <div class="large-8 medium-8 columns">
+                                <div class="search">
+                                    <div class="search-area clearfix">
+                                        <input class="sa-inp" type="text" name="search" placeholder="小叶紫檀">
+                                        <div class="btn">搜索</div>
+                                    </div>
+                                    <div class="search-key">
+                                        热门搜索：
+                                        <a href="#">狮子头</a><a href="#">南疆石</a><a href="#">老款闷尖</a><a href="#">四座楼</a>
+                                    </div>
+                                    <div class="category-btn">分类</div>
+                                </div>
+                            </div>
+                            <div class="large-4 medium-4 columns">
+                                <div class="cart">
+                                    <i class="fa fa-fw fa-shopping-cart"></i>
+                                    我的购物车
+                                    <i class="fa fa-angle-right"></i>
+                                    <i class="fa fa-fw fa-comment"><num>3</num></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                    <div class="top-nav-box" data-set="top-nav"></div>
+            </div>
+            <div class="row relative overflow-hidden" id="frame_top_bar">
+                <div class="top-bar clearfix" id="data_top_bar">
+                    <div class="all-category">
+                        <div class="title">全部商品分类<i class="fa fa-fw fa-angle-down"></i></div>
+                    </div>
+                    <div class="top-nav-wrapper" data-set="top-nav">
+                        <div class="top-nav" id="top_nav">
+                            <ul class="clearfix">
+                                <li><a href="#">首页</a></li>
+                                <li><a href="#">名牌街</a></li>
+                                <li><a href="#">团购</a></li>
+                                <li class="active"><a href="#">拍卖</a></li>
+                                <li><a href="#">众筹</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="category" id="category">
+                    <div class=""></div>
+                    <div class="">
+                        <ul class="first">
+                        <li class="hover">
+                            <h3><a href="#">珠宝玉石</a></h3>
+                            <p><a href="#">翡翠</a><a href="#">和田玉</a><a href="#">黄龙玉</a><a href="#">蓝田玉</a></p>
+                            <i class="fa fa-fw fa-angle-right"></i>
+                        </li>
+                        <li class="gray-bg">
+                            <h3><a href="#">杂项</a></h3>
+                            <p><a href="#">狮子头</a><a href="#">念珠菩提</a></p>
+                            <i class="fa fa-fw fa-angle-right"></i>
+                        </li>
+                        <li>
+                            <h3><a href="#">琥珀蜜蜡</a></h3>
+                            <p><a href="#">琥珀</a><a href="#">蜜蜡</a><a href="#">香珀</a><a href="#">灵珀</a></p>
+                            <i class="fa fa-fw fa-angle-right"></i>
+                        </li>
+                        <li class="gray-bg">
+                            <h3><a href="#">竹木牙角</a></h3>
+                            <p><a href="#">紫檀</a><a href="#">楠木</a><a href="#">沉香</a><a href="#">崖柏</a></p>
+                            <i class="fa fa-fw fa-angle-right"></i>
+                        </li>
+                    </ul>
+                        <div class="sub-category">
+                        <ul class="second">
+                            <li class="active">
+                                <div class="item clearfix">
+                                    <div class="tit">翡翠<i class="fa fa-fw fa-angle-right"></i></div>
+                                    <div class="con clearfix"><a href="#">翡翠</a><a href="#">和田玉</a><a href="#">蓝田玉</a><a href="#">翡翠</a><a href="#">和田玉</a><a href="#">蓝田玉</a></div>
+                                </div>
+                                <div class="item clearfix">
+                                    <div class="tit">有机宝石<i class="fa fa-fw fa-angle-right"></i></div>
+                                    <div class="con clearfix"><a href="#">珊瑚</a><a href="#">珍珠</a></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item clearfix">
+                                    <div class="tit">文玩核桃<i class="fa fa-fw fa-angle-right"></i></div>
+                                    <div class="con clearfix"><a href="#">狮子头</a><a href="#">虎头</a><a href="#">官帽</a><a href="#">公子帽</a></div>
+                                </div>
+                                <div class="item clearfix">
+                                    <div class="tit">念珠菩提<i class="fa fa-fw fa-angle-right"></i></div>
+                                    <div class="con clearfix"><a href="#">珊瑚</a><a href="#">珍珠</a></div>
+                                </div>
+                                <div class="item clearfix">
+                                    <div class="tit">文玩核桃<i class="fa fa-fw fa-angle-right"></i></div>
+                                    <div class="con clearfix"><a href="#">狮子头</a><a href="#">虎头</a><a href="#">官帽</a><a href="#">公子帽</a></div>
+                                </div>
+                                <div class="item clearfix">
+                                    <div class="tit">念珠菩提<i class="fa fa-fw fa-angle-right"></i></div>
+                                    <div class="con clearfix"><a href="#">珊瑚</a><a href="#">珍珠</a></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item clearfix">
+                                    <div class="tit">琥珀<i class="fa fa-fw fa-angle-right"></i></div>
+                                    <div class="con clearfix"><a href="#">金珀</a><a href="#">虫珀</a><a href="#">香珀</a><a href="#">灵珀</a></div>
+                                </div>
+                                <div class="item clearfix">
+                                    <div class="tit">蜜蜡<i class="fa fa-fw fa-angle-right"></i></div>
+                                    <div class="con clearfix"><a href="#">蓝蜜蜡</a><a href="#">红蜜蜡</a></div>
+                                </div>
+                                <div class="item clearfix">
+                                    <div class="tit">琥珀<i class="fa fa-fw fa-angle-right"></i></div>
+                                    <div class="con clearfix"><a href="#">金珀</a><a href="#">虫珀</a><a href="#">香珀</a><a href="#">灵珀</a></div>
+                                </div>
+                                <div class="item clearfix">
+                                    <div class="tit">蜜蜡<i class="fa fa-fw fa-angle-right"></i></div>
+                                    <div class="con clearfix"><a href="#">蓝蜜蜡</a><a href="#">红蜜蜡</a></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item clearfix">
+                                    <div class="tit">紫檀<i class="fa fa-fw fa-angle-right"></i></div>
+                                    <div class="con clearfix"><a href="#">紫檀手串</a><a href="#">紫檀木</a><a href="#">紫檀柳</a></div>
+                                </div>
+                                <div class="item clearfix">
+                                    <div class="tit">楠木<i class="fa fa-fw fa-angle-right"></i></div>
+                                    <div class="con clearfix"><a href="#">金丝楠木茶盘</a><a href="#">金丝楠木把件</a></div>
+                                </div>
+                                <div class="item clearfix">
+                                    <div class="tit">紫檀<i class="fa fa-fw fa-angle-right"></i></div>
+                                    <div class="con clearfix"><a href="#">紫檀手串</a><a href="#">紫檀木</a><a href="#">紫檀柳</a></div>
+                                </div>
+                                <div class="item clearfix">
+                                    <div class="tit">楠木<i class="fa fa-fw fa-angle-right"></i></div>
+                                    <div class="con clearfix"><a href="#">金丝楠木茶盘</a><a href="#">金丝楠木把件</a></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end header-->
+        
+        <div class="main" role="main" aria-label="主体区块" id="frame_main">
+            <div class="row white-bg" id="frame_main_row1">
+            	<div class="large-5 medium-5 columns" id="frame_mr1_5">
+                	<div class="picGallery" id="data_mr1_left">
+                        <div class="swiper-container" id="pic_gallery">
+                            <div class="rotate">
+                                <a href="#" class="rotate-right">向右旋转</a>
+                            </div>
+                            <div class="pagination"></div>
+                        	<a class="closeGallery"></a>
+                            <div>
+                            	<a class="arrow-left" href="#"></a>
+                            	<a class="arrow-right" href="#"></a>
+                            </div>
+                            <div class="swiper-content">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <div class="inner">
+                                            <img class="movie-pic" src="images/goods_02.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="inner">
+                                            <img class="movie-pic" src="images/goods_03.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="inner">
+                                            <img class="movie-pic" src="images/goods_04.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="inner">
+                                            <img class="movie-pic" src="images/goods_05.jpg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-nav">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide swiper-slide-visible active-nav">
+                                        <img src="images/goods_02.jpg" alt="">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="images/goods_03.jpg" alt="">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="images/goods_04.jpg" alt="">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="images/goods_05.jpg" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="goods-action clearfix" id="data_mr1_right">
+                    	<div class="action-collect"><a href="#"><i class="fa fa-fw fa-star"></i>收藏商品</a><span class="collect-count">185</span></div>
+                        <a href="#" class="action-report">举报</a>
+                        <div class="action-share clearfix">
+                        	<span class="share-tit" data-reveal-id="share_goods"><i class="fa fa-share-alt"></i>分享</span>
+                         </div>
+                        </div>
+                </div>
+                <div class="large-7 medium-7 columns" id="frame_mr1_7">
+                	<div class="goods-box" id="data_mr1">
+                        <div class="goods-title">
+                            <h3><a href="#">夏季新品女装明星同款修身显瘦公主裙短袖中裙黑色蕾丝睫毛连衣裙</a></h3>
+                        </div>
+                        <div class="goods-info">
+                            <div class="goods-price old clearfix">
+                                <div class="price-tit">原价</div>
+                                <div class="price-num">¥<span >388.00</span></div>
+                            </div>
+                            <div class="goods-price clearfix">
+                                <div class="price-tit">售价</div>
+                                <div class="price-num">¥<span class="v_price">288.00</span></div>
+                            </div>
+                            <div class="trans-cost clearfix">
+                            	<div class="trans-tit">运费</div>
+                                <div class="trans-num">免运费</div>
+                            </div>
+                            <div class="sell-situ clearfix">
+                            	<div class="sell-tit">销售情况</div>
+                                <div class="sell-con">
+                                    <span class="sell-count">月销量<num>78</num></span> | <span class="comment-count">累计评价<num>56</num></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="goods-prop prop gp-js">
+                            <div class="v_standard">
+                                <div class="goods-size clearfix">
+                                    <div class="size-tit">尺寸</div>
+                                    <div class="size-con param-1">
+                                        <ul class="clearfix">
+                                            <li><span>S</span></li>
+                                            <li><span>M</span></li>
+                                            <li class="selected"><span>L</span></li>
+                                            <li class="no"><span>XL</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="goods-color clearfix">
+                                    <div class="color-tit">颜色</div>
+                                    <div class="color-text param-2" style="display:none;">
+                                        <ul class="clearfix">
+                                            <li><span>黑色</span></li>
+                                            <li class="selected"><span>粉色</span></li>
+                                            <li><span>棕色</span></li>
+                                            <li class="no"><span>深蓝色</span></li>
+                                        </ul>
+                                    </div> 
+                                    <div class="color-img param-3" style="display:none;">
+                                        <ul class="clearfix">
+                                            <li><a href="#" title="蓝色"><img src="images/seller_recommend_02.jpg" alt="蓝色"></a><i></i></li>
+                                            <li><a href="#" title="浅紫色"><img src="images/seller_recommend_03.jpg" alt="浅紫色"></a><i></i></li>
+                                            <li class="selected"><a href="#" title="白色"><img src="images/seller_recommend_04.jpg" alt="白色"></a><i></i></li>
+                                            <li class="no"><a href="#" title="黑色"><img src="images/seller_recommend_06.jpg" alt="黑色"></a><i></i></li>
+                                        </ul>
+                                    </div> 
+                                    <div class="img-text param-4">
+                                        <ul class="clearfix">
+                                            <li><a href="#" title="蓝色"><img src="images/seller_recommend_02.jpg" alt="蓝色">蓝色</a><i></i></li>
+                                            <li><a href="#" title="浅紫色"><img src="images/seller_recommend_03.jpg" alt="浅紫色">浅紫色</a><i></i></li>
+                                            <li class="selected"><a href="#" title="白色"><img src="images/seller_recommend_04.jpg" alt="白色">白色</a><i></i></li>
+                                            <li class="no"><a href="#" title="黑色"><img src="images/seller_recommend_06.jpg" alt="黑色">黑色</a><i></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="goods-buy clearfix">
+                                    <div class="buy-tit">购买数量</div>
+                                    <div class="buy-con">
+                                        <div class="quantity-input-group">
+                                            <div class="group-btn reduce">
+                                                <button type="button" class="button outlined">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                            </div>
+                                            <input type="text" class="group-inp" maxlength="3" readonly="" value="1">
+                                            <div class="group-btn add">
+                                                <button type="button" class="button outlined">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="goods-inv">件(库存<num class="v_inventory">128</num>件)</span>
+                                </div>
+                        </div>
+                        <div class="goods-btn-group clearfix">
+                        	<div class="center">
+                            	<a href="#" class="collect show-for-small"><i class="fa fa-2x fa-star"></i>收藏</a>
+                                <a href="settleAccounts.html" class="left button radius tiny warning">立即购买</a>
+                                <a href="#" class="button radius tiny alert" data-reveal-id="cartSuccess"><i class="fa fa-shopping-cart"></i>加入购物车</a>
+                                <a href="myCart.html" class="cart-icon show-for-small"><i class="fa fa-2x fa-shopping-cart"></i>购物车</a>
+                            </div>
+                        </div>
+                        <div class="term-info">
+                             <div class="pay-way clearfix">
+                             	<div class="pay-tit">支付方式</div>
+                                <div class="pay-con clearfix">
+                                    <a href="#">财付通支付</a><a href="#">微信支付</a><a href="#">货到付款</a>
+                                </div>
+                             </div>
+                             <div class="service-pro clearfix">
+                                 <div class="service-tit">服务承诺</div>
+                                 <div class="service-con clearfix">
+                                 	<a href="#" class="icon1">先行赔付</a>
+                                    <a href="#" class="icon2">七天包退</a>
+                                 </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="frame_main_row2">
+            	<div class="merchant white-bg clearfix" id="data_mr2">
+                    <div class="merchant-header">商家信息</div>
+                    <div class="merchant-con">
+                		<div class="row">
+                        	<div class="large-8 medium-8 columns">
+                            	<div class="merchant-tit"><a href="#">幸福大衣柜</a></div>
+                                <ul class="merchant-grade large-block-grid-3 medium-block-grid-3 small-block-grid3 clearfix">
+                                    <li><span class="grade-item">描述相符<num>4.8</num></span><span class="grade-ratio"><text>高于</text><num>85.1%</num></span></li>
+                                    <li><span class="grade-item">服务态度<num>4.8</num></span><span class="grade-ratio"><text>高于</text><num>85.1%</num></span></li>
+                                    <li><span class="grade-item">发货速度<num>4.8</num></span><span class="grade-ratio"><text>高于</text><num>85.1%</num></span></li>
+                                </ul>
+                            </div>
+                            <div class="large-4 medium-4 columns">
+                            	<div class="merchant-btn-group clearfix">
+                                	<a href="#" class="button alert left margin-r">进店逛逛</a>
+                               		<a href="#" class="button secondary left">联系卖家</a>
+                                </div>
+                            </div>
+                        </div>
+                	</div>
+                </div>
+            </div>
+            <div class="row" id="frame_main_row3">
+                <div class="goods-detail-box" id="frame_mr3_inner">
+                	<div class="detail-header" id="frame_detail_header">
+                    	<ul class="large-block-grid-4 medium-block-grid-4 small-block-grid-4 clearfix" data-magellan-expedition="fixed">
+                        	<li data-magellan-arrival="goodsDetail"><a href="#goodsDetail">商品详情</a></li>
+                            <li data-magellan-arrival="goodsComment"><a href="#goodsComment">评价<span>(98)</span></a></li>
+                            <li data-magellan-arrival="sellerRec"><a href="#sellerRec">卖家推荐</a></li>
+                            <li data-magellan-arrival="buyHelp"><a href="#buyHelp">购物帮助</a></li>
+                        </ul>
+                    </div>
+                    <div class="detail-con" id="frame_detail_con">
+                    	<div class="goods-detail white-bg" id="frame_goods_detail">
+                            <h3 class="gd-tit" data-magellan-destination="goodsDetail">基本参数</h3>
+                            <a name="goodsDetail"></a>
+                            <div class="gd-con">
+                            	<ul class="large-block-grid-3 medium-block-grid-3 small-block-grid-2">
+                                	<li><span>货号:</span>15X0058</li>
+                                    <li><span>风格:</span>通勤</li>
+                                    <li><span>组合形式:</span>单件</li>
+                                    <li><span>裙长:</span>中裙</li>
+                                    <li><span>款式:</span>其他/other</li>
+                                    <li><span>袖长:</span>短袖</li>
+                                    <li><span>领型:</span>V领</li>
+                                    <li><span>袖型:</span>泡泡袖</li>
+                                    <li><span>腰型:</span>高腰</li>
+                                    <li><span>衣门襟:</span>套头</li>
+                                    <li><span>裙型:</span>公主裙</li>
+                                    <li><span>图案:</span>花色</li>
+                                    <li><span>流行元素/工艺:</span>抽褶 露背 蕾丝</li>
+                                    <li><span>面料:</span>蕾丝</li>
+                                    <li><span>成分含量:</span>95%以上</li>
+                                    <li><span>材质:</span>锦纶</li>
+                                    <li><span>适用年龄:</span>25-29周岁</li>
+                                    <li><span>年份季节:</span>2015年夏季</li>
+                                    <li><span>颜色分类:</span>黑色</li>
+                                    <li><span>尺码:</span>S M L XL</li>
+                                </ul>
+                                <div class="gd-con-img">
+                                	<p>
+                                        <img class="lazy" src="images/gray-bg.jpg" data-original="images/goods_de_01.jpg">
+                                        <img class="lazy" src="images/gray-bg.jpg" data-original="images/goods_de_02.jpg">
+                                        <img class="lazy" src="images/gray-bg.jpg" data-original="images/goods_de_03.jpg">
+                                        <img class="lazy" src="images/gray-bg.jpg" data-original="images/goods_de_04.jpg">
+                                        <img class="lazy" src="images/gray-bg.jpg" data-original="images/goods_de_05.jpg">
+                                        <img class="lazy" src="images/gray-bg.jpg" data-original="images/goods_de_06.jpg">
+                                    </p>
+                                    <p class="tit">喜欢的亲就按自己平时穿的尺码拍就可以了哦</p>
+                                    <p>
+                                    	<img class="lazy" src="images/gray-bg.jpg" data-original="images/goods_de_07.png">
+                                    </p>
+                                    <p class="tit">买过的亲们都这么说</p>
+                                    <p><img class="lazy" src="images/gray-bg.jpg" data-original="images/goods_de_08.png"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-situ white-bg" id="frame_comment_situ">
+                        	<h3 data-magellan-destination="goodsComment"></h3>
+                            <a name="goodsComment"></a>
+                        	<div class="row">
+                                <div class="large-4 medium-8 small-12 columns">
+                                    <div class="comment-total clearfix">
+                                        <div class="rate">
+                                            <div class="count">96<span>%</span></div>
+                                            <span class="tit">好评度</span>
+                                        </div>
+                                        <div class="percent">
+                                            <dl>
+                                                <dt>好评<span>(96%)</span></dt>
+                                                <dd><div style="width:96%;"></div></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>中评<span>(13%)</span></dt>
+                                                <dd><div style="width:13%;"></div></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>差评<span>(3%)</span></dt>
+                                                <dd><div style="width:3%;"></div></dd>
+                                            </dl>
+                                        </div>
+                                        <div class="split"></div>
+                                    </div>
+                                </div>
+                                <div class="large-8 medium-12  columns">
+                                    <div class="buyer-imp clearfix">
+                                        <div class="tit">买家印象：</div>
+                                        <div class="tag clearfix">
+                                            <span>质量不错<num>(682)</num></span>
+                                            <span>面料不错<num>(542)</num></span>
+                                            <span>颜色不错<num>(482)</num></span>
+                                            <span>裙子很好看<num>(444)</num></span>
+                                            <span>大小合适<num>(402)</num></span>
+                                            <span>穿上很舒服<num>(388)</num></span>
+                                            <span>款式不错<num>(305)</num></span>
+                                            <span>质量不错<num>(225)</num></span>
+                                            <span>老婆很喜欢<num>(105)</num></span>
+                                            <span>样式不错<num>(85)</num></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="goods-comment white-bg" id="frame_goods_comment">
+                            <h3 class="gr-tit">用户评价</h3>
+                            <div class="gr-con">
+                            	<div class="row">
+                                	<div class="large-8 medium-8 columns">
+                                        <div class="comment-tag clearfix">
+                                            <a href="#" class="button warning radius tiny">全部</a>
+                                            <a href="#" class="button secondary radius tiny">好评(999+)</a>
+                                            <a href="#" class="button secondary radius tiny">中评(341)</a>
+                                            <a href="#" class="button secondary radius tiny">差评(12)</a>
+                                            <a href="#" class="button secondary radius tiny">有图(188)</a>
+                                            <a href="#" class="button secondary radius tiny">追加(102)</a>
+                                        </div>
+                                    </div>
+                                    <div class="large-4 medium-4 columns">
+                                    	<div class="comment-filter clearfix">
+                                            <select class="cf-select">
+                                            	<option value="0">推荐排序</option>
+                                                <option value="1">最近评价</option>
+                                            </select>
+                                            <label class="label-checkbox square" for="comment_filter">
+                                            	<input type="checkbox" name="commentFilter" id="comment_filter">
+                                                <i class="icon-check"></i>有内容的评价
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="comment-box">
+                                	<ul>
+                                    	<li class="comment-item">
+                                        	<div class="comment-user">
+                                            	<span class="comment-grade">
+                                                	<i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                </span>
+                                            	<img src="images/comment-user.gif" alt="奇奇是个宝">
+                                                <span class="cu-name">奇**宝</span>
+                                                <span class="cu-grade">
+                                                	<i class="fa fa-diamond"></i>
+                                                    <i class="fa fa-diamond"></i>
+                                                    <i class="fa fa-diamond"></i>
+                                                    <i class="fa fa-diamond-half-full"></i>
+                                                </span>
+                                            </div>
+                                            <div class="comment-text">宝贝早就到了～有点忙～所以今天才来评论！非常满意的一次网购～物流很给力～裙子不错～很漂亮，洗过了，不缩
+                                          	  水，不掉色，好评。宝贝早就到了～有点忙～所以今天才来评论！非常满意的一次网购～物流很给力～裙子不错～很漂亮，洗过了，不缩
+                                          	  水，不掉色，好评。宝贝早就到了～有点忙～所以今天才来评论！非常满意的一次网购～物流很给力～裙子不错～很漂亮，洗过了，不缩
+                                          	  水，不掉色，好评。
+                                            </div>
+                                            <div class="comment-img">
+                                            	<ul class="comment-list clearfix">
+                                                	<li><a href="javascript:void(0);"><img src="images/comment_img_01.jpg" alt=""></a></li>
+                                                    <li><a href="javascript:void(0);"><img src="images/comment_img_02.jpg" alt=""></a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="comment-gs">
+                                            	<span class="gs-time">2015-06-08 15:37</span>
+                                                <span class="gs-color">颜色分类：黑色</span>
+                                                <span class="gs-size">尺码：L</span>
+                                            </div>
+                                            <div class="re-comment">[追加]：前面自己拍的L码大了 后来换了M码穿了刚好 闺蜜看我穿的好看 也要买一件</div>
+                                            <div class="re-comment seller">[掌柜回复]：恩，这款衣服整体会偏大一码，买的时候最好买小一码的。</div>
+                                            <div class="re-comment">
+                                               <p>[追加]：这些是闺蜜穿的，比我的好看。</p>
+                                               <div class="comment-img">
+                                            	<ul class="comment-list clearfix">
+                                                	<li><a href="javascript:void(0);"><img src="images/comment_img_01.jpg" alt=""></a></li>
+                                                    <li><a href="javascript:void(0);"><img src="images/comment_img_02.jpg" alt=""></a></li>
+                                                </ul>
+                                            </div>
+                                            </div>
+                                        </li>
+                                        <li class="comment-item">
+                                        	<div class="comment-user">
+                                            	<span class="comment-grade">
+                                                	<i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                </span>
+                                            	<img src="images/comment-user.gif" alt="SexyDumpling">
+                                                <span class="cu-name">s**g</span>
+                                                <span class="cu-grade">
+                                                	<i class="fa fa-diamond"></i>
+                                                    <i class="fa fa-diamond"></i>
+                                                    <i class="fa fa-diamond"></i>
+                                                    <i class="fa fa-diamond-half-full"></i>
+                                                </span>
+                                            </div>
+                                            <div class="comment-text">裙子很漂亮 质量也很好 同事都说我穿着漂亮 这几天出门了 收货晚了 不好意思</div>
+                                            <div class="comment-img clearfix">
+                                            	<ul class="comment-list clearfix">
+                                                	<li><a href="javascript:void(0);"><img src="images/comment_img_03.jpg" alt=""></a></li>
+                                                    <li><a href="javascript:void(0);"><img src="images/comment_img_04.jpg" alt=""></a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="comment-gs">
+                                            	<span class="gs-time">2015-06-03 13:05</span>
+                                                <span class="gs-color">颜色分类：粉色</span>
+                                                <span class="gs-size">尺码：M</span>
+                                            </div>
+                                        </li>
+                                        <li class="comment-item">
+                                        	<div class="comment-user">
+                                            	<span class="comment-grade">
+                                                	<i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-o"></i>
+                                                </span>
+                                            	<img src="images/comment-user.gif" alt="哦狗特">
+                                                <span class="cu-name">哦**特</span>
+                                                <span class="cu-grade">
+                                                	<i class="fa fa-diamond"></i>
+                                                    <i class="fa fa-diamond"></i>
+                                                    <i class="fa fa-diamond"></i>
+                                                    <i class="fa fa-diamond-half-full"></i>
+                                                </span>
+                                            </div>
+                                            <div class="comment-text">发货速度很快，客服蛮热心。</div>
+                                            <div class="comment-gs">
+                                            	<span class="gs-time">2015-05-24 19:37</span>
+                                                <span class="gs-color">颜色分类：黑色</span>
+                                                <span class="gs-size">尺码：L</span>
+                                            </div>
+                                        </li>
+                                        <li class="comment-item">
+                                        	<div class="comment-user">
+                                            	<span class="comment-grade">
+                                                	<i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                </span>
+                                            	<img src="images/comment-user.gif" alt="denzelWst">
+                                                <span class="cu-name">d**t</span>
+                                                <span class="cu-grade">
+                                                	<i class="fa fa-diamond"></i>
+                                                    <i class="fa fa-diamond-half-full"></i>
+                                                </span>
+                                            </div>
+                                            <div class="comment-text">网上买了这么多衣服，这次是我觉得最倒霉的一次，衣服拿到手味道真是重，颜色和图片的偏差太大，果断差评。</div>
+                                            <div class="comment-gs">
+                                            	<span class="gs-time">2015-06-01 19:37</span>
+                                                <span class="gs-color">颜色分类：黑色</span>
+                                                <span class="gs-size">尺码：L</span>
+                                            </div>
+                                        </li>
+                                        <li class="comment-item">
+                                        	<div class="comment-user">
+                                            	<span class="comment-grade">
+                                                	<i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                </span>
+                                            	<img src="images/comment-user.gif" alt="明明是个狗">
+                                                <span class="cu-name">明**狗</span>
+                                                <span class="cu-grade">
+                                                	<i class="fa fa-diamond"></i>
+                                                    <i class="fa fa-diamond"></i>
+                                                    <i class="fa fa-diamond-half-full"></i>
+                                                </span>
+                                            </div>
+                                            <div class="comment-text">衣服一般吧，毕竟这价钱的货。</div>
+                                            <div class="comment-gs">
+                                            	<span class="gs-time">2015-05-24 09:37</span>
+                                                <span class="gs-color">颜色分类：浅紫色</span>
+                                                <span class="gs-size">尺码：M</span>
+                                            </div>
+                                        </li>
+                                        <li class="comment-item">
+                                        	<div class="comment-user">
+                                            	<span class="comment-grade">
+                                                	<i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-o"></i>
+                                                </span>
+                                            	<img src="images/comment-user.gif" alt="大千师姐">
+                                                <span class="cu-name">大**姐</span>
+                                                <span class="cu-grade">
+                                                	<i class="fa fa-diamond"></i>
+                                                    <i class="fa fa-diamond"></i>
+                                                    <i class="fa fa-diamond"></i>
+                                                </span>
+                                            </div>
+                                            <div class="comment-text">衣服质量一般，不过鉴于卖家态度不错，勉强给个中评吧。</div>
+                                            <div class="comment-gs">
+                                            	<span class="gs-time">2015-05-18 10:37</span>
+                                                <span class="gs-color">颜色分类：粉色</span>
+                                                <span class="gs-size">尺码：L</span>
+                                            </div>
+                                        </li>
+                                        <li class="comment-item">
+                                        	<div class="comment-user">
+                                            	<span class="comment-grade">
+                                                	<i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                </span>
+                                            	<img src="images/comment-user.gif" alt="思颖">
+                                                <span class="cu-name">思**颖</span>
+                                                <span class="cu-grade">
+                                                    <i class="fa fa-diamond-half-full"></i>
+                                                </span>
+                                            </div>
+                                            <div class="comment-text">第一次上网买裙子，没也报太大的期望，不过你这裙子不管是做工还是颜色都还不错。给个好评。</div>
+                                            <div class="comment-gs">
+                                            	<span class="gs-time">2015-05-12 21:37</span>
+                                                <span class="gs-color">颜色分类：黑色</span>
+                                                <span class="gs-size">尺码：S</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="more-comment">
+                                    	<a href="#" class="button secondary radius expand">加载更多评论</a>
+                                    </div>
+                                    <div style="display:none;">
+                                    	<a class="button btnlink disabled radius expand"><i class="fa fa-fw fa-spinner fa-pulse"></i>加载中……</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="seller-recommend white-bg" id="frame_seller_recommend">
+                        	<h3 class="sr-tit" data-magellan-destination="sellerRec">卖家推荐</h3>
+                            <a name="sellerRec"></a>
+                            <div class="sr-con">
+                            	<ul class="large-block-grid-6 medium-block-grid-3 small-block-grid-3">
+                                	<li>
+                                    	<a href="#" class="img-box"><img src="images/seller_recommend_01.jpg" alt=""></a>
+                                        <div class="sr-title"><a href="#">2015春夏秋冬季新款韩版时尚修身大码宽松女装短袖雪纺连衣裙印花甜美打底短裙</a></div>
+                                        <div class="price-area">
+                                        	<span class="sr-price">¥<num>88.00</num></span>
+                                            <span class="old-price">¥<num>88.00</num></span>
+                                            <span class="discount">(1.2折)</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                    	<a href="#" class="img-box"><img src="images/seller_recommend_02.jpg" alt=""></a>
+                                        <div class="sr-title"><a href="#">2015春夏秋冬季新款韩版时尚修身大码宽松女装无袖露肩连衣裙OL气质半身白色衬衫打底蓬蓬裙</a></div>
+                                        <div class="price-area">
+                                        	<span class="sr-price">¥<num>88.00</num></span>
+                                            <span class="old-price">¥<num>88.00</num></span>
+                                            <span class="discount">(1.2折)</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                    	<a href="#" class="img-box"><img src="images/seller_recommend_03.jpg" alt=""></a>
+                                        <div class="sr-title"><a href="#">2015春夏秋冬季新款韩版时尚修身大码宽松女装七分短袖修身打底T恤蕾丝衫甜美拼接雪纺衫</a></div>
+                                        <div class="price-area">
+                                        	<span class="sr-price">¥<num>88.00</num></span>
+                                            <span class="old-price">¥<num>88.00</num></span>
+                                            <span class="discount">(1.2折)</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                    	<a href="#" class="img-box"><img src="images/seller_recommend_04.jpg" alt=""></a>
+                                        <div class="sr-title"><a href="#">2015春夏秋冬季新款韩版时尚修身大码宽松女装短袖雪纺衬衫印花百搭T恤打底衫</a></div>
+                                        <div class="price-area">
+                                        	<span class="sr-price">¥<num>88.00</num></span>
+                                            <span class="old-price">¥<num>88.00</num></span>
+                                            <span class="discount">(1.2折)</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                    	<a href="#" class="img-box"><img src="images/seller_recommend_05.jpg" alt=""></a>
+                                        <div class="sr-title"><a href="#">新品2015春夏秋季新款韩版大码修身时尚女装胖MM宽松显瘦休闲气质短袖中长款雪纺衫T恤上衣连衣裙</a></div>
+                                        <div class="price-area">
+                                        	<span class="sr-price">¥<num>88.00</num></span>
+                                            <span class="old-price">¥<num>88.00</num></span>
+                                            <span class="discount">(1.2折)</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                    	<a href="#" class="img-box"><img src="images/seller_recommend_06.jpg" alt=""></a>
+                                        <div class="sr-title"><a href="#">新品2015春夏季新款韩版大码修身时尚女短袖棉麻连衣裙假两件套装裙</a></div>
+                                        <div class="price-area">
+                                        	<span class="sr-price">¥<num>88.00</num></span>
+                                            <span class="old-price">¥<num>88.00</num></span>
+                                            <span class="discount">(1.2折)</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="buy-help white-bg" id="frame_buy_help">
+                        	<h3 class="bh-tit" data-magellan-destination="buyHelp">购物帮助</h3>
+                            <a name="buyHelp"></a>
+                            <div class="bh-con">
+                            	<div class="credit">
+                                	<h4 class="credit-pay"><a href="#"><span>先行赔付</span></a></h4>
+                                    <table class="credit-table"  border="0" cellspacing="0" cellpadding="0">
+                                    	<thead>
+                                        	<tr>
+                                            	<th>买家权利</th>
+                                                <th>卖家义务</th>
+                                                <th>平台监督</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        	<tr>
+                                            	<td>买家使用财付通购买""标志的商品，在确认收货后14天内出现质量问题，与卖家协商无果的情况下有权申请先行赔付。</td>
+                                                <td>如实填写商品信息，确保商品质量，并按照承诺为买家提供合理的售后服务。</td>
+                                                <td>如买卖方在交易过程中产生纠纷，沟通无果并发起维权的情况下，平台将在7天内介入处理。</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="credit-con">
+                                    	<h5>价值点：</h5>
+                                        <p>
+                                            (1) 全部卖家都加入了诚信保证计划<br/>
+                                            (2) 全站商品都是诚保商品<br/>
+                                            (3) 质量有问题，平台可先行赔付给买家<br/>
+                                        </p>
+                                    </div>
+                                    <div class="credit-con">
+                                        <h5>维权过程中请注意：</h5>
+                                        <p>
+                                            (1) 买家赔付申请在形式上符合相关法律法规的规定；<br/>
+                                            (2) 赔付请求金额仅以买家实际支付的商品价款、邮费（含退货回邮费用）为限；<br/>
+                                            (3) 提出"先行赔付"申请应在线上确认收货后的14天内。<br/>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="credit">
+                                	<h4 class="credit-seven"><a href="#"><span>七天包退</span></a></h4>
+                                    <table class="credit-table"  border="0" cellspacing="0" cellpadding="0">
+                                    	<thead>
+                                        	<tr>
+                                            	<th>买家权利</th>
+                                                <th>卖家义务</th>
+                                                <th>平台监督</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        	<tr>
+                                            	<td>买家使用财付通购买""标志的商品，在确认收货后的7天内如果不满意，有权申请无理由退款退货。</td>
+                                                <td>对于符合条件的买家所发起的7天无理由退换货要求，需按规受理。</td>
+                                                <td>如买卖方在交易过程中产生纠纷，沟通无果并发起维权的情况下，平台将在7天内介入处理。</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="credit-con">
+                                    	<h5>价值点：</h5>
+                                        <p>
+                                            (1) 门槛低，在普通卖家店铺也能享受此服务<br/>
+                                            (2) 确认收货后7天内，只要不喜欢就能自由退<br/>
+                                            (3) 平台协助处理，公平公正<br/>
+                                        </p>
+                                    </div>
+                                    <div class="credit-con">
+                                        <h5>维权过程中请注意：</h5>
+                                        <p>
+                                            (1) 如商品存在质量问题则不适用此服务，可直接申请"先行赔付"；<br/>
+                                            (2) 需要退货请保证商品及配件完好；<br/>
+                                            (3) 提出"7天包退"申请应在线上确认收货后的7天内。<br/>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end main-->
+        
+        <div class="footer" id="frame_footer" role="contentinfo" jsp="true">
+            <div class="row" id="frame_footer_img">
+                <div class="footer-img" id="data_footer_img"><a href="#"><img src="images/footer_logo.gif" alt=""></a></div>
+            </div>
+            <div class="footer-subnav" id="frame_footer_subnav">
+                        <div class="row" id="data_footer_subnav">
+                            <div class="large-7 medium-7 small-12 columns">
+                                <ul class="large-block-grid-4 medium-block-grid-4 small-block-grid-2">
+                                    <li>
+                                        <h3 class="icon1">购物指南</h3>
+                                        <ul class="item">
+                                            <li><a href="">购物流程</a></li>
+                                            <li><a href="">会员介绍</a></li>
+                                            <li><a href="">生活旅行/团购</a></li>
+                                            <li><a href="">常见问题</a></li>
+                                            <li><a href="">联系客服</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <h3 class="icon2">支付方式</h3>
+                                        <ul class="item">
+                                            <li><a href="">货到付款</a></li>
+                                            <li><a href="">在线支付</a></li>
+                                            <li><a href="">分期付款</a></li>
+                                            <li><a href="">邮局汇款</a></li>
+                                            <li><a href="">公司转账</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <h3 class="icon3">天下保障</h3>
+                                        <ul class="item">
+                                            <li><a href="">售后政策</a></li>
+                                            <li><a href="">价格保护</a></li>
+                                            <li><a href="">退款说明</a></li>
+                                            <li><a href="">返修/退换货</a></li>
+                                            <li><a href="">取消订单</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <h3 class="icon4">商家服务</h3>
+                                        <ul class="item">
+                                            <li><a href="">开店申请</a></li>
+                                            <li><a href="">商品发布</a></li>
+                                            <li><a href="">店铺设置</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="large-5 medium-5 small-12 columns">
+                                <ul class="footer-code large-block-grid-3 medium-block-grid-3 small-block-grid-1">
+                                    <li><img src="images/footer_code_01.gif"><span>下载手机官方app</span></li>
+                                    <li><img src="images/footer_code_02.gif"><span>关注微信公众号</span></li>
+                                    <li><a href="#"><img src="images/footer_code_03.gif"><span>官方微博</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+            <div class="copyright" id="frame_footer_copyright">
+                        <div class="row" id="data_footer_copyright">
+                        <span class="copyright-reserved">版权所有：北京文玩天下电子商务有限公司</span>
+                        <span>
+                公司地址：北京市朝阳区北辰路曹八里1号院6号楼  邮政编码：100029<br>
+                文玩客服电话：4006-300-305  在线客服QQ：1395085594，398850964   Email：link@wwtx.cn  传真：010-64411002<br>
+                主要交易商品涉及<a href="#">文玩核桃</a>、<a href="#">菩提</a>、<a href="#">橄榄核雕</a>、<a href="#">玉石翡翠</a>、<a href="#">琥珀蜜蜡</a>、竹雕木雕、白玉和田玉籽料、天珠、文玩狮子头等<br>
+                京ICP备05048109号 京公网安备110105006105<br>
+                </span>
+                        <div class="img">
+                            <img src="images/footer_img_01.gif">
+                            <img src="images/footer_img_02.gif">
+                            <img src="images/footer_img_03.gif">
+                        </div>
+                        </div>
+                    </div>
+          </div>
+        <!--end footer-->
+		<div id="frame_cart_successs">
+          <div id="cartSuccess" class="reveal-modal mod-spe tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+              <form data-abide>
+                <div class="spe-panel">
+                    <h3 class="tit"><i class="fa fa-fw fa-check"></i>加入购物车成功</h3>
+                    <div class="modal-box">
+                        <div class="spe-header clearfix">
+                        <div class="spe-img"><a href="#"><img src="images/goods_03.jpg" alt="夏季新品女装明星同款修身显瘦公主裙短袖中裙黑色蕾丝睫毛连衣裙"></a></div>
+                        <div class="spe-text">
+                            <div class="spe-title"><a href="#">夏季新品女装明星同款修身显瘦公主裙短袖中裙黑色蕾丝睫毛连衣裙</a></div>
+                            <em class="spe-price">¥<span class="v_price">288.00</span></em>
+                        </div>
+                    </div>
+                        <div class="spe-con prop gp-js">
+                        	<div class="v_standard">
+                                <div class="goods-size clearfix">
+                                    <div class="size-tit">尺寸</div>
+                                    <div class="size-con param-1">
+                                        <ul class="clearfix">
+                                            <li><span>S</span></li>
+                                            <li><span>M</span></li>
+                                            <li class="selected"><span>L</span></li>
+                                            <li class="no"><span>XL</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="goods-color clearfix">
+                                    <div class="color-tit">颜色</div>
+                                    <div class="color-text param-2" style="display:none;">
+                                        <ul class="clearfix">
+                                            <li><span>黑色</span></li>
+                                            <li class="selected"><span>粉色</span></li>
+                                            <li><span>棕色</span></li>
+                                            <li class="no"><span>深蓝色</span></li>
+                                        </ul>
+                                    </div> 
+                                    <div class="color-img param-3" style="display:none;">
+                                        <ul class="clearfix">
+                                            <li><a href="#" title="蓝色"><img src="images/seller_recommend_02.jpg" alt="蓝色"></a><i></i></li>
+                                            <li><a href="#" title="浅紫色"><img src="images/seller_recommend_03.jpg" alt="浅紫色"></a><i></i></li>
+                                            <li class="selected"><a href="#" title="白色"><img src="images/seller_recommend_04.jpg" alt="白色"></a><i></i></li>
+                                            <li class="no"><a href="#" title="黑色"><img src="images/seller_recommend_06.jpg" alt="黑色"></a><i></i></li>
+                                        </ul>
+                                    </div> 
+                                    <div class="img-text param-4">
+                                        <ul class="clearfix">
+                                            <li><a href="#" title="蓝色"><img src="images/seller_recommend_02.jpg" alt="蓝色">蓝色</a><i></i></li>
+                                            <li><a href="#" title="浅紫色"><img src="images/seller_recommend_03.jpg" alt="浅紫色">浅紫色</a><i></i></li>
+                                            <li class="selected"><a href="#" title="白色"><img src="images/seller_recommend_04.jpg" alt="白色">白色</a><i></i></li>
+                                            <li class="no"><a href="#" title="黑色"><img src="images/seller_recommend_06.jpg" alt="黑色">黑色</a><i></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="goods-buy clearfix">
+                                    <div class="buy-tit">购买数量</div>
+                                    <div class="buy-con">
+                                        <div class="quantity-input-group">
+                                            <div class="group-btn reduce">
+                                                <button type="button" class="button outlined">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                            </div>
+                                            <input type="text" class="group-inp" maxlength="3" readonly="" value="1">
+                                            <div class="group-btn add">
+                                                <button type="button" class="button outlined">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="goods-inv">件(库存<num class="v_inventory">128</num>件)</span>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="confirm cart-success clearfix">
+                        <div class="row">
+                            <div class="large-6 medium-6 small-6 columns">
+                            	<a href="#" class="button expand small secondary radius close" aria-label="Close">确定</a>
+                            </div>
+                            <div class="large-6 medium-6 small-6 columns">
+                            	<a href="myCart.html" class="button expand small alert radius" aria-label="Close">去购物车结算</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </form>
+              <a class="close-reveal-modal large" aria-label="Close">&#215;</a>
+          </div>
+        </div>
+        <div id="frame_share_order">
+        	<div id="share_goods" class="reveal-modal tiny openModal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+              <form>
+                  <h3>分享</h3>
+                  <div class="row">
+                    <div class="small-12 columns">
+                        <div class="share-area">
+                            <ul class="small-block-grid-3 medium-block-grid-6 large-block-grid-6 ">
+                           	    <li><a href="# "><i class="share-icon reblog"></i><span>我的主页</span></a></li>
+                                <li><a href="# "><i class="share-icon weixin "></i><span>微信</span></a></li>
+                                <li><a href="# "><i class="share-icon yixin "></i><span>易信</span></a></li>
+                                <li><a href="# "><i class="share-icon sina "></i><span>新浪微博</span></a></li>
+                                <li><a href="# "><i class="share-icon qzone "></i><span>QQ空间</span></a></li>
+                                <li><a href="# "><i class="share-icon baidu "></i><span>百度贴吧</span></a></li>
+                                <li><a href="# "><i class="share-icon wangyi "></i><span>网易微博</span></a></li>
+                                <li><a href="# "><i class="share-icon renren "></i><span>人人网</span></a></li>
+                                <li><a href="# "><i class="share-icon tcweibo "></i><span>腾讯微博</span></a></li>
+                                <li><a href="# "><i class="share-icon qq "></i><span>QQ</span></a></li>
+                                <li><a href="# "><i class="share-icon souhu "></i><span>搜狐微博</span></a></li>
+                                <li><a href="# "><i class="share-icon kaixin "></i><span>开心网</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                  </div>
+              </form>
+              <a class="close-reveal-modal" aria-label="Close">×</a>
+            </div>
+        </div>
+        <div class="go detail-page" id="frame_go"><a title="返回顶部" class="gotop" id="goTop"></a> <a title="返回底部" class="gobottom" id="goBottom"></a></div>
+        <div id="frame_javascript">
+            <div id="data_javascript"> 
+                <script src="javascript/foundation.min.js"></script> 
+                <script src="javascript/others.js"></script> 
+				<script src="javascript/idangerous.swiper-2.0.min.js"></script>
+                <script src="javascript/movies-app.js"></script>
+                <script src="javascript/commentList.js"></script>
+                <script>
+				  $(document).foundation({
+					"magellan-expedition": {
+					    duration:500,
+						destination_threshold: 60
+					}
+					});
+					
+					//头部级联列表
+					  $('.all-category').on('click','.title',function(e){
+						  $('#category').slideToggle(200);
+					  });
+					  $(".top-nav" ).appendAround();
+				    //图片延迟加载
+					$('img.lazy').lazyload({
+						effect : "fadeIn"
+					});
+					
+					//分享
+					$('.action-share .share-tit').on('click',function(e){
+						$('#share_gooods').css({'display':'block','visibility':'visible','top':'100px'});
+					});
+					
+					//关闭加入购物车成功的提示框
+					$('.spe-confirm').on('click','.close',function(e){
+						$('#cartSuccess').foundation('reveal', 'close');
+					});
+					
+					
+					//选规格以及数量
+					selectProp();
+					function selectProp(){
+						var $gpJs = $('.gp-js');
+							
+						$gpJs.find('li:not(.no)').each(function(){
+							$(this).click(function(e){
+								e.preventDefault();
+								var index = $(this).index();
+								$(this).siblings().removeClass('selected');
+								$(this).addClass('selected');
+								
+								var $propEle = $(this).parents('.prop'),
+									parentEle = /param-\d/.exec($(this).parent().parent()[0].className)[0];
+									
+								if($propEle.hasClass('spe-con')){
+									var $target = $('.goods-prop').find('.' + parentEle).children().children();
+									$target.removeClass('selected');
+									$target.eq(index).addClass('selected');
+								}else if($propEle.hasClass('goods-prop')){
+									var $target = $('.spe-con').find('.' + parentEle).children().children();
+									$target.removeClass('selected');
+									$target.eq(index).addClass('selected');
+								}
+							});
+						});
+					}
+					
+					$('.buy-con .quantity-input-group').on('click','.reduce',function(e){
+						var countInput = this.parentElement.children[1];
+						var value = parseInt(countInput.value);
+						if (value > 1) {
+							countInput.value = value - 1;
+						}
+						$('.quantity-input-group').find('.group-inp').val(countInput.value);
+					})
+					.on('click','.add',function(e){
+						var countInput = this.parentElement.children[1];
+						var value = parseInt(countInput.value);
+						countInput.value = value + 1;
+						$('.quantity-input-group').find('.group-inp').val(countInput.value);
+					});
+				</script> 
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

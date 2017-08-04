@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta charset="utf-8" />
+	
+	<!-- If you delete this meta tag World War Z will become a reality -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<title>表单例子</title>
+	<!-- If you are using the CSS version, only link these 2 files, you may add app.css to use for your overrides if you like -->
+	<link data-th-href="@{/cij/foundation/css/normalize.css}" rel="stylesheet" href="css/normalize.css" />
+	<link data-th-href="@{/cij/foundation/css/foundation.css}" rel="stylesheet" href="css/foundation.css" />
+	<link data-th-href="@{/cij/foundation-icons/foundation-icons.css}" rel="stylesheet" href="css/foundation.css" />
+    
+	<link data-th-href="@{/cij/css/font-awesome.min.css}" rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+	<link data-th-href="@{/cij/css/themes.less}" rel="stylesheet" type="text/less" href="css/themes.less" />
+
+
+	<script data-th-inline="javascript">
+	Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/ '';
+	</script>
+	<script data-th-src="@{/cij/js/less-1.7.3.min.js}" src="js/less-1.7.3.min.js"></script>
+	<script data-th-src="@{/cij/foundation/js/vendor/modernizr.js}"  src="js/vendor/modernizr.js"></script>
+</head>
+<body>
+	<div>
+        <div class="row" style="padding-top: 100px">
+          <form method="post" action="./save_form.htm" accept-charset="UTF-8" enctype="multipart/form-data">
+          <div class="login-box">
+              <h3>订单信息</h3>
+              <input type="hidden" name="id" />
+              <div class="row">
+                <div class="large-4 small-12 columns">
+                    <label><input type="text" name="username" placeholder="用户"/></label>
+                </div>
+                <div class="large-8 small-12 columns">
+               		<label class="left"><input type="checkbox" name="tags" value="吃货" />吃货&nbsp;&nbsp;</label>
+               		<label class="left"><input type="checkbox" name="tags" value="美女" />美女&nbsp;&nbsp;</label>
+               		<label class="left"><input type="checkbox" name="tags" value="双性" />双性&nbsp;&nbsp;</label>
+               		<label class="left"><input type="checkbox" name="tags" value="感谢" />感谢&nbsp;&nbsp;</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="small-12 columns">
+                    <label><textarea rows="3" name="description" placeholder="用户描述"></textarea></label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="small-12 columns">
+                	<label><input type="text" name="date" placeholder="时间格式：yyyy-MM-dd HH:mm:ss"/></label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="small-12 columns">
+                	<label><input type="text" name="order" placeholder="订单ID"/></label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="small-12 columns">
+                	<label><input type="file" name="file"/></label>
+                </div>
+              </div>
+              <div class="row confirm">
+                <div class="small-12 columns">
+                    <button class="right button radius tiny" type="submit">保存</button>
+                </div>
+              </div>
+          </div>
+          </form>
+        </div>
+	</div>
+
+	<script data-th-src="@{/cij/jquery/jquery-2.1.3.js}" src="js/vendor/jquery.js"></script>
+	
+
+	<script data-th-src="@{/cij/foundation/js/foundation.min.js}" src="js/foundation.min.js"></script>
+	<script>
+	$(document).foundation();
+	</script>
+	
+</body>
+</html>

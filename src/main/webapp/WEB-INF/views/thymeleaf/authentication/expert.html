@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+
+<!-- If you delete this meta tag World War Z will become a reality -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>专家认证</title>
+<!-- If you are using the CSS version, only link these 2 files, you may add app.css to use for your overrides if you like -->
+<link data-th-href="@{/cij/foundation/css/normalize.css}"
+	rel="stylesheet" href="css/normalize.css" />
+<link data-th-href="@{/cij/foundation/css/foundation.css}"
+	rel="stylesheet" href="css/foundation.css" />
+<link data-th-href="@{/cij/foundation-icons/foundation-icons.css}"
+	rel="stylesheet" href="css/foundation.css" />
+
+<link data-th-href="@{/cij/css/font-awesome.min.css}" rel="stylesheet"
+	type="text/css" href="css/font-awesome.min.css" />
+<link data-th-href="@{/cij/css/themes.less}" rel="stylesheet"
+	type="text/less" href="css/themes.less" />
+
+<!-- If you are using the gem version, you need this only -->
+<link data-th-href="@{/cij/css/app.css}" rel="stylesheet"
+	href="css/app.css" />
+
+<!-- DataTables CSS
+	<link data-th-href="@{/cij/datatables/css/jquery.dataTables.css}" rel="stylesheet" type="text/css" href="/datatables/media/css/jquery.dataTables.css" />
+	 -->
+<link data-th-href="@{/cij/datatables/css/dataTables.foundation.css}"
+	rel="stylesheet" type="text/css" href="dataTables.foundation.css" />
+<link
+	data-th-href="@{/cij/datatables-extend/css/dataTables.response.css}"
+	rel="stylesheet" type="text/css" href="dataTables.response.css" />
+<link
+	data-th-href="@{/cij/datatables-extend/css/daterangepicker-f5.less}"
+	rel="stylesheet" type="text/less" href="daterangepicker-f5.less" />
+
+<script data-th-inline="javascript">
+	Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/'';
+</script>
+<script data-th-src="@{/cij/js/less-1.7.3.min.js}"
+	src="js/less-1.7.3.min.js"></script>
+<script data-th-src="@{/cij/foundation/js/vendor/modernizr.js}"
+	src="js/vendor/modernizr.js"></script>
+
+</head>
+<body>
+	<div id="expert" class="openModal">
+		<h3>专家认证</h3>
+
+		<div class="v_form" data-reveal="" aria-labelledby="modalTitle"
+			aria-hidden="true" role="dialog">
+
+			<input type="hidden" name="authentications" title="认证指数" value="2" />
+			<input type="hidden" id="uid" name="id" title="用户编号" data-th-value="${uid}" /> 
+			<input type="hidden" name="loginName" />
+			<input type="hidden" name="password" value="1" />
+			<form data-abide="ajax" id="form">
+				<fieldset>
+					<legend>个人信息</legend>
+					<div class="row">
+						<div class="large-12 columns">
+							<label>姓名</label> <input type="text" name="realName"
+								readonly="readonly" placeholder="请输入姓名" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-12 columns">
+							<label>头像</label> <input type="hidden" id="head" name="head"
+								placeholder="头像路径" />
+							<div id="head_photo"></div>
+							<a id="filePicker">&nbsp;</a> <small class="error">请上传您的头像</small>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-12 columns">
+							<label>身份证号</label> <input type="text" name="cardId"
+								placeholder="请输入身份证号" /> <small class="error">身份证号格式不正确，请检查身份证号是否为空，格式是否正确</small>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-12 columns">
+							<label>证件照正面（正面：写有姓名等信息）</label> <input type="hidden"
+								id="frontCard" name="frontCard" placeholder="证件照图片路径" />
+							<div id="front_photo"></div>
+							<a id="filePicker1">&nbsp;</a> <small class="error">请上传您的证件照正面</small>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-12 columns">
+							<label>证件照反面（反面：写有居民身份证等信息）</label> <input type="hidden"
+								id="backCard" name="backCard" placeholder="证件照图片路径" />
+							<div id="back_photo"></div>
+							<a id="filePicker2">&nbsp;</a> <small class="error">请上传您的证件照反面</small>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-12 columns">
+							<label>个人凭证（图片）</label> <input type="hidden" id="userCredentials"
+								name="userCredentials" placeholder="个人凭证图片路径" />
+							<div id="userCredentials_photo"></div>
+							<a id="filePicker3">&nbsp;</a> <small class="error">请上传您的个人凭证</small>
+						</div>
+					</div>
+
+				</fieldset>
+				<fieldset>
+					<legend>专业信息</legend>
+					<div class="row">
+						<div class="large-12 columns">
+							<label>认证领域</label> <select class="medium" name="field"
+								data-invalid="" aria-invalid="true">
+								<option value="经济金融" selected="selected">经济金融</option>
+								<option value="法律法规">法律法规</option>
+								<option value="企业管理">企业管理</option>
+								<option value="法律法规">法律法规</option>
+								<option value="社会民生">社会民生</option>
+								<option value="科学教育">科学教育</option>
+								<option value="健康生活">健康生活</option>
+								<option value="体育运动">体育运动</option>
+								<option value="文化艺术">文化艺术</option>
+								<option value="电子数码">电子数码</option>
+								<option value="电脑网络">电脑网络</option>
+								<option value="娱乐休闲">娱乐休闲</option>
+								<option value="其他">其他</option>
+								<option value="地区地域">地区地域</option>
+								<option value="心理分析">心理分析</option>
+							</select> <small class="error">请选择认证领域</small>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-12 columns">
+							<label>行家头衔</label> <select class="medium" name="rank"
+								data-invalid="" aria-invalid="true">
+								<option value="会计" selected="selected">会计</option>
+								<option value="财务">财务</option>
+								<option value="主管">主管</option>
+								<option value="投资人">投资人</option>
+								<option value="高级管理">高级管理</option>
+								<option value="人事">人事</option>
+								<option value="行政人员">行政人员</option>
+								<option value="后勤人员">后勤人员</option>
+								<option value="其他">其他</option>
+							</select> <small class="error">请上传您的行家头衔</small>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-12 columns">
+							<label>工作单位</label> <input type="text" name="work"
+								placeholder="请输入工作单位" /> <small class="error">工作单位不能为空</small>
+						</div>
+					</div>
+				</fieldset>
+				<fieldset>
+					<legend>联系方式</legend>
+					<div class="row">
+						<div class="large-12 columns">
+							<label>手机号码</label> <input type="text" name="mobiletel"
+								placeholder="请输入手机号码" /> <small class="error">请输入正确的手机号码</small>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-12 columns">
+							<label>电子邮箱</label> <input type="text" name="email"
+								placeholder="请输入电子邮箱" /> <small class="error">请输入正确的电子邮箱</small>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-12 columns">
+							<label>QQ</label> <input type="text" name="qq"
+								placeholder="请输入QQ号码" /> <small class="error">请输入正确的QQ号码</small>
+						</div>
+					</div>
+				</fieldset>
+				<div class="row v_userbtn">
+					<div class="large-12 columns">
+						<button type="submit" class="medium button radius v_add_submit">提交审核</button>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</div>
+
+	<script data-th-src="@{/cij/jquery/jquery-2.1.3.js}"
+		src="js/vendor/jquery.js"></script>
+	<!-- DataTables -->
+	<script data-th-src="@{/cij/datatables/js/jquery.dataTables.js}"
+		type="text/javascript" charset="utf8"
+		src="/DataTables-1.10.6/media/js/jquery.dataTables.js"></script>
+	<script data-th-src="@{/cij/datatables/js/dataTables.foundation.js}"
+		type="text/javascript" charset="utf8" src="dataTables.foundation.js"></script>
+
+	<script data-th-src="@{/cij/foundation/js/foundation.min.js}" src="js/foundation.min.js"></script>
+	<script data-th-src="@{/cij/js/thymeleaf.js}" src=""></script>
+	<script data-th-src="@{/cij/thymol/thymol-full.js}" src=""></script>
+	<script data-th-src="@{/cij/js/validate.js}" src="js/validate.js"></script>
+	<script data-th-src="@{/cij/js/formproperty.init.js}"
+		src="js/formproperty.init.js"></script>
+	<script data-th-src="@{/cij/js/webuploader.min.js}"
+		src="cij/js/webuploader.min.js"></script>
+	<script data-th-src="@{/cij/js/m/authentication.uploader.js}" src=""></script>
+	<script data-th-src="@{/cij/js/rongji.js}" src=""></script>
+	<script data-th-src="@{/cij/js/m/authentication.js}" src=""></script>
+</body>
+</html>

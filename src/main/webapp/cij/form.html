@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta charset="utf-8" />
+	
+	<!-- If you delete this meta tag World War Z will become a reality -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<title>form</title>
+	<!-- If you are using the CSS version, only link these 2 files, you may add app.css to use for your overrides if you like -->
+	<link rel="stylesheet" href="foundation-5.5.1/css/normalize.css" />
+	<link rel="stylesheet" href="foundation-5.5.1/css/foundation.css" />
+	<link rel="stylesheet" href="foundation-icons/foundation-icons.css" />
+    
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/less" href="css/themes.less" />
+
+	<!-- If you are using the gem version, you need this only -->
+	<link rel="stylesheet" href="css/app.css" />
+
+	<!-- DataTables CSS
+	<link data-th-href="@{/cij/datatables-1.10.6/css/jquery.dataTables.css}" rel="stylesheet" type="text/css" href="/DataTables-1.10.6/media/css/jquery.dataTables.css" />
+	 -->
+	<link rel="stylesheet" type="text/css" href="datatables-1.10.6/css/dataTables.foundation.css" />
+	<link rel="stylesheet" type="text/css" href="datatables-extend/css/dataTables.response.css" />
+	<link rel="stylesheet" type="text/less" href="datatables-extend/css/daterangepicker-f5.less" />
+	
+	<script data-th-inline="javascript">
+	Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/ '';
+	</script>
+	<script src="js/less-1.7.3.min.js"></script>
+	<script src="foundation-5.5.1/js/vendor/modernizr.js"></script>
+</head>
+<body>
+    <div id="all-form" class="reveal-modal large openModal" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog" style="display:block; visibility:visible;">
+      <form data-abide="">
+          <h3>面板名称</h3>
+          <!--输入框在右侧-->
+          <div class="row">
+            <div class="small-12 columns int">
+              <div class="row">
+                <div class="small-1 columns">
+                  <label for="right-label" class="right">输入框</label>
+                </div>
+                <div class="small-11 columns">
+                    <label>
+                        <input type="text" required="" id="right-label" placeholder="输入框在右侧" pattern="[a-zA-Z]+" />
+                    </label>
+                    <small class="error">input输入框不能为空！</small>
+                </div>
+              </div>
+            </div>
+          </div> 
+          <!--输入框在下侧-->
+          <div class="row">
+            <div class="small-12 columns int">
+                <label>输入框
+                    <input type="text" required="" placeholder="输入框在下侧" pattern="[a-zA-Z]+" />
+                </label>
+                <small class="error">input输入框不能为空！</small>
+            </div>
+          </div>
+          <!--密码/确认密码-->
+          <div class="row">
+              <div class="large-6 columns int">
+                <label for="password">密码
+                  <input type="password" id="password" placeholder="密码" name="password" required="" />
+                </label>
+                <small class="error">请输入密码</small>
+              </div>
+              <div class="large-6 columns int">
+                <label for="confirmPassword">确认密码
+                  <input type="password" id="confirmPassword" placeholder="确认密码" name="confirmPassword" required="" data-equalto="password" />
+                </label>
+                <small class="error">确认密码不一致</small>
+              </div>
+          </div>         
+          <!--邮箱/网址/select下拉-->
+          <div class="row">
+              <div class="large-4 columns int">
+                <label for="email">邮箱
+                  <input type="email" id="email" placeholder="XXXXXX@rongji.com" aria-invalid="false" />
+                </label>
+                <small class="error">邮箱格式不正确</small>
+              </div>
+              <div class="large-4 columns int">
+                <label for="url">网址
+                  <input type="url" id="url" placeholder="http://www.rongji.com" required="" />
+                </label>
+                <small class="error">网址格式不正确</small>
+              </div>
+              <div class="large-4 columns int">
+                <div class="row collapse">
+                  <label for="customDropdown1">select下拉选择
+                    <select id="customDropdown1" class="medium" required="">
+                      <option value="">默认</option>
+                      <option value="first">白色</option>
+                      <option value="second">黑色</option>
+                      <option value="third">黄色</option>
+                      <option value="fourth">绿色</option>
+                    </select>
+                  </label>
+                  <small class="error">未选中任何选项</small>
+                </div>
+              </div>
+          </div>    
+          <!--单选框/复选款-->
+          <div class="row">
+            <div class="large-6 columns int">
+              <label>单选框default(色调black,blue,purple,yellow,green,red)</label>
+              <input type="radio" name="radio" value="白色" id="radio1" checked="true"/><label for="radio1">白色</label>
+              <input type="radio" name="radio" value="黑色" id="radio2"/><label for="radio2">黑色</label>
+              <input type="radio" name="radio" value="黑色" id="radio3" /><label for="radio3">黄色</label>
+            </div>
+            <div class="large-6 columns int">
+              <label>复选框default(色调black,blue,purple,yellow,green,red)</label>
+              <input id="checkbox1" type="checkbox" checked="true"/><label for="checkbox1">白色</label>
+              <input id="checkbox2" type="checkbox"/><label for="checkbox2">黑色</label>
+              <input id="checkbox3" type="checkbox"/><label for="checkbox3">黄色</label>
+            </div>
+          </div>    
+          <div class="row">
+            <div class="large-6 columns int">
+              <label>单选框flat</label>
+              <input type="radio" name="flat_radio" value="白色" class="flat" id="flat_radio1" checked="true"/><label for="flat_radio1">白色</label>
+              <input type="radio" name="flat_radio" value="黑色" class="flat" id="flat_radio2"/><label for="flat_radio2">黑色</label>
+              <input type="radio" name="flat_radio" value="黑色" class="flat" id="flat_radio3" /><label for="flat_radio3">黄色</label>
+            </div>
+            <div class="large-6 columns int">
+              <label>复选框flat</label>
+              <input id="flat_checkbox1" type="checkbox" class="flat" checked="true"/><label for="flat_checkbox1">白色</label>
+              <input id="flat_checkbox2" type="checkbox" class="flat" /><label for="flat_checkbox2">黑色</label>
+              <input id="flat_checkbox3" type="checkbox" class="flat" /><label for="flat_checkbox3">黄色</label>
+            </div>
+          </div>    
+          <div class="row">
+            <div class="large-6 columns int">
+              <label>单选框minimal</label>
+              <input type="radio" name="minimal_radio" value="白色" class="minimal" id="minimal_radio1" checked="true"/><label for="minimal_radio1">白色</label>
+              <input type="radio" name="minimal_radio" value="黑色" class="minimal" id="minimal_radio2"/><label for="minimal_radio2">黑色</label>
+              <input type="radio" name="minimal_radio" value="黑色" class="minimal" id="minimal_radio3" /><label for="minimal_radio3">黄色</label>
+            </div>
+            <div class="large-6 columns int">
+              <label>复选框minimal</label>
+              <input id="minimal_checkbox1" type="checkbox" class="minimal" checked="true"/><label for="minimal_checkbox1">白色</label>
+              <input id="minimal_checkbox2" type="checkbox" class="minimal" /><label for="minimal_checkbox2">黑色</label>
+              <input id="minimal_checkbox3" type="checkbox" class="minimal" /><label for="minimal_checkbox3">黄色</label>
+            </div>
+          </div>    
+          <!--文本框-->
+          <div class="row">
+            <div class="large-12 columns int">
+              <label>文本框
+                <textarea placeholder="文本框"></textarea>
+              </label>
+            </div>
+          </div>
+          <!--图片上传-->
+          <div class="row">
+            <div class="small-12 columns int">
+                <div class="uploaders">
+                    <div class="uploader uploaded">
+                        <span class="bg-preview"><img src="img/1.gif" /></span>
+                        <span class="fa fa-times reset"></span>
+                    </div>
+                    <div class="uploader uploaded">
+                        <span class="bg-preview"><img src="img/1.gif" /></span>
+                        <span class="fa fa-times reset"></span>
+                    </div>
+                    <div class="uploader uploaded">
+                        <span class="bg-preview"><img src="img/1.gif" /></span>
+                        <span class="fa fa-times reset"></span>
+                    </div>
+                    <div class="uploader uploaded">
+                        <span class="bg-preview"><img src="img/1.gif" /></span>
+                        <span class="fa fa-times reset"></span>
+                    </div>
+                    <div class="uploader uploaded">
+                        <span class="bg-preview"><img src="img/1.gif" /></span>
+                        <span class="fa fa-times reset"></span>
+                    </div>
+                    <div class="uploader">
+                        <div class="bg-placeholder">
+                            <i class="fa fa-plus"></i>
+                        </div>
+                        <div class="bg-loading">
+                            <i class="fa fa-spinner fa-spin "></i>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+          </div>
+          <!--收货地点/发布时间-->
+          <div class="row">
+            <div class="large-6 columns int">
+                <label for="activityAddress" class="input-group with-tit">收货地点<em>*</em>
+                    <a class="input-group-addon right"><i class="fa fa-map-marker fa-fw"></i></a>
+                    <input class="" type="text" id="activityAddress" placeholder="输入地址或点击图标在地图上选择地址" name="" />
+                </label>
+            </div>
+            <div class="large-6 columns int">
+                <label for="timeEnd" class="input-group with-tit">发布时间<em>*</em>
+                    <a class="input-group-addon right"><i class="fa fa-calendar fa-fw"></i></a>
+                    <input class="" type="text" id="timeEnd" placeholder="发布时间" name="" />
+                </label>
+            </div>
+          </div>
+          <!-- http:// / .com -->
+          <div class="row">
+            <div class="large-6 columns int">
+              <div class="row collapse">
+                <div class="small-3 columns">
+                  <span class="prefix">http://</span>
+                </div>
+                <div class="small-9 columns">
+                  <input type="text" placeholder="请输入网址" />
+                </div>
+              </div>
+            </div>
+            <div class="large-6 columns int">
+              <div class="row collapse">
+                <div class="small-9 columns">
+                  <input type="text" placeholder="http://rongji.com" />
+                </div>
+                <div class="small-3 columns">
+                  <span class="postfix">.com</span>
+                </div>
+              </div>                
+            </div>
+          </div>
+          <!--标题：输入框-->
+          <div class="row">
+            <div class="large-6 columns int">
+              <div class="row collapse prefix-radius">
+                <div class="small-3 columns">
+                  <span class="prefix">标题</span>
+                </div>
+                <div class="small-9 columns">
+                  <input type="text" placeholder="内容" />
+                </div>
+              </div>
+            </div>
+            <div class="large-6 columns int">
+              <div class="row collapse postfix-radius">
+                <div class="small-9 columns">
+                  <input type="text" placeholder="内容" />
+                </div>
+                <div class="small-3 columns">
+                  <span class="postfix">标题</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--确认：输入框-->
+          <div class="row">
+            <div class="large-6 columns int">
+              <div class="row collapse prefix-round">
+                <div class="small-3 columns">
+                  <a href="#" class="button prefix">确认</a>
+                </div>
+                <div class="small-9 columns">
+                  <input type="text" placeholder="内容" />
+                </div>
+              </div>
+            </div>
+            <div class="large-6 columns int">
+              <div class="row collapse postfix-round">
+                <div class="small-9 columns">
+                  <input type="text" placeholder="内容" />
+                </div>
+                <div class="small-3 columns">
+                  <a href="#" class="button postfix">确认</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-6 columns int">
+              <div class="row collapse">
+                <div class="small-3 columns">
+                  <a href="#" class="button postfix">确认</a>
+                </div>
+                <div class="small-9 columns">
+                  <input type="text" placeholder="内容" />
+                </div>
+              </div>
+            </div>
+            <div class="large-6 columns int">
+              <div class="row collapse">
+                <div class="small-9 columns">
+                  <input type="text" placeholder="内容" />
+                </div>
+                <div class="small-3 columns">
+                  <a href="#" class="button postfix">确认</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--取消/确认 按钮-->
+          <div class="row confium">
+            <div class="small-12 columns">
+                <a class="right button radius tiny">确认</a>
+                <a class="close-reveal-modal right button radius tiny secondary margin-r" aria-label="Close">取消</a>
+            </div>
+          </div>
+      </form>
+      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+
+	<script src="foundation-5.5.1/js/vendor/jquery.js"></script>
+	
+	<!-- DataTables -->
+	<script type="text/javascript" charset="utf8" src="datatables-1.10.6/js/jquery.dataTables.js"></script>
+	<script type="text/javascript" charset="utf8" src="datatables-1.10.6/js/dataTables.foundation.js"></script>
+
+	<script src="foundation-5.5.1/js/foundation.min.js"></script>
+	<script src="js/jquery.datatable.page.js"></script>
+
+	<script src="datatables-extend/js/moment.min.js"></script>
+	<script src="datatables-extend/js/daterangepicker.js"></script>
+	<script>
+	$(document).foundation();
+	$('#timeEnd').daterangepicker({ 
+		format: 'YYYY-MM-DD',
+		startDate: '2015-01-01',
+		minDate: '2015-01-01',
+		maxDate: '2100-01-10',
+		showWeekNumbers : true,
+		showDropdowns: true,
+		timePicker12Hour: false,
+		singleDatePicker: true
+	});
+	</script>
+</body>
+</html>

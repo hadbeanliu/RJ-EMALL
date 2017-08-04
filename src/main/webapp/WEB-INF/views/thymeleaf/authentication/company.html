@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta charset="utf-8" />
+	
+	<!-- If you delete this meta tag World War Z will become a reality -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<title>企业认证</title>
+	<!-- If you are using the CSS version, only link these 2 files, you may add app.css to use for your overrides if you like -->
+	<link data-th-href="@{/cij/foundation/css/normalize.css}" rel="stylesheet" href="css/normalize.css" />
+	<link data-th-href="@{/cij/foundation/css/foundation.css}" rel="stylesheet" href="css/foundation.css" />
+	<link data-th-href="@{/cij/foundation-icons/foundation-icons.css}" rel="stylesheet" href="css/foundation.css" />
+    
+	<link data-th-href="@{/cij/css/font-awesome.min.css}" rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+	<link data-th-href="@{/cij/css/themes.less}" rel="stylesheet" type="text/less" href="css/themes.less" />
+
+	<!-- If you are using the gem version, you need this only -->
+	<link data-th-href="@{/cij/css/app.css}" rel="stylesheet" href="css/app.css" />
+
+	<!-- DataTables CSS
+	<link data-th-href="@{/cij/datatables/css/jquery.dataTables.css}" rel="stylesheet" type="text/css" href="/datatables/media/css/jquery.dataTables.css" />
+	 -->
+	<link data-th-href="@{/cij/datatables/css/dataTables.foundation.css}" rel="stylesheet" type="text/css" href="dataTables.foundation.css" />
+	<link data-th-href="@{/cij/datatables-extend/css/dataTables.response.css}" rel="stylesheet" type="text/css" href="dataTables.response.css" />
+	<link data-th-href="@{/cij/datatables-extend/css/daterangepicker-f5.less}" rel="stylesheet" type="text/less" href="daterangepicker-f5.less" />
+	
+	<script data-th-inline="javascript">
+	Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/ '';
+	</script>
+	<script data-th-src="@{/cij/js/less-1.7.3.min.js}" src="js/less-1.7.3.min.js"></script>
+	<script data-th-src="@{/cij/foundation/js/vendor/modernizr.js}" src="js/vendor/modernizr.js"></script>
+</head>
+<body>
+<!-- 
+<div class="button" onClick="showTip()" style="width:200px;margin:0 auto;display:block;">提示框</div>
+ -->
+<div id="company">
+	<!--添加-->
+    <div id="add-order" class="large openModal v_form" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+		<h3>企业认证</h3>
+			<form data-abide="ajax" id="form">
+				<input type="hidden" name="authentications" title="认证指数" value="1" />
+				<div class="row">
+					<div class="large-12 columns">
+						<label>营业执照（图片）</label> <input id="licencePhoto"
+							name="licencePhoto" type="hidden"  />
+							<div id="licence_photo"></div><a id="filePicker4">&nbsp;</a>
+						<small class="error">请上传您的营业执照！</small>
+					</div>
+				</div>
+				<div class="row address">
+					<div class="large-4 columns">
+						<label>营业执照所在地</label> 
+							<select id="province" class="city-province">
+							</select>
+						<input type="hidden" id="licenceAddress" name="licenceAddress" placeholder="请输入营业执照所在地" />
+						<small class="error">营业执照所在地不能为空</small>
+					</div>
+					<div class="large-4 columns">
+						<label>&nbsp;</label> 
+						<select id="city" class="city-city">
+						</select>
+					</div>
+					<div class="large-4 columns">
+						<label>&nbsp;</label> 
+						<select id="district" class="city-district" data-abide-validator="getValue">
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-12 columns">
+						<label>执照注册号</label> <input type="text" name="licenceId"
+							placeholder="请输入营业执照注册号"  /> <small
+							class="error">注册号格式不正确！</small>
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-12 columns">
+						<label>店铺名称</label> <input type="text" name="companyName"
+							placeholder="请输入店名"  /> <small
+							class="error">请注意名称长度是否合法！</small>
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-12 columns">
+						<label>店铺类型</label>
+						<select id="companyType" name="companyType">
+				          <option value="1" selected="selected">旗舰店</option>
+				          <option value="2">专卖店</option>
+				          <option value="3">专营店</option>
+				        </select>
+						<small class="error">不能为空</small>
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-12 columns">
+						<label>法定代表人姓名</label> <input type="text" name="legalPerson"
+							placeholder="请输入真实姓名，要求和有限证件名称一致" /> <small class="error">请检查姓名格式长度大小，是否均为中英文</small>
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-12 columns">
+						<label>证件照（正面图片）</label> <input type="hidden" id="legalFrontcard" name="legalFrontcard"
+							placeholder="证件照路径，不可见"  /> 
+							<div id="front_photo"></div><a id="filePicker1">&nbsp;</a>
+							<small class="error">请上传您的证件照（正面图片）！</small>
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-12 columns">
+						<label>证件照（背面图片）</label> <input type="hidden" id="legalBackcard" name="legalBackcard"
+							 placeholder="证件照路径，不可见" /> 
+							 <div id="back_photo"></div><a id="filePicker2">&nbsp;</a>
+							 <small class="error">请上传您的证件照（背面图片）！</small>
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-12 columns">
+						<input type="hidden" name="userId" data-th-value="${uid}" title="user"/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-3 columns">
+						<label>实体店联系人 </label> <input type="text" name="companyContacts"
+							 placeholder="请输入联系人" /> <small
+							class="error">请检查联系人格式长度大小，是否均为中英文</small>
+					</div>
+					<div class="large-3 columns">
+						<label>联系方式</label> <input type="text" name="contactsPhone"
+							placeholder="请输入联系方式（手机，电话号码）"  />
+						<small class="error">联系方式格式不正确</small>
+					</div>
+					<div class="large-6 columns"></div>
+				</div>
+				<div class="row v_userbtn">
+					<div class="large-12 columns">
+						<button type="submit" class="medium button radius v_add_submit">提交审核</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<input id="cid" type="hidden" data-th-value="${companyId}"/>
+	
+	<script data-th-src="@{/cij/jquery/jquery-2.1.3.js}" src="js/vendor/jquery.js"></script>
+	
+	<!-- DataTables -->
+	<script data-th-src="@{/cij/datatables/js/jquery.dataTables.js}" type="text/javascript" charset="utf8" src="/DataTables-1.10.6/media/js/jquery.dataTables.js"></script>
+	<script data-th-src="@{/cij/datatables/js/dataTables.foundation.js}" type="text/javascript" charset="utf8" src="dataTables.foundation.js"></script>
+
+	<script data-th-src="@{/cij/foundation/js/foundation.min.js}" src="js/foundation.min.js"></script>
+
+	<script data-th-src="@{/cij/datatables-extend/js/moment.min.js}" src="js/moment.min.js"></script>
+	<script data-th-src="@{/cij/datatables-extend/js/daterangepicker.js}" src="js/daterangepicker.js"></script>
+    <script data-th-src="@{/cij/js/validate.js}" src="js/validate.js"></script>
+	<script data-th-src="@{/cij/js/formproperty.init.js}" src="js/formproperty.init.js"></script>
+	<script data-th-src="@{/cij/js/jquery.select-city.js}" src="js/jquery.select-city.js"></script>
+	<script data-th-src="@{/cij/js/webuploader.min.js}" src="cij/js/webuploader.min.js"></script>
+	<script data-th-src="@{/cij/js/m/authentication.uploader.js}" src="cij/js/m/authentication.uploader.js"></script>
+	<script data-th-src="@{/cij/js/rongji.js}" src=""></script>
+	<script data-th-src="@{/cij/js/m/authentication.js}" src=""></script>
+</body>
+</html>

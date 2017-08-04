@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh" class="no-js">
+<head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" >
+    <meta name="keywords" content=" " />
+    <meta name="description" content="" />
+	<title>设置安全问题</title>
+	<link data-th-href="|${tempPath}style/font-awesome.min.css|" href="style/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/themes.less|"  href="style/themes.less" rel="stylesheet" type="text/less" />
+	<link href="/emall/cij/datatables/css/dataTables.foundation.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}datatables-extend/css/dataTables.response.less|"  href="datatables-extend/css/dataTables.response.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}style/layout.css|"  href="style/layout.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/master.css|"  href="style/master.css" rel="stylesheet" type="text/css" />
+
+	<script data-th-src="|${tempPath}javascript/less-1.7.3.min.js|" src="javascript/less-1.7.3.min.js"></script>
+	<script data-th-src="|${tempPath}javascript/modernizr.js|" src="javascript/modernizr.js"></script>
+	<script data-th-inline="javascript">
+	Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/ '/emall';
+	Cfg.tempPath = /*[[ ${tempPath} ]]*/ '/emall/tpl/001/';
+	</script>
+</head>
+<body>
+<div id="layout">
+    <div class="wrapper" id="frame_wrapper">
+        <div class="off-canvas-wrap" data-offcanvas id="frame_canvas_wrap">
+            <div class="inner-wrap" id="frame_inner_wrap">  
+                <div class="left-off-canvas-menu hide-for-large" id="frame_canvas_menu" data-set="data_accordion"></div>
+                <div class="header" id="frame_header" include="include.html">
+                    <div id="frame_tool_bar_main" class="hide-for-small clearfix" data-set="tool_bar">
+                    	<div class="tool-bar">
+                            <div id="data_main_site" class="left">
+                                <div class="drop-bar hide-for-small" id="drop-bar1">
+                                    <div class="drop-bar-tit"><i class="fa fa-mobile fa-2x"></i>手机文玩</div>
+                                    <div class="drop-bar-con mobile-inter">
+                                    	<div class="qr-code"><img src="images/qr-code.png" /></div>
+                                        <a>扫一扫，下载文玩客户端</a>
+                                    </div>
+                                </div>
+                                <div class="drop-bar" id="drop-bar2">
+                                    <div class="drop-bar-tit p-color">a1234</div>
+                                    <div class="drop-bar-con user-inter">
+                                        <ul>
+                                        	<li><a href="#" title="账户管理"><i class="fa fa-gear"></i>账户管理</a></li>
+                                        	<li><a href="#" title="退出"><i class="fa fa-power-off"></i>退&emsp;&emsp;出</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="drop-bar" id="drop-bar5">
+                                    <div class="drop-bar-tit"><i class="fa fa-envelope"></i>消息</div>
+                                    <div class="drop-bar-con mini-new">
+                                        <div class="mini-new-hd">
+                                            <strong>
+                                                最新的消息：
+                                            </strong>
+                                        </div>
+                                        <ul class="mini-new-bd">
+                                            <li>
+                                                <div class="mini-new-img">
+                                                    <a target="_top" href="#">
+                                                        <img src="images/new1.png" alt="物流助手">
+                                                    </a>
+                                                </div>
+                                                <div class="mini-new-count">
+                                                    <span>2015-7-8 15:34:50</span>
+                                                </div>
+                                                <div class="mini-new-title">
+                                                    <a target="_top" href="#" title="物流助手">物流助手</a>
+                                                </div>
+                                                <div class="mini-new-del">
+                                                    <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                                </div>
+                                                <div class="mini-new-info">
+                                                    <a href="#" title="您购买的手链已签收,签收人是易栈服务点代签，感谢使用申通快递，期待再次为您服务" >您购买的手链已签收,签收人是易栈服务点代签，感谢使用申通快递，期待再次为您服务</a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="mini-new-img">
+                                                    <a target="_top" href="#">
+                                                        <img src="images/new2.png" alt="优惠活动">
+                                                    </a>
+                                                </div>
+                                                <div class="mini-new-count">
+                                                    <span>2015-7-8 15:34:50</span>
+                                                </div>
+                                                <div class="mini-new-title">
+                                                    <a target="_top" href="#" title="优惠活动">优惠活动</a>
+                                                </div>
+                                                <div class="mini-new-del">
+                                                    <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                                </div>
+                                                <div class="mini-new-info">
+                                                    <a title="您有一张优惠券，将于2015-9-1 24:00:00过期，请尽快使用。" >您有一张优惠券，将于2015-9-1 24:00:00过期，请尽快使用。</a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="mini-new-img">
+                                                    <a target="_top" href="#">
+                                                        <img src="images/new3.png" alt="菩提韵">
+                                                    </a>
+                                                </div>
+                                                <div class="mini-new-count">
+                                                    <span>2015-7-8 15:34:50</span>
+                                                </div>
+                                                <div class="mini-new-title">
+                                                    <a target="_top" href="#" title="菩提韵"><span class="label margin-r left">店铺</span>菩提韵</a>
+                                                </div>
+                                                <div class="mini-new-del">
+                                                    <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                                </div>
+                                                <div class="mini-new-info">
+                                                    <a title="亲，购得顺心，舒心，放心还有开心！祝您购物愉快，天天漂亮！" >亲，购得顺心，舒心，放心还有开心！祝您购物愉快，天天漂亮！</a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="mini-new-img">
+                                                    <a target="_top" href="#">
+                                                        <img src="images/new1.png" alt="物流助手">
+                                                    </a>
+                                                </div>
+                                                <div class="mini-new-count">
+                                                    <span>2015-7-8 15:34:50</span>
+                                                </div>
+                                                <div class="mini-new-title">
+                                                    <a target="_top" href="#" title="物流助手">物流助手</a>
+                                                </div>
+                                                <div class="mini-new-del">
+                                                    <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                                </div>
+                                                <div class="mini-new-info">
+                                                    <a title="您购买的手链已签收,签收人是易栈服务点代签，感谢使用申通快递，期待再次为您服务" >您购买的手链已签收,签收人是易栈服务点代签，感谢使用申通快递，期待再次为您服务</a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="mini-new-img">
+                                                    <a target="_top" href="#">
+                                                        <img src="images/new2.png" alt="优惠活动">
+                                                    </a>
+                                                </div>
+                                                <div class="mini-new-count">
+                                                    <span>2015-7-8 15:34:50</span>
+                                                </div>
+                                                <div class="mini-new-title">
+                                                    <a target="_top" href="#" title="优惠活动">优惠活动</a>
+                                                </div>
+                                                <div class="mini-new-del">
+                                                    <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                                </div>
+                                                <div class="mini-new-info">
+                                                    <a title="您有一张优惠券，将于2015-9-1 24:00:00过期，请尽快使用。" >您有一张优惠券，将于2015-9-1 24:00:00过期，请尽快使用。</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div class="mini-new-ft">
+                                            <p class="left">
+                                                <strong>
+                                                    您还有15条消息
+                                                </strong>
+                                            </p>
+                                            <p class="right">
+                                                <a target="_top" href="#" class="button">查看我的消息</a>
+                                            </p>
+                                        </div>
+                                	</div>
+                                </div>
+                            </div>
+                            <div id="data_maininfo" class="right">
+                                <div class="drop-bar hide-for-small" id="drop-bar7">
+                                    <div class="drop-bar-tit"><i class="fa fa-navicon"></i>网站导航</div>
+                                    <div class="drop-bar-con webnav">
+                                        <div class="menu-bd-panel">
+                                            <div class="mod mod-a">
+                                                <div class="mod-wrap">
+                                                    <div class="mod-hd">
+                                                        <h4>
+                                                            资讯
+                                                        </h4>
+                                                    </div>
+                                                    <div class="mod-bd">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    市场动态
+                                                                    <i class="hot">
+                                                                    </i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    行业新闻
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    文玩欣赏
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    行业展会
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mod mod-b">
+                                                <div class="mod-wrap">
+                                                    <div class="mod-hd">
+                                                        <h4>
+                                                            商城
+                                                        </h4>
+                                                    </div>
+                                                    <div class="mod-bd">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    商城公告
+                                                                    <i class="hot">
+                                                                    </i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    热门商家
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    今日团购
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    精选众筹
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    正在拍卖
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    品牌街
+                                                                    <i class="new">
+                                                                    </i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    购物指南
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    支付方式
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    天下保障
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    商家服务
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mod mod-c">
+                                                <div class="mod-wrap">
+                                                    <div class="mod-hd">
+                                                        <h4>
+                                                            百科
+                                                        </h4>
+                                                    </div>
+                                                    <div class="mod-bd">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    常识
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    文化
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    鉴赏
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    导购
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    保养
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    工艺
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    行业知识
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mod mod-d">
+                                                <div class="mod-wrap">
+                                                    <div class="mod-hd">
+                                                        <h4>
+                                                            知道
+                                                        </h4>
+                                                    </div>
+                                                    <div class="mod-bd">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    热点问题
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    待解决问题
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    已解决问题
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    知道达人
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mod mod-e">
+                                                <div class="mod-wrap">
+                                                    <div class="mod-hd">
+                                                        <h4>
+                                                            发现
+                                                        </h4>
+                                                    </div>
+                                                    <div class="mod-bd">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    热门话题
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    广场
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    标签
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    发现达人
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="drop-bar hide-for-small" id="drop-bar6">
+                                    <div class="drop-bar-tit">客服中心</div>
+                                    <div class="drop-bar-con service-center">
+                                        <ul>
+                                        	<li><a href="#" title="帮助中心">帮助中心</a></li>
+                                        	<li><a href="#" title="售后服务">售后服务</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="drop-bar" id="drop-bar5">
+                                    <div class="drop-bar-tit"><i class="fa fa-shopping-cart"></i>购物车</div>
+                                    <div class="drop-bar-con mini-cart">
+                                        <div class="mini-cart-hd">
+                                            <strong>
+                                                最近加入的宝贝：
+                                            </strong>
+                                        </div>
+                                        <ul class="mini-cart-bd">
+                                            <li>
+                                                <div class="mini-cart-img">
+                                                    <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                        <img src="images/1.jpg" alt="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                    </a>
+                                                </div>
+                                                <div class="mini-cart-count">
+                                                    <span>¥49.00</span>
+                                                </div>
+                                                <div class="mini-cart-title">
+                                                    <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                        精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链
+                                                    </a>
+                                                </div>
+                                                <div class="mini-cart-del">
+                                                    <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                                </div>
+                                                <div class="mini-cart-info">
+                                                    <a title="颜色:白色Z&nbsp;尺码:180/XXL">颜色:白色Z&nbsp;尺码:180/XXL</a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="mini-cart-img">
+                                                    <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                        <img src="images/1.jpg" alt="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                    </a>
+                                                </div>
+                                                <div class="mini-cart-count">
+                                                    <span>¥49.00</span>
+                                                </div>
+                                                <div class="mini-cart-title">
+                                                    <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                        精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链
+                                                    </a>
+                                                </div>
+                                                <div class="mini-cart-del">
+                                                    <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                                </div>
+                                                <div class="mini-cart-info">
+                                                    <a title="颜色:白色Z&nbsp;尺码:180/XXL">颜色:白色Z&nbsp;尺码:180/XXL</a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="mini-cart-img">
+                                                    <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                        <img src="images/1.jpg" alt="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                    </a>
+                                                </div>
+                                                <div class="mini-cart-count">
+                                                    <span>¥49.00</span>
+                                                </div>
+                                                <div class="mini-cart-title">
+                                                    <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                        精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链
+                                                    </a>
+                                                </div>
+                                                <div class="mini-cart-del">
+                                                    <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                                </div>
+                                                <div class="mini-cart-info">
+                                                    <a title="颜色:白色Z&nbsp;尺码:180/XXL">颜色:白色Z&nbsp;尺码:180/XXL</a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="mini-cart-img">
+                                                    <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                        <img src="images/1.jpg" alt="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                    </a>
+                                                </div>
+                                                <div class="mini-cart-count">
+                                                    <span>¥49.00</span>
+                                                </div>
+                                                <div class="mini-cart-title">
+                                                    <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                        精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链
+                                                    </a>
+                                                </div>
+                                                <div class="mini-cart-del">
+                                                    <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                                </div>
+                                                <div class="mini-cart-info">
+                                                    <a title="颜色:白色Z&nbsp;尺码:180/XXL">颜色:白色Z&nbsp;尺码:180/XXL</a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="mini-cart-img">
+                                                    <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                        <img src="images/1.jpg" alt="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                    </a>
+                                                </div>
+                                                <div class="mini-cart-count">
+                                                    <span>¥49.00</span>
+                                                </div>
+                                                <div class="mini-cart-title">
+                                                    <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                        精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链
+                                                    </a>
+                                                </div>
+                                                <div class="mini-cart-del">
+                                                    <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                                </div>
+                                                <div class="mini-cart-info">
+                                                    <a title="颜色:白色Z&nbsp;尺码:180/XXL">颜色:白色Z&nbsp;尺码:180/XXL</a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="mini-cart-img">
+                                                    <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                        <img src="images/1.jpg" alt="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                    </a>
+                                                </div>
+                                                <div class="mini-cart-count">
+                                                    <span>¥49.00</span>
+                                                </div>
+                                                <div class="mini-cart-title">
+                                                    <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                        精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链
+                                                    </a>
+                                                </div>
+                                                <div class="mini-cart-del">
+                                                    <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                                </div>
+                                                <div class="mini-cart-info">
+                                                    <a title="颜色:白色Z&nbsp;尺码:180/XXL">颜色:白色Z&nbsp;尺码:180/XXL</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div class="mini-cart-ft">
+                                            <p class="left">
+                                                <strong>
+                                                    购物车里还有5件宝贝
+                                                </strong>
+                                            </p>
+                                            <p class="right">
+                                                <a target="_top" href="#" class="button">查看我的购物车</a>
+                                            </p>
+                                        </div>
+                                	</div>
+                                </div>
+                                <div class="drop-bar" id="drop-bar4">
+                                    <div class="drop-bar-tit">我的文玩</div>
+                                    <div class="drop-bar-con my-play">
+                                    	<div class="my-info clearfix">
+                                        	<div class="my-info-logo"><img src="images/head.png" /></div>
+                                            <div class="my-info-name">
+                                            	<span><a>sexydumpling</a></span>
+                                                <span><i class="fa fa-diamond font-alert no-margin"></i><i class="fa fa-diamond font-alert no-margin"></i><i class="fa fa-diamond font-alert no-margin"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="my-order-state clearfix">
+                                        	<ul>
+                                            	<li>
+                                                	<span>0</span>
+                                                    <a>待付款</a>
+                                                </li>
+                                                <li class="cutline">|</li>
+                                            	<li>
+                                                	<span>0</span>
+                                                    <a>待发货</a>
+                                                </li>
+                                                <li class="cutline">|</li>
+                                            	<li>
+                                                	<span>0</span>
+                                                    <a>待收货</a>
+                                                </li>
+                                                <li class="cutline">|</li>
+                                            	<li>
+                                                	<span>0</span>
+                                                    <a>待评价</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="my-other-info clearfix">
+                                        	<ul>
+                                            	<li><a href="#" title="我的订单">我的订单</a></li>
+                                            	<li><a href="#" title="我的关注">我的关注</a></li>
+                                            	<li><a href="#" title="我的优惠券">我的优惠券</a></li>
+                                            	<li><a href="#" title="我的足迹">我的足迹</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="my-recent-view clearfix">
+                                        	<div class="my-view-tit clearfix">
+                                            	<a href="#" title="最近浏览" class="left">最近浏览</a>
+                                                <a href="#" title="查看更多最近浏览" class="right">更多></a>
+                                            </div>
+                                            <ul class="clearfix">
+                                            	<li><img src="images/1.jpg"/></li>
+                                            	<li><img src="images/1.jpg"/></li>
+                                            	<li><img src="images/1.jpg"/></li>
+                                            	<li><img src="images/1.jpg"/></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="frame_top_banner" class="top_banner clearfix">
+                        <div id="frame_logo_sub" class="logo"></div>
+                        <div id="frame_top_search">
+                            <div id="data_search" class="hide-for-small clearfix" data-set="top_search">
+                              <div class="top_search">
+                                <form target="_blank">
+                                    <select id="searchDropdown" data-invalid="" aria-invalid="true">
+                                        <option value="">宝贝</option>
+                                        <option value="first">白色</option>
+                                        <option value="second">黑色</option>
+                                        <option value="third">黄色</option>
+                                        <option value="fourth">绿色</option>
+                                    </select>
+                                    <a class="button submit">搜&nbsp;索</a>
+                                    <input type="text" placeholder="请输入关键词">
+                                </form>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row collapse" id="frame_header_row1">
+                      <div class="large-12" id="frame_header_col1">
+                        <nav class="top-bar" data-topbar role="navigation" id="data_top_bar">
+                          <ul class="title-area">
+                            <li class="canvas-toggle"><a class="left-off-canvas-toggle" href="#" ></a></li>
+                            <li class="name"><h1>我是卖家</h1></li>
+                            <li class="toggle-topbar"><a href="#"><i class="fa fa-ellipsis-h fa-2x"></i></a></li>
+                          </ul>
+                          <section class="top-bar-section hide-for-small clearfix" data-set="top_bar_section"> 
+                              <ul class="left top-bar-section-li clearfix">
+                                  <li><a href="javascript:;">首页</a></li>
+                                  <li><a href="javascript:;">我是买家</a></li>
+                                  <li class="active"><a href="javascript:;">我是卖家</a></li>
+                                  <li><a href="javascript:;">账户管理</a></li>
+                                  <li><a href="javascript:;">个人主页</a></li>
+                              </ul>
+                          </section>
+                          <div class="hide-for-large" data-set="tool_bar"></div>
+                        </nav>
+                      </div>
+                    </div>
+                </div>
+                <!--end header-->
+                
+                <div class="main" role="main" aria-label="主体区块" id="frame_main">
+                    <div class="row" id="frame_main_row1">
+                        <div class="list-position" id="frame_position">
+                            <div id="data_list_addr" class="c-addr c-addr-ap-re">
+                                <a href="#" target="_self">我是卖家</a>&frasl;<a href="#" target="_self">安全中心</a>
+                            </div>
+                        </div>                    
+                        <div class="small-12 columns textalign-center">
+                        <div class="small-12 columns" id="frame_main_r2_col1">
+                            <div class="order-state clearfix" id="frame_position">
+                                <div class="stepflex three">
+                                    <dl class="past">
+                                        <dd class="s-text">验证身份</dd>
+                                        <dt class="s-num">1</dt>
+                                    </dl>
+                                    <dl class="doing">
+                                        <dd class="s-text">设置安保问题</dd>
+                                        <dt class="s-num">2</dt>
+                                    </dl>
+                                    <dl class="normal">
+                                        <dd class="s-text">完成</dd>
+                                        <dt class="s-num">3</dt>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="small-12 columns bg-pcheck-up">
+                            <div class="bg-pcheck">
+                              <div class="small-12 columns left title-pcheck">
+                                  <img class="left" src="images/pcheck-2.png" alt=""/>
+                                  <p class="left">安全保护问题将作为重要的身份验证方式，请认真设置！</p>
+                              </div>
+                              <div class="small-12 columns pcheck-content">
+
+                                  <div class="small-12 left columns">
+                                      <p class="left f-14 pcheck-p-le line-he-37 ">问题一</p>
+                                      <p class="left f-14 line-he-37">我</p>
+                                      <select  name="" id="" class="left  select-phone-check">
+                                          <option value="">请选择</option>
+                                          <option value="">父亲</option>
+                                          <option value="">母亲</option>
+                                          <option value="">哥哥</option>
+                                          <option value="">弟弟</option>
+                                          <option value="">姐姐</option>
+                                          <option value="">妹妹</option>
+                                      </select>
+                                      <p class="left f-14 line-he-37">的</p>
+                                      <select  name=""  id="" class="left select-phone-check ">
+                                          <option class="op-desp"  value="">请选择</option>
+                                          <option value="">父亲</option>
+                                          <option value="">母亲</option>
+                                          <option value="">哥哥</option>
+                                          <option value="">弟弟</option>
+                                          <option value="">姐姐</option>
+                                          <option value="">妹妹</option>
+                                      </select>
+                                      <p class="left f-14 line-he-37">是</p>
+                                  </div>
+                                  <div class="small-12 left columns marline-he-37-top-15">
+                                      <p class="left f-14 pcheck-p-le line-he-37 input-lihe line-he-37">答案</p>
+                                      <input type="text" class="phone-check-2-input"/>
+                                  </div>
+
+                                  <div class="small-12 left columns">
+                                      <p class="left f-14 pcheck-p-le line-he-37 ">问题二</p>
+                                      <p class="left f-14 line-he-37">我</p>
+                                      <select  name="" id="" class="left  select-phone-check">
+                                          <option value="">请选择</option>
+                                          <option value="">父亲</option>
+                                          <option value="">母亲</option>
+                                          <option value="">哥哥</option>
+                                          <option value="">弟弟</option>
+                                          <option value="">姐姐</option>
+                                          <option value="">妹妹</option>
+                                      </select>
+                                      <p class="left f-14 line-he-37">的</p>
+                                      <select  name=""  id="" class="left select-phone-check ">
+                                          <option class="op-desp"  value="">请选择</option>
+                                          <option value="">父亲</option>
+                                          <option value="">母亲</option>
+                                          <option value="">哥哥</option>
+                                          <option value="">弟弟</option>
+                                          <option value="">姐姐</option>
+                                          <option value="">妹妹</option>
+                                      </select>
+                                      <p class="left f-14 line-he-37">是</p>
+                                  </div>
+                                  <div class="small-12 left columns marline-he-37-top-15">
+                                      <p class="left f-14 pcheck-p-le line-he-37 input-lihe line-he-37">答案</p>
+                                      <input type="text" class="phone-check-2-input"/>
+                                  </div>
+
+                                  <div class="small-12 left columns">
+                                      <p class="left f-14 pcheck-p-le line-he-37 ">问题三</p>
+                                      <p class="left f-14 line-he-37">我</p>
+                                      <select  name="" id="" class="left  select-phone-check">
+                                          <option value="">请选择</option>
+                                          <option value="">父亲</option>
+                                          <option value="">母亲</option>
+                                          <option value="">哥哥</option>
+                                          <option value="">弟弟</option>
+                                          <option value="">姐姐</option>
+                                          <option value="">妹妹</option>
+                                      </select>
+                                      <p class="left f-14 line-he-37">的</p>
+                                      <select  name=""  id="" class="left select-phone-check ">
+                                          <option class="op-desp"  value="">请选择</option>
+                                          <option value="">父亲</option>
+                                          <option value="">母亲</option>
+                                          <option value="">哥哥</option>
+                                          <option value="">弟弟</option>
+                                          <option value="">姐姐</option>
+                                          <option value="">妹妹</option>
+                                      </select>
+                                      <p class="left f-14 line-he-37">是</p>
+                                  </div>
+                                  <div class="small-12 left columns marline-he-37-top-15">
+                                      <p class="left f-14 pcheck-p-le line-he-37 input-lihe line-he-37">答案</p>
+                                      <input type="text" class="phone-check-2-input"/>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--end main-->
+                
+                <div class="footer" id="frame_footer" role="contentinfo" include="include.html">
+                    <div class="footer-subnav" id="frame_footer_subnav">
+                        <div class="row" id="data_footer_subnav">
+                            <div class="large-7 medium-7 small-12 columns">
+                                <ul class="large-block-grid-4 medium-block-grid-4 small-block-grid-2">
+                                    <li>
+                                        <h3 class="icon1">购物指南</h3>
+                                        <ul class="item">
+                                            <li><a href="">购物流程</a></li>
+                                            <li><a href="">会员介绍</a></li>
+                                            <li><a href="">生活旅行/团购</a></li>
+                                            <li><a href="">常见问题</a></li>
+                                            <li><a href="">联系客服</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <h3 class="icon2">支付方式</h3>
+                                        <ul class="item">
+                                            <li><a href="">货到付款</a></li>
+                                            <li><a href="">在线支付</a></li>
+                                            <li><a href="">分期付款</a></li>
+                                            <li><a href="">邮局汇款</a></li>
+                                            <li><a href="">公司转账</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <h3 class="icon3">天下保障</h3>
+                                        <ul class="item">
+                                            <li><a href="">售后政策</a></li>
+                                            <li><a href="">价格保护</a></li>
+                                            <li><a href="">退款说明</a></li>
+                                            <li><a href="">返修/退换货</a></li>
+                                            <li><a href="">取消订单</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <h3 class="icon4">商家服务</h3>
+                                        <ul class="item">
+                                            <li><a href="">开店申请</a></li>
+                                            <li><a href="">商品发布</a></li>
+                                            <li><a href="">店铺设置</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="large-5 medium-5 small-12 columns">
+                                <ul class="footer-code large-block-grid-3 medium-block-grid-3 small-block-grid-1">
+                                    <li><img data-th-src="|${tempPath}images/footer_code_01.gif|" src="images/footer_code_01.gif" /><span>下载手机官方app</span></li>
+                                    <li><img data-th-src="|${tempPath}images/footer_code_02.gif|" src="images/footer_code_02.gif" /><span>关注微信公众号</span></li>
+                                    <li><a href="#"><img data-th-src="|${tempPath}images/footer_code_03.gif|" src="images/footer_code_03.gif" /><span>官方微博</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="copyright" id="frame_footer_copyright">
+                        <div class="row" id="data_footer_copyright">
+                        	<span class="copyright-reserved">版权所有：北京文玩天下电子商务有限公司</span>
+                            <span>
+                            公司地址：北京市朝阳区北辰路曹八里1号院6号楼  邮政编码：100029<br />
+                            文玩客服电话：4006-300-305  在线客服QQ：1395085594，398850964   Email：link@wwtx.cn  传真：010-64411002<br />
+                            主要交易商品涉及<a href="#">文玩核桃</a>、<a href="#">菩提</a>、<a href="#">橄榄核雕</a>、<a href="#">玉石翡翠</a>、<a href="#">琥珀蜜蜡</a>、竹雕木雕、白玉和田玉籽料、天珠、文玩狮子头等<br />
+                            京ICP备05048109号 京公网安备110105006105<br />
+                            </span>
+                            <div class="img">
+                                <img data-th-src="|${tempPath}images/footer_img_01.gif|" src="images/footer_img_01.gif" />
+                                <img data-th-src="|${tempPath}images/footer_img_02.gif|" src="images/footer_img_02.gif" />
+                                <img data-th-src="|${tempPath}images/footer_img_03.gif|" src="images/footer_img_03.gif" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end footer--> 
+                
+                <div class="go" id="frame_go"><a title="返回顶部" class="gotop" id="goTop"></a> <a title="返回底部" class="gobottom" id="goBottom"></a></div>
+                
+                <div id="frame_exit_off"><a class="exit-off-canvas"></a></div>
+            </div>
+        </div>
+        <div id="frame_javascript">
+            <div id="data_javascript">
+                <script data-th-src="|${tempPath}javascript/jquery-2.1.3.js|" src="javascript/jquery-2.1.3.js" type="text/javascript" charset="utf8"></script>
+				<script data-th-src="|${tempPath}javascript/AppendAround.js|" src="javascript/AppendAround.js" type="text/javascript" charset="utf8"></script>
+                <script data-th-src="|${tempPath}javascript/swiper.min.js|" src="javascript/swiper.min.js" type="text/javascript" charset="utf8"></script>
+                <script data-th-src="|${tempPath}javascript/others.js|" src="javascript/others.js" type="text/javascript" charset="utf8"></script>
+                <script src="/emall/cij/datatables/js/jquery.dataTables.js" type="text/javascript" charset="utf8"></script>
+                <script src="/emall/cij/datatables/js/dataTables.foundation.js" type="text/javascript" charset="utf8"></script>
+                <script src="/emall/cij/foundation/js/foundation.min.js"></script>
+                <script src="/emall/cij/js/jquery.datatable.page.js"></script>
+                <script data-th-src="|${tempPath}datatables-extend/js/foundation.extend.js|" src="datatables-extend/js/foundation.extend.js"></script>
+                <script data-th-src="|${tempPath}datatables-extend/js/moment.min.js|" src="datatables-extend/js/moment.min.js"></script>
+                <script data-th-src="|${tempPath}datatables-extend/js/daterangepicker.js|" src="datatables-extend/js/daterangepicker.js"></script>
+                <script>
+                    $(document).foundation();
+                </script>
+            </div>
+        </div>
+   </div>
+</div>
+</body>
+</html>

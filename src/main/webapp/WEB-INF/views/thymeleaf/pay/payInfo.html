@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh" class="no-js">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui" />
+<meta name="apple-mobile-web-app-title" content="电商原型" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />
+<title>支付结果页</title>
+<link data-th-href="@{/Ebusiness/style/layout.css}" href="style/layout.css" rel="stylesheet" type="text/css" />
+<link data-th-href="@{/Ebusiness/style/themes.less}" href="style/themes.less" rel="stylesheet" type="text/less" />
+<link data-th-href="@{/Ebusiness/style/master.css}" href="style/master.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" data-th-href="@{/Ebusiness/style/font-awesome.min.css}" href="style/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" data-th-href="@{/Ebusiness/style/highslide.css}" href="style/highslide.css" />
+
+<script data-th-src="@{/Ebusiness/javascript/vendor/modernizr.js}" src="javascript/vendor/modernizr.js"></script>
+<script data-th-src="@{/Ebusiness/javascript/vendor/jquery.js}" src="javascript/vendor/jquery.js"></script>
+<script data-th-src="@{/Ebusiness/javascript/less-1.7.3.min.js}" src="javascript/less-1.7.3.min.js"></script>
+<script data-th-src="@{/Ebusiness/javascript/es5-shim-2.1.0.min.js}" src="javascript/es5-shim-2.1.0.min.js"></script>
+<!-- 
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+<meta name="apple-mobile-web-app-title" content="电商原型">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no" name="format-detection">
+<title>支付页</title>
+<link href="style/layout.css" rel="stylesheet" type="text/css" />
+<link href="style/themes.less" rel="stylesheet" type="text/less" />
+<link href="style/master.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="style/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="style/highslide.css">
+
+<script src="javascript/vendor/modernizr.js"></script>
+<script src="javascript/vendor/jquery.js"></script>
+<script src="javascript/less-1.7.3.min.js"></script>
+<script src="javascript/es5-shim-2.1.0.min.js"></script>
+ -->
+
+
+<script>var Cfg = { contextPath: '/emall' }</script>
+<script data-th-src="@{/cij/js/rongji.js}" src="../cij/js/rongji.js"></script>
+<script data-th-src="@{/cij/js/m/pay.js}" src="../cij/js/m/pay.js"></script>
+
+</head>
+<body>
+<div id="layout">
+    <div class="wrapper" id="frame_wrapper">
+        <div class="header" id="frame_header" include="include.html">
+            <div class="row collapse" id="frame_header_row1">
+                <div class="large-12" id="frame_header_col1">
+                    <nav class="top-bar" data-topbar="" role="navigation" id="data_top_bar">
+                        <ul class="title-area">
+                            <li class="name">
+                                <div class="logo"><img src="images/logo_expand.png" /></div>
+                            </li>
+                            <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+                        </ul>
+                        <section class="top-bar-section clearfix">
+                            <ul class="left clearfix">
+                                <li class="active"><a href="index.html">首页</a></li>
+                                <li class="has-dropdown"> <a href="#">培训</a>
+                                    <ul class="dropdown">
+                                        <li><a href="#">培训预告</a></li>
+                                        <li><a href="#">课程推荐</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-dropdown"><a href="#">文档</a>
+                                    <ul class="dropdown">
+                                        <li><a href="#">实施文档</a></li>
+                                        <li><a href="#">开发文档</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="ActivityList.html">活动</a></li>
+                                <li><a href="#">发现</a></li>
+                                <li><a href="TopicList.html">话题</a></li>
+                            </ul>
+                            <ul class="right">
+                                <li class="has-form">
+                                    <div class="search">
+                                        <form>
+                                            <input name="" class="inp" id="topsearch" type="text" placeholder="输入查询内容" accesskey="s" title="输入查询内容" x-webkit-speech="" x-webkit-grammar="builtin:translate" lang="zh-CN" />
+                                            <i class="fa fa-search" onClick="showSearch()" title="搜索"></i>
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
+                        </section>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!--end header-->
+        
+        <div class="main" role="main" aria-label="主体区块" id="frame_main">
+            <div class="row" data-th-if="${paySuccess}"><span data-th-text="${message}"></span><a data-th-href="${orderUrl}" href="">订单详情</a></div>
+            <div class="row" data-th-unless="${paySuccess}">支付出错</div>
+        </div>
+        <!--end main-->
+        
+        <div class="footer" id="frame_footer" role="contentinfo" include="include.html">
+            <div class="row" id="frame_footer_wrapper">
+                <div class="copyright" id="data_copyright"> Copyright © 2004-2015  榕基软件 </div>
+            </div>
+        </div>
+        <!--end footer-->
+        <div class="go" id="frame_go"><a title="返回顶部" class="gotop" id="goTop"></a> <a title="返回底部" class="gobottom" id="goBottom"></a></div>
+        <div id="frame_javascript">
+            <div id="data_javascript"> 
+                <script data-th-src="@{/Ebusiness/javascript/foundation.min.js}" src="javascript/foundation.min.js"></script> 
+                <script data-th-src="@{/Ebusiness/javascript/others.js}" src="javascript/others.js"></script> 
+                <script>
+				  $(document).foundation();
+				  
+				  //手风琴图标
+				  $('.pay .accordion-navigation').each(function(){
+				      var $this = $(this);
+					  $this.on('click','.target',function(e){
+						  e.preventDefault();
+						  if(!$this.find('.content').hasClass('active')){
+							  $this.parent().find('.target .fa').removeClass('fa-minus').addClass('fa-plus');
+							  $(this).find('.fa').removeClass('fa-plus').addClass('fa-minus');
+						  }else{
+							  $(this).find('.fa').removeClass('fa-minus').addClass('fa-plus');
+						  }
+					  });  
+				  });
+				</script> 
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+</body>
+</html>

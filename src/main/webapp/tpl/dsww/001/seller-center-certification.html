@@ -1,0 +1,1911 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh" class="no-js">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+    <meta name="apple-mobile-web-app-title" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta content="telephone=no" name="format-detection">
+	<title>认证</title>
+	<link data-th-href="|${tempPath}style/font-awesome.min.css|" href="style/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/wSelect.less|"  href="style/wSelect.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}style/themes.less|"  href="style/themes.less" rel="stylesheet" type="text/less" />
+	<link href="/emall/cij/datatables/css/dataTables.foundation.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}datatables-extend/css/dataTables.response.less|"  href="datatables-extend/css/dataTables.response.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}datatables-extend/css/daterangepicker-f5.less|"  href="datatables-extend/css/daterangepicker-f5.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}style/layout.css|"  href="style/layout.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/master.css|"  href="style/master.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/imgpost.css|"  href="style/imgpost.css" rel="stylesheet" type="text/css" />
+
+	<script data-th-src="|${tempPath}javascript/less-1.7.3.min.js|" src="javascript/less-1.7.3.min.js"></script>
+	<script data-th-src="|${tempPath}javascript/modernizr.js|" src="javascript/modernizr.js"></script>
+	<script data-th-inline="javascript">
+	Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/ '/emall';
+	Cfg.tempPath = /*[[ ${tempPath} ]]*/ '/emall/tpl/001/';
+	</script>
+</head>
+<body>
+
+
+<div id="layout">
+    <div class="wrapper" id="frame_wrapper">
+        <div class="off-canvas-wrap" data-offcanvas id="frame_canvas_wrap">
+            <div class="inner-wrap" id="frame_inner_wrap">  
+                <div class="left-off-canvas-menu hide-for-large" id="frame_canvas_menu" data-set="data_accordion"></div>
+                <div class="header" id="frame_header" include="include.html">
+                    <div id="frame_tool_bar_main" class="hide-for-small clearfix" data-set="tool_bar">
+                    	<div class="tool-bar">
+                            <div id="data_main_site" class="left">
+                                <div class="drop-bar hide-for-small" id="drop-bar1">
+                                    <div class="drop-bar-tit"><i class="fa fa-mobile fa-2x"></i>手机文玩</div>
+                                    <div class="drop-bar-con mobile-inter">
+                                    	<div class="qr-code"><img src="images/qr-code.png" /></div>
+                                        <a>扫一扫，下载文玩客户端</a>
+                                    </div>
+                                </div>
+                                <div class="drop-bar" id="drop-bar2">
+                                    <div class="drop-bar-tit p-color">a1234</div>
+                                    <div class="drop-bar-con user-inter">
+                                        <ul>
+                                        	<li><a href="#" title="账户管理"><i class="fa fa-gear"></i>账户管理</a></li>
+                                        	<li><a href="#" title="退出"><i class="fa fa-power-off"></i>退&emsp;&emsp;出</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="drop-bar" id="drop-bar5">
+                                    <div class="drop-bar-tit"><i class="fa fa-envelope"></i>消息</div>
+                                    <div class="drop-bar-con mini-new">
+                                        <div class="mini-new-hd">
+                                            <strong>
+                                                最新的消息：
+                                            </strong>
+                                        </div>
+                                        <ul class="mini-new-bd">
+                                            <li>
+                                                <div class="mini-new-img">
+                                                    <a target="_top" href="#">
+                                                        <img src="images/new1.png" alt="物流助手">
+                                                    </a>
+                                                </div>
+                                                <div class="mini-new-count">
+                                                    <span>2015-7-8 15:34:50</span>
+                                                </div>
+                                                <div class="mini-new-title">
+                                                    <a target="_top" href="#" title="物流助手">物流助手</a>
+                                                </div>
+                                                <div class="mini-new-del">
+                                                    <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                                </div>
+                                                <div class="mini-new-info">
+                                                    <a href="#" title="您购买的手链已签收,签收人是易栈服务点代签，感谢使用申通快递，期待再次为您服务" >您购买的手链已签收,签收人是易栈服务点代签，感谢使用申通快递，期待再次为您服务</a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="mini-new-img">
+                                                    <a target="_top" href="#">
+                                                        <img src="images/new2.png" alt="优惠活动">
+                                                    </a>
+                                                </div>
+                                                <div class="mini-new-count">
+                                                    <span>2015-7-8 15:34:50</span>
+                                                </div>
+                                                <div class="mini-new-title">
+                                                    <a target="_top" href="#" title="优惠活动">优惠活动</a>
+                                                </div>
+                                                <div class="mini-new-del">
+                                                    <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                                </div>
+                                                <div class="mini-new-info">
+                                                    <a title="您有一张优惠券，将于2015-9-1 24:00:00过期，请尽快使用。" >您有一张优惠券，将于2015-9-1 24:00:00过期，请尽快使用。</a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="mini-new-img">
+                                                    <a target="_top" href="#">
+                                                        <img src="images/new3.png" alt="菩提韵">
+                                                    </a>
+                                                </div>
+                                                <div class="mini-new-count">
+                                                    <span>2015-7-8 15:34:50</span>
+                                                </div>
+                                                <div class="mini-new-title">
+                                                    <a target="_top" href="#" title="菩提韵"><span class="label margin-r left">店铺</span>菩提韵</a>
+                                                </div>
+                                                <div class="mini-new-del">
+                                                    <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                                </div>
+                                                <div class="mini-new-info">
+                                                    <a title="亲，购得顺心，舒心，放心还有开心！祝您购物愉快，天天漂亮！" >亲，购得顺心，舒心，放心还有开心！祝您购物愉快，天天漂亮！</a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="mini-new-img">
+                                                    <a target="_top" href="#">
+                                                        <img src="images/new1.png" alt="物流助手">
+                                                    </a>
+                                                </div>
+                                                <div class="mini-new-count">
+                                                    <span>2015-7-8 15:34:50</span>
+                                                </div>
+                                                <div class="mini-new-title">
+                                                    <a target="_top" href="#" title="物流助手">物流助手</a>
+                                                </div>
+                                                <div class="mini-new-del">
+                                                    <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                                </div>
+                                                <div class="mini-new-info">
+                                                    <a title="您购买的手链已签收,签收人是易栈服务点代签，感谢使用申通快递，期待再次为您服务" >您购买的手链已签收,签收人是易栈服务点代签，感谢使用申通快递，期待再次为您服务</a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="mini-new-img">
+                                                    <a target="_top" href="#">
+                                                        <img src="images/new2.png" alt="优惠活动">
+                                                    </a>
+                                                </div>
+                                                <div class="mini-new-count">
+                                                    <span>2015-7-8 15:34:50</span>
+                                                </div>
+                                                <div class="mini-new-title">
+                                                    <a target="_top" href="#" title="优惠活动">优惠活动</a>
+                                                </div>
+                                                <div class="mini-new-del">
+                                                    <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                                </div>
+                                                <div class="mini-new-info">
+                                                    <a title="您有一张优惠券，将于2015-9-1 24:00:00过期，请尽快使用。" >您有一张优惠券，将于2015-9-1 24:00:00过期，请尽快使用。</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div class="mini-new-ft">
+                                            <p class="left">
+                                                <strong>
+                                                    您还有15条消息
+                                                </strong>
+                                            </p>
+                                            <p class="right">
+                                                <a target="_top" href="#" class="button">查看我的消息</a>
+                                            </p>
+                                        </div>
+                                	</div>
+                                </div>
+                            </div>
+                            <div id="data_maininfo" class="right">
+                                <div class="drop-bar hide-for-small" id="drop-bar7">
+                                    <div class="drop-bar-tit"><i class="fa fa-navicon"></i>网站导航</div>
+                                    <div class="drop-bar-con webnav">
+                                        <div class="menu-bd-panel">
+                                            <div class="mod mod-a">
+                                                <div class="mod-wrap">
+                                                    <div class="mod-hd">
+                                                        <h4>
+                                                            资讯
+                                                        </h4>
+                                                    </div>
+                                                    <div class="mod-bd">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    市场动态
+                                                                    <i class="hot">
+                                                                    </i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    行业新闻
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    文玩欣赏
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    行业展会
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mod mod-b">
+                                                <div class="mod-wrap">
+                                                    <div class="mod-hd">
+                                                        <h4>
+                                                            商城
+                                                        </h4>
+                                                    </div>
+                                                    <div class="mod-bd">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    商城公告
+                                                                    <i class="hot">
+                                                                    </i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    热门商家
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    今日团购
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    精选众筹
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    正在拍卖
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    品牌街
+                                                                    <i class="new">
+                                                                    </i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    购物指南
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    支付方式
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    天下保障
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    商家服务
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mod mod-c">
+                                                <div class="mod-wrap">
+                                                    <div class="mod-hd">
+                                                        <h4>
+                                                            百科
+                                                        </h4>
+                                                    </div>
+                                                    <div class="mod-bd">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    常识
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    文化
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    鉴赏
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    导购
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    保养
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    工艺
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    行业知识
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mod mod-d">
+                                                <div class="mod-wrap">
+                                                    <div class="mod-hd">
+                                                        <h4>
+                                                            知道
+                                                        </h4>
+                                                    </div>
+                                                    <div class="mod-bd">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    热点问题
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    待解决问题
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    已解决问题
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    知道达人
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mod mod-e">
+                                                <div class="mod-wrap">
+                                                    <div class="mod-hd">
+                                                        <h4>
+                                                            发现
+                                                        </h4>
+                                                    </div>
+                                                    <div class="mod-bd">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    热门话题
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    广场
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    标签
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="javascript:(0)">
+                                                                    发现达人
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="drop-bar hide-for-small" id="drop-bar6">
+                                    <div class="drop-bar-tit">客服中心</div>
+                                    <div class="drop-bar-con service-center">
+                                        <ul>
+                                        	<li><a href="#" title="帮助中心">帮助中心</a></li>
+                                        	<li><a href="#" title="售后服务">售后服务</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="drop-bar" id="drop-bar5">
+                                    <div class="drop-bar-tit"><i class="fa fa-shopping-cart"></i>购物车</div>
+                                    <div class="drop-bar-con mini-cart">
+                                        <div class="mini-cart-hd">
+                                            <strong>
+                                                最近加入的宝贝：
+                                            </strong>
+                                        </div>
+                                        <ul class="mini-cart-bd">
+                                            <li>
+                                                <div class="mini-cart-img">
+                                                    <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                        <img src="images/1.jpg" alt="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                    </a>
+                                                </div>
+                                                <div class="mini-cart-count">
+                                                    <span>¥49.00</span>
+                                                </div>
+                                                <div class="mini-cart-title">
+                                                    <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                        精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链
+                                                    </a>
+                                                </div>
+                                                <div class="mini-cart-del">
+                                                    <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                                </div>
+                                                <div class="mini-cart-info">
+                                                    <a title="颜色:白色Z&nbsp;尺码:180/XXL">颜色:白色Z&nbsp;尺码:180/XXL</a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="mini-cart-img">
+                                                    <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                        <img src="images/1.jpg" alt="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                    </a>
+                                                </div>
+                                                <div class="mini-cart-count">
+                                                    <span>¥49.00</span>
+                                                </div>
+                                                <div class="mini-cart-title">
+                                                    <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                        精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链
+                                                    </a>
+                                                </div>
+                                                <div class="mini-cart-del">
+                                                    <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                                </div>
+                                                <div class="mini-cart-info">
+                                                    <a title="颜色:白色Z&nbsp;尺码:180/XXL">颜色:白色Z&nbsp;尺码:180/XXL</a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="mini-cart-img">
+                                                    <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                        <img src="images/1.jpg" alt="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                    </a>
+                                                </div>
+                                                <div class="mini-cart-count">
+                                                    <span>¥49.00</span>
+                                                </div>
+                                                <div class="mini-cart-title">
+                                                    <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                        精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链
+                                                    </a>
+                                                </div>
+                                                <div class="mini-cart-del">
+                                                    <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                                </div>
+                                                <div class="mini-cart-info">
+                                                    <a title="颜色:白色Z&nbsp;尺码:180/XXL">颜色:白色Z&nbsp;尺码:180/XXL</a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="mini-cart-img">
+                                                    <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                        <img src="images/1.jpg" alt="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                    </a>
+                                                </div>
+                                                <div class="mini-cart-count">
+                                                    <span>¥49.00</span>
+                                                </div>
+                                                <div class="mini-cart-title">
+                                                    <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                        精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链
+                                                    </a>
+                                                </div>
+                                                <div class="mini-cart-del">
+                                                    <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                                </div>
+                                                <div class="mini-cart-info">
+                                                    <a title="颜色:白色Z&nbsp;尺码:180/XXL">颜色:白色Z&nbsp;尺码:180/XXL</a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="mini-cart-img">
+                                                    <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                        <img src="images/1.jpg" alt="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                    </a>
+                                                </div>
+                                                <div class="mini-cart-count">
+                                                    <span>¥49.00</span>
+                                                </div>
+                                                <div class="mini-cart-title">
+                                                    <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                        精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链
+                                                    </a>
+                                                </div>
+                                                <div class="mini-cart-del">
+                                                    <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                                </div>
+                                                <div class="mini-cart-info">
+                                                    <a title="颜色:白色Z&nbsp;尺码:180/XXL">颜色:白色Z&nbsp;尺码:180/XXL</a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="mini-cart-img">
+                                                    <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                        <img src="images/1.jpg" alt="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                    </a>
+                                                </div>
+                                                <div class="mini-cart-count">
+                                                    <span>¥49.00</span>
+                                                </div>
+                                                <div class="mini-cart-title">
+                                                    <a target="_top" href="#" title="精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链">
+                                                        精品越南老挝大红酸枝手串红木佛珠念珠车挂件摆件酸枝原木手串链
+                                                    </a>
+                                                </div>
+                                                <div class="mini-cart-del">
+                                                    <a href="#" title="删除"><i class="fa fa-trash fa-2x"></i></a>
+                                                </div>
+                                                <div class="mini-cart-info">
+                                                    <a title="颜色:白色Z&nbsp;尺码:180/XXL">颜色:白色Z&nbsp;尺码:180/XXL</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div class="mini-cart-ft">
+                                            <p class="left">
+                                                <strong>
+                                                    购物车里还有5件宝贝
+                                                </strong>
+                                            </p>
+                                            <p class="right">
+                                                <a target="_top" href="#" class="button">查看我的购物车</a>
+                                            </p>
+                                        </div>
+                                	</div>
+                                </div>
+                                <div class="drop-bar" id="drop-bar4">
+                                    <div class="drop-bar-tit">我的文玩</div>
+                                    <div class="drop-bar-con my-play">
+                                    	<div class="my-info clearfix">
+                                        	<div class="my-info-logo"><img src="images/head.png" /></div>
+                                            <div class="my-info-name">
+                                            	<span><a>sexydumpling</a></span>
+                                                <span><i class="fa fa-diamond font-alert no-margin"></i><i class="fa fa-diamond font-alert no-margin"></i><i class="fa fa-diamond font-alert no-margin"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="my-order-state clearfix">
+                                        	<ul>
+                                            	<li>
+                                                	<span>0</span>
+                                                    <a>待付款</a>
+                                                </li>
+                                                <li class="cutline">|</li>
+                                            	<li>
+                                                	<span>0</span>
+                                                    <a>待发货</a>
+                                                </li>
+                                                <li class="cutline">|</li>
+                                            	<li>
+                                                	<span>0</span>
+                                                    <a>待收货</a>
+                                                </li>
+                                                <li class="cutline">|</li>
+                                            	<li>
+                                                	<span>0</span>
+                                                    <a>待评价</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="my-other-info clearfix">
+                                        	<ul>
+                                            	<li><a href="#" title="我的订单">我的订单</a></li>
+                                            	<li><a href="#" title="我的关注">我的关注</a></li>
+                                            	<li><a href="#" title="我的优惠券">我的优惠券</a></li>
+                                            	<li><a href="#" title="我的足迹">我的足迹</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="my-recent-view clearfix">
+                                        	<div class="my-view-tit clearfix">
+                                            	<a href="#" title="最近浏览" class="left">最近浏览</a>
+                                                <a href="#" title="查看更多最近浏览" class="right">更多></a>
+                                            </div>
+                                            <ul class="clearfix">
+                                            	<li><img src="images/1.jpg"/></li>
+                                            	<li><img src="images/1.jpg"/></li>
+                                            	<li><img src="images/1.jpg"/></li>
+                                            	<li><img src="images/1.jpg"/></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="frame_top_banner" class="top_banner clearfix">
+                        <div id="frame_logo_sub" class="logo"></div>
+                        <div id="frame_top_search">
+                            <div id="data_search" class="hide-for-small clearfix" data-set="top_search">
+                              <div class="top_search">
+                                <form target="_blank">
+                                    <select id="searchDropdown" data-invalid="" aria-invalid="true">
+                                        <option value="">宝贝</option>
+                                        <option value="first">白色</option>
+                                        <option value="second">黑色</option>
+                                        <option value="third">黄色</option>
+                                        <option value="fourth">绿色</option>
+                                    </select>
+                                    <a class="button submit">搜&nbsp;索</a>
+                                    <input type="text" placeholder="请输入关键词">
+                                </form>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row collapse" id="frame_header_row1">
+                      <div class="large-12" id="frame_header_col1">
+                        <nav class="top-bar" data-topbar role="navigation" id="data_top_bar">
+                          <ul class="title-area">
+                            <li class="canvas-toggle"><a class="left-off-canvas-toggle" href="#" ></a></li>
+                            <li class="name"><h1>我是卖家</h1></li>
+                            <li class="toggle-topbar"><a href="#"><i class="fa fa-ellipsis-h fa-2x"></i></a></li>
+                          </ul>
+                          <section class="top-bar-section hide-for-small clearfix" data-set="top_bar_section"> 
+                              <ul class="left top-bar-section-li clearfix">
+                                  <li><a href="javascript:;">首页</a></li>
+                                  <li><a href="javascript:;">我是买家</a></li>
+                                  <li class="active"><a href="javascript:;">我是卖家</a></li>
+                                  <li><a href="javascript:;">账户管理</a></li>
+                                  <li><a href="javascript:;">个人主页</a></li>
+                              </ul>
+                          </section>
+                          <div class="hide-for-large" data-set="tool_bar"></div>
+                        </nav>
+                      </div>
+                    </div>
+                </div>
+                <!--end header-->
+                
+                <div class="main" role="main" aria-label="主体区块" id="frame_main">
+                    <div class="row" id="frame_main_row1">
+                        <div class="small-12 medium-12 large-2 columns" id="frame_main_col1">
+                            <div id="frame_accordion">
+                                <div id="data_accordion" class="hide-for-small" data-set="data_accordion">
+                                    <div class="accordion-list">
+                                    	<div class="accordion-banner">
+                                            <div class="font-large accordion-header-small"><a class="accordion-banner-logo margin-r"></a>我是卖家<i class="fa fa-caret-down margin-l"></i></div>
+                                            <section class="top-bar-section clearfix"> 
+                                                <div class="hide-for-large" data-set="top_bar_section"></div>
+                                            </section>
+                                            <div class="top-bar-search clearfix">
+                                                <div class="hide-for-large" data-set="top_search"></div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-header font-alert"><i class="fa fa-user"></i>我是卖家</div>
+                                        <ul class="small-block-grid-1">
+                                          <li>
+                                            <ul class="accordion" data-accordion="myAccordionGroup1">
+                                              <li class="accordion-navigation active">
+                                                <a href="#panel1" class="font-alert"><i class="fa fa-caret-down"></i><i class="fa fa-caret-right"></i>交易管理</a>
+                                                <div id="panel1" class="content active">
+                                                    <a>已卖出的商品</a>
+                                                    <a>评价管理</a>
+                                                </div>
+                                              </li>
+                                            </ul>
+                                          </li>
+                                          <li>
+                                            <ul class="accordion" data-accordion="myAccordionGroup2">
+                                              <li class="accordion-navigation active">
+                                                <a href="#panel2" class="font-alert"><i class="fa fa-caret-down"></i><i class="fa fa-caret-right"></i>商品管理</a>
+                                                <div id="panel2" class="content active">
+                                                    <a>发布新商品</a>
+                                                    <a>出售中的商品</a>
+                                                    <a>仓库中的商品</a>
+                                                </div>
+                                              </li>
+                                            </ul>
+                                          </li>
+                                          <li>
+                                            <ul class="accordion" data-accordion="myAccordionGroup3">
+                                              <li class="accordion-navigation active">
+                                                <a href="#panel3" class="font-alert"><i class="fa fa-caret-down"></i><i class="fa fa-caret-right"></i>店铺管理</a>
+                                                <div id="panel3" class="content active">
+                                                    <a>店铺基本设置</a>
+                                                    <a>店铺推荐</a>
+                                                    <a>子账号管理</a>
+                                                    <a>自定义商品分类</a>
+                                                    <a>店铺统计</a>
+                                                    <a>客户管理</a>
+                                                    <a>专家点评</a>
+                                                    <a>支付方式</a>
+                                                </div>
+                                              </li>
+                                            </ul>
+                                          </li>
+                                          <li>
+                                            <ul class="accordion" data-accordion="myAccordionGroup4">
+                                              <li class="accordion-navigation active">
+                                                <a href="#panel4" class="font-alert"><i class="fa fa-caret-down"></i><i class="fa fa-caret-right"></i>物流管理</a>
+                                                <div id="panel4" class="content active">
+                                                    <a>发货</a>
+                                                    <a>运费模板</a>
+                                                </div>
+                                              </li>
+                                            </ul>
+                                          </li>
+                                          <li>
+                                            <ul class="accordion" data-accordion="myAccordionGroup5">
+                                              <li class="accordion-navigation active">
+                                                <a href="#panel5" class="font-alert"><i class="fa fa-caret-down"></i><i class="fa fa-caret-right"></i>活动中心</a>
+                                                <div id="panel5" class="content active">
+                                                    <a>促销打折</a>
+                                                    <a>团购管理</a>
+                                                    <a>拍卖管理</a>
+                                                    <a>众筹管理</a>
+                                                </div>
+                                              </li>
+                                            </ul>
+                                          </li>
+                                          <li>
+                                            <ul class="accordion" data-accordion="myAccordionGroup6">
+                                              <li class="accordion-navigation active">
+                                                <a href="#panel6" class="font-alert"><i class="fa fa-caret-down"></i><i class="fa fa-caret-right"></i>客户服务</a>
+                                                <div id="panel6" class="content active">
+                                                    <a>售后管理</a>
+                                                </div>
+                                              </li>
+                                            </ul>
+                                          </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="small-12 medium-12 large-10 columns" id="frame_main_col2">
+                            <div class="list-position" id="frame_position">
+                                <div id="data_list_addr" class="c-addr">
+                                    <a href="#" target="_self">我是卖家</a>&frasl;<a href="#" target="_self">个人信息管理</a>&frasl;<a href="#" target="_self">认证</a>
+                                </div>
+                            </div>
+                            <div id="data_datatable">
+                                <!--datatable-->
+                                <div id="user_page" class="evalution-management-page">
+                                    <section class="panel">
+                                        <header class="panel-heading">
+                                            认证
+                                            <span class="tools right" style="display:none;">
+                                                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                                                <a href="javascript:;" class="fa fa-times"></a>
+                                             </span>
+                                        </header>
+                                        <div class="panel-body panel-certification">
+                                            <div class="tab-rec-1 wdgz-index">
+                                                <div class="tab clearfix">
+                                                    <ul class="clearfix" id="wdgz">
+                                                        <li class="on">
+                                                            <div class="tl">
+                                                                <div class="tr">
+                                                                    <div class="tc"><a href="#" target="_blank">个人认证</a></div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="tl">
+                                                                <div class="tr">
+                                                                    <div class="tc"><a href="#" target="_blank">行家认证</a></div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="modcon clearfix">
+                                                    <div id="data_wdgz_con_1">
+                                                    <form data-abide="">
+                                                        <div class="row per-in-ma-row1">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>真实姓名：</p>
+                                                            </div>
+                                                            <div class="small-11 medium-4 large-4 columns columns-1 mar-top-10 left">
+                                                                <input type="text" class="left" required="" id="right-label" placeholder="" pattern="[a-zA-Z]+" />
+                                                                <small class="error small-12 columns">真实姓名不能为空！</small>
+                                                            </div>
+                                                            <div class="small-1 columns columns-1 mar-top-10 left">
+                                                                <!--<p class="in-ma-p-grey min-mar-le-100-certifi left">(*和身份证件一致)</p>-->
+                                                                <span data-tooltip class="has-tip tip-right left" title="姓名填写正确">
+                                                                    <img class="" src="images/add-shop-1.png" alt=""/>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>身份证号：</p>
+                                                            </div>
+                                                            <div class="small-11 medium-4 large-4 columns columns-1 mar-top-10 left">
+                                                                <input type="text" class="left" required="" id="right-label" placeholder="" pattern="[a-zA-Z]+" />
+                                                                <small class="error small-12 columns">身份证号不能为空！</small>
+                                                            </div>
+                                                            <div class="small-1 columns columns-1 mar-top-10 left">
+                                                                <!--<p class="in-ma-p-grey min-mar-le-100-certifi left">(*和身份证件一致)</p>-->
+                                                                <span data-tooltip class="has-tip tip-right left" title="身份证号填写错误！">
+                                                                    <img class="" src="images/add-shop-2.png" alt=""/>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10 certifi-min-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>身份证正面：</p>
+                                                            </div>
+                                                            <div class="small-12 medium-6 large-6 columns columns-1 mar-top-10">
+                                                                <div id="data_modPic_con">
+                                                                            <div class="evaluate-uploaders left margin-l">
+                                                                                <div id="fileList1" class="uploader-list left">
+                                                                                    <div class="no-bullet" id="sortable-list1"></div>
+                                                                                </div>
+                                                                                <div class="uploader">
+                                                                                    <div class="bg-placeholder">
+                                                                                        <a class="add-pic" id="filePicker1" title="添加图片"></a>
+                                                                                    </div>
+                                                                                    <div class="bg-loading">
+                                                                                        <i class="fa fa-spinner fa-spin"></i>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="small-12 columns certification-idcard-des-p">
+                                                                                    <p class="in-ma-p-grey">1.请上传身份证正面带有头像的扫描件或清晰照片</p>
+                                                                                    <p class="in-ma-p-grey">2.照片要求格式为JPG/JPEG/GIF/PNG，大小不要超过1M</p>
+                                                                                    <p class="in-ma-p-grey">注：我们将严格保密，请放心上传</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                            </div>
+                                                            <div class="small-12 medium-4 large-4 columns columns-1 mar-top-10 text-center">
+                                                               <img class="mar-top-4 mar-bom-5" src="images/idcard-1.png" alt=""/>
+                                                                <p class="in-ma-p-grey">(身份证正面)</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10 certifi-min-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>身份证反面：</p>
+                                                            </div>
+                                                            <div class="small-12 medium-6 large-6 columns columns-1 mar-top-10">
+                                                                <div id="data_modPic_con">
+                                                                            <div class="evaluate-uploaders left margin-l">
+                                                                                <div id="fileList2" class="uploader-list left">
+                                                                                    <div class="no-bullet" id="sortable-list2"></div>
+                                                                                </div>
+                                                                                <div class="uploader">
+                                                                                    <div class="bg-placeholder">
+                                                                                        <a class="add-pic" id="filePicker2" title="添加图片"></a>
+                                                                                    </div>
+                                                                                    <div class="bg-loading">
+                                                                                        <i class="fa fa-spinner fa-spin"></i>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="small-12 columns certification-idcard-des-p">
+                                                                                    <p class="in-ma-p-grey">1.请上传身份证正面带有头像的扫描件或清晰照片</p>
+                                                                                    <p class="in-ma-p-grey">2.照片要求格式为JPG/JPEG/GIF/PNG，大小不要超过1M</p>
+                                                                                    <p class="in-ma-p-grey">注：我们将严格保密，请放心上传</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                            </div>
+                                                            <div class="small-12 medium-4 large-4 columns columns-1 mar-top-10 text-center">
+                                                               <img class="mar-top-4 mar-bom-5" src="images/idcard-2.png" alt=""/>
+                                                                <p class="in-ma-p-grey">(身份证反面)</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1 certification-row1">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>证件有效期：</p>
+                                                            </div>
+                                                            <div class="small-11 medium-8 large-8 columns columns-1 mar-top-10 left">
+                                                                <label class="left posi-rela" for="hdkssj1">
+                                                                    <input class="timeEnd" type="text" id="hdkssj1" placeholder="发布时间" name="" aria-invalid="false">
+                                                                    <a class="input-group-addon posi-abso left "><i class="fa fa-calendar fa-fw"></i></a>
+                                                                </label>
+                                                                <p class="left line-height-26 mar-3">到</p>
+                                                                <label class="left posi-rela certification-row1-label-2 " for="hdjssj1">
+                                                                    <input class="timeEnd" type="text" id="hdjssj1" placeholder="发布时间" name="" aria-invalid="false">
+                                                                    <a class="input-group-addon posi-abso left "><i class="fa fa-calendar fa-fw"></i></a>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>手机号码：</p>
+                                                            </div>
+                                                            <div class="small-11 medium-4 large-4 columns columns-1 mar-top-10">
+                                                                <input type="text" class="left" required="" id="right-label" placeholder="" pattern="[a-zA-Z]+" />
+                                                                <small class="error small-12 columns">手机号码不能为空！</small>
+                                                            </div>
+                                                            <div class="small-1 columns columns-1 mar-top-10 left">
+                                                                <!--<p class="in-ma-p-grey min-mar-le-100-certifi left">(*和身份证件一致)</p>-->
+                                                                <span data-tooltip class="has-tip tip-right left" title="手机号码填写错误！">
+                                                                    <img class="" src="images/add-shop-2.png" alt=""/>
+                                                                </span>
+                                                            </div>
+                                                            <div class="small-12 columns columns-1 mar-top-20 certification-button">
+                                                                <button>提交审核</button>
+                                                                <button>重置</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    </div>
+                                                    <div id="data_wdgz_con_2" style="display: none"  >
+                                                    <form data-abide="">
+                                                        <div class="row per-in-ma-row1">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>真实姓名：</p>
+                                                            </div>
+                                                            <div class="small-11 medium-4 large-4 columns columns-1 mar-top-10 left">
+                                                                <input type="text" class="left" required="" id="right-label" placeholder="" pattern="[a-zA-Z]+" />
+                                                                <small class="error small-12 columns">真实姓名不能为空！</small>
+                                                            </div>
+                                                            <div class="small-1 columns columns-1 mar-top-10 left">
+                                                                <!--<p class="in-ma-p-grey min-mar-le-100-certifi left">(*和身份证件一致)</p>-->
+                                                                <span data-tooltip class="has-tip tip-right left" title="姓名填写正确">
+                                                                    <img class="" src="images/add-shop-2.png" alt=""/>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>身份证号：</p>
+                                                            </div>
+                                                            <div class="small-11 medium-4 large-4 columns columns-1 mar-top-10 left">
+                                                                <input type="text" class="left" required="" id="right-label" placeholder="" pattern="[a-zA-Z]+" />
+                                                                <small class="error small-12 columns">身份证号不能为空！</small>
+                                                            </div>
+                                                            <div class="small-1 columns columns-1 mar-top-10 left">
+                                                                <!--<p class="in-ma-p-grey min-mar-le-100-certifi left">(*和身份证件一致)</p>-->
+                                                                <span data-tooltip class="has-tip tip-right left" title="身份证号填写错误！">
+                                                                    <img class="" src="images/add-shop-1.png" alt=""/>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10 certifi-min-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>身份证正面：</p>
+                                                            </div>
+                                                            <div class="small-12 medium-6 large-6 columns columns-1 mar-top-10">
+                                                                <div id="data_modPic_con">
+                                                                            <div class="evaluate-uploaders left margin-l">
+                                                                                <div id="fileList3" class="uploader-list left">
+                                                                                    <div class="no-bullet" id="sortable-list3"></div>
+                                                                                </div>
+                                                                                <div class="uploader">
+                                                                                    <div class="bg-placeholder">
+                                                                                        <a class="add-pic" id="filePicker3" title="添加图片"></a>
+                                                                                    </div>
+                                                                                    <div class="bg-loading">
+                                                                                        <i class="fa fa-spinner fa-spin"></i>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="small-12 columns certification-idcard-des-p">
+                                                                                    <p class="in-ma-p-grey">1.请上传身份证正面带有头像的扫描件或清晰照片</p>
+                                                                                    <p class="in-ma-p-grey">2.照片要求格式为JPG/JPEG/GIF/PNG，大小不要超过1M</p>
+                                                                                    <p class="in-ma-p-grey">注：我们将严格保密，请放心上传</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                            </div>
+                                                            <div class="small-12 medium-4 large-4 columns columns-1 mar-top-10 text-center">
+                                                               <img class="mar-top-4 mar-bom-5" src="images/idcard-1.png" alt=""/>
+                                                                <p class="in-ma-p-grey">(身份证正面)</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10 certifi-min-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>身份证反面：</p>
+                                                            </div>
+                                                            <div class="small-12 medium-6 large-6 columns columns-1 mar-top-10">
+                                                                <div id="data_modPic_con">
+                                                                            <div class="evaluate-uploaders left margin-l">
+                                                                                <div id="fileList4" class="uploader-list left">
+                                                                                    <div class="no-bullet" id="sortable-list4"></div>
+                                                                                </div>
+                                                                                <div class="uploader">
+                                                                                    <div class="bg-placeholder">
+                                                                                        <a class="add-pic" id="filePicker4" title="添加图片"></a>
+                                                                                    </div>
+                                                                                    <div class="bg-loading">
+                                                                                        <i class="fa fa-spinner fa-spin"></i>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="small-12 columns certification-idcard-des-p">
+                                                                                    <p class="in-ma-p-grey">1.请上传身份证正面带有头像的扫描件或清晰照片</p>
+                                                                                    <p class="in-ma-p-grey">2.照片要求格式为JPG/JPEG/GIF/PNG，大小不要超过1M</p>
+                                                                                    <p class="in-ma-p-grey">注：我们将严格保密，请放心上传</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                            </div>
+                                                            <div class="small-12 medium-4 large-4 columns columns-1 mar-top-10 text-center">
+                                                               <img class="mar-top-4 mar-bom-5" src="images/idcard-2.png" alt=""/>
+                                                                <p class="in-ma-p-grey">(身份证反面)</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1 certification-row1">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>证件有效期：</p>
+                                                            </div>
+                                                            <div class="small-11 medium-8 large-8 columns columns-1 mar-top-10 left">
+                                                                <label class="left posi-rela" for="hdkssj1">
+                                                                    <input class="timeEnd" type="text" id="hdkssj1" placeholder="发布时间" name="" aria-invalid="false">
+                                                                    <a class="input-group-addon posi-abso left "><i class="fa fa-calendar fa-fw"></i></a>
+                                                                </label>
+                                                                <p class="left line-height-26 mar-3">到</p>
+                                                                <label class="left posi-rela certification-row1-label-2 " for="hdjssj1">
+                                                                    <input class="timeEnd" type="text" id="hdjssj1" placeholder="发布时间" name="" aria-invalid="false">
+                                                                    <a class="input-group-addon posi-abso left "><i class="fa fa-calendar fa-fw"></i></a>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10 certifi-min-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>真实头像：</p>
+                                                            </div>
+                                                            <div class="small-12 medium-6 large-6 columns columns-1 mar-top-10">
+                                                                <div id="data_modPic_con">
+                                                                    <div class="evaluate-uploaders left margin-l">
+                                                                        <div id="fileList5" class="uploader-list left">
+                                                                            <div class="no-bullet" id="sortable-list5"></div>
+                                                                        </div>
+                                                                        <div class="uploader">
+                                                                            <div class="bg-placeholder">
+                                                                                <a class="add-pic" id="filePicker5" title="添加图片"></a>
+                                                                            </div>
+                                                                            <div class="bg-loading">
+                                                                                <i class="fa fa-spinner fa-spin"></i>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="small-12 columns certification-idcard-des-p">
+                                                                            <p class="in-ma-p-grey">注：支持JPG/PNG/BMP格式，且大小不少过1M</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="small-12 medium-4 large-4 columns columns-1 mar-top-10 text-center">
+                                                            	<img class="mar-top-4 mar-bom-5" src="images/certifiction-3.png" alt=""/>
+                                                            	<p class="in-ma-p-grey">(身份证正面)</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>认证区域：</p>
+                                                            </div>
+                                                            <div class="small-11 medium-4 large-4 columns columns-1 mar-top-10 left">
+                                                                <select class="max-width-100" name="" id="">
+                                                                    <option value="">请选择</option>
+                                                                    <option value=""></option>
+                                                                    <option value=""></option>
+                                                                </select>
+                                                                <small class="error small-12 columns">认证区域不能为空！</small>
+                                                            </div>
+                                                            <div class="small-1 columns columns-1 mar-top-10 left">
+                                                                <!--<p class="in-ma-p-grey min-mar-le-100-certifi left">(*和身份证件一致)</p>-->
+                                                                <span data-tooltip class="has-tip tip-right left" title="认证区域填写错误！">
+                                                                    <img class="" src="images/add-shop-2.png" alt=""/>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>专家头衔：</p>
+                                                            </div>
+                                                            <div class="small-11 medium-4 large-4 columns columns-1 mar-top-10 left">
+                                                                <select class="max-width-100" name="" id="">
+                                                                    <option value="">请选择</option>
+                                                                    <option value=""></option>
+                                                                    <option value=""></option>
+                                                                </select>
+                                                                <small class="error small-12 columns">专家头衔不能为空！</small>
+                                                            </div>
+                                                            <div class="small-1 columns columns-1 mar-top-10 left">
+                                                                <!--<p class="in-ma-p-grey min-mar-le-100-certifi left">(*和身份证件一致)</p>-->
+                                                                <span data-tooltip class="has-tip tip-right left" title="专家头衔填写错误！">
+                                                                    <img class="" src="images/add-shop-1.png" alt=""/>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>认证区域：</p>
+                                                            </div>
+                                                            <div class="small-11 medium-4 large-4 columns columns-1 mar-top-10 left">
+                                                                <select class="max-width-100" name="" id="">
+                                                                    <option value="">请选择</option>
+                                                                    <option value=""></option>
+                                                                    <option value=""></option>
+                                                                </select>
+                                                                <small class="error small-12 columns">认证区域不能为空！</small>
+                                                            </div>
+                                                            <div class="small-1 columns columns-1 mar-top-10 left">
+                                                                <!--<p class="in-ma-p-grey min-mar-le-100-certifi left">(*和身份证件一致)</p>-->
+                                                                <span data-tooltip class="has-tip tip-right left" title="认证区域填写错误！">
+                                                                    <img class="" src="images/add-shop-2.png" alt=""/>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>工作单位：</p>
+                                                            </div>
+                                                            <div class="small-11 medium-4 large-4 columns columns-1 mar-top-10 left">
+                                                                <input type="text" class="left" required="" id="right-label" placeholder="" pattern="[a-zA-Z]+" />
+                                                                <small class="error small-12 columns">工作单位不能为空！</small>
+                                                            </div>
+                                                            <div class="small-1 columns columns-1 mar-top-10 left">
+                                                                <!--<p class="in-ma-p-grey min-mar-le-100-certifi left">(*和身份证件一致)</p>-->
+                                                                <span data-tooltip class="has-tip tip-right left" title="工作单位填写错误！">
+                                                                    <img class="" src="images/add-shop-1.png" alt=""/>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>个人简历：</p>
+                                                            </div>
+                                                            <div class="small-11 medium-4 large-4 columns columns-1 mar-top-10 left">
+                                                                <input type="text" class="left" required="" id="right-label" placeholder="" pattern="[a-zA-Z]+" />
+                                                                <small class="error small-12 columns">个人简历不能为空！</small>
+                                                            </div>
+                                                            <div class="small-1 columns columns-1 mar-top-10 left">
+                                                                <!--<p class="in-ma-p-grey min-mar-le-100-certifi left">(*和身份证件一致)</p>-->
+                                                                <span data-tooltip class="has-tip tip-right left" title="个人简历填写错误！">
+                                                                    <img class="" src="images/add-shop-2.png" alt=""/>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>手机号码：</p>
+                                                            </div>
+                                                            <div class="small-11 medium-4 large-4 columns columns-1 mar-top-10">
+                                                                <input type="text" class="left" required="" id="right-label" placeholder="" pattern="[a-zA-Z]+" />
+                                                                <small class="error small-12 columns">手机号码不能为空！</small>
+                                                            </div>
+                                                            <div class="small-1 columns columns-1 mar-top-10 left">
+                                                                <!--<p class="in-ma-p-grey min-mar-le-100-certifi left">(*和身份证件一致)</p>-->
+                                                                <span data-tooltip class="has-tip tip-right left" title="手机号码填写错误！">
+                                                                    <img class="" src="images/add-shop-1.png" alt=""/>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>电子邮箱：</p>
+                                                            </div>
+                                                            <div class="small-11 medium-4 large-4 columns columns-1 mar-top-10">
+                                                                <input type="text" class="left" required="" id="right-label" placeholder="" pattern="[a-zA-Z]+" />
+                                                                <small class="error small-12 columns">电子邮箱不能为空！</small>
+                                                            </div>
+                                                            <div class="small-1 columns columns-1 mar-top-10 left">
+                                                                <!--<p class="in-ma-p-grey min-mar-le-100-certifi left">(*和身份证件一致)</p>-->
+                                                                <span data-tooltip class="has-tip tip-right left" title="电子邮箱填写错误！">
+                                                                    <img class="" src="images/add-shop-2.png" alt=""/>
+                                                                </span>
+                                                            </div>
+                                                            <div class="small-12 columns columns-1 mar-top-20 certification-button">
+                                                                <button>提交审核</button>
+                                                                <button>重置</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end main-->
+                
+                <div class="footer" id="frame_footer" role="contentinfo" include="include.html">
+                    <div class="footer-subnav" id="frame_footer_subnav">
+                        <div class="row" id="data_footer_subnav">
+                            <div class="large-7 medium-7 small-12 columns">
+                                <ul class="large-block-grid-4 medium-block-grid-4 small-block-grid-2">
+                                    <li>
+                                        <h3 class="icon1">购物指南</h3>
+                                        <ul class="item">
+                                            <li><a href="">购物流程</a></li>
+                                            <li><a href="">会员介绍</a></li>
+                                            <li><a href="">生活旅行/团购</a></li>
+                                            <li><a href="">常见问题</a></li>
+                                            <li><a href="">联系客服</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <h3 class="icon2">支付方式</h3>
+                                        <ul class="item">
+                                            <li><a href="">货到付款</a></li>
+                                            <li><a href="">在线支付</a></li>
+                                            <li><a href="">分期付款</a></li>
+                                            <li><a href="">邮局汇款</a></li>
+                                            <li><a href="">公司转账</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <h3 class="icon3">天下保障</h3>
+                                        <ul class="item">
+                                            <li><a href="">售后政策</a></li>
+                                            <li><a href="">价格保护</a></li>
+                                            <li><a href="">退款说明</a></li>
+                                            <li><a href="">返修/退换货</a></li>
+                                            <li><a href="">取消订单</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <h3 class="icon4">商家服务</h3>
+                                        <ul class="item">
+                                            <li><a href="">开店申请</a></li>
+                                            <li><a href="">商品发布</a></li>
+                                            <li><a href="">店铺设置</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="large-5 medium-5 small-12 columns">
+                                <ul class="footer-code large-block-grid-3 medium-block-grid-3 small-block-grid-1">
+                                    <li><img data-th-src="|${tempPath}images/footer_code_01.gif|" src="images/footer_code_01.gif" /><span>下载手机官方app</span></li>
+                                    <li><img data-th-src="|${tempPath}images/footer_code_02.gif|" src="images/footer_code_02.gif" /><span>关注微信公众号</span></li>
+                                    <li><a href="#"><img data-th-src="|${tempPath}images/footer_code_03.gif|" src="images/footer_code_03.gif" /><span>官方微博</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="copyright" id="frame_footer_copyright">
+                        <div class="row" id="data_footer_copyright">
+                        	<span class="copyright-reserved">版权所有：北京文玩天下电子商务有限公司</span>
+                            <span>
+                            公司地址：北京市朝阳区北辰路曹八里1号院6号楼  邮政编码：100029<br />
+                            文玩客服电话：4006-300-305  在线客服QQ：1395085594，398850964   Email：link@wwtx.cn  传真：010-64411002<br />
+                            主要交易商品涉及<a href="#">文玩核桃</a>、<a href="#">菩提</a>、<a href="#">橄榄核雕</a>、<a href="#">玉石翡翠</a>、<a href="#">琥珀蜜蜡</a>、竹雕木雕、白玉和田玉籽料、天珠、文玩狮子头等<br />
+                            京ICP备05048109号 京公网安备110105006105<br />
+                            </span>
+                            <div class="img">
+                                <img data-th-src="|${tempPath}images/footer_img_01.gif|" src="images/footer_img_01.gif" />
+                                <img data-th-src="|${tempPath}images/footer_img_02.gif|" src="images/footer_img_02.gif" />
+                                <img data-th-src="|${tempPath}images/footer_img_03.gif|" src="images/footer_img_03.gif" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end footer--> 
+                
+                <div class="go" id="frame_go"><a title="返回顶部" class="gotop" id="goTop"></a> <a title="返回底部" class="gobottom" id="goBottom"></a></div>
+                
+                <div id="frame_exit_off"><a class="exit-off-canvas"></a></div>
+                
+                <div class="fixed v_info_fail" id="frame_myModal_fail">
+                    <div class="row">
+                        <div class="large-12 columns" id="error_alert_into">
+                            <div data-alert="" class="error alert-box warning v_show_oper_info">
+                                <div><i class="fa fa-fw fa-exclamation-circle"></i><span class="v_show_info"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div id="frame_javascript">
+            <div id="data_javascript">
+                <script data-th-src="|${tempPath}javascript/jquery-2.1.3.js|" src="javascript/jquery-2.1.3.js" type="text/javascript" charset="utf8"></script>
+				<script data-th-src="|${tempPath}javascript/AppendAround.js|" src="javascript/AppendAround.js" type="text/javascript" charset="utf8"></script>
+                <script data-th-src="|${tempPath}javascript/swiper.min.js|" src="javascript/swiper.min.js" type="text/javascript" charset="utf8"></script>
+                <script data-th-src="|${tempPath}javascript/tab.exam.js|" src="javascript/tab.exam.js" type="text/javascript" charset="utf8"></script>
+                <script data-th-src="|${tempPath}javascript/sortable.min.js|" src="javascript/sortable.min.js" type="text/javascript" charset="utf8"></script>
+                <script data-th-src="|${tempPath}javascript/webuploader.min.js|" src="javascript/webuploader.min.js" type="text/javascript" charset="utf8"></script>
+                <script data-th-src="|${tempPath}javascript/others.js|" src="javascript/others.js" type="text/javascript" charset="utf8"></script>
+                <script src="/emall/cij/datatables/js/jquery.dataTables.js" type="text/javascript" charset="utf8"></script>
+                <script src="/emall/cij/datatables/js/dataTables.foundation.js" type="text/javascript" charset="utf8"></script>
+                <script src="/emall/cij/foundation/js/foundation.min.js"></script>
+                <script src="/emall/cij/js/jquery.datatable.page.js"></script>
+                <script src="/emall/cij/foundation/js/foundation/foundation.tooltip.js"></script>
+                <script data-th-src="|${tempPath}datatables-extend/js/foundation.extend.js|" src="datatables-extend/js/foundation.extend.js"></script>
+                <script data-th-src="|${tempPath}datatables-extend/js/moment.min.js|" src="datatables-extend/js/moment.min.js"></script>
+                <script data-th-src="|${tempPath}datatables-extend/js/daterangepicker.js|" src="datatables-extend/js/daterangepicker.js"></script>
+                <script>
+                $(document).foundation();
+				$(".bar_apply").appendAround();
+				new o_tab().init( "wdgz","li","data_wdgz_con_","on","",1,"" );
+				var hdkssj1, hdjssj1,hdkssj2, hdjssj2;
+				$('#hdkssj1').daterangepicker({
+					format: 'YYYY-MM-DD HH:MM:SS',
+					startDate: new Date(),
+					endDate: new Date(),
+					//minDate: '2015-01-01',
+					//maxDate: '2100-01-10',
+					showWeekNumbers: true,
+					showDropdowns: true,
+					timePicker12Hour: false,
+					singleDatePicker: true,
+					timePicker: true
+				});
+				$('#hdjssj1').daterangepicker({
+					format: 'YYYY-MM-DD HH:MM:SS',
+					startDate: new Date(),
+					endDate: new Date(),
+					//minDate: '2015-01-01',
+					//maxDate: '2100-01-10',
+					showWeekNumbers: true,
+					showDropdowns: true,
+					timePicker12Hour: false,
+					singleDatePicker: true,
+					timePicker: true
+				});
+				$('#hdkssj2').daterangepicker({
+					format: 'YYYY-MM-DD HH:MM:SS',
+					startDate: new Date(),
+					endDate: new Date(),
+					//minDate: '2015-01-01',
+					//maxDate: '2100-01-10',
+					showWeekNumbers: true,
+					showDropdowns: true,
+					timePicker12Hour: false,
+					singleDatePicker: true,
+					timePicker: true
+				});
+				$('#hdjssj2').daterangepicker({
+					format: 'YYYY-MM-DD HH:MM:SS',
+					startDate: new Date(),
+					endDate: new Date(),
+					//minDate: '2015-01-01',
+					//maxDate: '2100-01-10',
+					showWeekNumbers: true,
+					showDropdowns: true,
+					timePicker12Hour: false,
+					singleDatePicker: true,
+					timePicker: true
+				});
+				$('#bmsj').daterangepicker({
+					format: 'YYYY-MM-DD HH:MM:SS',
+					startDate: new Date(),
+					endDate: new Date(),
+					//minDate: '2015-01-01',
+					//maxDate: '2100-01-10',
+					showWeekNumbers: true,
+					showDropdowns: true,
+					timePicker12Hour: false,
+					singleDatePicker: true,
+					timePicker: true
+				});
+				$('#overdue').daterangepicker({
+					format: 'YYYY-MM-DD HH:MM:SS',
+					startDate: new Date(),
+					endDate: new Date(),
+					//minDate: '2015-01-01',
+					//maxDate: '2100-01-10',
+					showWeekNumbers: true,
+					showDropdowns: true,
+					timePicker12Hour: false,
+					singleDatePicker: true,
+					timePicker: true
+				});
+				hdkssj = $('#hdkssj1').data('daterangepicker');
+				hdkssj = $('#hdkssj2').data('daterangepicker');
+				
+				hdjssj = $('#hdjssj1').data('daterangepicker');
+				hdjssj = $('#hdjssj2').data('daterangepicker');
+
+				$('#hdkssj').on('apply.daterangepicker', function(ev, picker) {
+					var startDate = picker.startDate.format('YYYY-MM-DD HH:MM:SS');
+					var kssj = $('#hdkssj').val();
+					var jssj = $('#hdjssj').val();
+					var KSSJOBJ = {
+						//maxDate: jssj,
+						format: 'YYYY-MM-DD HH:MM:SS',
+						startDate: startDate,
+						//endDate: new Date(),
+						showWeekNumbers: true,
+						showDropdowns: true,
+						timePicker12Hour: false,
+						singleDatePicker: true,
+						timePicker: true
+					};
+					var JSSJOBJ = {
+						minDate: startDate,
+						format: 'YYYY-MM-DD HH:MM:SS',
+						startDate: new Date(),
+						//endDate: new Date(),
+						showWeekNumbers: true,
+						showDropdowns: true,
+						timePicker12Hour: false,
+						singleDatePicker: true,
+						timePicker: true
+					}
+					if (jssj != "" && jssj != null) {
+						KSSJOBJ = {
+							maxDate: jssj,
+							format: 'YYYY-MM-DD HH:MM:SS',
+							startDate: startDate,
+							//endDate: new Date(),
+							showWeekNumbers: true,
+							showDropdowns: true,
+							timePicker12Hour: false,
+							singleDatePicker: true,
+							timePicker: true
+						};
+						JSSJOBJ = {
+							minDate: startDate,
+							format: 'YYYY-MM-DD HH:MM:SS',
+							startDate: jssj,
+							//endDate: new Date(),
+							showWeekNumbers: true,
+							showDropdowns: true,
+							timePicker12Hour: false,
+							singleDatePicker: true,
+							timePicker: true
+						};
+					}
+					hdkssj.setOptions(KSSJOBJ);
+					hdjssj.setOptions(JSSJOBJ);
+				});
+				$('#hdjssj').on('apply.daterangepicker', function(ev, picker) {
+					var startDate = picker.startDate.format('YYYY-MM-DD HH:MM:SS');
+					var kssj = $('#hdkssj').val();
+					var jssj = $('#hdjssj').val();
+					var KSSJOBJ = {
+						maxDate: startDate,
+						format: 'YYYY-MM-DD HH:MM:SS',
+						startDate: new Date(),
+						showWeekNumbers: true,
+						showDropdowns: true,
+						timePicker12Hour: false,
+						singleDatePicker: true,
+						timePicker: true
+					};
+					var JSSJOBJ = {
+						format: 'YYYY-MM-DD HH:MM:SS',
+						startDate: startDate,
+						showWeekNumbers: true,
+						showDropdowns: true,
+						timePicker12Hour: false,
+						singleDatePicker: true,
+						timePicker: true
+					}
+					if (kssj != "" && kssj != null) {
+						KSSJOBJ = {
+							maxDate: startDate,
+							format: 'YYYY-MM-DD HH:MM:SS',
+							startDate: kssj,
+							showWeekNumbers: true,
+							showDropdowns: true,
+							timePicker12Hour: false,
+							singleDatePicker: true,
+							timePicker: true
+						};
+						JSSJOBJ = {
+							minDate: kssj,
+							format: 'YYYY-MM-DD HH:MM:SS',
+							startDate: startDate,
+							showWeekNumbers: true,
+							showDropdowns: true,
+							timePicker12Hour: false,
+							singleDatePicker: true,
+							timePicker: true
+						};
+					}
+					hdkssj.setOptions(KSSJOBJ);
+					hdjssj.setOptions(JSSJOBJ);
+				});
+				/*图片上传1*/
+				var uploader1,
+					$list1 = $('#fileList1'),
+					arr_images = [];
+				uploader1 = WebUploader.create({
+				
+					// 选完文件后，是否自动上传。
+					auto: true,
+				
+					// swf文件路径
+					swf: '/blog/flash/Uploader.swf',
+				
+					// 文件接收服务端。
+					server: './server/fileupload.php',
+				
+					// 选择文件的按钮。可选。
+					// 内部根据当前运行是创建，可能是input元素，也可能是flash.
+					pick: '#filePicker1',
+				
+					// 只允许选择图片文件。
+					accept: {
+						title: 'Images',
+						extensions: 'gif,jpg,jpeg,bmp,png',
+						mimeTypes: 'image/*'
+					},
+					fileNumLimit: 5
+				});
+				
+				uploader1.on('uploadSuccess', function(file, response) {
+				
+				//	var $li = '<li class="th"><img class="activity-img shop-show-img" src=' + response.url + '></li>';
+					var $li = '<div class="uploader uploaded"><span class="bg-preview"><img src="images/1.jpg"></span><span class="fa fa-times reset"></span></div>';
+					arr_images.push(response.url);
+				
+					$list1.find('.no-bullet').append($li);
+				
+					var sortable1;
+					var el1 = document.getElementById('sortable-list1');
+					sortable1 = new Sortable(el1, {
+						group: "name", // or { name: "...", pull: [true, false, clone], put: [true, false, array] }
+						sort: true, // sorting inside list
+						disabled: false, // Disables the sortable if set to true.
+						store: null, // @see Store
+						animation: 150, // ms, animation speed moving items when sorting, `0` — without animation
+						ghostClass: "sortable-ghost", // Class name for the drop placeholder
+						dataIdAttr: 'data-id',
+				
+						scroll: true, // or HTMLElement
+						scrollSensitivity: 30, // px, how near the mouse must be to an edge to start scrolling.
+						scrollSpeed: 10
+					});
+					
+					$('.reset').on('click',function(){
+						$(this).parent('.uploader').remove();
+					})
+					
+				});
+				uploader1.on('error', function(reason) {
+					var fail = $('.v_info_fail').find('.v_show_info');
+					switch (reason) {
+						case 'Q_TYPE_DENIED':
+							fail.text('类型错误');
+							$('.v_info_fail').addClass("show");
+							setTimeout(function() {
+								$('.v_info_fail').removeClass("show");
+							}, 3000);	
+							break;
+						case 'F_DUPLICATE':
+							fail.text('你已经选择过该图片了');
+							$('.v_info_fail').addClass("show");
+							setTimeout(function() {
+								$('.v_info_fail').removeClass("show");
+							}, 3000);	
+							break;
+						case 'Q_EXCEED_NUM_LIMIT':
+							fail.text('最多上传5张图片');
+							$('.v_info_fail').addClass("show");
+							setTimeout(function() {
+								$('.v_info_fail').removeClass("show");
+							}, 3000);	
+							break;
+					}
+				});
+				/*图片上传2*/
+				var uploader2,
+					$list2 = $('#fileList2'),
+					arr_images = [];
+				uploader2 = WebUploader.create({
+				
+					// 选完文件后，是否自动上传。
+					auto: true,
+				
+					// swf文件路径
+					swf: '/blog/flash/Uploader.swf',
+				
+					// 文件接收服务端。
+					server: './server/fileupload.php',
+				
+					// 选择文件的按钮。可选。
+					// 内部根据当前运行是创建，可能是input元素，也可能是flash.
+					pick: '#filePicker2',
+				
+					// 只允许选择图片文件。
+					accept: {
+						title: 'Images',
+						extensions: 'gif,jpg,jpeg,bmp,png',
+						mimeTypes: 'image/*'
+					},
+					fileNumLimit: 5
+				});
+				
+				uploader2.on('uploadSuccess', function(file, response) {
+				
+				//	var $li = '<li class="th"><img class="activity-img shop-show-img" src=' + response.url + '></li>';
+					var $li = '<div class="uploader uploaded"><span class="bg-preview"><img src="images/1.jpg"></span><span class="fa fa-times reset"></span></div>';
+					arr_images.push(response.url);
+				
+					$list2.find('.no-bullet').append($li);
+				
+					var sortable2;
+					var el2 = document.getElementById('sortable-list2');
+					sortable2 = new Sortable(el2, {
+						group: "name", // or { name: "...", pull: [true, false, clone], put: [true, false, array] }
+						sort: true, // sorting inside list
+						disabled: false, // Disables the sortable if set to true.
+						store: null, // @see Store
+						animation: 150, // ms, animation speed moving items when sorting, `0` — without animation
+						ghostClass: "sortable-ghost", // Class name for the drop placeholder
+						dataIdAttr: 'data-id',
+				
+						scroll: true, // or HTMLElement
+						scrollSensitivity: 30, // px, how near the mouse must be to an edge to start scrolling.
+						scrollSpeed: 10
+					});
+					
+					$('.reset').on('click',function(){
+						$(this).parent('.uploader').remove();
+					})
+					
+				});
+				uploader2.on('error', function(reason) {
+					var fail = $('.v_info_fail').find('.v_show_info');
+					switch (reason) {
+						case 'Q_TYPE_DENIED':
+							fail.text('类型错误');
+							$('.v_info_fail').addClass("show");
+							setTimeout(function() {
+								$('.v_info_fail').removeClass("show");
+							}, 3000);	
+							break;
+						case 'F_DUPLICATE':
+							fail.text('你已经选择过该图片了');
+							$('.v_info_fail').addClass("show");
+							setTimeout(function() {
+								$('.v_info_fail').removeClass("show");
+							}, 3000);	
+							break;
+						case 'Q_EXCEED_NUM_LIMIT':
+							fail.text('最多上传5张图片');
+							$('.v_info_fail').addClass("show");
+							setTimeout(function() {
+								$('.v_info_fail').removeClass("show");
+							}, 3000);	
+							break;
+					}
+				});
+				/*图片上传3*/
+				var uploader3,
+					$list3 = $('#fileList3'),
+					arr_images = [];
+				uploader3 = WebUploader.create({
+				
+					// 选完文件后，是否自动上传。
+					auto: true,
+				
+					// swf文件路径
+					swf: '/blog/flash/Uploader.swf',
+				
+					// 文件接收服务端。
+					server: './server/fileupload.php',
+				
+					// 选择文件的按钮。可选。
+					// 内部根据当前运行是创建，可能是input元素，也可能是flash.
+					pick: '#filePicker3',
+				
+					// 只允许选择图片文件。
+					accept: {
+						title: 'Images',
+						extensions: 'gif,jpg,jpeg,bmp,png',
+						mimeTypes: 'image/*'
+					},
+					fileNumLimit: 5
+				});
+				
+				uploader3.on('uploadSuccess', function(file, response) {
+				
+				//	var $li = '<li class="th"><img class="activity-img shop-show-img" src=' + response.url + '></li>';
+					var $li = '<div class="uploader uploaded"><span class="bg-preview"><img src="images/1.jpg"></span><span class="fa fa-times reset"></span></div>';
+					arr_images.push(response.url);
+				
+					$list3.find('.no-bullet').append($li);
+				
+					var sortable3;
+					var el3 = document.getElementById('sortable-list3');
+					sortable3 = new Sortable(el3, {
+						group: "name", // or { name: "...", pull: [true, false, clone], put: [true, false, array] }
+						sort: true, // sorting inside list
+						disabled: false, // Disables the sortable if set to true.
+						store: null, // @see Store
+						animation: 150, // ms, animation speed moving items when sorting, `0` — without animation
+						ghostClass: "sortable-ghost", // Class name for the drop placeholder
+						dataIdAttr: 'data-id',
+				
+						scroll: true, // or HTMLElement
+						scrollSensitivity: 30, // px, how near the mouse must be to an edge to start scrolling.
+						scrollSpeed: 10
+					});
+					
+					$('.reset').on('click',function(){
+						$(this).parent('.uploader').remove();
+					})
+					
+				});
+				uploader3.on('error', function(reason) {
+					var fail = $('.v_info_fail').find('.v_show_info');
+					switch (reason) {
+						case 'Q_TYPE_DENIED':
+							fail.text('类型错误');
+							$('.v_info_fail').addClass("show");
+							setTimeout(function() {
+								$('.v_info_fail').removeClass("show");
+							}, 3000);	
+							break;
+						case 'F_DUPLICATE':
+							fail.text('你已经选择过该图片了');
+							$('.v_info_fail').addClass("show");
+							setTimeout(function() {
+								$('.v_info_fail').removeClass("show");
+							}, 3000);	
+							break;
+						case 'Q_EXCEED_NUM_LIMIT':
+							fail.text('最多上传5张图片');
+							$('.v_info_fail').addClass("show");
+							setTimeout(function() {
+								$('.v_info_fail').removeClass("show");
+							}, 3000);	
+							break;
+					}
+				});
+				/*图片上传4*/
+				var uploader4,
+					$list4 = $('#fileList4'),
+					arr_images = [];
+				uploader4 = WebUploader.create({
+				
+					// 选完文件后，是否自动上传。
+					auto: true,
+				
+					// swf文件路径
+					swf: '/blog/flash/Uploader.swf',
+				
+					// 文件接收服务端。
+					server: './server/fileupload.php',
+				
+					// 选择文件的按钮。可选。
+					// 内部根据当前运行是创建，可能是input元素，也可能是flash.
+					pick: '#filePicker4',
+				
+					// 只允许选择图片文件。
+					accept: {
+						title: 'Images',
+						extensions: 'gif,jpg,jpeg,bmp,png',
+						mimeTypes: 'image/*'
+					},
+					fileNumLimit: 5
+				});
+				
+				uploader4.on('uploadSuccess', function(file, response) {
+				
+				//	var $li = '<li class="th"><img class="activity-img shop-show-img" src=' + response.url + '></li>';
+					var $li = '<div class="uploader uploaded"><span class="bg-preview"><img src="images/1.jpg"></span><span class="fa fa-times reset"></span></div>';
+					arr_images.push(response.url);
+				
+					$list4.find('.no-bullet').append($li);
+				
+					var sortable4;
+					var el4 = document.getElementById('sortable-list4');
+					sortable4 = new Sortable(el4, {
+						group: "name", // or { name: "...", pull: [true, false, clone], put: [true, false, array] }
+						sort: true, // sorting inside list
+						disabled: false, // Disables the sortable if set to true.
+						store: null, // @see Store
+						animation: 150, // ms, animation speed moving items when sorting, `0` — without animation
+						ghostClass: "sortable-ghost", // Class name for the drop placeholder
+						dataIdAttr: 'data-id',
+				
+						scroll: true, // or HTMLElement
+						scrollSensitivity: 30, // px, how near the mouse must be to an edge to start scrolling.
+						scrollSpeed: 10
+					});
+					
+					$('.reset').on('click',function(){
+						$(this).parent('.uploader').remove();
+					})
+					
+				});
+				uploader4.on('error', function(reason) {
+					var fail = $('.v_info_fail').find('.v_show_info');
+					switch (reason) {
+						case 'Q_TYPE_DENIED':
+							fail.text('类型错误');
+							$('.v_info_fail').addClass("show");
+							setTimeout(function() {
+								$('.v_info_fail').removeClass("show");
+							}, 3000);	
+							break;
+						case 'F_DUPLICATE':
+							fail.text('你已经选择过该图片了');
+							$('.v_info_fail').addClass("show");
+							setTimeout(function() {
+								$('.v_info_fail').removeClass("show");
+							}, 3000);	
+							break;
+						case 'Q_EXCEED_NUM_LIMIT':
+							fail.text('最多上传5张图片');
+							$('.v_info_fail').addClass("show");
+							setTimeout(function() {
+								$('.v_info_fail').removeClass("show");
+							}, 3000);	
+							break;
+					}
+				});
+				/*图片上传5*/
+				var uploader5,
+					$list5 = $('#fileList5'),
+					arr_images = [];
+				uploader5 = WebUploader.create({
+					// 选完文件后，是否自动上传。
+					auto: true,
+					// swf文件路径
+					swf: '/blog/flash/Uploader.swf',
+				
+					// 文件接收服务端。
+					server: './server/fileupload.php',
+				
+					// 选择文件的按钮。可选。
+					// 内部根据当前运行是创建，可能是input元素，也可能是flash.
+					pick: '#filePicker5',
+				
+					// 只允许选择图片文件。
+					accept: {
+						title: 'Images',
+						extensions: 'gif,jpg,jpeg,bmp,png',
+						mimeTypes: 'image/*'
+					},
+					fileNumLimit: 5
+				});
+				
+				uploader5.on('uploadSuccess', function(file, response) {
+				//	var $li = '<li class="th"><img class="activity-img shop-show-img" src=' + response.url + '></li>';
+					var $li = '<div class="uploader uploaded"><span class="bg-preview"><img src="images/1.jpg"></span><span class="fa fa-times reset"></span></div>';
+					arr_images.push(response.url);
+					$list5.find('.no-bullet').append($li);
+					var sortable5;
+					var el5 = document.getElementById('sortable-list5');
+					sortable5 = new Sortable(el5, {
+						group: "name", // or { name: "...", pull: [true, false, clone], put: [true, false, array] }
+						sort: true, // sorting inside list
+						disabled: false, // Disables the sortable if set to true.
+						store: null, // @see Store
+						animation: 150, // ms, animation speed moving items when sorting, `0` — without animation
+						ghostClass: "sortable-ghost", // Class name for the drop placeholder
+						dataIdAttr: 'data-id',
+				
+						scroll: true, // or HTMLElement
+						scrollSensitivity: 30, // px, how near the mouse must be to an edge to start scrolling.
+						scrollSpeed: 10
+					});
+					
+					$('.reset').on('click',function(){
+						$(this).parent('.uploader').remove();
+					})
+					
+				});
+				uploader1.on('error', function(reason) {
+					var fail = $('.v_info_fail').find('.v_show_info');
+					switch (reason) {
+						case 'Q_TYPE_DENIED':
+							fail.text('类型错误');
+							$('.v_info_fail').addClass("show");
+							setTimeout(function() {
+								$('.v_info_fail').removeClass("show");
+							}, 3000);	
+							break;
+						case 'F_DUPLICATE':
+							fail.text('你已经选择过该图片了');
+							$('.v_info_fail').addClass("show");
+							setTimeout(function() {
+								$('.v_info_fail').removeClass("show");
+							}, 3000);	
+							break;
+						case 'Q_EXCEED_NUM_LIMIT':
+							fail.text('最多上传5张图片');
+							$('.v_info_fail').addClass("show");
+							setTimeout(function() {
+								$('.v_info_fail').removeClass("show");
+							}, 3000);	
+							break;
+					}
+				});
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

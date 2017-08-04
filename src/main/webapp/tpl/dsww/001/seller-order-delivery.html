@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh" class="no-js">
+<head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta name="keywords" content=" " />
+    <meta name="description" content="" />
+	<title>全部订单</title>
+	<link data-th-href="|${tempPath}style/font-awesome.min.css|" href="style/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/themes.less|"  href="style/themes.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="@{/cij/datatables/css/dataTables.foundation.css}" href="/emall/cij/datatables/css/dataTables.foundation.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}datatables-extend/css/dataTables.response.less|"  href="datatables-extend/css/dataTables.response.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}datatables-extend/css/daterangepicker-f5.less|"  href="datatables-extend/css/daterangepicker-f5.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}style/layout.css|"  href="style/layout.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/master.css|"  href="style/master.css" rel="stylesheet" type="text/css" />
+
+	<script data-th-src="|${tempPath}javascript/less-1.7.3.min.js|" src="javascript/less-1.7.3.min.js"></script>
+	<script data-th-src="|${tempPath}javascript/modernizr.js|" src="javascript/modernizr.js"></script>
+	<script data-th-inline="javascript">
+	Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/ '/emall';
+	Cfg.tempPath = /*[[ ${tempPath} ]]*/ '/emall/tpl/dsww/001/';
+	</script>
+</head>
+<body>
+<div id="layout">
+    <div class="wrapper" id="frame_wrapper">
+        <div class="off-canvas-wrap" data-offcanvas="" id="frame_canvas_wrap">
+            <div class="inner-wrap" id="frame_inner_wrap">  
+                <div class="left-off-canvas-menu hide-for-large" id="frame_canvas_menu" data-set="data_accordion"></div>
+                <div class="header" id="frame_header" include="include.html" data-th-include="${tempInternalPath + 'include-seller'} :: #frame_header">
+                </div>
+                <!--end header-->
+                
+                <div class="main" role="main" aria-label="主体区块" id="frame_main">
+                    <div class="row" id="frame_main_row1">
+                        <div class="small-12 medium-2 large-2 columns" id="frame_main_col1">
+                            <div id="frame_accordion" include="include.html" data-th-include="${tempInternalPath + 'include-seller'} :: #frame_accordion">
+                            </div>
+                        </div>
+                        <div class="small-12 medium-10 large-10 columns" id="frame_main_col2">
+                            <div class="list-position" id="frame_position">
+                                <div id="data_list_addr" class="c-addr">
+                                    <a href="#" target="_self">我是卖家</a>&frasl;<a href="#" target="_self">物流管理</a>&frasl;<a href="#" target="_self" id="statuschange">全部订单</a>
+                                </div>
+                            </div>
+                            <div id="data_datatable">
+                                <!--datatable-->
+                                <div id="user_page">
+                                    <section class="panel">
+                                        <header class="panel-heading">
+	                                        <span class="panel-title">
+                                          全部订单
+	                                        </span>
+                                            <span class="tools right" style="display:none;">
+                                                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                                                <a href="javascript:;" class="fa fa-times"></a>
+                                             </span>
+                                             <div class="right">
+                        <!--                    
+                                                <div class="button radius tiny left v_oper_select_all" >全选</div>
+                                                <div class="button radius tiny left v_oper_delete" >删除</div>
+                                                <div class="button radius tiny left v_oper_add" >添加</div>
+                                                <div class="button radius tiny left v_oper_edit" >编辑</div>
+                                                <div class="button radius tiny left v_oper_search">搜索</div>
+                        -->
+                                                <a class="v_oper_refresh" title="刷新"><i class="fa fa-refresh"></i></a>
+                                             </div>
+                                        </header> 
+                                        <div class="panel-body">
+                                        	<div class="panel-tag margin-b">
+                                                <div class="swiper-container">
+                                                    <div class="swiper-wrapper">
+                                                        <div class="swiper-slide">
+                                                            <a class="v_oper_click_search active" name="status" value="">全部订单</a>
+                                                            <a class="v_oper_click_search" name="status" value="2">等待发货的订单</a>
+                                                            <!-- <a class="v_oper_click_search" name="status" value="3">发货中的订单</a> -->
+                                                			<a class="v_oper_click_search" name="status" value="3">已发货的订单</a>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Add Scroll Bar -->
+                                                    <div class="swiper-scrollbar"></div>
+                                                </div>
+                                            </div>
+                                            <div class="table_bar clearfix">
+                                                <div class="bar_left hide-for-small" data-set="data_bar_apply">
+                                                    <div class="left bar_apply">
+                                <!--                    
+                                                        <div class="button radius tiny left v_oper_add"><i class="fa fa-plus"></i><span>添加</span></div>
+                                
+                                                        <div class="apply">
+                                                            <select id="select_change">
+                                                                <option>批量操作</option>
+                                                                <option value="v_oper_edit">编辑</option>
+                                                                <option value="v_oper_del">删除</option>
+                                                            </select>
+                                                            <div class="button radius tiny left" data-v-oper-id="select_change">应用</div>
+                                                        </div>
+                                -->
+                                                    </div>
+                                                </div>
+                                                <div class="more-filter dt">
+                                                    <a>筛选<i class="fa fa-caret-down"></i><i class="fa fa-caret-up"></i></a>
+                                                </div>
+                                                <div class="bar_right">
+                                                    <div class="search">
+                                                      <!--<input name="goodsTitle-lk" class="inp v_oper_quick_search" id="topsearch" type="text" placeholder="请输入..." accesskey="s" title="请输入查询内容" x-webkit-speech="" x-webkit-grammar="builtin:translate" lang="zh-CN" style="display: block;" />
+                                                      <i class="fa fa-filter v_oper_advanced_search" title="高级"></i>
+                                                      <i class="fa fa-search v_oper_click_quick_search" title="搜索"></i>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="filter-items hide p-border v_search">
+                                                <div class="row">
+                                                    <div class="small-12 medium-4 large-4 columns">
+                                                        <div class="row">
+                                                            <div class="small-12 medium-4 large-4 columns">
+                                                                <label for="label1" class="right" role="alert">收件人名称</label>
+                                                            </div>
+                                                            <div class="small-12 medium-8 large-8 columns">
+                                                                <label>
+                                                                    <input type="text" name="address.realName-lk" id="label1" placeholder="收件人名称" data-invalid="" />
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="small-12 medium-4 large-4 columns">
+                                                        <div class="row">
+                                                            <div class="small-12 medium-4 large-4 columns">
+                                                                <label for="label1" class="right" role="alert">买家昵称</label>
+                                                            </div>
+                                                            <div class="small-12 medium-8 large-8 columns">
+                                                                <label>
+                                                                    <input type="text" name="nickName-lk" id="label1" placeholder="买家昵称" data-invalid="" />
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="small-12 medium-4 large-4 columns">
+                                                        <div class="row">
+                                                            <div class="small-12 medium-4 large-4 columns">
+                                                                <label for="label1" class="right" role="alert">订单编号</label>
+                                                            </div>
+                                                            <div class="small-12 medium-8 large-8 columns">
+                                                                <label>
+                                                                    <input type="text" name="orderNo-lk" id="label1" placeholder="订单编号" data-invalid="" />
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="small-12 medium-8 large-8 columns">
+                                                        <div class="row">
+                                                            <div class="small-12 medium-2 large-2 columns">
+                                                                <label for="label1" class="right" role="alert">创建时间</label>
+                                                            </div>
+                                                            <div class="small-12 medium-4 large-4 columns">
+                                                                <label for="hdkssj" class="input-group with-tit">
+                                                                    <a class="input-group-addon right"><i class="fa fa-calendar fa-fw"></i></a>
+                                                                    <input class="active" type="text" id="hdkssj" placeholder="开始时间" name="createTime-gt" aria-invalid="false" />
+                                                                </label>
+                                                            </div>
+                                                            <div class="small-12 medium-1 large-1 columns">
+                                                                <label class="input-group with-tit">到</label>
+                                                            </div>
+                                                            <div class="small-12 medium-5 large-5 columns">
+                                                                <label for="hdjssj" class="input-group with-tit">
+                                                                    <a class="input-group-addon right"><i class="fa fa-calendar fa-fw"></i></a>
+                                                                    <input class="active" type="text" id="hdjssj" placeholder="结束时间" name="createTime-lt" aria-invalid="false" />
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="small-12 medium-3 large-3 columns">
+                                                        <div class="row">
+                                                            <div class="small-12 medium-4 large-4 columns">
+                                                                <label for="label1" class="right" role="alert">买家选择</label>
+                                                            </div>
+                                                            <div class="small-12 medium-8 large-8 columns">
+                                                               <label>
+                                                                    <select class="medium" data-invalid="" aria-invalid="true">
+                                                                          	<option value="-1">全部</option>
+																			<option value="0">卖家包邮</option>
+																			<option value="1">平邮</option>
+																			<option value="2">快递</option>
+																			<option value="7">EMS</option>
+																			<option value="18">预计一日达</option>
+																			<option value="19">预计二日达</option>
+																			<option value="20">预计三日达</option>
+																			<option value="26">预约配送</option>
+																			<option value="25">次日必达</option>
+																			<option value="27">到货承诺</option>
+                                                                    </select>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="small-12 medium-6 large-6 columns">
+                                                        <div class="row">
+                                                            <div class="small-12 medium-2 large-2 columns">
+                                                                <label for="label1" class="right" role="alert">订单类型</label>
+                                                            </div>
+                                                            <div class="small-12 medium-4 large-4 columns">
+                                                                <label>
+                                                                    <select class="medium" data-invalid="" aria-invalid="true">
+                                                                                <option value="全部">全部</option>
+                                                                                <option value="虚拟商品">虚拟商品</option>
+                                                                                <option value="其他">其他</option>
+                                                                            </select>
+                                                                </label>
+                                                            </div>
+                                                            <div class="small-12 medium-3 large-3 columns">
+                                                                <a class="button right tiny margin-r secondary radius v_oper_reset_search">重置</a>
+                                                            </div>
+                                                            <div class="small-12 medium-3 large-3 columns">
+                                                                <a class="button right tiny radius v_oper_do_search">搜索</a>
+                                                            </div>
+                                                        </div>
+                                                    </div> -->
+                                                </div>
+	                                            <div class="row do-search">
+	                                                <div class="small-12 columns">
+	                                                    <a class="button right tiny radius v_oper_do_search">搜索</a><a class="button right tiny margin-r secondary radius v_oper_reset_search">重置</a>
+	                                                </div>
+	                                            </div>
+                                            </div>
+                                            <!--加载中...-->
+                                            <div class="v_page_processing row">
+                                                <div class="small-12 medium-6 large-6 columns"></div>
+                                                <div class="small-12 medium-6 large-6 columns"></div>
+                                                <div id="DataTables_Table_0_processing" class="dataTables_processing">
+                                                    <span class="fa-stack fa-lg">
+                                                      <i class="fa fa-square fa-stack-2x"></i>
+                                                      <i class="fa fa-spinner fa-spin fa-stack-1x fa-inverse"></i>
+                                                    </span><br/>
+                                                    <span>数据加载中...</span>
+                                                </div>
+                                            </div>
+                                            <div class="v_table"></div>
+                                        </div>
+                                    </section>
+                                    <!--确认删除警告-->
+                                    <div id="delete_warning" class="reveal-modal tiny v_del_waring warning-panel" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+                                      <div class="row">
+                                        <div class="small-4 columns">
+                                          <div class="row">
+                                            <div class="small-12 columns">
+                                                <i class="fa font-warning fa-warning font-i"></i>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="small-8 columns">
+                                          <div class="row">
+                                            <div class="small-12 columns">
+                                                确定要删除吗？
+                                            </div>
+                                          </div>
+                                          <div class="row dele">
+                                            <div class="small-12 columns">
+                                                <a class="right button radius tiny v_oper_do_delete">确定</a>
+                                                <a class="close-reveal-modal right button radius tiny secondary margin-r close_btn" aria-label="Close">取消</a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                                    </div>
+                                    <!--操作成功提示框-->
+                                    <div class="fixed v_info_success">
+                                        <div class="row">
+                                            <div class="large-12 columns" id="operate_alert_into">
+                                                <div data-alert="" class="success alert-box warning radius nomarg v_show_oper_info">
+                                                    <div><i class="fa fa-fw fa-check"></i><span class="v_show_info">操作成功.</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--未选中提示框-->
+                                    <div class="fixed v_info_fail">
+                                        <div class="row">
+                                            <div class="large-12 columns" id="error_alert_into">
+                                                <div data-alert="" class="error alert-box warning radius nomarg v_show_oper_info">
+                                                    <div><i class="fa fa-fw fa-exclamation-circle"></i><span class="v_show_info">未选择.</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fixed v_info_warning">
+                                        <div class="row">
+                                            <div class="large-12 columns" id="error_alert_into">
+                                                <div data-alert="" class="error alert-box warning radius nomarg v_show_oper_info">
+                                                    <div><i class="fa fa-fw fa-exclamation-circle"></i><span class="v_show_info">未选择.</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end main-->
+                
+                <div class="footer" id="frame_footer" role="contentinfo" include="include.html" data-th-include="${tempInternalPath + 'include'} :: #frame_footer">
+                </div>
+                <!--end footer--> 
+                
+                <div class="go" id="frame_go"><a title="返回顶部" class="gotop" id="goTop"></a> <a title="返回底部" class="gobottom" id="goBottom"></a></div>
+                
+                <div id="frame_exit_off"><a class="exit-off-canvas"></a></div>
+            </div>
+        </div>
+        <div id="frame_javascript">
+        	<div data-th-include="${tempInternalPath + 'include'} :: #base_javascript"></div>
+        	<div data-th-include="${tempInternalPath + 'include'} :: #datatable_javascript"></div>
+            <div id="data_javascript">
+                <script>$(document).foundation();</script>
+                <script data-th-src="@{/cij/js/m/seller.order.delivery.js}" src="/emall/cij/js/m/seller.order.delivery.js"></script>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

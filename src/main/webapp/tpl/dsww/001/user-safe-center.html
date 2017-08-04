@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh" class="no-js">
+<head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta name="keywords" content=" " />
+    <meta name="description" content="" />
+	<title>账户安全中心</title>
+	<link data-th-href="|${tempPath}style/font-awesome.min.css|" href="style/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/wSelect.less|"  href="style/wSelect.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}style/themes.less|"  href="style/themes.less" rel="stylesheet" type="text/less" />
+	<link href="/emall/cij/datatables/css/dataTables.foundation.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}datatables-extend/css/dataTables.response.less|"  href="datatables-extend/css/dataTables.response.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}datatables-extend/css/daterangepicker-f5.less|"  href="datatables-extend/css/daterangepicker-f5.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}style/layout.css|"  href="style/layout.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/master.css|"  href="style/master.css" rel="stylesheet" type="text/css" />
+
+	<script data-th-src="|${tempPath}javascript/less-1.7.3.min.js|" src="javascript/less-1.7.3.min.js"></script>
+	<script data-th-src="|${tempPath}javascript/modernizr.js|" src="javascript/modernizr.js"></script>
+	<script data-th-inline="javascript">
+	Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/ '/emall';
+	Cfg.tempPath = /*[[ ${tempPath} ]]*/ '/emall/tpl/001/';
+	</script>
+</head>
+<body>
+<div id="layout">
+    <div class="wrapper" id="frame_wrapper">
+        <div class="off-canvas-wrap" data-offcanvas="" id="frame_canvas_wrap">
+            <div class="inner-wrap" id="frame_inner_wrap">  
+                <div class="left-off-canvas-menu hide-for-large" id="frame_canvas_menu" data-set="data_accordion"></div>
+                <div class="header" id="frame_header" include="include.html" data-th-include="${tempInternalPath + 'include-user'} :: #frame_header">
+                </div>
+                <!--end header-->
+                
+                <div class="main" role="main" aria-label="主体区块" id="frame_main">
+                    <div class="row" id="frame_main_row1">
+                        <div class="small-12 medium-2 large-2 columns" id="frame_main_col1">
+                            <div id="frame_accordion" include="include.html" data-th-include="${tempInternalPath + 'include-user'} :: #frame_accordion">
+                            </div>
+                        </div>
+                        <div class="small-12 medium-10 large-10 columns" id="frame_main_col2">
+                            <div class="list-position" id="frame_position">
+                                <div id="data_list_addr" class="c-addr">
+                                    <a href="#" target="_self">账户管理</a>&frasl;<a href="#" target="_self">账户安全</a>
+                                </div>
+                            </div>
+                            <div id="data_datatable">
+                                <!--datatable-->
+                                <div id="commodity_post_page">
+                                    <section class="panel">
+                                        <header class="panel-heading">
+                                            安全中心
+                                        </header>
+                                        <div class="panel-body">
+                                            <div class="row  border-solid">
+                                                <div class="large-12 columns left safe-center-area-one safelevel">
+                                                    <!-- <p class="left title-top-first">安全级别：</p>
+                                                    <img src="/emall/tpl/dsww/001/images/pic-92.png" alt="" class="left"/>&nbsp;
+                                                    <p class="left" style="color:#09ab21">&nbsp;&nbsp;低&nbsp;&nbsp;</p>
+                                                    <p class="left" style="color: #c42927"><i class="fa fa-star"></i>建议您启动全部安全设置，以保障账户及资金安全。</p> -->
+                                                </div>
+                                            </div>
+                                            <div class="row border-dashed text-al-center">
+                                                <div class="large-3 small-4 columns left">
+                                                    <img src="/emall/tpl/dsww/001/images/pic-9-2.png" alt="" class="left"/>
+                                                    <p class="p-font-25 left ">登入密码</p>
+                                                </div>
+                                                <div class="large-6 small-6 columns font-14-red text-al-left margin-t ">
+                                                   互联网账号存在被盗风险，建议您定期更改密码以保护账户安全。
+                                                </div>
+                                                <div class="large-3 small-2 columns">
+                                                    <a class="font-14-gray margin-t a-underline a-sa-center-edit pwdedit" >修改</a>
+                                                </div>
+                                            </div>
+                                            <div class="row border-dashed text-al-center">
+                                                <div class="large-3 small-4 columns left emailimg">
+                                                    <img src="/emall/tpl/dsww/001/images/pic-9-31.png" alt="" class="left" style="width: 66px"/>
+                                                    <p class="p-font-25 left ">邮箱验证</p>
+                                                    <img src="/emall/tpl/dsww/001/images/pic-9-6.png" alt="" class="left"/>
+                                                </div>
+                                                <div class="large-6 small-6 columns font-14-gray text-al-left margin-t emailvalue">
+                                                    您可以通过邮件快速改密码
+                                                </div>
+                                                <div class="large-3 small-12 columns emailcheck">
+                                                   <button class="btn-safe-center-apply font-white">立即绑定</button>
+                                                </div>
+                                            </div>
+                                            <div class="row border-dashed text-al-center">
+                                                <div class="large-3 small-4 columns left mobiletelimg" >
+                                                    <img src="/emall/tpl/dsww/001/images/pic-9-5.png" alt="" class="left" style="width: 66px"/>
+                                                    <p class="p-font-25 left ">手机验证</p>
+                                                    <img src="/emall/tpl/dsww/001/images/pic-9-6.png" alt="" class="left"/>
+                                                </div>
+                                                <div class="large-6  small-8 columns font-14-gray text-al-left margin-t mobiletelvalue">
+                                                    您不仅可以通过短信快速改密码。也可以通过验证手机找回密码，防止号码被盗。
+                                                </div>
+                                                <div class="large-3 small-12 columns mobiletelcheck">
+                                                   <button class="btn-safe-center-apply font-white mobiletelapply">立即申请</button>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="row border-dashed text-al-center">
+                                                <div class="large-3 small-4 columns left">
+                                                    <img src="/emall/tpl/dsww/001/images/pic-9-7.png" alt="" class="left" style="width: 66px"/>
+                                                    <p class="p-font-25 left ">支付密码</p>
+                                                    <img src="/emall/tpl/dsww/001/images/pic-9-8.png" alt="" class="left"/>
+                                                </div>
+                                                <div class="large-6 small-8 columns font-14-red text-al-left mar-top-safe-center ">
+                                                    <div class="large-12 columns left safe-center-area-one">
+                                                        <p class="left">安全级别：</p>
+                                                        <img src="/emall/tpl/dsww/001/images/pic-9-10.png" alt="" class="left"/>&nbsp;
+                                                        <p class="left" style="color:#09ab21">&nbsp;&nbsp;较高&nbsp;&nbsp;</p>
+                                                        <p class="left" style="color: #c42927"><i class="fa fa-star"></i>建议您设置更高强度的密码。</p>
+                                                    </div>
+                                                </div>
+                                                <div class="large-3 small-12 columns">
+                                                    <button class="btn-safe-center-apply " style="background: #ffffff;color:#9a9a9a;border: 1px solid #9a9a9a;">未启用</button>
+                                                </div>
+                                            </div> -->
+                                            <!-- <div class="row border-solid text-al-center" style="padding-top: 15px">
+                                                <div class="large-3 small-4 columns left">
+                                                    <img src="/emall/tpl/dsww/001/images/pic-9-11.png" alt="" class="left" style="width: 66px"/>
+                                                    <p class="p-font-25 left ">数字证书</p>
+                                                    <img src="/emall/tpl/dsww/001/images/pic-9-6.png" alt="" class="left"/>
+                                                </div>
+                                                <div class="large-6  small-8 columns font-14-gray text-al-left mar-top-safe-center ">
+                                                    启动数字证书，修改密码等账户安全操作将只能在安装了数字证书的设备上进行。
+                                                </div>
+                                                <div class="large-3 medium-3 small-12 columns">
+                                                    <button class="btn-safe-center-apply font-white">未启用</button>
+                                                </div>
+                                            </div> -->
+                                            <div class="row mar-top">
+                                                <div class="large-12 columns mar-bottom">
+                                                    <p class="p-18">安全服务提示</p>
+                                                </div>
+                                                <div class="large-12 columns left">
+                                                    <p class="p-14 left">1、确认您登入的是文玩天下网站</p><a class="left a-underline">http://www.wwtx.com</a><p class="p-14">,注意防范进入钓鱼网站，不要轻信各种即时交通工具发送的商品或者支付链接，谨防网购诈骗。</p>
+                                                    <p class="p-14 left">2、建议您安装杀毒软件，并定期跟新操作次南通等软件补丁，确保账户及交易安全</p>
+                                                </div>
+                                                <!--<div class="row mar-top">
+                                                    <div class="large-12 columns mar-top mar-bottom">
+                                                        <p class="p-18">常见问题</p>
+                                                    </div>
+                                                </div>
+                                                 <div class="row">
+                                                    <div class="large-6 medium-6 small-12 columns">
+                                                        <p class="left font-14-gray">1、如何设置和开启支付密码</p>
+                                                    </div>
+                                                    <div class="large-6 medium-6 small-12 columns">
+                                                        <p class="left font-14-gray">2、如何验证手机和邮箱</p>
+                                                    </div>
+                                                    <div class="large-6 medium-6 small-12 columns">
+                                                        <p class="left font-14-gray">3、手机，邮箱想修改怎么办？</p>
+                                                    </div>
+                                                    <div class="large-6 medium-6 small-12 columns">
+                                                        <p class="left font-14-gray">4、验证手机邮箱时，提示已被她们验证了，怎么办？</p>
+                                                    </div>
+                                                    <div class="large-6 medium-6 small-12 columns">
+                                                        <p class="left font-14-gray">5、如何提高是我的账户安全性</p>
+                                                    </div>
+                                                    <div class="large-6 medium-6 small-12 columns">
+                                                        <p class="left font-14-gray">6、填写支付密码时，获取的短信验证码为什么每次都是错的？</p>
+                                                    </div>
+                                                </div> -->
+                                            </div>
+
+                                        </div>
+                                    </section>
+                                </div>
+                                   <!--操作成功提示框-->
+                                    <div class="fixed v_info_success">
+                                        <div class="row">
+                                            <div class="large-12 columns" id="operate_alert_into">
+                                                <div data-alert="" class="success alert-box warning radius nomarg v_show_oper_info">
+                                                    <div><i class="fa fa-fw fa-check"></i><span class="v_show_info">操作成功.</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--未选中提示框-->
+                                    <div class="fixed v_info_fail">
+                                        <div class="row">
+                                            <div class="large-12 columns" id="error_alert_into">
+                                                <div data-alert="" class="error alert-box warning radius nomarg v_show_oper_info">
+                                                    <div><i class="fa fa-fw fa-exclamation-circle"></i><span class="v_show_info">未选择.</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end main-->
+                <div class="footer" id="frame_footer" role="contentinfo" include="include.html" data-th-include="${tempInternalPath + 'include'} :: #frame_footer">
+                </div>
+                <!--end footer--> 
+                
+                <div class="go" id="frame_go"><a title="返回顶部" class="gotop" id="goTop"></a> <a title="返回底部" class="gobottom" id="goBottom"></a></div>
+                
+                <div id="frame_exit_off"><a class="exit-off-canvas"></a></div>
+            </div>
+        </div>
+        <div id="frame_javascript">
+           <div data-th-include="${tempInternalPath + 'include'} :: #base_javascript"></div>
+           <div data-th-include="${tempInternalPath + 'include'} :: #datatable_javascript"></div>
+            <div id="data_javascript">
+                <script data-th-src="|${tempPath}javascript/jquery-2.1.3.js|" src="javascript/jquery-2.1.3.js" type="text/javascript" charset="utf8"></script>
+				<script data-th-src="|${tempPath}javascript/AppendAround.js|" src="javascript/AppendAround.js" type="text/javascript" charset="utf8"></script>
+                <script data-th-src="|${tempPath}javascript/swiper.min.js|" src="javascript/swiper.min.js" type="text/javascript" charset="utf8"></script>
+                <!-- <script data-th-src="|${tempPath}javascript/others.js|" src="javascript/others.js" type="text/javascript" charset="utf8"></script> -->
+                <script src="/emall/cij/datatables/js/jquery.dataTables.js" type="text/javascript" charset="utf8"></script>
+                <script src="/emall/cij/datatables/js/dataTables.foundation.js" type="text/javascript" charset="utf8"></script>
+                <script src="/emall/cij/foundation/js/foundation.min.js"></script>
+                <script src="/emall/cij/js/jquery.datatable.page.js"></script>
+                <script data-th-src="|${tempPath}datatables-extend/js/foundation.extend.js|" src="datatables-extend/js/foundation.extend.js"></script>
+                <script data-th-src="|${tempPath}datatables-extend/js/moment.min.js|" src="datatables-extend/js/moment.min.js"></script>
+                <script data-th-src="|${tempPath}datatables-extend/js/daterangepicker.js|" src="datatables-extend/js/daterangepicker.js"></script>
+                <script data-th-src="@{/cij/js/m/user.safe.js}" src="/emall/cij/js/m/user.safe.js"></script>
+                <script>
+                $(document).foundation();
+                </script>
+            </div>
+        </div>
+   </div>
+</div>
+</body>
+</html>

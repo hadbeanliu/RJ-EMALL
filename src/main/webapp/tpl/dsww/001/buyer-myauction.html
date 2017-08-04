@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh" class="no-js">
+<head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta name="keywords" content=" " />
+    <meta name="description" content="" />
+	<title>我的拍卖</title>
+	<link data-th-href="|${tempPath}style/font-awesome.min.css|" href="style/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/themes.less|" href="style/themes.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="@{/cij/datatables/css/dataTables.foundation.css}" href="/emall/cij/datatables/css/dataTables.foundation.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}datatables-extend/css/dataTables.response.less|"  href="datatables-extend/css/dataTables.response.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}datatables-extend/css/daterangepicker-f5.less|"  href="datatables-extend/css/daterangepicker-f5.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}style/layout.css|"  href="style/layout.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/master.css|"  href="style/master.css" rel="stylesheet" type="text/css" />
+
+	<script data-th-src="|${tempPath}javascript/less-1.7.3.min.js|" src="javascript/less-1.7.3.min.js"></script>
+	<script data-th-src="|${tempPath}javascript/modernizr.js|" src="javascript/modernizr.js"></script>
+	<script data-th-inline="javascript">
+	Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/ '/emall';
+	Cfg.tempPath = /*[[ ${tempPath} ]]*/ '/emall/tpl/001/';
+	</script>
+</head>
+<body>
+<div id="layout">
+    <div class="wrapper" id="frame_wrapper">
+        <div class="off-canvas-wrap" data-offcanvas="" id="frame_canvas_wrap">
+            <div class="inner-wrap" id="frame_inner_wrap">  
+                <div class="left-off-canvas-menu hide-for-large" id="frame_canvas_menu" data-set="data_accordion"></div>
+                <div class="header" id="frame_header" include="include.html" data-th-include="${tempInternalPath + 'include-buyer'} :: #frame_header">
+                </div>
+                <!--end header-->
+                
+                <div class="main" role="main" aria-label="主体区块" id="frame_main">
+                    <div class="row" id="frame_main_row1">
+                        <div class="small-12 medium-2 large-2 columns" id="frame_main_col1">
+                            <div id="frame_accordion" include="include.html" data-th-include="${tempInternalPath + 'include-buyer'} :: #frame_accordion">
+                            </div>
+                        </div>
+                        <div class="small-12 medium-10 large-10 columns" id="frame_main_col2">
+                            <div class="list-position" id="frame_position">
+                                <div id="data_list_addr" class="c-addr">
+                                    <a href="#" target="_self">我是买家</a>&frasl;<a href="#" target="_self">我的拍卖</a>
+                                </div>
+                            </div>
+                            <div id="data_datatable">
+                                <!--datatable-->   
+                                <div id="user_page">
+                                    <section class="panel">
+                                    	<header class="panel-heading">
+                                            我的拍卖
+                                            <span class="tools right" style="display:none;">
+                                                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                                                <a href="javascript:;" class="fa fa-times"></a>
+                                             </span>
+                                        </header>
+                                        <div class="panel-body">
+	                                        <ul class="button-group tabs" data-tab="">
+												<li class="tab-title active"><a id="used_payment_tab" href="#auction-record">拍卖订单</a></li>
+												<li class="tab-title"><a href="#auction-bond">我的保证金</a></li>
+											</ul>
+                                        	<div class="tabs-content">
+                                        	<div class="content active" id="auction-record">
+	                                           <div class="table_bar clearfix"> 
+	                                             <!--<div class="table_bar margin-t clearfix"> 
+	                                                 <div class="more-filter">
+	                                                    <a>筛选<i class="fa fa-caret-down"></i><i class="fa fa-caret-up"></i></a>
+	                                                </div>                                                    
+                                                    <div class="bar_right">
+                                                        <div class="search">
+                                                          <input name="payServiceProviderTitle-lk" class="inp v_oper_quick_search" id="topsearch" type="text" placeholder="请输入..." accesskey="s" title="请输入查询内容" x-webkit-speech="" x-webkit-grammar="builtin:translate" lang="zh-CN" style="display: block;" />
+                                                          <i class="fa fa-filter v_oper_advanced_search" title="高级"></i>
+                                                          <i class="fa fa-search v_oper_click_quick_search" title="搜索"></i>
+                                                        </div>
+                                                    </div> -->
+                                                </div>
+	                                            <div class="filter-items hide p-border v_search">
+	                                                <div class="row">
+	                                                    <div class="small-12 medium-4 large-4 columns">
+	                                                        <div class="row">
+	                                                            <div class="small-12 medium-4 large-4 columns">
+	                                                                <label for="label1" class="right" role="alert">竞拍名称</label>
+	                                                            </div>
+	                                                            <div class="small-12 medium-8 large-8 columns">
+	                                                                <label>
+	                                                                    <input type="text" name="goodsTitle-lk" id="label1" placeholder="竞拍名称" data-invalid="" />
+	                                                                </label>
+	                                                            </div>
+	                                                        </div>
+	                                                    </div>
+	                                                    <div class="small-12 medium-8 large-8 columns">
+	                                                        <div class="row">
+	                                                            <div class="small-12 medium-2 large-2 columns">
+	                                                                <label for="label1" class="right" role="alert">交易时间</label>
+	                                                            </div>
+	                                                            <div class="small-12 medium-4 large-4 columns">
+	                                                                <label for="hdkssj" class="input-group with-tit">
+	                                                                    <a class="input-group-addon right"><i class="fa fa-calendar fa-fw"></i></a>
+	                                                                    <input class="active" type="text" id="hdkssj" placeholder="开始时间" name="auctionTime-gt" aria-invalid="false" />
+	                                                                </label>
+	                                                            </div>
+	                                                            <div class="small-12 medium-1 large-1 columns">
+	                                                                <label class="input-group with-tit">到</label>
+	                                                            </div>
+	                                                            <div class="small-12 medium-5 large-5 columns">
+	                                                                <label for="hdjssj" class="input-group with-tit">
+	                                                                    <a class="input-group-addon right"><i class="fa fa-calendar fa-fw"></i></a>
+	                                                                    <input class="active" type="text" id="hdjssj" placeholder="结束时间" name="auctionTime-lt" aria-invalid="false" />
+	                                                                </label>
+	                                                            </div>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                                <div class="row">
+	                                                    <div class="small-12 medium-4 large-4 columns">
+	                                                        <div class="row">
+	                                                            <div class="small-12 medium-4 large-4 columns">
+	                                                                <label for="label1" class="right" role="alert">竞拍编号</label>
+	                                                            </div>
+	                                                            <div class="small-12 medium-8 large-8 columns">
+	                                                                <label>
+	                                                                    <input type="text" id="label1" name="id" placeholder="竞拍编号" data-invalid="" />	                                                                   
+	                                                                </label>
+	                                                            </div>
+	                                                        </div>
+	                                                    </div>
+	                                                    <div class="small-12 medium-8 large-8 columns">
+	                                                        <div class="row">
+	                                                            <div class="small-12 medium-6 large-6 columns">
+	                                                                <div class="row">
+	                                                                    <div class="small-12 medium-4 large-4 columns">
+	                                                                        <label for="label1" class="right" role="alert">交易状态</label>
+	                                                                    </div>
+	                                                                    <div class="small-12 medium-8 large-8 columns">
+	                                                                            <select class="medium" data-invalid="" aria-invalid="true">
+	                                                                                <option value="0">等待开拍</option>
+	                                                                                <option value="1">拍卖中</option>
+	                                                                                <option value="2">已结束</option>	                                                                              
+	                                                                            </select>
+	                                                                    </div>
+	                                                                </div>
+	                                                            </div>	                                                          
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                            <div class="row">
+                                                    <div class="small-12 columns">
+                                                        <a class="button right tiny v_oper_do_search">搜索</a><a class="button right tiny margin-r secondary radius v_oper_reset_search">重置</a>
+                                                    </div>
+                                                </div>
+	                                            </div>
+	                                            
+	                                            <!--加载中...-->
+	                                            <div class="v_page_processing row">
+	                                                <div class="small-12 medium-6 large-6 columns"></div>
+	                                                <div class="small-12 medium-6 large-6 columns"></div>
+	                                                <div id="DataTables_Table_0_processing" class="dataTables_processing">
+	                                                    <span class="fa-stack fa-lg">
+	                                                      <i class="fa fa-square fa-stack-2x"></i>
+	                                                      <i class="fa fa-spinner fa-spin fa-stack-1x fa-inverse"></i>
+	                                                    </span><br/>
+	                                                    <span>数据加载中...</span>
+	                                                </div>
+	                                            </div>
+	                                            <div class="margin-t table_bar hide-for-large clearfix bar_apply_wrap" data-set="data_bar_apply"></div>
+	                                            <div class="v_table simple"></div>
+											    
+												<!--确认删除警告-->
+			                                    <div id="delete_warning" class="reveal-modal tiny v_del_waring warning-panel" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+			                                      <div class="row">
+			                                        <div class="small-4 columns">
+			                                          <div class="row">
+			                                            <div class="small-12 columns">
+			                                                <i class="fa font-warning fa-warning font-i"></i>
+			                                            </div>
+			                                          </div>
+			                                        </div>
+			                                        <div class="small-8 columns">
+			                                          <div class="row">
+			                                            <div class="small-12 columns">
+			                                                确定要删除吗？
+			                                            </div>
+			                                          </div>
+			                                          <div class="row dele">
+			                                            <div class="small-12 columns">
+			                                                <a class="right button radius tiny v_oper_do_delete">确定</a>
+			                                                <a class="close-reveal-modal right button radius tiny secondary margin-r close_btn" aria-label="Close">取消</a>
+			                                            </div>
+			                                          </div>
+			                                        </div>
+			                                      </div>
+			                                      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+			                                    </div>
+			                                    <!--操作成功提示框-->
+			                                    <div class="fixed v_info_success">
+			                                        <div class="row">
+			                                            <div class="large-12 columns" id="operate_alert_into">
+			                                                <div data-alert="" class="success alert-box warning radius nomarg v_show_oper_info">
+			                                                    <div><i class="fa fa-fw fa-check"></i><span class="v_show_info">操作成功.</span></div>
+			                                                </div>
+			                                            </div>
+			                                        </div>
+			                                    </div>
+			                                    <!--未选中提示框-->
+			                                    <div class="fixed v_info_fail">
+			                                        <div class="row">
+			                                            <div class="large-12 columns" id="error_alert_into">
+			                                                <div data-alert="" class="error alert-box warning radius nomarg v_show_oper_info">
+			                                                    <div><i class="fa fa-fw fa-exclamation-circle"></i><span class="v_show_info">未选择.</span></div>
+			                                                </div>
+			                                            </div>
+			                                        </div>
+			                                    </div>
+			                                    <div class="fixed v_info_warning">
+			                                        <div class="row">
+			                                            <div class="large-12 columns" id="error_alert_into">
+			                                                <div data-alert="" class="error alert-box warning radius nomarg v_show_oper_info">
+			                                                    <div><i class="fa fa-fw fa-exclamation-circle"></i><span class="v_show_info">未选择.</span></div>
+			                                                </div>
+			                                            </div>
+			                                        </div>
+			                                    </div>
+	                                        </div>
+	                                        <div class="content" id="auction-bond">
+												<div class="margin-t v_table simple"></div>
+											</div>
+											</div>
+	                                    </div>
+                                    </section>
+
+                                </div>
+                                                                               
+                         		 </div>
+                            </div>
+                        </div>
+                    </div>              
+                <!--end main-->
+                
+                <div class="footer" id="frame_footer" role="contentinfo" include="include.html" data-th-include="${tempInternalPath + 'include'} :: #frame_footer">
+                </div>
+                <!--end footer--> 
+                
+                <div class="go" id="frame_go"><a title="返回顶部" class="gotop" id="goTop"></a> <a title="返回底部" class="gobottom" id="goBottom"></a></div>
+                
+                <div id="frame_exit_off"><a class="exit-off-canvas"></a></div>
+            </div>
+        </div>
+      
+        <div id="frame_javascript">
+       	<div data-th-include="${tempInternalPath + 'include'} :: #base_javascript"></div>
+       	<div data-th-include="${tempInternalPath + 'include'} :: #datatable_javascript"></div>
+           <div id="data_javascript">
+				<script>$(document).foundation();</script>
+               <script data-th-src="@{/cij/js/m/buyer.myauction.js}" src="/emall/cij/js/m/buyer.myauction.js"></script>
+           </div>
+       </div>    
+    </div>
+</div>
+</body>
+</html>

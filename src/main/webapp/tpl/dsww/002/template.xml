@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<tempSuite>
+  <tempSuiteName>电商模板</tempSuiteName>
+  <tempSuiteDesc>电商模板</tempSuiteDesc>
+  <tempSuiteVersion>1.0</tempSuiteVersion>
+  <tempSuiteAuthor>apode</tempSuiteAuthor>
+  <template>
+		<tempName><![CDATA[商品详情页]]></tempName>
+		<tempType>index</tempType>
+		<tempExt><![CDATA[jsp]]></tempExt>
+		<fileName><![CDATA[goodsDetail.html]]></fileName>
+   </template>
+   <template>
+		<tempName><![CDATA[include]]></tempName>
+		<tempType>others</tempType>
+		<tempExt><![CDATA[jsp]]></tempExt>
+		<fileName><![CDATA[include.html]]></fileName>
+   </template>
+</tempSuite>

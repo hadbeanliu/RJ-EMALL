@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta charset="utf-8" />
+	
+	<!-- If you delete this meta tag World War Z will become a reality -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<title>CRUD带表格分页例子</title>
+	<!-- If you are using the CSS version, only link these 2 files, you may add app.css to use for your overrides if you like -->
+	<link data-th-href="@{/cij/foundation/css/normalize.css}" rel="stylesheet" href="css/normalize.css" />
+	<link data-th-href="@{/cij/foundation/css/foundation.css}" rel="stylesheet" href="css/foundation.css" />
+	<link data-th-href="@{/cij/foundation-icons/foundation-icons.css}" rel="stylesheet" href="css/foundation.css" />
+    
+	<link data-th-href="@{/cij/css/font-awesome.min.css}" rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+	<link data-th-href="@{/cij/css/themes.less}" rel="stylesheet" type="text/less" href="css/themes.less" />
+
+	<!-- If you are using the gem version, you need this only -->
+	<link data-th-href="@{/cij/css/app.css}" rel="stylesheet" href="css/app.css" />
+
+	<!-- DataTables CSS
+	<link data-th-href="@{/cij/datatables-1.10.6/css/jquery.dataTables.css}" rel="stylesheet" type="text/css" href="/DataTables-1.10.6/media/css/jquery.dataTables.css" />
+	 -->
+	<link data-th-href="@{/cij/datatables/css/dataTables.foundation.css}" rel="stylesheet" type="text/css" href="dataTables.foundation.css" />
+	<link data-th-href="@{/cij/datatables-extend/css/dataTables.response.css}" rel="stylesheet" type="text/css" href="dataTables.response.css" />
+	
+	<script data-th-inline="javascript">
+	Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/ '';
+	</script>
+	<script data-th-src="@{/cij/js/less-1.7.3.min.js}" src="js/less-1.7.3.min.js"></script>
+	<script data-th-src="@{/cij/foundation/js/vendor/modernizr.js}"  src="js/vendor/modernizr.js"></script>
+</head>
+<body>
+<div id="personaddress">
+	<div class="container">
+		<section>
+        	<div class="table_bar">
+            	<div class="bar_left">
+                	<div class="left">
+                        <div class="button radius tiny left v_oper_add"><i class="fa fa-user-plus"></i>添加收货地址</div>
+                    </div>
+                    <div class="right">
+                        <select id="select_change">
+                            <option value="v_oper_edit">编辑</option>
+                            <option value="v_oper_del">删除</option>
+                        </select>
+                        <div class="button radius tiny left" data-v-oper-id="select_change">应用</div>
+<!--                    
+                        <div class="button radius tiny left v_oper_select_all" >全选</div>
+						<div class="button radius tiny left v_oper_delete" >删除</div>
+                        <div class="button radius tiny left v_oper_add" >添加</div>
+                        <div class="button radius tiny left v_oper_edit" >编辑</div>
+                        <div class="button radius tiny left v_oper_search">搜索</div>
+-->
+                        <div class="button radius tiny left v_oper_refresh">刷新</div>
+                    </div>
+                </div>
+            	<div class="bar_right">
+                    <div class="search">
+                      <input name="receiver" class="inp v_oper_quick_search" id="topsearch" type="text" placeholder="请输入查询内容" accesskey="s" title="请输入查询内容" x-webkit-speech="" x-webkit-grammar="builtin:translate" lang="zh-CN" style="display: block;" />
+                      <i class="fa fa-search" title="搜索"></i>
+                      <i class="fa fa-cog v_oper_advanced_search" title="高级"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="v_table"></div>
+		</section>
+        <div id="edit-user" class="reveal-modal tiny openModal v_form" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+          <form>
+          <div class="login-box">
+              <h3>收货地址信息</h3>
+              <input type="hidden" name="id" />
+              <div class="row">
+                <div class="small-12 columns">
+                	<label class="label"><input type="text" name="receiver" id="right-label" placeholder="收货人"/></label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="small-12 columns">
+                	<label class="label"><input type="text" name="address" id="right-label" placeholder="收货地址"/></label>
+                </div>
+              </div> 
+              <div class="row">
+                <div class="small-12 columns">
+                	<label class="label"><input type="text" name="mobiletel" placeholder="手机号"/></label>
+                </div>
+              </div>
+              <div class="row confium">
+                <div class="small-12 columns">
+                    <a class="right button radius tiny v_oper_submit">保存</a>
+                    <a class="right button radius tiny v_oper_submit_and_edit_next margin-r">保存，并修改下一个</a>
+                    <a class="close-reveal-modal right button radius tiny secondary margin-r" aria-label="Close">取消</a>
+                </div>
+              </div>
+          </div>
+          </form>
+          <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+        </div>
+        <div id="add-user" class="reveal-modal tiny openModal" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+          <form>
+          <div class="login-box">
+              <h3>添加收货地址</h3>
+              <div class="row">
+                <div class="small-12 columns">
+                	<label class="label"><input type="text" name="receiver" id="right-label" placeholder="收货人"/></label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="small-12 columns">
+                	<label class="label"><input type="text" name="address" id="right-label" placeholder="收货地址"/></label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="small-12 columns">
+                	<label class="label"><input type="text" name="mobiletel" id="right-label" placeholder="手机号"/></label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="small-12 columns">
+                	<label class="label"><input type="text" name="phone" id="right-label" placeholder="固定电话"/></label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="small-12 columns">
+                	<label class="label"><input type="text" name="zipcode" id="right-label" placeholder="邮政编码"/></label>
+                </div>
+              </div>
+              <div class="row confium">
+                <div class="small-12 columns">
+                    <a class="right button radius tiny">保存</a>
+                    <a class="close-reveal-modal right button radius tiny secondary margin-r" aria-label="Close">取消</a>
+                </div>
+              </div>
+          </div>
+          </form>
+          <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+        </div>
+        <div id="search-user" class="reveal-modal tiny openModal v_search" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+          <form>
+          <div class="login-box">
+              <h3>查询</h3>
+              <div class="row">
+                <div class="small-12 columns">
+                	<label class="label"><input type="text" id="right-label" name="receiver" placeholder="收货人" /></label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="small-12 columns">
+                	<label class="label"><input type="text" name="address" id="right-label" placeholder="收货地址"/></label>
+                </div>
+              </div> 
+              <div class="row">
+                <div class="small-12 columns">
+                	<label class="label"><input type="text" name="mobiletel" placeholder="手机号"/></label>
+                </div>
+              </div>
+              <div class="row confium">
+                <div class="small-12 columns">
+                    <a class="right button radius tiny v_oper_do_search">确定</a>
+                    <a class="close-reveal-modal right button radius tiny secondary margin-r" aria-label="Close">取消</a>
+                </div>
+              </div>
+          </div>
+          </form>
+          <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+        </div>
+        <div id="warning" class="reveal-modal tiny v_del_waring warning-panel" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+          <div class="row">
+            <div class="small-3 columns">
+              <div class="row">
+                <div class="small-12 columns">
+                    <i class="fa font-warning fa-warning font-i"></i>
+                </div>
+              </div>
+            </div>
+            <div class="small-9 columns">
+              <div class="row">
+                <div class="small-12 columns">
+                    确定要删除吗？
+                </div>
+              </div>
+              <div class="row dele">
+                <div class="small-12 columns">
+                    <a class="right button radius tiny v_oper_do_delete">确定</a>
+                    <a class="close-reveal-modal right button radius tiny secondary margin-r close_btn" aria-label="Close">取消</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a class="close-reveal-modal" aria-label="Close">×</a>
+        </div>
+	</div>
+</div>
+<!-- <div class="fixed fbottom">
+    <div class="row">
+        <div class="large-12 columns" id="alert_into">
+        <div data-alert="" class="alert-box warning radius nomarg v_show_oper_info">
+			<div class="v_show_info">您与 叮当猫 已成为好友.</div>
+			<a href="#" class="close">&times;</a>
+		</div>
+        </div>
+    </div>
+</div> -->
+
+	<script data-th-src="@{/cij/jquery/jquery-2.1.3.js}" src="js/vendor/jquery.js"></script>
+	
+	<!-- DataTables -->
+	<script data-th-src="@{/cij/datatables/js/jquery.dataTables.js}" type="text/javascript" charset="utf8" src="/DataTables-1.10.6/media/js/jquery.dataTables.js"></script>
+	<script data-th-src="@{/cij/datatables/js/dataTables.foundation.js}" type="text/javascript" charset="utf8" src="dataTables.foundation.js"></script>
+
+	<script data-th-src="@{/cij/foundation/js/foundation.min.js}" src="js/foundation.min.js"></script>
+	<script>
+	$(document).foundation();
+	</script>
+	
+	<script data-th-src="@{/cij/js/jquery.datatable.page.js}" src="js/jquery.datatable.page.js"></script>
+
+	<script data-th-src="@{/cij/js/rongji.js}" src=""></script>
+	<script data-th-src="@{/cij/js/m/address.js}" src=""></script>
+	<script data-th-src="@{/cij/js/thymeleaf.js}" src=""></script>
+	<script data-th-src="@{/cij/thymol/thymol-full.js}" src=""></script>
+</body>
+</html>

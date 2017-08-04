@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh" class="no-js">
+<head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta name="keywords" content=" " />
+    <meta name="description" content="" />
+	<title>发货成功</title>
+	<link data-th-href="|${tempPath}style/font-awesome.min.css|" href="style/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/themes.less|" href="style/themes.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="@{/cij/datatables/css/dataTables.foundation.css}" href="/emall/cij/datatables/css/dataTables.foundation.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}datatables-extend/css/dataTables.response.less|"  href="datatables-extend/css/dataTables.response.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}datatables-extend/css/daterangepicker-f5.less|"  href="datatables-extend/css/daterangepicker-f5.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}style/layout.css|"  href="style/layout.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/master.css|"  href="style/master.css" rel="stylesheet" type="text/css" />
+
+	<script data-th-src="|${tempPath}javascript/less-1.7.3.min.js|" src="javascript/less-1.7.3.min.js"></script>
+	<script data-th-src="|${tempPath}javascript/modernizr.js|" src="javascript/modernizr.js"></script>
+	<script data-th-inline="javascript">
+	Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/ '/emall';
+	Cfg.tempPath = /*[[ ${tempPath} ]]*/ '/emall/tpl/dsww/001/';
+	</script>
+</head>
+<body>
+<div id="layout">
+    <div class="wrapper" id="frame_wrapper">
+        <div class="off-canvas-wrap" data-offcanvas="" id="frame_canvas_wrap">
+            <div class="inner-wrap" id="frame_inner_wrap">  
+                <div class="left-off-canvas-menu hide-for-large" id="frame_canvas_menu" data-set="data_accordion"></div>
+                <div class="header" id="frame_header" include="include.html" data-th-include="${tempInternalPath + 'include-seller'} :: #frame_header">
+                </div>
+                <!--end header-->
+                
+                <div class="main" role="main" aria-label="主体区块" id="frame_main">
+                    <div class="row" id="frame_main_row1">
+                        <div class="small-12 medium-12 large-2 columns" id="frame_main_col1">
+                            <div id="frame_accordion" include="include.html" data-th-include="${tempInternalPath + 'include-seller'} :: #frame_accordion">
+                            </div>
+                        </div>
+                        <div class="small-12 medium-12 large-10 columns" id="frame_main_col2">
+                            <div class="list-position" id="frame_position">
+                                <div id="data_list_addr" class="c-addr">
+                                    <a href="#" target="_self">我是卖家</a>&frasl;<a href="#" target="_self">物流管理</a>&frasl;<a href="#" target="_self">发货成功</a>
+                                </div>
+                            </div>
+                            <div id="data_datatable">
+                                <!--datatable-->
+                                <div id="user_page">
+                                    <section class="panel">
+                                        <header class="panel-heading">
+                                            <i class="fa fa-fw fa-check-circle font-large font-success"></i>发货成功
+                                        </header> 
+                                        <div class="panel-body">
+                                            <div class="mesboard-index">
+                                                <div class="tit">物流信息</div>
+                                                <div class="pad-10">
+                                                    <input type="hidden" class="select_id" data-th-value="${order.logistics.id}" />
+	                                                <div class="font-small">物流编号：<span data-th-text="${order.logistics.id}">LP986823657236</span></div>
+	                                                <div class="font-small">物流公司：<span class="logcode" data-th-text="${order.logistics.logiscompanycode}">顺丰快递</span></div>
+	                                                <div class="font-small">运单号码：<span class="mailno" data-th-text="${order.logistics.mailno}">10010001001</span>&nbsp;&nbsp;&nbsp;&nbsp;<a class="v_oper_edit" style="color: blue;">修改</a></div>
+	                                                <div class="font-small">下单信息：<span data-th-text="${order.createTime}">2015-07-08 15:40:45</span>&nbsp;&nbsp;订单创建</div>
+	                                                <div class="font-small">　　　　　<span data-th-text="${order.logistics.createtime}">2015-07-09 14:40:45</span>&nbsp;&nbsp;发货完成</div>
+                                                </div>
+                                            </div>
+	                                        <div class="mesboard-index">
+	                                            <div class="tit">发货信息</div>
+	                                            <div class="pad-10">
+	                                            	<div class="font-small">　　　　　<span data-th-text="${sendadd.areas}+'  '+
+																		(${sendadd.address}==null?'':${sendadd.address})+'，'+
+																		(${sendadd.zipcode}==null?'':${sendadd.zipcode})+'，'+
+																		(${sendadd.receiver}==null?'':${sendadd.receiver})+'，'+
+																		(${sendadd.mobiletel}==null?'':${sendadd.mobiletel})">福建省福州市鼓楼区  软件园，350000，rjem，18145678909</span></div>
+	                                            </div>
+	                                        </div>
+	                                        <div class="mesboard-index">
+	                                            <div class="tit">收货信息</div>
+	                                            <div class="pad-10">
+	                                            	<div class="font-small">　　　　　<span data-th-text="${order.logistics.areas}+'  '+
+																		(${order.logistics.address}==null?'':${order.logistics.address})+'，'+
+																		(${order.logistics.zipcode}==null?'':${order.logistics.zipcode})+'，'+
+																		(${order.logistics.receiver}==null?'':${order.logistics.receiver})+'，'+
+																		(${order.logistics.mobiletel}==null?'':${order.logistics.mobiletel})">福建省福州市鼓楼区  软件园1，350000，123，18059001243</span></div>
+	                                            </div>
+	                                        </div>
+	                                        <div class="mesboard-index">
+	                                            <div class="tit">退货信息</div>
+	                                            <div class="pad-10">
+	                                            	<div class="font-small">　　　　　<span data-th-text="${canceladd.areas}+'  '+
+																		(${canceladd.address}==null?'':${canceladd.address})+'，'+
+																		(${canceladd.zipcode}==null?'':${canceladd.zipcode})+'，'+
+																		(${canceladd.receiver}==null?'':${canceladd.receiver})+'，'+
+																		(${canceladd.mobiletel}==null?'':${canceladd.mobiletel})">福建省福州市鼓楼区  软件园，350000，rjem，18145678909</span></div>
+	                                            </div>
+	                                        </div>
+	                                        <div class="mesboard-index">
+	                                            <div class="tit">交易订单详情</div>
+                                                <div class="v_table simple margin-t">
+                                            <table class="display dataTable no-footer min_h45">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="dealtime small-pad10 hide-for-small">
+                                                            <div class="left"  data-th-text="|成交时间：${#dates.format(order.createTime, 'yyyy-MM-dd HH:mm:ss')}|">
+                                                                成交时间：2015-03-04 18:32:45
+                                                            </div>
+                                                        </td>
+                                                        <td class="data_id small-pad10 hide-for-small">
+                                                            <a class="p-color" title="订单编号"  data-th-text="|订单编号：${order.orderNo}|">
+                                                                订单编号：00000002
+                                                            </a>
+                                                        </td>
+                                                        <td class="goods mart10 small-marl10 padt50 td_block mar0" data-th-each="goods:${order.goods}">
+                                                                <div class="padb10 block max_h95">
+                                                                    <div class="img">
+                                                                        <a data-th-title="${goods.goodsTitle}" title="Homestyle夏季真皮透气鞋男士运动休闲鞋英伦板鞋">
+                                                                            <img data-th-src="${goods.goodsImage}" src="/emall/tpl/001/images/1.gif"/>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="des">
+                                                                        <a class="margin-b p-color small-marb5" data-th-title="${goodsgoodsTitle}" data-th-text="${goods.goodsTitle}" title="Homestyle夏季真皮透气鞋男士运动休闲鞋英伦板鞋">
+                                                                            Homestyle夏季真皮透气鞋男士运动休闲鞋英伦板鞋
+                                                                        </a>
+                                                                        <span class="classify">
+																			<a data-th-text="${goods.sku}">
+																			</a>
+                                                                        </span>
+																		<span class="classify">
+																			<a data-th-text="|${goods.goodsPrice/100.0}0　× |"></a>
+																			<a data-th-text="${goods.purchaseQuantity}"></a>
+																		</span>
+                                                                    </div>
+                                                                </div>
+                                                        </td>                                                        
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+	                                        </div>
+                                        </div>
+                                    </section>
+                                    <!--编辑-->
+                                    <div id="edit-order" class="reveal-modal small openModal v_edit_form" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+                                      <form data-abide="">
+                                          <h3>修改运单号码</h3>
+                                          <div class="modal_wrap">
+                                              <div class="row">
+                                              	 <div class="small-12 columns">
+                                              	 	<input type="hidden" class="logisticId" name="id"/>
+                                              	 	<label>运单号码
+                                              	 		<input type="text" name="mailno" required=""/>
+                                              	 	</label>
+                                              	 	<small class="error">运单号码不能为空！</small>
+                                              	 </div>
+                                              </div>
+                                          </div>
+                                          <div class="row confirm">
+                                            <div class="small-12 columns">
+                                                <a class="right button radius tiny v_oper_submit margin-r">保存</a>
+                                                <a class="close-reveal-modal right button radius tiny secondary margin-r" aria-label="Close">取消</a>
+                                            </div>
+                                          </div>
+                                      </form>
+                                      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                                    </div>
+                                    <!--确认删除警告-->
+                                    <div id="delete_warning" class="reveal-modal tiny v_del_waring warning-panel" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+                                      <div class="row">
+                                        <div class="small-4 columns">
+                                          <div class="row">
+                                            <div class="small-12 columns">
+                                                <i class="fa font-warning fa-warning font-i"></i>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="small-8 columns">
+                                          <div class="row">
+                                            <div class="small-12 columns">
+                                                确定要删除吗？
+                                            </div>
+                                          </div>
+                                          <div class="row dele">
+                                            <div class="small-12 columns">
+                                                <a class="right button  tiny v_oper_do_delete">确定</a>
+                                                <a class="close-reveal-modal right button  tiny secondary margin-r close_btn" aria-label="Close">取消</a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                                    </div>
+                                    <!--操作成功提示框-->
+                                    <div class="fixed v_info_success">
+                                        <div class="row">
+                                            <div class="large-12 columns" id="operate_alert_into">
+                                                <div data-alert="" class="success alert-box warning  nomarg v_show_oper_info">
+                                                    <div><i class="fa fa-fw fa-check"></i><span class="v_show_info">操作成功.</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--未选中提示框-->
+                                    <div class="fixed v_info_fail">
+                                        <div class="row">
+                                            <div class="large-12 columns" id="error_alert_into">
+                                                <div data-alert="" class="error alert-box warning  nomarg v_show_oper_info">
+                                                    <div><i class="fa fa-fw fa-exclamation-circle"></i><span class="v_show_info">未选择.</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fixed v_info_warning">
+                                        <div class="row">
+                                            <div class="large-12 columns" id="error_alert_into">
+                                                <div data-alert="" class="error alert-box warning  nomarg v_show_oper_info">
+                                                    <div><i class="fa fa-fw fa-exclamation-circle"></i><span class="v_show_info">未选择.</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end main-->
+                
+                <div class="footer" id="frame_footer" role="contentinfo" include="include.html" data-th-include="${tempInternalPath + 'include'} :: #frame_footer">
+                </div>
+                <!--end footer--> 
+                
+                <div class="go" id="frame_go"><a title="返回顶部" class="gotop" id="goTop"></a> <a title="返回底部" class="gobottom" id="goBottom"></a></div>
+                
+                <div id="frame_exit_off"><a class="exit-off-canvas"></a></div>
+            </div>
+        </div>
+        <div id="frame_javascript">
+        	<div data-th-include="${tempInternalPath + 'include'} :: #base_javascript"></div>
+        	<div data-th-include="${tempInternalPath + 'include'} :: #datatable_javascript"></div>
+            <div id="data_javascript">
+                <script data-th-src="@{/cij/js/m/seller-delivery-result.js}" src="/emall/cij/js/m/seller-delivery-result.js"></script>
+                <script>
+                $(document).foundation();
+				$(".bar_apply").appendAround();
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

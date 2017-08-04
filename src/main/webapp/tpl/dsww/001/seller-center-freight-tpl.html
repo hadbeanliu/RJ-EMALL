@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh" class="no-js">
+<head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta name="keywords" content=" " />
+    <meta name="description" content="" />
+	<title>运费模板</title>
+	<link data-th-href="|${tempPath}style/font-awesome.min.css|" href="style/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/wSelect.less|"  href="style/wSelect.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}style/themes.less|"  href="style/themes.less" rel="stylesheet" type="text/less" />
+	<link href="/emall/cij/datatables/css/dataTables.foundation.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}datatables-extend/css/dataTables.response.less|"  href="datatables-extend/css/dataTables.response.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}datatables-extend/css/daterangepicker-f5.less|"  href="datatables-extend/css/daterangepicker-f5.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}style/layout.css|"  href="style/layout.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/master.css|"  href="style/master.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/jquery.Jcrop.css|"  href="style/jquery.Jcrop.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/new.css|"  href="style/new.css" rel="stylesheet" type="text/css" />
+
+	<script data-th-src="|${tempPath}javascript/less-1.7.3.min.js|" src="javascript/less-1.7.3.min.js"></script>
+	<script data-th-src="|${tempPath}javascript/modernizr.js|" src="javascript/modernizr.js"></script>
+	<script data-th-inline="javascript">
+	Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/ '/emall';
+	Cfg.tempPath = /*[[ ${tempPath} ]]*/ '/emall/tpl/dsww/001/';
+	</script>
+</head>
+<body>
+<div id="layout">
+    <div class="wrapper" id="frame_wrapper">
+        <div class="off-canvas-wrap" data-offcanvas="" id="frame_canvas_wrap">
+            <div class="inner-wrap" id="frame_inner_wrap">  
+                <div class="left-off-canvas-menu hide-for-large" id="frame_canvas_menu" data-set="data_accordion"></div>
+                <div class="header" id="frame_header" include="include.html" data-th-include="${tempInternalPath + 'include-seller'} :: #frame_header">
+                </div>
+                <!--end header-->
+                
+                <div class="main" role="main" aria-label="主体区块" id="frame_main">
+                    <div class="row" id="frame_main_row1">
+                        <div class="small-12 medium-2 large-2 columns" id="frame_main_col1">
+                            <div id="frame_accordion" include="include.html" data-th-include="${tempInternalPath + 'include-seller'} :: #frame_accordion">
+                            </div>
+                        </div>
+                        <div class="small-12 medium-10 large-10 columns" id="frame_main_col2">
+                            <div class="list-position" id="frame_position">
+                                <div id="data_list_addr" class="c-addr">
+                                    <a href="#" target="_self">我是卖家</a>&frasl;<a href="#" target="_self">物流管理</a>&frasl;<a href="#" target="_self">运费模板</a>
+                                </div>
+                            </div>
+                            <div id="data_datatable">
+                                <!--datatable-->
+                                <div id="commodity_post_page" class="panel-freight_tpl">
+                                    <section class="panel">
+                                        <header class="panel-heading">
+                                            运费模板
+                                        </header>
+                                        <div class="panel-body">
+                                            <div class="commodity-post">
+                                                <div class="row frei-tpl-row1">
+                                                    <div class="large-12 columns">
+                                                        <button class="tiny primary margin-b v_button_add"><i class="fa fa-plus fa-plus-ra-mo">&nbsp;增加运费模板</i></button>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="large-12 columns">
+                                                        <table data-th-each="vo:${freights}"  width="" border="0" cellspacing="0" cellpadding="0" class="table-frei-tpl ">
+                                                            <tbody data-th-class="|v_oper_click ${vo.status == '0' ? 'od-expand-btn' : 'od-fold-btn'}|">
+                                                                <tr>
+                                                                    <td width="223" class="table-left" data-th-text="${vo.name}">默认模本一</td>
+                                                                    <td width="205" class="table-left" data-th-text="|状态：${vo.status=='0'?'禁用':'已启用'}|">状态：已启用</td>
+                                                                    <td width="505" colspan="2"  class="table-right text-right datatable_row">
+                                                                    	<a data-th-href="@{/seller/freight/edit/{tempId}.htm(tempId=${vo.id})}">修改</a>
+                                                                        &nbsp;
+                                                                        <a class="v_oper_delete">删除</a>
+                                                                    	<input type="hidden" name="v_select_id" class="tempId" data-th-value="${vo.id}"/>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="tr_oper_data" data-th-if="${vo.carryMode.size() &gt; 0}" data-th-style="|display: ${vo.status == '0' ? 'none;' : ''}|">
+                                                                    <td>运费范畴</td>
+                                                                    <td>运费方式</td>
+                                                                    <td>运费（元）</td>
+                                                                    <td>每多一件商品增加运费（元）</td>
+                                                                </tr>
+                                                                <tr class="tr_oper_data" data-th-if="${cm.isDefault == '0'}" data-th-each="cm : ${vo.carryMode}" data-th-style="|display: ${vo.status == '0' ? 'none;' : ''}|">
+                                                                    <td data-th-text="${cm.areas}">默认</td>
+                                                                    <td data-th-text="${cm.serviceType=='POST'?'平邮':(cm.serviceType=='EMS'?'EMS':'快递')}">平邮</td>
+                                                                    <td data-th-text="${cm.fee}">10</td>
+                                                                    <td data-th-text="|加${cm.addedFee}|">加0</td>
+                                                                </tr>
+                                                                <tr class="tr_oper_data" data-th-if="${cm1.isDefault == '1'}" data-th-each="cm1 : ${vo.carryMode}" data-th-style="|display: ${vo.status == '0' ? 'none;' : ''}|">
+                                                                    <td data-th-text="${cm1.areas}">默认</td>
+                                                                    <td data-th-text="${cm1.serviceType=='POST'?'平邮':(cm1.serviceType=='EMS'?'EMS':'快递')}">平邮</td>
+                                                                    <td data-th-text="${cm1.fee}">10</td>
+                                                                    <td data-th-text="|加${cm1.addedFee}|">加0</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td >运费说明</td>
+                                                                    <td colspan="3" style="" data-th-text="${vo.remark}">快递统一发申通，当天18:00前拍下付款成功，当天发货；否则次日发货。</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+														<table width="" border="0" cellspacing="0" cellpadding="0" class="table-frei-tpl " data-th-remove="all">
+                                                            <tbody class="od-expand-btn">
+                                                                <tr>
+                                                                    <td width="371" colspan="2" class="table-left" >默认模本一</td>
+                                                                    <td width="600" colspan="2" class="table-right" >上次编辑时间：2015-06-01 17:36 &nbsp;
+                                                                        <a href="#">修改</a>
+                                                                        &nbsp;
+                                                                        <a href="#">删除</a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>运费范畴</td>
+                                                                    <td>运费方式</td>
+                                                                    <td>运费（元）</td>
+                                                                    <td>每多一件商品增加运费（元）</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td rowspan="3" >默认</td>
+                                                                    <td>平邮</td>
+                                                                    <td>10</td>
+                                                                    <td>加0</td>
+                                                                </tr>
+                                                                <tr >
+                                                                    <td >快递</td>
+                                                                    <td>20</td>
+                                                                    <td>加0</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>EMS</td>
+                                                                    <td>20</td>
+                                                                    <td>加0</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td rowspan="3">同城</td>
+                                                                    <td>平邮</td>
+                                                                    <td>30</td>
+                                                                    <td>加0</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>快递</td>
+                                                                    <td>20</td>
+                                                                    <td>加0</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>EMS</td>
+                                                                    <td>10</td>
+                                                                    <td>加0</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td >运费说明</td>
+                                                                    <td colspan="3" style="">快递统一发申通，当天18:00前拍下付款成功，当天发货；否则次日发货。</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <table width="" border="0" cellspacing="0" cellpadding="0" class="table-frei-tpl " data-th-remove="all">
+                                                            <tbody class="od-fold-btn">
+                                                                <tr>
+                                                                    <td width="371" colspan="2" class="table-left" >默认模本一</td>
+                                                                    <td width="600" colspan="2" class="table-right" >上次编辑时间：2015-06-01 17:36 &nbsp;
+                                                                        <a href="#">修改</a>
+                                                                        &nbsp;
+                                                                        <a href="#">删除</a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>运费范畴</td>
+                                                                    <td>运费方式</td>
+                                                                    <td>运费（元）</td>
+                                                                    <td>每多一件商品增加运费（元）</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td rowspan="3" >默认</td>
+                                                                    <td>平邮</td>
+                                                                    <td>10</td>
+                                                                    <td>加0</td>
+                                                                </tr>
+                                                                <tr >
+                                                                    <td >快递</td>
+                                                                    <td>20</td>
+                                                                    <td>加0</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>EMS</td>
+                                                                    <td>20</td>
+                                                                    <td>加0</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td rowspan="3">同城</td>
+                                                                    <td>平邮</td>
+                                                                    <td>30</td>
+                                                                    <td>加0</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>快递</td>
+                                                                    <td>20</td>
+                                                                    <td>加0</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>EMS</td>
+                                                                    <td>10</td>
+                                                                    <td>加0</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td >运费说明</td>
+                                                                    <td colspan="3" style="">快递统一发申通，当天18:00前拍下付款成功，当天发货；否则次日发货。</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- 测试运送方式数据<div class="more-filter" >
+                                        		<input type="radio" name="radio" value="0ibrafldt06y222p"/>地址1
+                                        		<input type="radio" name="radio" value="0icl89g4w06y222y"/>地址2
+                                        		<input type="text" id="addressId" value="0ibrafldt06y222p"/>
+                                                <div class="detail-list">
+                                                	<div class="shop-item">
+                                                		<input type="hidden" name="preOrderId" value="0iclb9rbq06y222w"/>
+		                                                <input type="hidden" name="storeId" value="0ibsrjw4f06y222p"/>
+		                                                <select class="post-way"></select>
+		                                                <div><span class="re_fee"></span></div>
+                                                	</div>
+                                                	<div class="shop-item">
+                                                		<input type="hidden" name="preOrderId" value="0iclb9rbq06y222w"/>
+		                                                <input type="hidden" name="storeId" value="0ibsrjw4f06y222p"/>
+		                                                <select class="post-way"></select>
+		                                                <div><span class="re_fee"></span></div>
+                                                	</div>
+                                                </div>
+		                                                <div class="trans-price"><num></num></div>
+		                                                <div class="total-price"><num>3000</num></div>
+                                            </div> -->
+                                    </section>
+                                    <!--确认删除警告-->
+                                    <div id="delete_warning" class="reveal-modal tiny v_del_waring warning-panel" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+                                      <div class="row">
+                                        <div class="small-4 columns">
+                                          <div class="row">
+                                            <div class="small-12 columns">
+                                                <i class="fa font-warning fa-warning font-i"></i>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="small-8 columns">
+                                          <div class="row">
+                                            <div class="small-12 columns">
+                                                确定要删除吗？
+                                            </div>
+                                          </div>
+                                          <div class="row dele">
+                                            <div class="small-12 columns">
+                                                <a class="right button radius tiny v_oper_do_delete">确定</a>
+                                                <a class="close-reveal-modal right button radius tiny secondary margin-r close_btn" aria-label="Close">取消</a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                                    </div>
+                                    <!--操作成功提示框-->
+                                    <div class="fixed v_info_success">
+                                        <div class="row">
+                                            <div class="large-12 columns" id="operate_alert_into">
+                                                <div data-alert="" class="success alert-box warning radius nomarg v_show_oper_info">
+                                                    <div><i class="fa fa-fw fa-check"></i><span class="v_show_info">操作成功.</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--未选中提示框-->
+                                    <div class="fixed v_info_fail">
+                                        <div class="row">
+                                            <div class="large-12 columns" id="error_alert_into">
+                                                <div data-alert="" class="error alert-box warning radius nomarg v_show_oper_info">
+                                                    <div><i class="fa fa-fw fa-exclamation-circle"></i><span class="v_show_info">未选择.</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fixed v_info_warning">
+                                        <div class="row">
+                                            <div class="large-12 columns" id="error_alert_into">
+                                                <div data-alert="" class="error alert-box warning radius nomarg v_show_oper_info">
+                                                    <div><i class="fa fa-fw fa-exclamation-circle"></i><span class="v_show_info">未选择.</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end main-->
+                
+                <div class="footer" id="frame_footer" role="contentinfo" include="include.html" data-th-include="${tempInternalPath + 'include'} :: #frame_footer">
+                </div>
+                <!--end footer--> 
+                
+                <div class="go" id="frame_go"><a title="返回顶部" class="gotop" id="goTop"></a> <a title="返回底部" class="gobottom" id="goBottom"></a></div>
+                
+                <div id="frame_exit_off"><a class="exit-off-canvas"></a></div>
+            </div>
+        </div>
+        <div id="frame_javascript">
+            <div data-th-include="${tempInternalPath + 'include'} :: #base_javascript"></div>
+           <div data-th-include="${tempInternalPath + 'include'} :: #datatable_javascript"></div>
+            <div id="data_javascript">
+                <!-- <script data-th-src="|${tempPath}javascript/jquery-2.1.3.js|" src="javascript/jquery-2.1.3.js" type="text/javascript" charset="utf8"></script>
+				<script data-th-src="|${tempPath}javascript/AppendAround.js|" src="javascript/AppendAround.js" type="text/javascript" charset="utf8"></script>
+                <script data-th-src="|${tempPath}javascript/swiper.min.js|" src="javascript/swiper.min.js" type="text/javascript" charset="utf8"></script>
+                <script data-th-src="|${tempPath}javascript/tab.exam.js|" src="javascript/tab.exam.js" type="text/javascript" charset="utf8"></script>
+                <script data-th-src="|${tempPath}javascript/jquery.Jcrop.js|" src="javascript/jquery.Jcrop.js" type="text/javascript" charset="utf8"></script>
+				<script data-th-src="|${tempPath}javascript/webuploader.min.js|" src="javascript/webuploader.min.js" type="text/javascript" charset="utf8"></script>
+				<script data-th-src="|${tempPath}javascript/modPicture-old.js|" src="javascript/modPicture-old.js" type="text/javascript" charset="utf8"></script>
+                <script data-th-src="|${tempPath}javascript/others.js|" src="javascript/others.js" type="text/javascript" charset="utf8"></script>
+                <script src="/emall/cij/datatables/js/jquery.dataTables.js" type="text/javascript" charset="utf8"></script>
+                <script src="/emall/cij/datatables/js/dataTables.foundation.js" type="text/javascript" charset="utf8"></script>
+                <script src="/emall/cij/foundation/js/foundation.min.js"></script>
+                <script src="/emall/cij/js/jquery.datatable.page.js"></script>
+                <script data-th-src="|${tempPath}datatables-extend/js/foundation.extend.js|" src="datatables-extend/js/foundation.extend.js"></script>
+                <script data-th-src="|${tempPath}datatables-extend/js/moment.min.js|" src="datatables-extend/js/moment.min.js"></script>
+                <script data-th-src="|${tempPath}datatables-extend/js/daterangepicker.js|" src="datatables-extend/js/daterangepicker.js"></script> -->
+                <script>
+                $(document).foundation();
+				$(".bar_apply").appendAround();
+				var swiper = new Swiper('.swiper-container', {
+					scrollbar: '.swiper-scrollbar',
+					slidesPerView: 'auto',
+					mousewheelControl: true,
+					freeMode: true
+				});
+                </script>
+                <script data-th-src="@{/cij/js/rongji.js}" src="/emall/cij/js/rongji.js"></script>
+                <script data-th-src="@{/cij/js/m/freight.js}" src="/emall/cij/js/m/freight.js"></script>
+            <script data-th-src="@{/cij/js/m/buyer.freight.carrymode.js}" src="/emall/cij/js/m/buyer.freight.carrymode.js"></script>
+            </div>
+        </div>
+   </div>
+</div>
+</body>
+</html>

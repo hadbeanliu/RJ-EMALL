@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta charset="utf-8" />
+	
+	<!-- If you delete this meta tag World War Z will become a reality -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<title>电商订单demo</title>
+	<!-- If you are using the CSS version, only link these 2 files, you may add app.css to use for your overrides if you like -->
+	<link data-th-href="@{/cij/foundation/css/normalize.css}" rel="stylesheet" href="css/normalize.css" />
+	<link data-th-href="@{/cij/foundation/css/foundation.css}" rel="stylesheet" href="css/foundation.css" />
+	<link data-th-href="@{/cij/foundation-icons/foundation-icons.css}" rel="stylesheet" href="css/foundation.css" />
+    
+	<link data-th-href="@{/cij/css/font-awesome.min.css}" rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+	<link data-th-href="@{/cij/css/themes.less}" rel="stylesheet" type="text/less" href="css/themes.less" />
+
+	<!-- If you are using the gem version, you need this only -->
+	<link data-th-href="@{/cij/css/app.css}" rel="stylesheet" href="css/app.css" />
+
+	<!-- DataTables CSS
+	<link data-th-href="@{/cij/datatables/css/jquery.dataTables.css}" rel="stylesheet" type="text/css" href="/DataTables-1.10.6/media/css/jquery.dataTables.css" />
+	 -->
+	<link data-th-href="@{/cij/datatables/css/dataTables.foundation.css}" rel="stylesheet" type="text/css" href="dataTables.foundation.css" />
+	<link data-th-href="@{/cij/datatables-extend/css/dataTables.response.css}" rel="stylesheet" type="text/css" href="dataTables.response.css" />
+	<link data-th-href="@{/cij/datatables-extend/css/daterangepicker-f5.less}" rel="stylesheet" type="text/less" href="daterangepicker-f5.less" />
+	
+	<script data-th-inline="javascript">
+	Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/ '';
+	</script>
+	<script data-th-src="@{/cij/js/less-1.7.3.min.js}" src="js/less-1.7.3.min.js"></script>
+	<script data-th-src="@{/cij/foundation/js/vendor/modernizr.js}" src="js/vendor/modernizr.js"></script>
+</head>
+<body>
+<!-- 
+<div class="button" onClick="showTip()" style="width:200px;margin:0 auto;display:block;">提示框</div>
+ -->
+<div id="user_page">
+    <section class="panel">
+        <header class="panel-heading">
+            订单列表
+            <span class="tools right" style="display:none;">
+                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                <a href="javascript:;" class="fa fa-times"></a>
+             </span>
+        </header> 
+        <div class="panel-body">
+            <div class="table_bar">
+                <div class="bar_left">
+                    <div class="left">
+                        <div class="button radius tiny left v_oper_add"><i class="fa fa-plus"></i><span>添加</span></div>
+                        <div class="apply">
+                            <select id="select_change">
+                                <option>批量操作</option>
+                                <option value="v_oper_edit">编辑</option>
+                                <option value="v_oper_del">删除</option>
+                            </select>
+                            <div class="button radius tiny left" data-v-oper-id="select_change">应用</div>
+                        </div>
+                    </div>
+                    <div class="right">
+<!--                    
+                        <div class="button radius tiny left v_oper_select_all" >全选</div>
+                        <div class="button radius tiny left v_oper_delete" >删除</div>
+                        <div class="button radius tiny left v_oper_add" >添加</div>
+                        <div class="button radius tiny left v_oper_edit" >编辑</div>
+                        <div class="button radius tiny left v_oper_search">搜索</div>
+-->
+                        <div class="button radius tiny left v_oper_refresh"><i class="fa fa-repeat"></i><span>刷新</span></div>
+                    </div>
+                </div>
+                <div class="bar_right">
+                    <div class="search">
+                      <input name="id" class="inp v_oper_quick_search" id="topsearch" type="text" placeholder="请输入查询内容" accesskey="s" title="请输入查询内容" x-webkit-speech="" x-webkit-grammar="builtin:translate" lang="zh-CN" style="display: block;" />
+                      <i class="fa fa-search" title="搜索"></i>
+                      <i class="fa fa-filter v_oper_advanced_search" title="高级"></i>
+                    </div>
+                </div>
+            </div>
+            <!--加载中...-->
+            <div class="v_page_processing row">
+                <div class="small-12 medium-6 large-6 columns"></div>
+                <div class="small-12 medium-6 large-6 columns"></div>
+                <div id="DataTables_Table_0_processing" class="dataTables_processing">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-square fa-stack-2x"></i>
+                      <i class="fa fa-spinner fa-spin fa-stack-1x fa-inverse"></i>
+                    </span><br></br>
+                    <span>数据加载中...</span>
+                </div>
+            </div>
+            <div class="v_table"></div>
+        </div>
+    </section>
+    <!--添加-->
+    <div id="add-order" class="reveal-modal large openModal v_add_form" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+      <form data-abide="">
+          <h3>添加订单</h3>
+          <div class="row">
+            <div class="small-12 columns int">
+                <label>商品标题
+                    <input type="text" name="orderNo" required="" pattern="[a-zA-Z]+" />
+                </label>
+                <small class="error">商品标题不能为空！</small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns int">
+              <label>
+                商品规格
+                  <div class="row">
+                    <div class="small-4 columns">
+                      <label for="customDropdown1">
+                        <select id="customDropdown1" class="medium" required="">
+                          <option value="">颜色分类</option>
+                          <option value="first">红色</option>
+                          <option value="second">黄色</option>
+                          <option value="third">蓝色</option>
+                          <option value="fourth">绿色</option>
+                          <option value="fifth">青色</option>
+                          <option value="sixth">橙色</option>
+                          <option value="seventh">紫色</option>
+                          <option value="eighth">赤色</option>
+                        </select>
+                      </label>
+                      <small class="error">未选择</small>
+                    </div>
+                    <div class="small-4 columns">
+                      <label for="customDropdown2">
+                        <select id="customDropdown2" class="medium" required="">
+                          <option value="">尺码分类</option>
+                          <option value="first">31</option>
+                          <option value="second">32</option>
+                          <option value="third">33</option>
+                          <option value="fourth">34</option>
+                          <option value="fifth">35</option>
+                          <option value="sixth">36</option>
+                          <option value="seventh">37</option>
+                          <option value="eighth">38</option>
+                          <option value="ninth">39</option>
+                          <option value="tenth">40</option>
+                          <option value="eleventh">41</option>
+                          <option value="twelvth">42</option>
+                          <option value="thirting">43</option>
+                        </select>
+                      </label>
+                      <small class="error">未选择</small>
+                    </div>
+                    <div class="small-4 columns">
+                      <label for="customDropdown3">
+                        <select id="customDropdown3" class="medium" required="">
+                          <option value="">面料分类</option>
+                          <option value="first">棉布</option>
+                          <option value="second">麻布</option>
+                          <option value="third">丝绸</option>
+                          <option value="fourth">尼龙</option>
+                          <option value="fifth">皮革</option>
+                          <option value="sixth">化纤</option>
+                          <option value="seventh">混纺</option>
+                        </select>
+                      </label>
+                      <small class="error">未选择</small>
+                    </div>
+                  </div>
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-6 columns int">
+                <label>订单号
+                    <input type="text" required="" pattern="[a-zA-Z]+" />
+                </label>
+                <small class="error">订单号不能为空！</small>
+            </div>
+            <div class="small-6 columns int">
+                <label>店铺名称
+                    <input type="text" required="" pattern="[a-zA-Z]+" />
+                </label>
+                <small class="error">店铺名称不能为空！</small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns int">
+              <label>
+                订单详情
+                  <div class="row">
+                    <div class="small-4 columns">
+                        <label>
+                            <input type="text" placeholder="单位（元）" required="" pattern="[a-zA-Z]+" />
+                        </label>
+                        <small class="error">单位不能为空！</small>
+                    </div>
+                    <div class="small-4 columns">
+                        <label>
+                            <input type="text" placeholder="数量" required="" pattern="[a-zA-Z]+" />
+                        </label>
+                        <small class="error">数量不能为空！</small>
+                    </div>
+                    <div class="small-4 columns">
+                        <label>
+                            <input type="text" placeholder="实付款" required="" pattern="[a-zA-Z]+" />
+                        </label>
+                        <small class="error">实付款不能为空！</small>
+                    </div>
+                  </div>
+              </label>
+            </div>
+          </div>              
+          <div class="row confirm">
+            <div class="small-12 columns">
+                <a class="right button radius tiny v_oper_submit">保存</a>
+                <a class="close-reveal-modal right button radius tiny secondary margin-r" aria-label="Close">取消</a>
+            </div>
+          </div>
+      </form>
+      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+    <!--编辑-->
+    <div id="edit-order" class="reveal-modal large openModal v_edit_form" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+      <form data-abide="">
+          <h3>编辑商品</h3>
+          <input type="hidden" name="id" />
+          <div class="row">
+            <div class="small-12 columns int">
+                <label>商品标题
+                    <input type="text" required="" pattern="[a-zA-Z]+" />
+                </label>
+                <small class="error">商品标题不能为空！</small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns int">
+              <label>
+                商品规格
+                  <div class="row">
+                    <div class="small-4 columns">
+                      <label for="customDropdown1">
+                        <select id="customDropdown1" class="medium" required="">
+                          <option value="">颜色分类</option>
+                          <option value="first">红色</option>
+                          <option value="second">黄色</option>
+                          <option value="third">蓝色</option>
+                          <option value="fourth">绿色</option>
+                          <option value="fifth">青色</option>
+                          <option value="sixth">橙色</option>
+                          <option value="seventh">紫色</option>
+                          <option value="eighth">赤色</option>
+                        </select>
+                      </label>
+                      <small class="error">未选择</small>
+                    </div>
+                    <div class="small-4 columns">
+                      <label for="customDropdown2">
+                        <select id="customDropdown2" class="medium" required="">
+                          <option value="">尺码分类</option>
+                          <option value="first">31</option>
+                          <option value="second">32</option>
+                          <option value="third">33</option>
+                          <option value="fourth">34</option>
+                          <option value="fifth">35</option>
+                          <option value="sixth">36</option>
+                          <option value="seventh">37</option>
+                          <option value="eighth">38</option>
+                          <option value="ninth">39</option>
+                          <option value="tenth">40</option>
+                          <option value="eleventh">41</option>
+                          <option value="twelvth">42</option>
+                          <option value="thirting">43</option>
+                        </select>
+                      </label>
+                      <small class="error">未选择</small>
+                    </div>
+                    <div class="small-4 columns">
+                      <label for="customDropdown3">
+                        <select id="customDropdown3" class="medium" required="">
+                          <option value="">面料分类</option>
+                          <option value="first">棉布</option>
+                          <option value="second">麻布</option>
+                          <option value="third">丝绸</option>
+                          <option value="fourth">尼龙</option>
+                          <option value="fifth">皮革</option>
+                          <option value="sixth">化纤</option>
+                          <option value="seventh">混纺</option>
+                        </select>
+                      </label>
+                      <small class="error">未选择</small>
+                    </div>
+                  </div>
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-6 columns int">
+                <label>订单号
+                    <input type="text" required="" pattern="[a-zA-Z]+" />
+                </label>
+                <small class="error">订单号不能为空！</small>
+            </div>
+            <div class="small-6 columns int">
+
+                <label>店铺名称
+                    <input type="text" required="" pattern="[a-zA-Z]+" />
+                </label>
+                <small class="error">店铺名称不能为空！</small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns int">
+              <label>
+                订单详情
+                  <div class="row">
+                    <div class="small-4 columns">
+                        <label>
+                            <input type="text" placeholder="单位（元）" required="" pattern="[a-zA-Z]+" />
+                        </label>
+                        <small class="error">单位不能为空！</small>
+                    </div>
+                    <div class="small-4 columns">
+                        <label>
+                            <input type="text" placeholder="数量" required="" pattern="[a-zA-Z]+" />
+                        </label>
+                        <small class="error">数量不能为空！</small>
+                    </div>
+                    <div class="small-4 columns">
+                        <label>
+                            <input type="text" placeholder="实付款" required="" pattern="[a-zA-Z]+" />
+                        </label>
+                        <small class="error">实付款不能为空！</small>
+                    </div>
+                  </div>
+              </label>
+            </div>
+          </div>              
+          <div class="row confirm">
+            <div class="small-12 columns">
+                <a class="right button radius tiny v_oper_submit">保存</a>
+                <a class="right button radius tiny v_oper_submit_and_edit_next">保存，并修改下一个</a>
+                <a class="close-reveal-modal right button radius tiny secondary margin-r" aria-label="Close">取消</a>
+            </div>
+          </div>
+      </form>
+      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+    <!--查询-->
+    <div id="search-order" class="reveal-modal large openModal v_search" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+      <form>
+          <h3>查询订单</h3>
+          <div class="row">
+            <div class="small-12 columns int">
+                <label>商品标题
+                    <input type="text" name="id" />
+                </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns int">
+              <label>
+                商品规格
+                  <div class="row">
+                    <div class="small-4 columns">
+                      <label for="customDropdown1">
+                        <select id="customDropdown1" class="medium">
+                          <option value="">颜色分类</option>
+                          <option value="first">红色</option>
+                          <option value="second">黄色</option>
+                          <option value="third">蓝色</option>
+                          <option value="fourth">绿色</option>
+                          <option value="fifth">青色</option>
+                          <option value="sixth">橙色</option>
+                          <option value="seventh">紫色</option>
+                          <option value="eighth">赤色</option>
+                        </select>
+                      </label>
+                    </div>
+                    <div class="small-4 columns">
+                      <label for="customDropdown2">
+                        <select id="customDropdown2" class="medium">
+                          <option value="">尺码分类</option>
+                          <option value="first">31</option>
+                          <option value="second">32</option>
+                          <option value="third">33</option>
+                          <option value="fourth">34</option>
+                          <option value="fifth">35</option>
+                          <option value="sixth">36</option>
+                          <option value="seventh">37</option>
+                          <option value="eighth">38</option>
+                          <option value="ninth">39</option>
+                          <option value="tenth">40</option>
+                          <option value="eleventh">41</option>
+                          <option value="twelvth">42</option>
+                          <option value="thirting">43</option>
+                        </select>
+                      </label>
+                    </div>
+                    <div class="small-4 columns">
+                      <label for="customDropdown3">
+                        <select id="customDropdown3" class="medium">
+                          <option value="">面料分类</option>
+                          <option value="first">棉布</option>
+                          <option value="second">麻布</option>
+                          <option value="third">丝绸</option>
+                          <option value="fourth">尼龙</option>
+                          <option value="fifth">皮革</option>
+                          <option value="sixth">化纤</option>
+                          <option value="seventh">混纺</option>
+                        </select>
+                      </label>
+                    </div>
+                  </div>
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-6 columns int">
+                <label>订单号
+                    <input type="text" />
+                </label>
+            </div>
+            <div class="small-6 columns int">
+                <label>店铺名称
+                    <input type="text" />
+                </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns int">
+              <label>
+                订单详情
+                  <div class="row">
+                    <div class="small-4 columns">
+                        <label>
+                            <input type="text" placeholder="单位（元）" />
+                        </label>
+                    </div>
+                    <div class="small-4 columns">
+                        <label>
+                            <input type="text" placeholder="数量" />
+                        </label>
+                    </div>
+                    <div class="small-4 columns">
+                        <label>
+                            <input type="text" placeholder="实付款" />
+                        </label>
+                    </div>
+                  </div>
+              </label>
+            </div>
+          </div>              
+          <div class="row confirm">
+            <div class="small-12 columns">
+                <a class="right button radius tiny v_oper_do_search">查询</a>
+                <a class="close-reveal-modal right button radius tiny secondary margin-r" aria-label="Close">取消</a>
+            </div>
+          </div>
+      </form>
+      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+    <!--分享-->
+    <div id="share-order" class="reveal-modal tiny openModal v_share" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+      <form>
+          <h3>分享</h3>
+          <div class="row">
+            <div class="small-12 columns">
+                <div class="share-area">
+                    <ul class="small-block-grid-3 medium-block-grid-6 large-block-grid-6 ">
+                        <li><a href="# "><i class="share-icon weixin "></i><span>微信</span></a></li>
+                        <li><a href="# "><i class="share-icon yixin "></i><span>易信</span></a></li>
+                        <li><a href="# "><i class="share-icon sina "></i><span>新浪微博</span></a></li>
+                        <li><a href="# "><i class="share-icon qzone "></i><span>QQ空间</span></a></li>
+                        <li><a href="# "><i class="share-icon baidu "></i><span>百度贴吧</span></a></li>
+                        <li><a href="# "><i class="share-icon wangyi "></i><span>网易微博</span></a></li>
+                        <li><a href="# "><i class="share-icon renren "></i><span>人人网</span></a></li>
+                        <li><a href="# "><i class="share-icon tcweibo "></i><span>腾讯微博</span></a></li>
+                        <li><a href="# "><i class="share-icon qq "></i><span>QQ</span></a></li>
+                        <li><a href="# "><i class="share-icon souhu "></i><span>搜狐微博</span></a></li>
+                        <li><a href="# "><i class="share-icon kaixin "></i><span>开心网</span></a></li>
+                        <li><a href="# "><i class="share-icon reblog"></i><span>我的主页</span></a></li>
+                    </ul>
+                </div>
+            </div>
+          </div>
+      </form>
+      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+    <!--确认删除警告-->
+    <div id="delete_warning" class="reveal-modal tiny v_del_waring warning-panel" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+      <div class="row">
+        <div class="small-3 columns">
+          <div class="row">
+            <div class="small-12 columns">
+                <i class="fa font-warning fa-warning font-i"></i>
+            </div>
+          </div>
+        </div>
+        <div class="small-9 columns">
+          <div class="row">
+            <div class="small-12 columns">
+                确定要删除吗？
+            </div>
+          </div>
+          <div class="row dele">
+            <div class="small-12 columns">
+                <a class="right button radius tiny v_oper_do_delete">确定</a>
+                <a class="close-reveal-modal right button radius tiny secondary margin-r close_btn" aria-label="Close">取消</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+    <!--表单-->
+    <div id="all-form" class="reveal-modal large openModal" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+      <form data-abide="">
+          <h3>面板名称</h3>
+          <!--输入框在右侧-->
+          <div class="row">
+            <div class="small-12 columns int">
+              <div class="row">
+                <div class="small-1 columns">
+                  <label for="right-label" class="right">输入框</label>
+                </div>
+                <div class="small-11 columns">
+                    <label>
+                        <input type="text" required="" id="right-label" placeholder="输入框在右侧" pattern="[a-zA-Z]+" />
+                    </label>
+                    <small class="error">input输入框不能为空！</small>
+                </div>
+              </div>
+            </div>
+          </div> 
+          <!--输入框在下侧-->
+          <div class="row">
+            <div class="small-12 columns int">
+                <label>输入框
+                    <input type="text" required="" placeholder="输入框在下侧" pattern="[a-zA-Z]+" />
+                </label>
+                <small class="error">input输入框不能为空！</small>
+            </div>
+          </div>
+          <!--密码/确认密码-->
+          <div class="row">
+              <div class="large-6 columns int">
+                <label for="password">密码
+                  <input type="password" id="password" placeholder="密码" name="password" required="" />
+                </label>
+                <small class="error">请输入密码</small>
+              </div>
+              <div class="large-6 columns int">
+                <label for="confirmPassword">确认密码
+                  <input type="password" id="confirmPassword" placeholder="确认密码" name="confirmPassword" required="" data-equalto="password" />
+                </label>
+                <small class="error">确认密码不一致</small>
+              </div>
+          </div>         
+          <!--邮箱/网址/select下拉-->
+          <div class="row">
+              <div class="large-4 columns int">
+                <label for="email">邮箱
+                  <input type="email" id="email" placeholder="XXXXXX@rongji.com" aria-invalid="false" />
+                </label>
+                <small class="error">邮箱格式不正确</small>
+              </div>
+              <div class="large-4 columns int">
+                <label for="url">网址
+                  <input type="url" id="url" placeholder="http://www.rongji.com" required="" />
+                </label>
+                <small class="error">网址格式不正确</small>
+              </div>
+              <div class="large-4 columns int">
+                <div class="row collapse">
+                  <label for="customDropdown1">select下拉选择
+                    <select id="customDropdown1" class="medium" required="">
+                      <option value="">默认</option>
+                      <option value="first">白色</option>
+                      <option value="second">黑色</option>
+                      <option value="third">黄色</option>
+                      <option value="fourth">绿色</option>
+                    </select>
+                  </label>
+                  <small class="error">未选中任何选项</small>
+                </div>
+              </div>
+          </div>    
+          <!--单选框/复选款-->
+          <div class="row">
+            <div class="large-6 columns int">
+              <label>单选框default(色调black,blue,purple,yellow,green,red)</label>
+              <input type="radio" name="radio" value="白色" id="radio1" checked="true"/><label for="radio1">白色</label>
+              <input type="radio" name="radio" value="黑色" id="radio2"/><label for="radio2">黑色</label>
+              <input type="radio" name="radio" value="黑色" id="radio3" /><label for="radio3">黄色</label>
+            </div>
+            <div class="large-6 columns int">
+              <label>复选框default(色调black,blue,purple,yellow,green,red)</label>
+              <input id="checkbox1" type="checkbox" checked="true"/><label for="checkbox1">白色</label>
+              <input id="checkbox2" type="checkbox"/><label for="checkbox2">黑色</label>
+              <input id="checkbox3" type="checkbox"/><label for="checkbox3">黄色</label>
+            </div>
+          </div>    
+          <div class="row">
+            <div class="large-6 columns int">
+              <label>单选框flat</label>
+              <input type="radio" name="flat_radio" value="白色" class="flat" id="flat_radio1" checked="true"/><label for="flat_radio1">白色</label>
+              <input type="radio" name="flat_radio" value="黑色" class="flat" id="flat_radio2"/><label for="flat_radio2">黑色</label>
+              <input type="radio" name="flat_radio" value="黑色" class="flat" id="flat_radio3" /><label for="flat_radio3">黄色</label>
+            </div>
+            <div class="large-6 columns int">
+              <label>复选框flat</label>
+              <input id="flat_checkbox1" type="checkbox" class="flat" checked="true"/><label for="flat_checkbox1">白色</label>
+              <input id="flat_checkbox2" type="checkbox" class="flat" /><label for="flat_checkbox2">黑色</label>
+              <input id="flat_checkbox3" type="checkbox" class="flat" /><label for="flat_checkbox3">黄色</label>
+            </div>
+          </div>    
+          <div class="row">
+            <div class="large-6 columns int">
+              <label>单选框minimal</label>
+              <input type="radio" name="minimal_radio" value="白色" class="minimal" id="minimal_radio1" checked="true"/><label for="minimal_radio1">白色</label>
+              <input type="radio" name="minimal_radio" value="黑色" class="minimal" id="minimal_radio2"/><label for="minimal_radio2">黑色</label>
+              <input type="radio" name="minimal_radio" value="黑色" class="minimal" id="minimal_radio3" /><label for="minimal_radio3">黄色</label>
+            </div>
+            <div class="large-6 columns int">
+              <label>复选框minimal</label>
+              <input id="minimal_checkbox1" type="checkbox" class="minimal" checked="true"/><label for="minimal_checkbox1">白色</label>
+              <input id="minimal_checkbox2" type="checkbox" class="minimal" /><label for="minimal_checkbox2">黑色</label>
+              <input id="minimal_checkbox3" type="checkbox" class="minimal" /><label for="minimal_checkbox3">黄色</label>
+            </div>
+          </div>    
+          <!--文本框-->
+          <div class="row">
+            <div class="large-12 columns int">
+              <label>文本框
+                <textarea placeholder="文本框"></textarea>
+              </label>
+            </div>
+          </div>
+          <!--图片上传-->
+          <div class="row">
+            <div class="small-12 columns int">
+                <div class="uploaders">
+                    <div class="uploader uploaded">
+                        <span class="bg-preview"><img src="cij/img/order/1.gif" /></span>
+                        <span class="fa fa-times reset"></span>
+                    </div>
+                    <div class="uploader">
+                        <div class="bg-placeholder">
+                            <i class="fa fa-plus"></i>
+                        </div>
+                        <div class="bg-loading">
+                            <i class="fa fa-spinner fa-spin "></i>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+          </div>
+          <!--收货地点/发布时间-->
+          <div class="row">
+            <div class="large-6 columns int">
+                <label for="activityAddress" class="input-group with-tit">收货地点<em>*</em>
+                    <a class="input-group-addon right"><i class="fa fa-map-marker fa-fw"></i></a>
+                    <input class="" type="text" id="activityAddress" placeholder="输入地址或点击图标在地图上选择地址" name="" />
+                </label>
+            </div>
+            <div class="large-6 columns int">
+                <label for="timeEnd" class="input-group with-tit">发布时间<em>*</em>
+                    <a class="input-group-addon right"><i class="fa fa-calendar fa-fw"></i></a>
+                    <input class="" type="text" id="timeEnd" placeholder="发布时间" name="" />
+                </label>
+            </div>
+          </div>
+          <!-- http:// / .com -->
+          <div class="row">
+            <div class="large-6 columns int">
+              <div class="row collapse">
+                <div class="small-3 columns">
+                  <span class="prefix">http://</span>
+                </div>
+                <div class="small-9 columns">
+                  <input type="text" placeholder="请输入网址" />
+                </div>
+              </div>
+            </div>
+            <div class="large-6 columns int">
+              <div class="row collapse">
+                <div class="small-9 columns">
+                  <input type="text" placeholder="http://rongji.com" />
+                </div>
+                <div class="small-3 columns">
+                  <span class="postfix">.com</span>
+                </div>
+              </div>                
+            </div>
+          </div>
+          <!--标题：输入框-->
+          <div class="row">
+            <div class="large-6 columns int">
+              <div class="row collapse prefix-radius">
+                <div class="small-3 columns">
+                  <span class="prefix">标题</span>
+                </div>
+                <div class="small-9 columns">
+                  <input type="text" placeholder="内容" />
+                </div>
+              </div>
+            </div>
+            <div class="large-6 columns int">
+              <div class="row collapse postfix-radius">
+                <div class="small-9 columns">
+                  <input type="text" placeholder="内容" />
+                </div>
+                <div class="small-3 columns">
+                  <span class="postfix">标题</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--确认：输入框-->
+          <div class="row">
+            <div class="large-6 columns int">
+              <div class="row collapse prefix-round">
+                <div class="small-3 columns">
+                  <a href="#" class="button prefix">确认</a>
+                </div>
+                <div class="small-9 columns">
+                  <input type="text" placeholder="内容" />
+                </div>
+              </div>
+            </div>
+            <div class="large-6 columns int">
+              <div class="row collapse postfix-round">
+                <div class="small-9 columns">
+                  <input type="text" placeholder="内容" />
+                </div>
+                <div class="small-3 columns">
+                  <a href="#" class="button postfix">确认</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-6 columns int">
+              <div class="row collapse">
+                <div class="small-3 columns">
+                  <a href="#" class="button postfix">确认</a>
+                </div>
+                <div class="small-9 columns">
+                  <input type="text" placeholder="内容" />
+                </div>
+              </div>
+            </div>
+            <div class="large-6 columns int">
+              <div class="row collapse">
+                <div class="small-9 columns">
+                  <input type="text" placeholder="内容" />
+                </div>
+                <div class="small-3 columns">
+                  <a href="#" class="button postfix">确认</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--取消/确认 按钮-->
+          <div class="row confirm">
+            <div class="small-12 columns">
+                <a class="right button radius tiny">确认</a>
+                <a class="close-reveal-modal right button radius tiny secondary margin-r" aria-label="Close">取消</a>
+            </div>
+          </div>
+      </form>
+      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+<!--操作成功提示框-->
+<div class="fixed v_info_success hide">
+    <div class="row">
+        <div class="large-12 columns" id="operate_alert_into">
+            <div data-alert="" class="success alert-box warning radius nomarg v_show_oper_info">
+                <div><i class="fa fa-fw fa-check"></i><span class="v_show_info">操作成功.</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--未选中提示框-->
+<div class="fixed v_info_fail hide">
+    <div class="row">
+        <div class="large-12 columns" id="error_alert_into">
+            <div data-alert="" class="error alert-box warning radius nomarg v_show_oper_info">
+                <div><i class="fa fa-fw fa-exclamation-circle"></i><span class="v_show_info">未选择.</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="fixed v_info_warning hide">
+    <div class="row">
+        <div class="large-12 columns" id="error_alert_into">
+            <div data-alert="" class="error alert-box warning radius nomarg v_show_oper_info">
+                <div><i class="fa fa-fw fa-exclamation-circle"></i><span class="v_show_info">未选择.</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+	<script data-th-src="@{/cij/jquery/jquery-2.1.3.js}" src="js/vendor/jquery.js"></script>
+	
+	<!-- DataTables -->
+	<script data-th-src="@{/cij/datatables/js/jquery.dataTables.js}" type="text/javascript" charset="utf8" src="/DataTables-1.10.6/media/js/jquery.dataTables.js"></script>
+	<script data-th-src="@{/cij/datatables/js/dataTables.foundation.js}" type="text/javascript" charset="utf8" src="dataTables.foundation.js"></script>
+
+	<script data-th-src="@{/cij/foundation/js/foundation.min.js}" src="js/foundation.min.js"></script>
+	<script data-th-src="@{/cij/js/jquery.datatable.page.js}" src="js/jquery.datatable.page.js"></script>
+
+	<script data-th-src="@{/cij/datatables-extend/js/moment.min.js}" src="js/moment.min.js"></script>
+	<script data-th-src="@{/cij/datatables-extend/js/daterangepicker.js}" src="js/daterangepicker.js"></script>
+    
+	<script>
+	$(document).foundation();
+	$('#timeEnd').daterangepicker({ 
+		format: 'YYYY-MM-DD',
+		startDate: '2015-01-01',
+		minDate: '2015-01-01',
+		maxDate: '2100-01-10',
+		showWeekNumbers : true,
+		showDropdowns: true,
+		timePicker12Hour: false,
+		singleDatePicker: true
+	});
+	</script>
+	<script>
+	$("#user_page").dataTablePage({
+		url: "/emall/order", // 请求地址
+		columns: [{
+			data: "id",
+			name: "宝贝",
+			orderable: true,
+			searchable: true,
+			display: function (td, value, vo, rowIndex, colIndex) {
+				$(td).html('<div class="inline-block"><div class="img"><a><img src="cij/img/order/'+ (rowIndex % 4 + 1) +'.gif" /></a></div><div class="des"><span class="v_oper_edit">'+ value +'-Homestyle夏季真皮透气鞋男士运动休闲鞋英伦板鞋</span></div></div>').addClass('goods');
+			}
+		}, {
+			data: "price",
+			name: "单位（元）",
+			orderable: true,
+			searchable: true,
+			display: function (td, value, vo, rowIndex, colIndex) {
+				$(td).html('<div class=""><a class="show-for-small">单位（元）：</a>139.00</div>').addClass('price');
+			}
+		}, {
+			data: "orderNo",
+			name: "库存",
+			orderable: true,
+			searchable: true,
+			display: function (td, value, vo, rowIndex, colIndex) {
+				$(td).html('<div class="">1</div>').addClass('hide-for-small');
+			}
+		}, {
+			data: "orderNo",
+			name: "销量",
+			orderable: true,
+			searchable: true,
+			display: function (td, value, vo, rowIndex, colIndex) {
+				$(td).html('<div class="sale_num"><a class="show-for-small">销量：</a>888</div>');
+			}
+		}, {
+			data: "orderNo",
+			name: "日期",
+			/* orderable: true, */
+			searchable: true,
+			display: function (td, value, vo, rowIndex, colIndex) {
+				$(td).html('<div class="">'+ vo.createTime +'</div>').addClass('hide-for-small');
+			}
+		}],
+		columnOpers: {
+			name: "",
+			display: function(td, id, vo, rowIndex, colIndex) {
+				$(td).html('<span class="fa-stack v_oper_more"><i class="fa fa-circle"></i><i class="fa fa-ellipsis-h" title="更多"></i></span>'+
+						   '<div class="more v_oper_more_panel hide"><span class="v_oper_delete"><i title="删除"></i>删除</span><span>|</span><span style="display:none;"><i title="评论"></i>评论</span><span style="display:none;">|</span><span><i title="分享"></i>分享</span><span>|</span><span><i title="收货"></i>收货</span></div>');
+			}
+		},
+		alertInto: "#alert_into" // 提醒实现位置
+	});
+
+	/*提示框*/	
+	function showTip(){
+		$('.fbottom').css('display','block');
+		setTimeout(function() {
+			$('.fbottom').css('display','none');
+		}, 3000);	
+	}
+	</script>
+	
+	<script data-th-src="@{/cij/js/thymeleaf.js}" src=""></script>
+	<script data-th-src="@{/cij/thymol/thymol-full.js}" src=""></script>
+</body>
+</html>

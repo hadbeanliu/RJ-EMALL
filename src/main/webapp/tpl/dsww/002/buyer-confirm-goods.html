@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh" class="no-js">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui" />
+<meta name="apple-mobile-web-app-title" content="文玩天下" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />
+<title>确认收货页</title>
+<link data-th-href="|${tempPath}style/themes.less|" href="style/themes.less" rel="stylesheet" type="text/less" />
+<link data-th-href="|${tempPath}style/layout.css|" href="style/layout.css" rel="stylesheet" type="text/css" />
+<link data-th-href="|${tempPath}style/master.css|" href="style/master.css" rel="stylesheet" type="text/css" />
+<link data-th-href="|${tempPath}build/mediaelementplayer.min.css|" rel="stylesheet" href="build/mediaelementplayer.min.css" />
+<link data-th-href="|${tempPath}style/font-awesome.min.css|" rel="stylesheet" href="style/font-awesome.min.css" />
+<link data-th-href="|${tempPath}style/wSelect.less|" href="style/wSelect.less" rel="stylesheet" type="text/less" />
+
+<script data-th-src="|${tempPath}javascript/vendor/modernizr.js|" src="javascript/vendor/modernizr.js"></script>
+<script data-th-src="|${tempPath}javascript/less-1.7.3.min.js|" src="javascript/less-1.7.3.min.js"></script>
+<script data-th-src="|${tempPath}javascript/es5-shim-2.1.0.min.js|" src="javascript/es5-shim-2.1.0.min.js"></script>
+</head>
+<body>
+<div id="layout">
+    <div class="wrapper" id="frame_wrapper">
+        <div class="header" id="frame_header" include="include.html">
+            <div class="tool-bar hide-for-small" id="frame_tool_bar">
+                <div class="row clearfix" id="frame_tb_row" data-th-include="${tempInternalPath + 'include'} :: #frame_tb_row">
+                </div>
+            </div>
+        </div>
+        <!--end header-->
+        
+        <div class="main" role="main" aria-label="主体区块" id="frame_main">
+            <div class="row" id="frame_mr1">
+                <div class="confirm-goods">
+                    <div class="head-tip">确认收货</div>
+<!--                     <div class="head-tip">我已收到货，同意支付宝付款</div> -->
+                    <div class="detail-list">
+                        <h3>订单信息</h3>
+                        <table class="dl-table" cellpadding="0" cellspacing="0" width="100%">
+                            <thead>
+                                <tr class="head">
+                                    <th class="">宝贝</th>
+                                    <th class="">单价（元）</th>
+                                    <th class="">数量</th>
+                                    <th class="">优惠方式（元）</th>
+                                    <th class="">配送方式</th>
+                                    <th class="">小计（元）</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="goods-item">
+                                    <td class="info clearfix">
+                                        <a href="#" class="img" target="_blank"><img data-th-src="|${tempPath}images/merchandise03.jpg|" src="images/merchandise03.jpg" alt="" /></a>
+                                        <div class="title">
+                                            <a href="#" target="_blank">新款宽松大码加肥加大号男士短袖t恤潮胖子夏季班服工作服定制</a>
+                                            <span class="color">颜色：白色</span>
+                                            <span class="size">尺码：XL</span>
+                                        </div>
+                                    </td>
+                                    <td class="unit-price"><span class="old">¥<num>198.00</num></span><span class="new">¥<num>168.00</num></span></td>
+                                    <td class="num">x2</td>
+                                    <td class="discount">无优惠</td>
+                                    <td class="ship"><span class="way">配送方式</span><span class="result">快递 免邮</span></td>
+                                    <td class="total-price clearfix">
+                                        <span class="price">¥<num>336.00</num></span>
+                                        <span class="tip">(含运费:0.00)</span>
+                                        <span class="name">合计：</span>
+                                        <span class="count">共<num>2</num>件商品</span>
+                                    </td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                        <div class="money">实付款:<num>336.00</num>元</div>
+                        <div class="order-detail">
+                        	<ul>
+                            	<li class="clearfix"><span class="tit">订单编号:</span><num>94891645615716</num></li>
+                                <li class="clearfix"><span class="tit">支付宝交易号:</span><num>20150629164161641</num></li>
+                                <li class="clearfix"><span class="tit">卖家昵称:</span><span class="user">任风吹<a class="chat"><i class="fa fa-comment fa-fw"></i>和我联系</a></span></li>
+                                <li class="clearfix"><span class="tit">成交时间:</span><num>2015-05-24 10:12:50</num></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="pay-area">
+                    	<ul>
+                        	<li class="tip">请收到货后，再确认收货，否则您可能钱货两空！</li>
+                            <li class="refund">如果您想申请退款，<a href="#">请点击这里</a></li>
+                        </ul>
+                        <div class="area clearfix">
+                         	<span>支付宝支付密码：</span>
+                            <input class="pwd" type="password" name="pwd" />
+                            <a href="#">忘记密码？</a>
+                        </div>
+                        <a data-th-href="@{/buyer/order/goods-received.htm?orderId=} + ${order.id}" href="#" class="button radius tiny alert">确定</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end main-->
+        
+        <div class="footer" id="frame_footer" role="contentinfo" jsp="true" include="include.html" data-th-include="${tempInternalPath + 'include'} :: #frame_footer">
+        </div>
+        <!--end footer--> 
+        
+        <div id="frame_javascript">
+            <div data-th-include="${tempInternalPath + 'include'} :: #base_javascript"></div>
+        	<div data-th-include="${tempInternalPath + 'include'} :: #datatable_javascript"></div>
+            <div id="data_javascript">
+            	<script data-th-src="|${tempPath}javascript/wSelect.js|" type="text/javascript" src="javascript/wSelect.js"></script>
+                <script data-th-src="@{/cij/js/rongji.js}" src="/emall/cij/js/rongji.js"></script>
+                <script src="/emall/cij/js/m/include.js" ></script>
+                <script>
+                	$(document).foundation();
+                	//tool-bar下拉效果
+	  				  $(document).wSelect({
+	  					fade:true,
+	  					animate: true,
+	  					size: '5'
+	  				});
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

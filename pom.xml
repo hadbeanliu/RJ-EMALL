@@ -1,0 +1,423 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.rongji</groupId>
+  	<artifactId>RJ-CMS-parent</artifactId>
+	<version>7.1.17</version>
+  </parent>
+
+  <groupId>com.rongji.cms</groupId>
+  <artifactId>RJ-EMALL</artifactId>
+  <version>0.1.0</version>
+  <packaging>war</packaging>
+
+  <name>RJ-EMALL</name>
+  <url>http://maven.apache.org</url>
+
+ 
+  <description>自动生成jpa的model使用maven命令：mvn process-sources -P codegen</description>
+  
+  	<properties>
+  		<javax.servlet.api.version>3.0.1</javax.servlet.api.version>
+  		<javax.servlet.jstl.version>1.2</javax.servlet.jstl.version>
+  	
+  		<apache.commons.lang>3.4</apache.commons.lang>
+  		<apache.httpclient.version>4.3.3</apache.httpclient.version>
+  		<apache.httpclient.cache.version>4.3.3</apache.httpclient.cache.version>
+  		
+  		<com.google.zxing.core.version>2.3.0</com.google.zxing.core.version>
+  	
+		<rjskeleton.version>1.4.13</rjskeleton.version>
+		<rjskeleton.test.version>1.4.3</rjskeleton.test.version>
+		
+		<oracle.version>11.2.0.4</oracle.version>
+		
+		<thymeleaf.version>2.1.4.RELEASE</thymeleaf.version>
+		
+		<spring.context.support.version>4.1.3.RELEASE</spring.context.support.version>
+		<javax.mail.version>1.4.7</javax.mail.version>
+		
+		<cms.client.version>1.1-beta8</cms.client.version>
+		
+		<com.rongji.dfish.cache>0.0.6</com.rongji.dfish.cache>
+  		<com.rongji.pay.client.version>0.0.14</com.rongji.pay.client.version>
+		
+		<cms.rongji.sso.core.version>0.0.2-beta2</cms.rongji.sso.core.version>
+		<cms.rongji.sso.server.version>0.0.2-beta2</cms.rongji.sso.server.version>
+		
+		<cms.rongji.social.client.version>1.1</cms.rongji.social.client.version>
+		<cms.rongji.social.base.version>1.1</cms.rongji.social.base.version>
+		
+		<dfish.base.version>1.2</dfish.base.version>
+		<dfish.json.base.version>2.3</dfish.json.base.version>
+		<dfish.permission.public.version>2.1</dfish.permission.public.version>
+		<dfish.permission.remote.version>2.1</dfish.permission.remote.version>
+		<dfish.sso.public.version>2.2</dfish.sso.public.version>
+		<dfish.sso.remote.version>2.2</dfish.sso.remote.version>
+		<dfish.ums.public.version>2.2</dfish.ums.public.version>
+		<dfish.ums.remote.version>2.2</dfish.ums.remote.version>
+		
+		<jchardet.version>1.1</jchardet.version>
+		<quartz.version>1.7.2</quartz.version>
+	</properties>
+  
+  <dependencies>
+  
+  		<dependency>
+			<groupId>com.rongji</groupId>
+			<artifactId>sso-core</artifactId>
+			<version>${cms.rongji.sso.core.version}</version>
+		</dependency>
+  		<dependency>
+			<groupId>com.rongji</groupId>
+			<artifactId>sso-server</artifactId>
+			<version>${cms.rongji.sso.server.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${javax.servlet.api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+  
+  		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${javax.servlet.jstl.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>core</artifactId>
+			<version>${com.google.zxing.core.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.rongji.social</groupId>
+			<artifactId>social-base</artifactId>
+			<version>${cms.rongji.social.base.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.rongji.social</groupId>
+			<artifactId>social-client</artifactId>
+			<version>${cms.rongji.social.client.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.rongji</groupId>
+			<artifactId>pay-client</artifactId>
+			<version>${com.rongji.pay.client.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${apache.commons.lang}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${apache.httpclient.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient-cache</artifactId>
+			<version>${apache.httpclient.cache.version}</version>
+		</dependency>
+  
+  		<dependency>
+  			  <groupId>com.rongji</groupId>
+			  <artifactId>rjskeleton</artifactId>
+			  <version>${rjskeleton.version}</version>
+  		</dependency>
+  		
+  		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>${oracle.version}</version>
+		</dependency>
+				
+		<!-- 模板操作 -->
+		<dependency>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf</artifactId>
+			<version>${thymeleaf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf-spring4</artifactId>
+			<version>${thymeleaf.version}</version>
+		</dependency>
+		
+		<!-- 邮件依赖 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.context.support.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>${javax.mail.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.rongji.cms</groupId>
+			<artifactId>cms-client</artifactId>
+			<version>${cms.client.version}</version>
+		</dependency>
+		
+		<!-- dfish 平台依赖 -->
+		<dependency>
+			<groupId>com.rongji.dfish</groupId>
+			<artifactId>dfish-base</artifactId>
+			<version>${dfish.base.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.rongji.dfish</groupId>
+			<artifactId>dfish-json-base</artifactId>
+			<version>${dfish.json.base.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.rongji.dfish</groupId>
+			<artifactId>dfish-permission-public</artifactId>
+			<version>${dfish.permission.public.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.rongji.dfish</groupId>
+			<artifactId>dfish-permission-remote</artifactId>
+			<version>${dfish.permission.remote.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.rongji.dfish</groupId>
+			<artifactId>dfish-sso-public</artifactId>
+			<version>${dfish.sso.public.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.rongji.dfish</groupId>
+			<artifactId>dfish-sso-remote</artifactId>
+			<version>${dfish.sso.remote.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.rongji.dfish</groupId>
+			<artifactId>dfish-ums-public</artifactId>
+			<version>${dfish.ums.public.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.rongji.dfish</groupId>
+			<artifactId>dfish-ums-remote</artifactId>
+			<version>${dfish.ums.remote.version}</version>
+		</dependency>
+		
+		<dependency>
+  			  <groupId>com.rongji</groupId>
+			  <artifactId>rjskeleton-test</artifactId>
+			  <version>${rjskeleton.test.version}</version>
+			  <scope>test</scope>
+  		</dependency>
+	    <dependency>
+		      <groupId>com.rongji.dfish</groupId>
+		      <artifactId>dfish-cache</artifactId>
+		      <version>${com.rongji.dfish.cache}</version>
+	    </dependency>
+	    
+	    <dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-client</artifactId>
+			<version>2.5.2</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.servlet</groupId>
+					<artifactId>servlet-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	    
+	    <dependency>
+			<groupId>org.apache.hbase</groupId>
+			<artifactId>hbase-client</artifactId>
+			<version>0.98.13-hadoop2</version>
+		</dependency>
+			<dependency>
+			<groupId>org.apache.hbase</groupId>
+			<artifactId>hbase-common</artifactId>
+			<version>0.98.13-hadoop2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.gora</groupId>
+			<artifactId>gora-core</artifactId>
+			<version>0.6</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.hadoop</groupId>
+					<artifactId>hadoop-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.cxf</groupId>
+					<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.hbase</groupId>
+					<artifactId>hbase</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.hadoop</groupId>
+					<artifactId>hadoop-test</artifactId>
+				</exclusion>
+			</exclusions>		
+		</dependency>
+		
+		
+		
+  </dependencies>
+  
+  <!-- 
+  	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-framework-bom</artifactId>
+				<version>${spring.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+   -->
+  
+	<build>
+		<!-- <finalName>emall</finalName> -->
+		<plugins>
+			<plugin><!-- 编译源码 -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<!-- 使用的jdk版本和编译用的版本 -->
+					<source>1.6</source>
+					<target>1.6</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<optimize>true</optimize>
+					<compilerArguments>
+						<nowarn />
+						<Xlint />
+						<XDignore.symbol.file />
+						<bootclasspath>${java.home}/lib/rt.jar${path.separator}${java.home}/lib/jce.jar</bootclasspath>
+					</compilerArguments>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.codehaus.plexus</groupId>
+						<artifactId>plexus-compiler-eclipse</artifactId>
+						<version>2.0</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin><!-- 复制资源文件 -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+			<plugin><!-- 复制依赖 -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.8</version>
+				<configuration>
+					<includeScope>runtime</includeScope>
+				</configuration>
+			</plugin>
+			<plugin><!-- 添加额外的源码路径 -->
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.9.1</version>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src/generated/java</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin><!-- 添加部署的项目名 -->
+			  <artifactId>maven-war-plugin</artifactId>
+			  <version>2.2</version>
+			  <configuration>
+			     <warName>emall</warName>
+			  </configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+	
+	<profiles>
+		<profile>
+		    <id>codegen</id>
+		    <activation>
+		        <activeByDefault>false</activeByDefault>
+		    </activation>
+		    <dependencies>
+	    		<dependency>
+		            <groupId>org.hibernate</groupId>
+		            <artifactId>hibernate-jpamodelgen</artifactId>
+		            <version>4.3.7.Final</version>
+		            <scope>provided</scope>
+		        </dependency>
+		    </dependencies>
+		    <build>
+		        <plugins>
+		            <plugin>
+		                <groupId>org.bsc.maven</groupId>
+		                <artifactId>maven-processor-plugin</artifactId>
+		                <version>2.2.4</version>
+		                <executions>
+		                    <execution>
+		                        <id>generate-jpa-metamodel</id>
+		                        <goals>
+		                            <goal>process</goal>
+		                        </goals>
+		                        <phase>generate-sources</phase>
+		                        <configuration>
+		                            <processors>
+		                                <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
+		                            </processors>
+		                            <outputDirectory>src/generated/java</outputDirectory>
+		                        </configuration>
+		                    </execution>
+		                </executions>
+		            </plugin>
+		        </plugins>
+		    </build>
+		</profile>
+	</profiles>
+	
+	<repositories>
+		<repository><!-- 公司内部镜像仓库地址，如需使用内部jar需拷贝本配置 -->
+			<id>central</id>
+			<name>Maven Central Rongji Mirror</name>
+			<url>http://nexus.work.net/nexus/content/groups/public</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository><!-- 公司内部插件镜像仓库地址，如需使用内部jar需拷贝本配置 -->
+			<id>central</id>
+			<name>Maven Central Rongji Mirror</name>
+			<url>http://nexus.work.net/nexus/content/groups/public</url>
+		</pluginRepository>
+	</pluginRepositories>
+	
+</project>

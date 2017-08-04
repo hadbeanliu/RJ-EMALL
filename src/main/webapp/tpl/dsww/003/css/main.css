@@ -1,0 +1,373 @@
+
+li{list-style: none;}
+body{background-color: #fbfaf6;}
+.left{float: left;}
+.right{float: right;}
+.align-right{text-align: right;}
+.align-left{text-align: left;
+font-family: "微软雅黑";
+}
+
+.margin-bom{margin-bottom: 15px;}
+@media screen and (max-width: 768px) {
+    .mar-bom{margin-bottom: 13px;}
+}
+.f-14{font-size: 14px}
+.pad-right-none{padding-right: 0px;}
+
+.font-24-b{font-size: 24px;padding-left: 2%;margin-top: 24px;margin-bottom: 0px;}
+
+
+@media screen and (max-width: 768px) and (min-width: 320px) {
+    .reg-box{ background: #ffffff; padding: 15px;margin-top: 20px;}
+    .row1{padding-top: 0px;}
+
+}
+@media screen and (min-width: 769px) {
+    .reg-box{ background: #ffffff; padding: 30px;margin-top: 20px}
+    .row1{padding-top: 10px;}
+}
+
+.mar-top-10{margin-top: 10px;}
+
+
+.f-12{font-size: 12px;}
+.input-reg:focus{border: 1px solid #b35611;}
+.img-phone{position: absolute;top: 5px;right: 20px}
+.b-red{font-weight: normal;color: #c51720;}
+.footer-des{margin-top: 15px}
+.footer-des p{color: #666;font-size: 12px;}
+.label-position{position: absolute; line-height: 20px;top: 0px;left: 40px}
+.reg-border-solid{border-top: 1px solid #DDDDDD;margin-bottom: 15px}
+.btn-check{margin-bottom:15px;font-size: 16px;line-height: 37px; width: 100%;background: #B35611;color: #ffffff;padding: 0px;display: block;text-align: center;}
+.btn-check:active{margin-bottom:15px;font-size: 16px;line-height: 37px; width: 100%;background: #B35611;color: #ffffff;text-align:center;padding: 0px;display: block;box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.125);border: none}
+.btn-check:focus{font-size: 16px;margin-bottom:15px;line-height: 37px; width: 100%;background: #B35611;color: #ffffff;text-align:center;padding: 0px;display: block;box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.125);border: none}
+.btn-check:hover{font-size: 16px;line-height: 37px;margin-bottom:15px; width: 100%;background: #B35611;color: #ffffff;padding: 0px;text-align:center;display: block;box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.125);border: none}
+@media screen and (max-width: 640px){
+    .bg-img{display: none;}
+    .check-agree{margin-top:10px; }
+}
+.check-img{height: 37px;width: 100px;cursor: pointer;}
+.img-tip{position: absolute;top: 0px;right: 14px;}
+.b-red-in{font-size: 14px;font-weight: normal;color: #c51720;}
+.row-last{margin-top: -5px;text-align: right;}
+.row-last a:first-child{font-size: 12px;color: #666;}
+.reg-box-ul li{float: left;width: 50%;text-align: center;margin: 0px;padding: 0px}
+.f-12{font-size: 12px;}
+.grey{color: #666;}
+.a-decora:hover{text-decoration: underline;}
+.eg-box-ul button{background: none;}
+
+.pad-ri-120{padding-right: 115px}
+.email-reg{display: block;}
+.phone-reg{display: block;}
+.border-tab{border-bottom: 5px solid #B35611;color: #B35611}
+.pad-none{padding: 0px}
+/*.email-reg-box{display: none;}*/
+/*.phone-reg:visited{border-bottom: 5px solid #B35611}*/
+/*.phone-reg:hover{border-bottom: 5px solid #B35611}*/
+/*.phone-reg:focus{border-bottom: 5px solid #B35611}*/
+/*.phone-reg:active{border-bottom: 5px solid #B35611}*/
+/*.email-reg:visited{border-bottom: 5px solid #B35611}*/
+/*.email-reg:hover{border-bottom: 5px solid #B35611}*/
+/*.email-reg:focus{border-bottom: 5px solid #B35611}*/
+/*.email-reg:active{border-bottom: 5px solid #B35611}*/
+
+
+@media screen and (min-width: 320px) and (max-width: 640px){
+    .title-position img{width:140px; text-align: center}
+    .row1>div{padding: 0px}
+
+}
+@media screen and (min-width: 641px ) and (max-width: 768px ){
+    .title-position img{width:180px; text-align: center}
+    .bg-img{height: 100%;}
+}
+@media screen  and (width: 768px){
+    .bg-img{margin-top: 25px}
+
+}
+
+
+
+@media screen  and (min-width: 320px ) and (max-width: 768px) {
+    .title-position{margin-top: 5px;text-align: center;}
+
+    .title-position p{display: none}
+}
+
+@media screen and (min-width: 768px){
+    .title-position img{width:auto;float: left}
+    .title-position p{font-size: 24px; float: left;}
+    .title-position{margin-top: 30px; margin-bottom: -15px;}
+    .footer-des p{margin-bottom: 0px}
+}
+
+
+/*.reg-box-ul li a{color: #666}*/
+
+/*登入页面*/
+.login-ul li{float: left;margin-right: 8px;}
+
+.row-8 a{color: #B35611 }
+/*checkbox*/
+*,
+*:after,
+*:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+::selection {
+    background: transparent;
+}
+
+::-moz-selection {
+    background: transparent;
+}
+
+.wrapper-demo {
+    margin: 60px 0 0 0;
+    *zoom: 1;
+    font-weight: 400;
+}
+
+.wrapper-demo:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+.wrapper-dropdown-2 {
+    /* Size and position */
+    position: relative; /* Enable absolute positionning for children and pseudo elements */
+    width: 80px;
+    padding-left: 10px;
+    margin: 0 auto;
+    font-size: 12px;
+    top: 12px;
+    /*padding: 10px 15px;*/
+
+    /* Styles */
+    background: #fff;
+    border-left: 5px solid grey;
+    cursor: pointer;
+    outline: none;
+}
+.wrapper-dropdown-2 ul{margin-left: 1px}
+.wrapper-dropdown-2 li{font-size: 12px}
+.wrapper-dropdown-2:after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    margin-top: -3px;
+    border-width: 6px 6px 0 6px;
+    border-style: solid;
+    border-color: grey transparent;
+}
+
+.wrapper-dropdown-2 .dropdown {
+    /* Size & position */
+    position: absolute;
+    top: 100%;
+    left: -5px;
+    right: 0px;
+
+    /* Styles */
+    background: white;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    list-style: none;
+
+    /* Hiding */
+    opacity: 0;
+    pointer-events: none;
+}
+
+.wrapper-dropdown-2 .dropdown li a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    border-left: 5px solid;
+    padding: 10px;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.wrapper-dropdown-2 .dropdown li:nth-child(1) a {
+    border-left-color: #00ACED;
+}
+
+.wrapper-dropdown-2 .dropdown li:nth-child(2) a {
+    border-left-color: #4183C4;
+}
+
+.wrapper-dropdown-2 .dropdown li:nth-child(3) a {
+    border-left-color: #3B5998;
+}
+
+.wrapper-dropdown-2 .dropdown li i {
+    margin-right: 5px;
+    color: inherit;
+    vertical-align: middle;
+}
+
+/* Hover state */
+
+.wrapper-dropdown-2 .dropdown li:hover a {
+    color: grey;
+}
+
+/* Active state */
+
+.wrapper-dropdown-2.active:after {
+    border-width: 0 6px 6px 6px;
+}
+
+.wrapper-dropdown-2.active .dropdown {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
+}
+
+/* No CSS3 support */
+
+.no-opacity       .wrapper-dropdown-2 .dropdown,
+.no-pointerevents .wrapper-dropdown-2 .dropdown {
+    display: none;
+    opacity: 1; /* If opacity support but no pointer-events support */
+    pointer-events: auto; /* If pointer-events support but no pointer-events support */
+}
+
+.no-opacity       .wrapper-dropdown-2.active .dropdown,
+.no-pointerevents .wrapper-dropdown-2.active .dropdown {
+    display: block;
+}
+
+.email-reg:hover{border-bottom: 5px solid #B35611;color: #B35611}
+.phone-reg:hover{border-bottom: 5px solid #B35611;color: #B35611}
+.hide{display: none;}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="month"]:focus, input[type="week"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="time"]:focus, input[type="url"]:focus, input[type="color"]:focus, textarea:focus {
+    background-color: #fafafa;
+    border: 1px solid #b35611;
+    outline: none;
+}
+.footer{position: relative;bottom: 2%;}
+
+.footer-bo{text-align: center;font-size: 12px;color:#666;padding-left: 2px;padding-right: 2px}
+@media screen and (min-width: 769px){
+   .login-normal{margin-bottom: 25px}
+}
+@media screen and (min-width: 320px) and (max-width: 768px) {
+
+}
+
+.phone-in-one{text-align: right;line-height: 40px;font-size: 12px;}
+.phone-in-two{text-align: right;line-height: 40px;font-size: 12px;}
+input:focus{background-color:#fafafa}
+
+.login-ul-pic{width: 275px;margin: 0px auto;}
+.login-ul ul li a{display: block; width: 45px;height: 45px;
+    opacity: 0.5;}
+.login-ul ul li a:hover{
+    opacity: 1;}
+.login-ul ul li a.a-qq{
+    background: url(../img/login-pic.png) 0px 0px no-repeat;
+}
+.login-ul ul li a.a-baidu{
+    background: url(../img/login-pic.png) -52px 0px no-repeat;
+}
+.login-ul ul li a.a-weibo{
+    background: url(../img/login-pic.png) -104px 0px no-repeat;
+}
+.login-ul ul li a.a-weixin{
+    background: url(../img/login-pic.png) -156px 0px no-repeat;
+}
+.login-ul ul li a.a-kaikai{
+    background: url(../img/login-pic.png) -208px 0px no-repeat;
+}
+.solid-span{border-bottom: 1px solid #DDDDDD;display: block;margin-top: 20px;}
+.p-ce-login{color: #666;font-size: 12px;display: block;padding: 10px;width: 164px;margin: 0px auto;background-color: #ffffff;position: relative;top: -20px;margin-bottom: -10px;}
+
+/*验证短信按钮*/
+.btn-get-password{width: 110px;height: 37px;color:#333;background: #DDDDDD; border: none;cursor: pointer;position: absolute;top: 0px;right: 15px}
+.pad-ri-125{padding-right: 125px;}
+.btn-get-password:visited{cursor: not-allowed;}
+
+
+.btn-get-password-pos{
+    width: 100%;
+    position: absolute;
+    top: -49px;
+    height: 29px;
+    color:#333;
+    background: #DDDDDD;
+    border: none;
+    max-width:120px;
+    right: 20px;
+    cursor: pointer;
+}
+
+
+
+.reg-title-right-pic{position: relative;top: -1px;}
+
+input[type=checkbox]{
+    outline: inherit;
+    -webkit-appearance: none;
+    background: url(../img/check.png) no-repeat;
+    display: inline-block;
+    position: relative;
+    margin: 0;
+    top: 1px;
+    background-position: left top;
+    width: 20px;
+    height: 18px;
+}
+.reveal-modal input[type=checkbox] {top: 4px;}
+/*default*/
+input[type=checkbox] {background-position: 0px 0px;}
+input[type=checkbox]:hover {background-position: -20px 0px;cursor:pointer;}
+input[type=checkbox]:checked {background-position: -40px -81px;}
+
+@media screen and (min-width: 320px) and (max-width: 360px) {
+    .min-sma-pad{padding: 5px}
+}
+
+@media screen and (min-width: 480px){
+    .footer-bom{position: relative;bottom: -35px;}
+
+}
+@media screen and (min-width: 320px) and (max-width: 480px) {
+    .footer-bom{position: relative;bottom: -5px;}
+
+}
+@media screen and (min-width: 769px){
+    .login-title{font-size: 24px;color: #B35611; font-weight:bold;padding-bottom: 15px;}
+}
+@media screen and (min-width: 320px) and (max-width: 640px){
+    .login-title{font-size: 18px;color: #B35611; font-weight:bold;padding-bottom: 15px;}
+    .reg-box input{margin-bottom: 8px}
+}
+
+@media screen and (min-width: 641px) and (max-width: 768px){
+    .login-title{font-size: 24px;color: #B35611; font-weight:bold;padding-bottom: 15px;}
+}
+
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+    /*.row1>div:last-child{width: 100%;}*/
+}
+

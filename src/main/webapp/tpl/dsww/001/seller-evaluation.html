@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh" class="no-js">
+<head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta name="keywords" content=" " />
+    <meta name="description" content="" />
+	<title>卖家评价管理</title>
+	<link data-th-href="|${tempPath}style/font-awesome.min.css|" href="style/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/themes.less|"  href="style/themes.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="@{/cij/datatables/css/dataTables.foundation.css}" href="/emall/cij/datatables/css/dataTables.foundation.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}datatables-extend/css/dataTables.response.less|"  href="datatables-extend/css/dataTables.response.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}datatables-extend/css/daterangepicker-f5.less|"  href="datatables-extend/css/daterangepicker-f5.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}style/layout.css|"  href="style/layout.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/master.css|"  href="style/master.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/movies-app.css|"  href="style/movies-app.css" rel="stylesheet" type="text/css" />
+
+	<script data-th-src="|${tempPath}javascript/less-1.7.3.min.js|" src="javascript/less-1.7.3.min.js"></script>
+	<script data-th-src="|${tempPath}javascript/modernizr.js|" src="javascript/modernizr.js"></script>
+	<script data-th-inline="javascript">
+	Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/ '/emall';
+	Cfg.tempPath = /*[[ ${tempPath} ]]*/ '/emall/tpl/001/';
+	</script>
+</head>
+<body>
+<div id="layout">
+    <div class="wrapper" id="frame_wrapper">
+        <div class="off-canvas-wrap" data-offcanvas="" id="frame_canvas_wrap">
+            <div class="inner-wrap" id="frame_inner_wrap">  
+                <div class="left-off-canvas-menu hide-for-large" id="frame_canvas_menu" data-set="data_accordion"></div>
+                <div class="header" id="frame_header" include="include.html" data-th-include="${tempInternalPath + 'include-seller'} :: #frame_header">
+                </div>
+                <!--end header-->
+                
+                <div class="main" role="main" aria-label="主体区块" id="frame_main">
+                    <div class="row" id="frame_main_row1">
+                        <div class="small-12 medium-2 large-2 columns" id="frame_main_col1">
+                            <div id="frame_accordion" include="include.html" data-th-include="${tempInternalPath + 'include-seller'} :: #frame_accordion">
+                            </div>
+                        </div>
+                        <div class="small-12 medium-10 large-10 columns" id="frame_main_col2">
+                            <div class="list-position" id="frame_position">
+                                <div id="data_list_addr" class="c-addr">
+                                    <a href="#" target="_self">我是卖家</a>&frasl;<a href="#" target="_self">评价管理</a>&frasl;
+                                </div>
+                            </div>
+                            <div id="data_datatable">
+                            
+                            <div id="seller-evaluation">
+		<section class="panel">
+                                        <header class="panel-heading">
+                                           店铺评价管理页面
+                                            <span class="tools right" style="display:none;">
+                                                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                                                <a href="javascript:;" class="fa fa-times"></a>
+                                             </span>
+                                             <div class="right">                
+                                                <a class="v_oper_refresh" title="刷新"><i class="fa fa-refresh"></i></a>
+                                             </div>
+                                        </header> 
+                                        <div class="panel-body">
+                                            <div class="table_bar">
+                                            <!--     <div class="bar_left">
+                                                    <div class="left">                             
+                                                        <div class="apply">                                                            
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+                                                <div class="more-filter">
+                                                  <!--   <a>筛选<i class="fa fa-caret-down"></i><i class="fa fa-caret-up"></i></a> -->
+                                                </div>
+                                                <div class="bar_right">
+                                                    <div class="search">
+                                             <!--          <input name="goodsTitle-lk" class="inp v_oper_quick_search" id="topsearch" type="text" placeholder="请输入..." accesskey="s" title="请输入查询内容" x-webkit-speech="" x-webkit-grammar="builtin:translate" lang="zh-CN" style="display: block;"/>
+                                                      <i class="fa fa-search v_oper_click_quick_search" title="搜索"></i> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="filter-items hide p-border v_search"> 
+				
+										    <div class="row">
+                                            <div class="small-12 medium-4 large-4 columns">
+                                                 <label for="label1" class="right" role="alert">评论类型</label>
+                                             </div>
+                                             <div class="small-12 medium-8 large-8 columns">
+                                                     <select class="medium" data-invalid="" name="evaluationType" aria-invalid="true">
+                                                         <option value="0">全部</option>
+									                     <option value="1">好评</option>
+									                     <option value="2">中评</option>
+									                     <option value="3">差评</option>
+                                                     </select>
+                                             </div>
+                                            </div>
+				
+				
+                                                <div class="row">
+                                                    <div class="small-12 columns">
+                                                        <a class="button right tiny radius v_oper_do_search">搜索</a><a class="button right tiny margin-r secondary radius v_oper_reset_search">重置</a>
+                                                    </div>
+                                                </div>
+                                            </div>   -->
+                                            
+                                            <div class="panel-tag">
+                                                <a class="v_oper_click_search active" name="status" value="0">全部</a>
+                                                <a class="v_oper_click_search" name="status" value="1">好评</a>
+                                                <a class="v_oper_click_search" name="status" value="2">中评</a>
+                                                <a class="v_oper_click_search" name="status" value="3">差评</a>                                              
+                                            </div>                                         
+                                            <!--加载中...-->
+                                            <div class="v_page_processing row hide">
+                                                <div class="small-12 medium-6 large-6 columns"></div>
+                                                <div class="small-12 medium-6 large-6 columns"></div>
+                                                <div id="DataTables_Table_0_processing" class="dataTables_processing">
+                                                    <span class="fa-stack fa-lg">
+                                                      <i class="fa fa-square fa-stack-2x"></i>
+                                                      <i class="fa fa-spinner fa-spin fa-stack-1x fa-inverse"></i>
+                                                    </span><br/>
+                                                    <span>数据加载中...</span>
+                                                </div>
+                                            </div>
+                                            <div class="v_table margin-t simple"></div>
+                                        </div>
+                                    </section>
+		<!--添加-->	
+		<div id="add-evaluation" class="reveal-modal large openModal v_add_form" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+			<form id="add-evaluation-form" data-abide="" method="post" accept-charset="UTF-8" >
+				<h3 class="explainTitle"></h3>	
+				<div class="modal_wrap">			
+			<div class="evaluate-comment mart20">
+						<label>内容 <!-- <input type="text" name="comment" id="comment" required=""/> -->
+						<textarea id="comment" name="comment" placeholder="您的意见很重要!"></textarea>
+						<div class="state">                                                          
+                                    <span class="right">2-500字</span>
+                                </div>
+						</label>
+						<small class="error">内容不能为空！</small>
+					</div>
+					<div id="fileList" class="uploader-list">
+                                    <div class="no-bullet" id="sortable-list"></div>
+                                </div>			
+				</div>
+				<input type="hidden" id="cmtId" />
+				<input type="hidden" id="objId" />
+				<input type="hidden" id="userId"/>
+				<div class="row confirm">
+					<div class="small-12 columns">
+					     <a class="right button radius tiny explain"></a>
+						<a	class="close-reveal-modal right button radius tiny secondary margin-r"
+							aria-label="Close">取消</a>
+					</div>
+				</div>
+			</form>
+			<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+		</div>	
+	
+		</div>
+                            <!--操作成功提示框-->
+                                    <div class="fixed v_info_success">
+                                        <div class="row">
+                                            <div class="large-12 columns" id="operate_alert_into">
+                                                <div data-alert="" class="success alert-box warning radius nomarg v_show_oper_info">
+                                                    <div><i class="fa fa-fw fa-check"></i><span class="v_show_info">操作成功.</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end main-->       
+                <div class="footer" id="frame_footer" role="contentinfo" include="include.html" data-th-include="${tempInternalPath + 'include'} :: #frame_footer">
+                </div>
+                <!--end footer--> 
+                
+                <div class="go" id="frame_go"><a title="返回顶部" class="gotop" id="goTop"></a> <a title="返回底部" class="gobottom" id="goBottom"></a></div>
+                
+                <div id="frame_exit_off"><a class="exit-off-canvas"></a></div>
+            </div>
+        </div>
+        
+        <div id="frame_javascript">
+       	<div data-th-include="${tempInternalPath + 'include'} :: #base_javascript"></div>
+       	<div data-th-include="${tempInternalPath + 'include'} :: #datatable_javascript"></div>
+           <div id="data_javascript">
+				<script>$(document).foundation();</script>
+				 <script data-th-src="|${tempPath}javascript/idangerous.swiper-2.0.min.js|" src="javascript/idangerous.swiper-2.0.min.js" type="text/javascript" charset="utf8"></script>
+				 <script data-th-src="|${tempPath}javascript/commentList.js|" src="javascript/commentList.js" type="text/javascript" charset="utf8"></script>
+                 <script data-th-src="@{/cij/js/m/seller.evaluation.js}" src="/emall/cij/js/m/seller.evaluation.js"></script>
+           </div>
+       </div> 
+    </div>
+</div>
+</body>
+</html>

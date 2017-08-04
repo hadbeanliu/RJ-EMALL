@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+
+<!-- If you delete this meta tag World War Z will become a reality -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>众筹回报设置</title>
+<!-- If you are using the CSS version, only link these 2 files, you may add app.css to use for your overrides if you like -->
+<link data-th-href="@{/cij/foundation/css/normalize.css}"	rel="stylesheet" href="css/normalize.css" />
+<link data-th-href="@{/cij/foundation/css/foundation.css}" rel="stylesheet" href="css/foundation.css" />
+<link data-th-href="@{/cij/foundation-icons/foundation-icons.css}" rel="stylesheet" href="css/foundation.css" />
+
+<link data-th-href="@{/cij/css/font-awesome.min.css}" rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+<link data-th-href="@{/cij/css/themes.less}" rel="stylesheet" type="text/less" href="css/themes.less" />
+
+<!-- If you are using the gem version, you need this only -->
+<link data-th-href="@{/cij/css/app.css}" rel="stylesheet" href="css/app.css" />
+
+<!-- DataTables CSS
+	<link data-th-href="@{/cij/datatables/css/jquery.dataTables.css}" rel="stylesheet" type="text/css" href="/DataTables-1.10.6/media/css/jquery.dataTables.css" />
+	 -->
+<link data-th-href="@{/cij/datatables/css/dataTables.foundation.css}" rel="stylesheet" type="text/css" href="dataTables.foundation.css" />
+<link data-th-href="@{/cij/datatables-extend/css/dataTables.response.css}" rel="stylesheet" type="text/css" href="dataTables.response.css" />
+<link data-th-href="@{/cij/datatables-extend/css/daterangepicker-f5.less}" rel="stylesheet" type="text/less" href="daterangepicker-f5.less" />
+
+<script data-th-inline="javascript">
+	Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/'';
+</script>
+<script data-th-src="@{/cij/js/less-1.7.3.min.js}"	src="js/less-1.7.3.min.js"></script>
+<script data-th-src="@{/cij/foundation/js/vendor/modernizr.js}" src="js/vendor/modernizr.js"></script>
+</head>
+<body>
+<!-- 	<div class="button" onClick="showTip()"	style="width:200px;margin:0 auto;display:block;">提示框</div> -->
+	<div id="crowdfunding-return">
+		<section class="panel">
+        <header class="panel-heading">
+           众筹回报表格
+            <span class="tools right" style="display:none;">
+                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                <a href="javascript:;" class="fa fa-times"></a>
+             </span>
+        </header> 
+        <div class="panel-body">
+            <div class="table_bar">
+                <div class="bar_left">
+                    <div class="left">
+                        <div class="button radius tiny left v_oper_add"><i class="fa fa-plus"></i><span>添加</span></div>
+                        <div class="apply">
+                            <select id="select_change">
+                                <option>批量操作</option>
+                                <option value="v_oper_edit">编辑</option>
+                                <option value="v_oper_del">删除</option>
+                            </select>
+                            <div class="button radius tiny left" data-v-oper-id="select_change">应用</div>
+                        </div>
+                    </div>
+                    <div class="right">
+<!--                    
+                        <div class="button radius tiny left v_oper_select_all" >全选</div>
+                        <div class="button radius tiny left v_oper_delete" >删除</div>
+                        <div class="button radius tiny left v_oper_add" >添加</div>
+                        <div class="button radius tiny left v_oper_edit" >编辑</div>
+                        <div class="button radius tiny left v_oper_search">搜索</div>
+-->
+                        <div class="button radius tiny left v_oper_refresh"><i class="fa fa-repeat"></i><span>刷新</span></div>
+                    </div>
+                </div>
+                <div class="bar_right">
+                    <div class="search">
+                      <input name="id" class="inp v_oper_quick_search" id="topsearch" type="text" required="请输入查询内容" accesskey="s" title="请输入查询内容" x-webkit-speech="" x-webkit-grammar="builtin:translate" lang="zh-CN" style="display: block;" />
+                      <i class="fa fa-search" title="搜索"></i>
+                      <i class="fa fa-filter v_oper_advanced_search" title="高级"></i>
+                    </div>
+                </div>
+            </div>
+            <!--加载中...-->
+            <div class="v_page_processing row">
+                <div class="small-12 medium-6 large-6 columns"></div>
+                <div class="small-12 medium-6 large-6 columns"></div>
+                <div id="DataTables_Table_0_processing" class="dataTables_processing">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-square fa-stack-2x"></i>
+                      <i class="fa fa-spinner fa-spin fa-stack-1x fa-inverse"></i>
+                    </span><br></br>
+                    <span>数据加载中...</span>
+                </div>
+            </div>
+            <div class="v_table"></div>
+        </div>
+    </section>
+		<!--添加-->	
+		<div id="add-crowdfunding-return" class="reveal-modal large openModal v_add_form" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+			<form data-abide="" id="add-crowdfunding-return-form" method="post" accept-charset="UTF-8" enctype="multipart/form-data" >
+				<h3>添加众筹回报</h3>	
+				<div class="modal_wrap">
+				<div class="row">
+					<div class="small-12 columns int">
+						<label>标题 <input type="text" name="title"
+							required="" />
+						</label>
+						<small class="error">标题不能为空！</small>
+					</div>
+				</div>
+				<div class="row">				
+					<div class="small-4 columns int">
+						<label>金额 <input type="text" name="money"
+							required="" />
+						</label>
+						<small class="error">金额未设置</small>
+					</div>
+					<div class="small-4 columns int">
+						<label>回报数量 <input type="text" name="returnNumber"
+							required="" />
+						</label>
+						<small class="error">回报数量未设置</small>
+					</div>
+					<div class="small-4 columns int">
+						<label>个人限购 <input type="text" name="individualPurchase"
+							required="" />
+						</label>
+						<small class="error">个人限购未设置</small>
+					</div>
+				</div>		
+				<div class="row">
+					<div class="small-12 columns int">
+						<label>回报图片 <input type="file" name="returnPictureFile"
+							required="" />
+						</label>
+						<small class="error">回报图片未设置</small>
+					</div>
+				</div>	
+				<div class="row">
+					<div class="small-12  columns int">
+						<label>回报详情 <input type="text" name="returnDetails"
+							required="" />
+						</label>
+						<small class="error">回报详情未设置</small>
+					</div>
+				</div>	
+				</div>
+				<div class="row confirm">
+					<div class="small-12 columns">
+					     <button class="right button radius tiny save" type="submit">保存</button>
+						 <button class="right button radius tiny save_next">下一步</button> <a
+							class="close-reveal-modal right button radius tiny secondary margin-r"
+							aria-label="Close">取消</a>
+					</div>
+				</div>
+			</form>
+			<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+		</div>
+		<!--编辑-->
+		<div id="edit-crowdfunding-return" class="reveal-modal large openModal v_edit_form" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true"	role="dialog">
+			<form data-abide="" id="edit-crowdfunding-return-form" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+				<h3>编辑订单</h3>
+				<div class="modal_wrap">	
+				<input type="hidden" name="id" />		
+				<div class="row">
+					<div class="small-12 columns int">
+						<label>标题 <input type="text" name="title"
+							required="" />
+						</label>
+						<small class="error">标题不能为空!</small>
+					</div>
+				</div>
+				<div class="row">				
+					<div class="small-4 columns int">
+						<label>金额 <input type="text" name="money"
+							required="" />
+						</label>
+						<small class="error">金额未设置</small>
+					</div>
+					<div class="small-4 columns int">
+						<label>回报数量 <input type="text" name="returnNumber"
+							required="" />
+						</label>
+						<small class="error">回报数量未设置</small>
+					</div>
+					<div class="small-4 columns int">
+						<label>个人限购 <input type="text" name="individualPurchase"
+							required="" />
+						</label>
+						<small class="error">个人限购未设置</small>
+					</div>
+				</div>		
+				<div class="row">
+					<div class="small-12 columns int">
+						<label>回报图片 <input type="file" name="returnPictureFile"
+							required="" />
+						</label>
+						<small class="error">回报图片未设置</small>
+					</div>
+				</div>	
+				<div class="row">
+					<div class="small-12  columns int">
+						<label>回报详情 <input type="text" name="returnDetails"
+							required="" />
+						</label>
+						<small class="error">回报详情未设置</small>
+					</div>
+				</div>	
+				</div>
+				<div class="row confirm">
+					<div class="small-12 columns">
+					    <button class="right button radius tiny edit" type="submit">更新</button>
+						<button class="right button radius tiny edit_next" type="submit">下一步</button> <a
+							class="close-reveal-modal right button radius tiny secondary margin-r"
+							aria-label="Close">取消</a>
+					</div>
+				</div>
+			</form>
+			<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+		</div>
+		<!--查询-->
+		<div id="search-crowdfunding-return" class="reveal-modal large openModal v_search" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+			<form>
+				<h3>查询众筹回报信息</h3>
+				<div class="modal_wrap">
+				<div class="row">
+					<div class="small-6 columns int">
+						<label>标题 <input type="text" name="title"
+							required="输入标题进行查询" />
+						</label>
+					</div>
+					<div class="small-6 columns int">
+						<label>金额
+							<div class="row">
+								<div class="small-5 columns"><input type="text" name="monery-ge" /></div>
+								<div class="small-1 columns">到</div>
+								<div class="small-5 columns"><input type="text" name="monery-le" /></div>
+							</div>
+						</label>
+					</div>
+				</div>		
+				</div>		
+				<div class="row confirm">
+            <div class="small-12 columns">
+                <a class="right button radius tiny v_oper_do_search">查询</a>
+                <a class="close-reveal-modal right button radius tiny secondary margin-r" aria-label="Close">取消</a>
+            </div>
+          </div>
+			</form>		
+			<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+			<input type="hidden" id="crowdfundingId" data-th-value="${crowdfundingId}" />	
+		</div>
+		    <!--确认删除警告-->
+	    <div id="delete_warning" class="reveal-modal tiny v_del_waring warning-panel" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+	      <div class="row">
+	        <div class="small-3 columns">
+	          <div class="row">
+	            <div class="small-12 columns">
+	                <i class="fa font-warning fa-warning font-i"></i>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="small-9 columns">
+	          <div class="row">
+	            <div class="small-12 columns">
+	                确定要删除吗？
+	            </div>
+	          </div>
+	          <div class="row dele">
+	            <div class="small-12 columns">
+	                <a class="right button radius tiny v_oper_do_delete">确定</a>
+	                <a class="close-reveal-modal right button radius tiny secondary margin-r close_btn" aria-label="Close">取消</a>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+	    </div>
+		<!--操作成功提示框-->
+		<div class="fixed fbottom" style="display:none">
+			<div class="row">
+				<div class="large-12 columns" id="operate_alert_into">
+					<div data-alert=""
+						class="success alert-box warning radius nomarg v_show_oper_info">
+						<div class="v_show_info">
+							<i class="fa fa-fw fa-check"></i>操作成功.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--未选中提示框-->
+		<div class="fixed v_info_fail hide">
+		    <div class="row">
+		        <div class="large-12 columns" id="error_alert_into">
+		            <div data-alert="" class="error alert-box warning radius nomarg v_show_oper_info">
+		                <div><i class="fa fa-fw fa-exclamation-circle"></i><span class="v_show_info">未选择.</span></div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+		<div class="fixed v_info_warning hide">
+		    <div class="row">
+		        <div class="large-12 columns" id="error_alert_into">
+		            <div data-alert="" class="error alert-box warning radius nomarg v_show_oper_info">
+		                <div><i class="fa fa-fw fa-exclamation-circle"></i><span class="v_show_info">未选择.</span></div>
+		            </div>
+		        </div>
+		    </div>
+		</div>		
+	</div>
+		<script data-th-src="@{/cij/jquery/jquery-2.1.3.js}" src="js/vendor/jquery.js"></script>
+
+		<!-- DataTables -->
+		<script	data-th-src="@{/cij/datatables/js/jquery.dataTables.js}"	type="text/javascript" charset="utf8" src="/DataTables-1.10.6/media/js/jquery.dataTables.js"></script>
+		<script	data-th-src="@{/cij/datatables/js/dataTables.foundation.js}"	type="text/javascript" charset="utf8" src="dataTables.foundation.js"></script>
+
+		<script data-th-src="@{/cij/foundation/js/foundation.min.js}"	src="js/foundation.min.js"></script>
+		<script data-th-src="@{/cij/js/jquery.datatable.page.js}" src="js/jquery.datatable.page.js"></script>
+
+		<script data-th-src="@{/cij/datatables-extend/js/moment.min.js}" src="js/moment.min.js"></script>
+		<script data-th-src="@{/cij/datatables-extend/js/daterangepicker.js}" src="js/daterangepicker.js"></script>
+
+        <script data-th-src="@{/cij/js/rongji.js}" src=""></script>
+		<script data-th-src="@{/cij/js/m/crowdfundingReturn.js}" src=""></script>
+		
+		<script>
+			$(document).foundation();			
+		</script>
+		<script>
+			/*提示框*/
+			function showTip() {
+				$('.fbottom').css('display', 'block');
+				setTimeout(function() {
+					$('.fbottom').css('display', 'none');
+				}, 3000);
+			}			
+		</script>
+
+		<script data-th-src="@{/cij/js/thymeleaf.js}" src=""></script>
+		<script data-th-src="@{/cij/thymol/thymol-full.js}" src=""></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:jdbc="http://www.springframework.org/schema/jdbc"  
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd"
+	default-lazy-init="true">
+
+	<description>Spring自定义配置</description>
+	
+	<!-- 项目配置项 -->
+	<bean id="emallConfig" class="com.rongji.cms.emall.support.EmallConfig" scope="singleton" lazy-init="false">
+		<property name="config">
+			<bean class="com.rongji.rjskeleton.support.config.RjskeletonPropertiesLoader" init-method="init">
+				<property name="locations">
+					<list>
+						<value>/WEB-INF/emall.properties</value>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+		
+	<!-- 声明id生成器 -->
+	<bean class="com.rongji.rjskeleton.support.id.LocalNewIdGenerator" scope="singleton">
+		<constructor-arg index="0" value="emall" />
+	</bean>
+	
+	<!-- 用户登录过滤器 -->
+	<bean id="userInterceptor" class="com.rongji.cms.emall.support.interceptors.UserInterceptor" scope="singleton" lazy-init="false" />
+	
+	<bean class="com.rongji.cms.emall.support.AuditLogEventHibernateIntegrator"></bean>
+	<!-- 
+	<bean class="com.rongji.cms.emall.support.HibernateListenersConfigurer" scope="singleton" lazy-init="false" ></bean>
+	 -->
+	 
+	<!-- 邮件发送 -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="${emall.mail.host}" /> <!-- 邮箱SMTP地址 -->
+		<property name="javaMailProperties">
+			<props>
+				<!-- 如果要使用用户名和密码验证,这一步需要-->
+				<prop key="mail.smtp.auth">${emall.mail.smtp.auth}</prop> 
+			</props>
+		</property>
+		<property name="username" value="${emall.mail.username}" /> <!--发送邮箱账户-->
+		<property name="password" value="${emall.mail.password}" /> <!--发送邮箱密码-->
+	</bean>
+	
+</beans>

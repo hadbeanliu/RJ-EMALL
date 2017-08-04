@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh" class="no-js">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui" />
+<meta name="apple-mobile-web-app-title" content="电商原型" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />
+<title>支付页</title>
+<link data-th-href="@{/Ebusiness/style/layout.css}" href="style/layout.css" rel="stylesheet" type="text/css" />
+<link data-th-href="@{/Ebusiness/style/themes.less}" href="style/themes.less" rel="stylesheet" type="text/less" />
+<link data-th-href="@{/Ebusiness/style/master.css}" href="style/master.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" data-th-href="@{/Ebusiness/style/font-awesome.min.css}" href="style/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" data-th-href="@{/Ebusiness/style/highslide.css}" href="style/highslide.css" />
+
+<script data-th-src="@{/Ebusiness/javascript/vendor/modernizr.js}" src="javascript/vendor/modernizr.js"></script>
+<script data-th-src="@{/Ebusiness/javascript/vendor/jquery.js}" src="javascript/vendor/jquery.js"></script>
+<script data-th-src="@{/Ebusiness/javascript/less-1.7.3.min.js}" src="javascript/less-1.7.3.min.js"></script>
+<script data-th-src="@{/Ebusiness/javascript/es5-shim-2.1.0.min.js}" src="javascript/es5-shim-2.1.0.min.js"></script>
+<!-- 
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+<meta name="apple-mobile-web-app-title" content="电商原型">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no" name="format-detection">
+<title>支付页</title>
+<link href="style/layout.css" rel="stylesheet" type="text/css" />
+<link href="style/themes.less" rel="stylesheet" type="text/less" />
+<link href="style/master.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="style/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="style/highslide.css">
+
+<script src="javascript/vendor/modernizr.js"></script>
+<script src="javascript/vendor/jquery.js"></script>
+<script src="javascript/less-1.7.3.min.js"></script>
+<script src="javascript/es5-shim-2.1.0.min.js"></script>
+ -->
+
+
+<script>var Cfg = { contextPath: '/emall' }</script>
+<script data-th-src="@{/cij/js/rongji.js}" src="../cij/js/rongji.js"></script>
+<script data-th-src="@{/cij/js/m/pay.js}" src="../cij/js/m/pay.js"></script>
+
+</head>
+<body>
+<div id="layout">
+    <div class="wrapper" id="frame_wrapper">
+        <div class="header" id="frame_header" include="include.html">
+            <div class="row collapse" id="frame_header_row1">
+                <div class="large-12" id="frame_header_col1">
+                    <nav class="top-bar" data-topbar="" role="navigation" id="data_top_bar">
+                        <ul class="title-area">
+                            <li class="name">
+                                <div class="logo"><img src="images/logo_expand.png" /></div>
+                            </li>
+                            <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+                        </ul>
+                        <section class="top-bar-section clearfix">
+                            <ul class="left clearfix">
+                                <li class="active"><a href="index.html">首页</a></li>
+                                <li class="has-dropdown"> <a href="#">培训</a>
+                                    <ul class="dropdown">
+                                        <li><a href="#">培训预告</a></li>
+                                        <li><a href="#">课程推荐</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-dropdown"><a href="#">文档</a>
+                                    <ul class="dropdown">
+                                        <li><a href="#">实施文档</a></li>
+                                        <li><a href="#">开发文档</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="ActivityList.html">活动</a></li>
+                                <li><a href="#">发现</a></li>
+                                <li><a href="TopicList.html">话题</a></li>
+                            </ul>
+                            <ul class="right">
+                                <li class="has-form">
+                                    <div class="search">
+                                        <form>
+                                            <input name="" class="inp" id="topsearch" type="text" placeholder="输入查询内容" accesskey="s" title="输入查询内容" x-webkit-speech="" x-webkit-grammar="builtin:translate" lang="zh-CN" />
+                                            <i class="fa fa-search" onClick="showSearch()" title="搜索"></i>
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
+                        </section>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!--end header-->
+        
+        <div class="main" role="main" aria-label="主体区块" id="frame_main">
+            <div class="row">
+                <div class="settleA-header white-bg">
+                    <div class="name"><a href="#">收银台</a></div>
+                    <div class="icon">
+                    	<span></span>
+                        <ul class="step clearfix">
+                        	<li>我的购物车</li>
+                            <li class="split">&nbsp;</li>
+                            <li>填写订单信息</li>
+                            <li class="split">&nbsp;</li>
+                            <li>选择支付方式</li>
+                            <li class="split">&nbsp;</li>
+                            <li>订单支付成功</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="limit-time white-bg clearfix">
+                	<div class="tip">
+                    	订单提交成功！您的剩余支付时间还剩<num class="hour">5</num>小时<num class="min">5</num>分钟<num class="sec">49</num>秒
+                        <span>（逾期订单会被自动取消）</span>
+                    </div>
+                    <input type="hidden" name="orderId" data-th-value="${order.id}" value=""/>
+                    <div class="order clearfix">
+                    	订单号：<span class="number" data-th-text="${order.id}">12486695</span>
+                        <span class="split">|</span>
+                        应付金额：<span class="price" data-th-text="${order.price}">2980.00</span>元
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+            	<div class="pay-box white-bg">
+                	<div class="balance-pay">
+                    	<label class="label-checkbox square" for="available_balance">
+                        	<input class="bcheckbox" type="checkbox" name="bbp" id="available_balance"/>
+                            <i class="icon-check"></i>账户可用余额：<span class="price">0.00</span>元
+                        </label>
+                    </div>
+                    <ul class="accordion pay" data-accordion="">
+                      <li class="accordion-navigation active">
+                        <a href="#panel1a" class="target">支付方式<i class="fa fa-minus"></i></a>
+                        <div id="panel1a" class="content active">
+                           <ul class="large-block-grid-5 medium-block-grid-3 small-block-grid-1 bank-con">
+                           		<!-- 
+                               <li><label class="label-radio square" for="alipay"><input class="radio" type="radio" name="way" id="alipay"/><i class="icon-check"></i><span class="bank alipay"></span></label></li>
+                               <li><label class="label-radio square" for="weixin"><input class="radio" type="radio" name="way" id="weixin"/><i class="icon-check"></i><span class="bank weixin">微信支付</span></label></li>
+                           		 -->
+                           		
+                               <li data-th-each="p : ${payments}"><label class="label-radio square"><input class="radio" type="radio" name="payCode" data-th-value="${p.payServiceProviderCode}" value=""/><i class="icon-check"></i><span data-th-text="${p.payServiceProvider.title}"></span></label></li>
+                           </ul>
+                        </div>
+                      </li>
+                      <li class="accordion-navigation">
+                        <a href="#panel2a" class="target">其他方式<i class="fa fa-plus"></i></a>
+                        <div id="panel2a" class="content">
+                            <ul class="large-block-grid-5 medium-block-grid-3 small-block-grid-1 bank-con">
+                            	<li><label class="label-radio square" for="cash"><input class="radio" type="radio" name="way" id="cash"/><i class="icon-check"></i><span class="bank cash">货到付款</span></label></li>
+                            </ul>
+                        </div>
+                      </li>
+                      
+                    </ul>
+                    <div class="pay-btn">
+                    	<a href="#" class="button alert small E_dopay">立即支付</a>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="row">
+            	<div class="common-pro white-bg">
+                    	<div class="tit">常见问题</div>
+                        <ul>
+                        	<li>
+                            	<div class="question">1. 网银银行页面打不开，怎么办？</div>
+                                <div class="answer">建议使用IE核心的浏览器，点击IE的菜单"工具"-"Internet选项"-"安全"，将安全中的各项设置恢复到默认级别。</div>
+                            </li>
+                            <li>
+                            	<div class="question">2. 我的银行卡未开通网上支付功能，怎么办？</div>
+                                <div class="answer">登录该银行卡的网上银行主页，在线开通网上支付功能，有些银行开通需要到银行柜台，您需要致电该银行客服咨询。</div>
+                            </li>
+                            <li>
+                            	<div class="question">3. 我的订单金额超过该 银行支付限额怎么办？</div>
+                                <div class="answer">如您使用的是爱尚家支持快捷支付的银行卡，建议您使用和快捷支付，快捷支付信用卡的支付限额是信用卡额度本身。如暂不支持您的银行卡开通快捷支付，您可以使用银联在线支付平台，银联在线的认证支付对支付限额限制较少，支持大额支付。</div>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+        <!--end main-->
+        
+        <div class="footer" id="frame_footer" role="contentinfo" include="include.html">
+            <div class="row" id="frame_footer_wrapper">
+                <div class="copyright" id="data_copyright"> Copyright © 2004-2015  榕基软件 </div>
+            </div>
+        </div>
+        <!--end footer-->
+        <div class="go" id="frame_go"><a title="返回顶部" class="gotop" id="goTop"></a> <a title="返回底部" class="gobottom" id="goBottom"></a></div>
+        <div id="frame_javascript">
+            <div id="data_javascript"> 
+                <script data-th-src="@{/Ebusiness/javascript/foundation.min.js}" src="javascript/foundation.min.js"></script> 
+                <script data-th-src="@{/Ebusiness/javascript/others.js}" src="javascript/others.js"></script> 
+                <script>
+				  $(document).foundation();
+				  
+				  //手风琴图标
+				  $('.pay .accordion-navigation').each(function(){
+				      var $this = $(this);
+					  $this.on('click','.target',function(e){
+						  e.preventDefault();
+						  if(!$this.find('.content').hasClass('active')){
+							  $this.parent().find('.target .fa').removeClass('fa-minus').addClass('fa-plus');
+							  $(this).find('.fa').removeClass('fa-plus').addClass('fa-minus');
+						  }else{
+							  $(this).find('.fa').removeClass('fa-minus').addClass('fa-plus');
+						  }
+					  });  
+				  });
+				</script> 
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+</body>
+</html>

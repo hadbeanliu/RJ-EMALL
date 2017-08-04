@@ -1,0 +1,11 @@
+delete from EML_FREIGHT_TEMPLATE;
+delete from EML_CARRY_MODE;
+
+insert into EML_FREIGHT_TEMPLATE(ID,STORE_ID,FREIGHT_NAME,STATUS,REMARK)
+values('00000001','00000003','EMS-中国邮政','1','当天18:00前拍下付款成功，当天发货；否则次日发货。');
+insert into EML_FREIGHT_TEMPLATE(ID,STORE_ID,FREIGHT_NAME,STATUS,,REMARK)
+values('00000002','00000003','EMS','0','当天18:00前拍下付款成功，当天发货；否则次日发货。');
+
+insert into EML_CARRY_MODE(ID,TEMP_ID,SERVICE_TYPE,AREAS,FEE,ADDED_FEE,IS_DEFAULT)
+values('00000001','00000001','EMS','全国','1','1','0');
+

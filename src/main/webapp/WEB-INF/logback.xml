@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- 如需定制日志请修改后，复制本文件到classes中 -->
+	
+	<appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>/tmp/logs/rjemall.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>rjemall.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger [%file:%line] - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- project default level -->
+	<logger name="com.rongji.cms.emall" level="WARN" />
+
+	<root level="WARN">
+		<appender-ref ref="rollingFile" />
+	</root>
+
+	<!-- 控制台日志 -->
+	<include resource="rjskeleton-logback-included-console.xml"/>
+	
+</configuration>

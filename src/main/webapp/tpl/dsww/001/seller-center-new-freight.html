@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh" class="no-js">
+<head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta name="keywords" content=" " />
+    <meta name="description" content="" />
+	<title  data-th-text="|${flag == 1? '添加':'修改'}运费模块|">运费模块</title>
+	<link data-th-href="|${tempPath}style/font-awesome.min.css|" href="style/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/wSelect.less|"  href="style/wSelect.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}style/themes.less|"  href="style/themes.less" rel="stylesheet" type="text/less" />
+	<link href="/emall/cij/datatables/css/dataTables.foundation.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}datatables-extend/css/dataTables.response.less|"  href="datatables-extend/css/dataTables.response.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}datatables-extend/css/daterangepicker-f5.less|"  href="datatables-extend/css/daterangepicker-f5.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}style/layout.css|"  href="style/layout.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/master.css|"  href="style/master.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/jquery.Jcrop.css|"  href="style/jquery.Jcrop.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/new.css|"  href="style/new.css" rel="stylesheet" type="text/css" />
+
+	<script data-th-src="|${tempPath}javascript/less-1.7.3.min.js|" src="javascript/less-1.7.3.min.js"></script>
+	<script data-th-src="|${tempPath}javascript/modernizr.js|" src="javascript/modernizr.js"></script>
+	<script data-th-inline="javascript">
+	Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/ '/emall';
+	Cfg.tempPath = /*[[ ${tempPath} ]]*/ '/emall/tpl/dsww/001/';
+	</script>
+</head>
+<body>
+<div id="layout">
+    <div class="wrapper" id="frame_wrapper">
+        <div class="off-canvas-wrap" data-offcanvas="" id="frame_canvas_wrap">
+            <div class="inner-wrap" id="frame_inner_wrap">  
+                <div class="left-off-canvas-menu hide-for-large" id="frame_canvas_menu" data-set="data_accordion"></div>
+                <div class="header" id="frame_header" include="include.html" data-th-include="${tempInternalPath + 'include-seller'} :: #frame_header">
+                </div>
+                <!--end header-->
+                
+                <div class="main" role="main" aria-label="主体区块" id="frame_main">
+                    <div class="row" id="frame_main_row1">
+                        <div class="small-12 medium-2 large-2 columns" id="frame_main_col1">
+                            <div id="frame_accordion" include="include.html" data-th-include="${tempInternalPath + 'include-seller'} :: #frame_accordion">
+                            </div>
+                        </div>
+                        <div class="small-12 medium-10 large-10 columns" id="frame_main_col2">
+                            <div class="list-position" id="frame_position">
+                                <div id="data_list_addr" class="c-addr">
+                                    <a href="#" target="_self">我是卖家</a>&frasl;<a href="#" target="_self">物流管理</a>&frasl;<a href="#" target="_self" data-th-text="|${flag == 1? '添加':'修改'}运费模块|">新增运费模板</a>
+                                </div>
+                            </div>
+                            <div id="data_datatable">
+                                <!--datatable-->
+                                <div id="commodity_post_page">
+                                    <section class="panel">
+                                    	<input type="hidden" class="urljson" data-th-value="${urljson}"/>
+                                        <header class="panel-heading" data-th-text="|${flag == 1? '添加':'修改'}运费模块|">
+                                            新增运费模板
+                                        </header>
+                                        <div class="panel-body v_form">
+                                        <form data-abide="">
+                                        <input type="hidden" class="tempId" name="id"/>
+                                        <p class="f-14 margin-l margin-r">请输入运费模板的名称：</p>
+                                            <div class="row margin-l margin-r">
+                                                <div class="large-12 columns mar-top">
+                                                    <div class="input-field-large">
+                                                        <label>
+                                                            <input type="text" name="name" required=""/>
+                                                        </label>
+	                                          			<small class="error">运费模版名称不能为空！</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p class="f-14 margin-l margin-r">请设置运送方式、地区以及对应的费用：</p>
+                                            <div class="row">
+                                                <div class="large-12 columns mar-top">
+                                                    <ul class="check-float">
+                                                        <li><p class="f-14">我的运费模板支持</p></li>
+                                                        <li>
+                                                            <input id="post" class="v_oper_post" type="checkbox" checked="true"/>
+                                                            <label for="post">平邮</label>
+                                                        </li>
+                                                        <li>
+                                                            <input id="express" class="v_oper_express" type="checkbox" checked="true"/>
+                                                            <label for="express">快递公司</label>
+                                                        </li>
+                                                        <li>
+                                                            <input id="ems" class="v_oper_ems" type="checkbox" checked="true"/>
+                                                            <label for="ems">EMS</label>
+                                                        </li>
+                                                        <li><span class="errorMsg" style="color: red;display: none">（至少选择1种运送方式）</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="large-12 columns mar-top">
+                                                    <ul class="check-float">
+                                                        <li><p>是否启用</p></li>
+                                                        <li>
+                                                          <input type="radio" name="status" id="radio1" checked="true" value="0"/><label for="radio1">不启用</label>
+                                                          <input type="radio" name="status" id="radio2" value="1"/><label for="radio2">启用</label>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="row mar-top">
+                                                <div class="large-12 columns">
+                                                    <table class="table-new-freight" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr >
+                                                            <td colspan="2"><i class="fa fa-star"></i>设置认运费：</td>
+                                                        </tr>
+                                                        <tr class="tr_post">
+                                                            <td>
+                                                                <input type="checkbox" class="v_data_post" id="post_serviceType" name="serviceType" checked="checked" value="POST"/>
+				                                          		<label for="post_serviceType">平邮</label>
+	                                          					<input type="hidden" name="carryId" id="post_id"/>
+	            		    									<input type="hidden" name="isDefault" id="post_isDefault" value="0"/>
+	            		    									<input type="hidden" name="areas" id="post_areas" value="默认"/>
+	            		    									<input type="hidden" name="areascodes" id="post_areascodes" value=""/>
+                                                            </td>
+                                                            <td>
+                                                                <div class="row left small-input">
+                                                                    <p>运费：</p><input type="text" name="fee" id="post_fee"/>
+                                                                    <p>元,每超过1件需要增加运费：</p><input type="text" name="addedFee" id="post_addedFee"/><p>元</p>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="tr_express">
+                                                            <td>
+                                                                <input type="checkbox" class="v_data_express" id="express_serviceType" name="serviceType" checked="checked" value="EXPRESS"/>
+			                                          			<label for="express_serviceType">快递公司</label>
+                                                                <input type="hidden" name="carryId" id="express_id"/>
+	            		    									<input type="hidden" name="isDefault" id="express_isDefault" value="0"/>
+	            		    									<input type="hidden" name="areas" id="express_areas" value="默认"/>
+	            		    									<input type="hidden" name="areascodes" id="express_areascodes" value=""/>
+                                                            </td>
+                                                            <td>
+                                                                <div>
+                                                                    <div class="row left small-input">
+                                                                        <p>运费：</p><input  type="text" name="fee" id="express_fee"/>
+                                                                        <p>元,每超过1件需要增加运费：</p><input type="text" name="addedFee" id="express_addedFee"/><p>元</p>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="tr_ems">
+                                                            <td>
+                                                                <input type="checkbox" class="v_data_ems" id="ems_serviceType" name="serviceType" checked="checked" value="EMS"/>
+				                                          		<label for="ems_serviceType">EMS</label>
+                                                                <input type="hidden" name="carryId" id="ems_id"/>
+	            		    									<input type="hidden" name="isDefault" id="ems_isDefault" value="0"/>
+	            		    									<input type="hidden" name="areas" id="ems_areas" value="默认"/>
+	            		    									<input type="hidden" name="areascodes" id="ems_areascodes" value=""/>
+                                                            </td>
+                                                            <td >
+                                                                <div>
+                                                                    <div class="row left small-input">
+                                                                        <p>运费：</p><input  type="text"  name="fee" id="ems_fee"/>
+                                                                        <p>元,每超过1件需要增加运费：</p><input type="text" name="addedFee" id="ems_addedFee"/><p>元</p>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="large-12 columns">
+                                                    <table class="table-new-freight" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr >
+                                                            <td colspan="2"><i class="fa fa-star"></i>设置特殊地区运费：（特殊地区包括 内蒙古、西藏、青海、新疆、台湾、澳门）</td>
+                                                        </tr>
+                                                        <tr class="tr_post">
+                                                            <td>
+                                                                <input type="checkbox" class="v_data_post" id="post_serviceType_1" name="serviceType" checked="checked" value="POST"/>
+				                                          		<label for="post_serviceType_1">平邮</label>
+                                                                <input type="hidden" name="carryId" id="post_id_1"/>
+	            		    									<input type="hidden" name="isDefault" id="post_isDefault_1" value="1"/>
+	            		    									<input type="hidden" name="areas"  id="post_areas_1" value="特殊"/>
+	            		    									<input type="hidden" name="areascodes"  id="post_areascodes_1" value="150000_540000_630000_650000_710000_810000"/>
+                                                            </td>
+                                                            <td>
+                                                                <div class="row left small-input">
+                                                                    <p>运费：</p><input  type="text" name="fee" id="post_fee_1"/>
+                                                                    <p>元,每超过1件需要增加运费：</p><input type="text" name="addedFee" id="post_addedFee_1"/><p>元</p>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="tr_express">
+                                                            <td>
+                                                                <input type="checkbox" class="v_data_express" id="express_serviceType_1" name="serviceType" checked="checked" value="EXPRESS"/>
+				                                          		<label for="express_serviceType_1">快递公司</label>
+                                                                <input type="hidden" name="carryId" id="express_id_1"/>
+	            		    									<input type="hidden" name="isDefault" id="express_isDefault_1" value="1"/>
+	            		    									<input type="hidden" name="areas" id="express_areas_1" value="特殊"/>
+	            		    									<input type="hidden" name="areascodes"  id="express_areascodes_1" value="150000_540000_630000_650000_710000_810000"/>
+                                                            </td>
+                                                            <td>
+                                                                <div>
+                                                                    <div class="row left small-input">
+                                                                        <p>运费：</p><input  type="text" name="fee" id="express_fee_1"/>
+                                                                        <p>元,每超过1件需要增加运费：</p><input type="text" name="addedFee" id="express_addedFee_1"/><p>元</p>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="tr_ems">
+                                                            <td>
+                                                                <input type="checkbox" class="v_data_ems" id="ems_serviceType_1" name="serviceType" checked="checked" value="EMS"/>
+				                                          		<label for="ems_serviceType_1">EMS</label>
+                                                                <input type="hidden" name="carryId" id="ems_id_1"/>
+	            		    									<input type="hidden" name="isDefault" id="ems_isDefault_1" value="1"/>
+	            		    									<input type="hidden" name="areas" id="ems_areas_1" value="特殊"/>
+	            		    									<input type="hidden" name="areascodes"  id="ems_areascodes_1" value="150000_540000_630000_650000_710000_810000"/>
+                                                            </td>
+                                                            <td >
+                                                                <div>
+                                                                    <div class="row left small-input">
+                                                                        <p>运费：</p><input type="text" name="fee" id="ems_fee_1"/>
+                                                                        <p>元,每超过1件需要增加运费：</p><input type="text" name="addedFee" id="ems_addedFee_1"/><p>元</p>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="small-1 columns">
+                                                  <label for="right-label" class="right">运费说明</label>
+                                                </div>
+                                                <div class="small-11 columns">
+                                                    <label>
+                                                        <input type="text" name="remark" placeholder="可对运费模版进行描述说明" />
+                                                    </label>
+                                                </div>
+                                              </div>
+                                            <div class="new-freight-bottom-button">
+                                                <a class=" button tiny v_oper_submit">保存并返回</a>
+                                                <a class=" button tiny v_oper_cancel">取消</a>
+                                            </div>
+                                        </form>
+                                        </div>
+                                    </section>
+                                    <!-- 信息提示 -->
+                                    <div class="fixed v_info_warning">
+				                    	<div class="row">
+				                            <div class="large-12 columns" id="error_alert_into">
+				                                <div data-alert="" class="error alert-box warning  nomarg v_show_oper_info">
+				                                    <div><i class="fa fa-fw fa-exclamation-circle"></i><span class="v_show_info">未选择.</span></div>
+				                                    </div>
+				                                </div>
+				                            </div>
+				                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end main-->
+                
+                <div class="footer" id="frame_footer" role="contentinfo" include="include.html" data-th-include="${tempInternalPath + 'include'} :: #frame_footer">
+                </div>
+                <!--end footer--> 
+                
+                <div class="go" id="frame_go"><a title="返回顶部" class="gotop" id="goTop"></a> <a title="返回底部" class="gobottom" id="goBottom"></a></div>
+                
+                <div id="frame_exit_off"><a class="exit-off-canvas"></a></div>
+            </div>
+        </div>
+        <div id="frame_javascript">
+           <div data-th-include="${tempInternalPath + 'include'} :: #base_javascript"></div>
+           <div data-th-include="${tempInternalPath + 'include'} :: #datatable_javascript"></div>
+            <div id="data_javascript">
+               <!-- <script data-th-src="|${tempPath}javascript/jquery-2.1.3.js|" src="javascript/jquery-2.1.3.js" type="text/javascript" charset="utf8"></script>
+				<script data-th-src="|${tempPath}javascript/AppendAround.js|" src="javascript/AppendAround.js" type="text/javascript" charset="utf8"></script>
+                <script data-th-src="|${tempPath}javascript/swiper.min.js|" src="javascript/swiper.min.js" type="text/javascript" charset="utf8"></script>
+                <script data-th-src="|${tempPath}javascript/tab.exam.js|" src="javascript/tab.exam.js" type="text/javascript" charset="utf8"></script>
+                <script data-th-src="|${tempPath}javascript/jquery.Jcrop.js|" src="javascript/jquery.Jcrop.js" type="text/javascript" charset="utf8"></script>
+				<script data-th-src="|${tempPath}javascript/webuploader.min.js|" src="javascript/webuploader.min.js" type="text/javascript" charset="utf8"></script>
+				<script data-th-src="|${tempPath}javascript/modPicture-old.js|" src="javascript/modPicture-old.js" type="text/javascript" charset="utf8"></script>
+                <script data-th-src="|${tempPath}javascript/others.js|" src="javascript/others.js" type="text/javascript" charset="utf8"></script>
+                <script src="/emall/cij/datatables/js/jquery.dataTables.js" type="text/javascript" charset="utf8"></script>
+                <script src="/emall/cij/datatables/js/dataTables.foundation.js" type="text/javascript" charset="utf8"></script>
+                <script src="/emall/cij/foundation/js/foundation.min.js"></script>
+                <script src="/emall/cij/js/jquery.datatable.page.js"></script>
+                <script data-th-src="|${tempPath}datatables-extend/js/foundation.extend.js|" src="datatables-extend/js/foundation.extend.js"></script>
+                <script data-th-src="|${tempPath}datatables-extend/js/moment.min.js|" src="datatables-extend/js/moment.min.js"></script>
+                <script data-th-src="|${tempPath}datatables-extend/js/daterangepicker.js|" src="datatables-extend/js/daterangepicker.js"></script> -->
+ 
+				<script data-th-src="@{/cij/js/rongji.js}" src="/emall/cij/js/rongji.js"></script>
+                <script data-th-src="@{/cij/js/m/neworedit-freight.js}" src="/emall/cij/js/m/neworedit-freight.js"></script>
+				<script>
+               
+                </script>
+                <script>
+                    $(document).foundation();
+                </script>
+            </div>
+        </div>
+   </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh" class="no-js">
+<head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta name="keywords" content=" " />
+    <meta name="description" content="" />
+	<title>审核结果</title>
+	<link data-th-href="|${tempPath}style/font-awesome.min.css|" href="style/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/themes.less|" href="style/themes.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="@{/cij/datatables/css/dataTables.foundation.css}" href="/emall/cij/datatables/css/dataTables.foundation.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}datatables-extend/css/dataTables.response.less|"  href="datatables-extend/css/dataTables.response.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}datatables-extend/css/daterangepicker-f5.less|"  href="datatables-extend/css/daterangepicker-f5.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}style/layout.css|"  href="style/layout.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/master.css|"  href="style/master.css" rel="stylesheet" type="text/css" />
+
+	<script data-th-src="|${tempPath}javascript/less-1.7.3.min.js|" src="javascript/less-1.7.3.min.js"></script>
+	<script data-th-src="|${tempPath}javascript/modernizr.js|" src="javascript/modernizr.js"></script>
+	<script data-th-inline="javascript">
+	Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/ '/emall';
+	Cfg.tempPath = /*[[ ${tempPath} ]]*/ '/emall/tpl/001/';
+	</script>
+</head>
+<body>
+<div id="layout">
+    <div class="wrapper" id="frame_wrapper">
+        <div class="off-canvas-wrap" data-offcanvas="" id="frame_canvas_wrap">
+            <div class="inner-wrap" id="frame_inner_wrap">  
+                <div class="left-off-canvas-menu hide-for-large" id="frame_canvas_menu" data-set="data_accordion"></div>
+                <div class="header" id="frame_header" include="include.html" data-th-include="${tempInternalPath + 'include-buyer'} :: #frame_header">
+                </div>
+                <!--end header-->
+                
+                <div class="main" role="main" aria-label="主体区块" id="frame_main">
+                    <div class="row" id="frame_main_row1">
+                        <div class="list-position" id="frame_position">
+                            <div id="data_list_addr" class="c-addr c-addr-ap-re">
+                                <a href="#" target="_self">我是买家</a>&frasl;<a href="#" target="_self">专家管理</a>
+                            </div>
+                        </div>
+                        <div id="results" class="small-12 pcheck-3-row1">
+                           <div class="small-12 columns">
+                                <img src="/emall/tpl/dsww/001/images/pcheck-5.png" class=" mar-le-pcheck3" alt=""/>
+                              
+                                <input id="status" title="审核状态" type="hidden" data-th-value="${status}"/>
+						   		<div class="isprocess hide">
+						   			<p class="pcheck-3-row1-p-one">正在审核中，请耐心等待。。。</p>
+						   			<p class="pcheck-3-row1-p-two columns"><a href="/emall/buyer.htm">返回我的文玩</a></p>
+						   		</div>
+						   		<div class="isfailed hide">
+						   			<div class="pcheck-3-row1-p-one">
+						   				对不起，您的专家认证审核失败了。
+						   				<p class="pcheck-3-row1-p-two columns">
+						   				失败原因：<span data-th-text="${errorReason}" class="font-alert"></span>。
+						   				您可以：    <span class="font-info reauth_expert" style="cursor: pointer;">重新认证</span>
+						   				</p>
+						   			</div>
+						   		</div>
+						   		<div class="issuccess hide">
+						   			<p class="pcheck-3-row1-p-one">恭喜，您的专家认证审核通过了。</p>
+						   			<p class="pcheck-3-row1-p-two columns"><a href="/emall/buyer.htm">返回我的文玩</a></p>
+						   		</div>
+						   		<div class="error-expert hide">
+						   			<p class="pcheck-3-row1-p-one">正在进行个人认证不能进行专家认证</p>
+						   			<p class="pcheck-3-row1-p-two columns"><a href="/emall/buyer.htm">返回我的文玩</a></p>
+						   		</div>
+                           </div>
+                       </div>
+                    </div>
+                    <div class="row" id="frame_main_row3">
+                        <div class="small-12 columns margin-t" id="frame_main_col2">
+                        	<div id="data_datatable">
+	                           <div id="examine">
+	                           <input id="authentication" type="hidden" value="2"/>
+	                               <section class="panel">
+	                               	 <header class="panel-heading">
+	                                         审核日志
+	                                           <span class="tools right" style="display:none;">
+	                                               <a href="javascript:;" class="fa fa-chevron-down"></a>
+	                                               <a href="javascript:;" class="fa fa-times"></a>
+	                                            </span>
+	                                            <div class="right">
+	                       <!--                    
+	                                               <div class="button radius tiny left v_oper_select_all" >全选</div>
+	                                               <div class="button radius tiny left v_oper_add" >添加</div>
+	                                               <div class="button radius tiny left v_oper_edit" >编辑</div>
+	                                               <div class="button radius tiny left v_oper_delete" >删除</div>
+	                                               <div class="button radius tiny left v_oper_search">搜索</div>
+	                       -->
+<!-- 	                                               <a class="v_oper_refresh" title="刷新"><i class="fa fa-refresh"></i></a> -->
+	                                            </div>
+                                      </header>
+                                      <!--加载中...-->
+                                      <div class="panel-body">
+                                           <div class="v_page_processing row">
+                                               <div class="small-12 medium-6 large-6 columns"></div>
+                                               <div class="small-12 medium-6 large-6 columns"></div>
+                                               <div id="DataTables_Table_0_processing" class="dataTables_processing">
+                                                   <span class="fa-stack fa-lg">
+                                                     <i class="fa fa-square fa-stack-2x"></i>
+                                                     <i class="fa fa-spinner fa-spin fa-stack-1x fa-inverse"></i>
+                                                   </span><br/>
+                                                   <span>数据加载中...</span>
+                                               </div>
+                                           </div>
+                                           <div class="v_table simple"></div> 
+                                      </div>
+	                               </section>
+	                           </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end main-->
+                
+                <div class="footer" id="frame_footer" role="contentinfo" include="include.html" data-th-include="${tempInternalPath + 'include'} :: #frame_footer">
+                </div>
+                <!--end footer--> 
+                
+                <div class="go" id="frame_go"><a title="返回顶部" class="gotop" id="goTop"></a> <a title="返回底部" class="gobottom" id="goBottom"></a></div>
+                
+                <div id="frame_exit_off"><a class="exit-off-canvas"></a></div>
+            </div>
+        </div>
+        <div id="frame_javascript">
+       		<div data-th-include="${tempInternalPath + 'include'} :: #base_javascript"></div>
+       		<div data-th-include="${tempInternalPath + 'include'} :: #datatable_javascript"></div>
+            <div id="data_javascript">
+ 
+ 				<script>$(document).foundation();</script>
+				<script data-th-src="@{/cij/js/rongji.js}" src=""></script>
+				<script data-th-src="@{/cij/js/webuploader.min.js}" src="cij/js/webuploader.min.js"></script>
+				<script data-th-src="@{/cij/js/m/authentication.uploader.js}" src="cij/js/m/authentication.uploader.js"></script>
+				<script data-th-src="@{/cij/js/m/authentication.js}" src=""></script>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

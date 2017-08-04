@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh"
+	class="no-js">
+<head>
+<meta charset="UTF-8" />
+<meta
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+	name="viewport" />
+<meta name="keywords" content=" " />
+<meta name="description" content="" />
+<title>已卖出的商品</title>
+<link data-th-href="|${tempPath}style/font-awesome.min.css|"
+	href="style/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link data-th-href="|${tempPath}style/wSelect.less|"
+	href="style/wSelect.less" rel="stylesheet" type="text/less" />
+<link data-th-href="|${tempPath}style/themes.less|"
+	href="style/themes.less" rel="stylesheet" type="text/less" />
+<link href="/emall/cij/datatables/css/dataTables.foundation.css"
+	rel="stylesheet" type="text/css" />
+<link
+	data-th-href="|${tempPath}datatables-extend/css/dataTables.response.less|"
+	href="datatables-extend/css/dataTables.response.less" rel="stylesheet"
+	type="text/less" />
+<link
+	data-th-href="|${tempPath}datatables-extend/css/daterangepicker-f5.less|"
+	href="datatables-extend/css/daterangepicker-f5.less" rel="stylesheet"
+	type="text/less" />
+<link data-th-href="|${tempPath}style/layout.css|"
+	href="style/layout.css" rel="stylesheet" type="text/css" />
+<link data-th-href="|${tempPath}style/master.css|"
+	href="style/master.css" rel="stylesheet" type="text/css" />
+
+<script data-th-src="|${tempPath}javascript/less-1.7.3.min.js|"
+	src="javascript/less-1.7.3.min.js"></script>
+<script data-th-src="|${tempPath}javascript/modernizr.js|"
+	src="javascript/modernizr.js"></script>
+<script data-th-inline="javascript">
+	Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/'/emall';
+	Cfg.tempPath = /*[[ ${tempPath} ]]*/'/emall/tpl/001/';
+</script>
+</head>
+<body>
+	<div id="layout">
+		<div class="wrapper" id="frame_wrapper">
+			<div class="off-canvas-wrap" data-offcanvas="" id="frame_canvas_wrap">
+				<div class="inner-wrap" id="frame_inner_wrap">
+					<div class="left-off-canvas-menu hide-for-large"
+						id="frame_canvas_menu" data-set="data_accordion"></div>
+					<div class="header" id="frame_header" include="include.html"
+						data-th-include="${tempInternalPath + 'include-admin'} :: #frame_header">
+					</div>
+					<!--end header-->
+
+					<div class="main" role="main" aria-label="主体区块" id="frame_main">
+						<div class="row" id="frame_main_row1">
+							<div class="small-12 medium-2 large-2 columns"
+								id="frame_main_col1">
+								<div id="frame_accordion" include="include.html" data-th-include="${tempInternalPath + 'include-admin'} :: #frame_accordion">
+                            </div>
+							</div>
+							<div class="small-12 medium-10 large-10 columns"
+								id="frame_main_col2">
+								<div class="list-position" id="frame_position">
+									<div id="data_list_addr" class="c-addr">
+										<a href="#" target="_self">我是管理员</a>&frasl;<a href="#"
+											target="_self">商铺管理</a>
+									</div>
+								</div>
+								<div id="data_datatable">
+									<!--datatable-->
+									<div id="user_page">
+										<section class="panel">
+											<header class="panel-heading">
+												商铺管理 <span class="tools right" style="display:none;">
+													<a href="javascript:;" class="fa fa-chevron-down"></a> <a
+													href="javascript:;" class="fa fa-times"></a>
+												</span>
+												<div class="right">
+													<!--
+                                                <div class="button radius tiny left v_oper_select_all" >全选</div>
+                                                <div class="button radius tiny left v_oper_delete" >删除</div>
+                                                <div class="button radius tiny left v_oper_add" >添加</div>
+                                                <div class="button radius tiny left v_oper_edit" >编辑</div>
+                                                <div class="button radius tiny left v_oper_search">搜索</div>
+                                -->
+													<a class="v_oper_refresh" title="刷新"><i
+														class="fa fa-refresh"></i></a>
+												</div>
+											</header>
+											<div class="panel-body">
+
+												<div class="table_bar clearfix">
+													<div class="bar_left hide-for-small"
+														data-set="data_bar_apply">
+														<div class="left bar_apply">
+															<!--                    
+                                                        <div class="button radius tiny left v_oper_add"><i class="fa fa-plus"></i><span>添加</span></div>
+                                -->
+															<div class="apply">
+																<select id="select_change">
+																	<option>批量操作</option>
+																	<option value="v_oper_edit">编辑</option>
+																	<option value="v_oper_del">删除</option>
+																</select>
+																<div class="button radius tiny left"
+																	data-v-oper-id="select_change">应用</div>
+															</div>
+														</div>
+													</div>
+													<div class="more-filter dt">
+														<a>筛选<i class="fa fa-caret-down"></i><i
+															class="fa fa-caret-up"></i></a>
+													</div>
+													<div class="bar_right">
+														<div class="search">
+															<input name="storeName-lk" class="inp v_oper_quick_search"
+																id="topsearch" type="text" placeholder="请输入..."
+																accesskey="s" title="请输入查询内容" x-webkit-speech=""
+																x-webkit-grammar="builtin:translate" lang="zh-CN"
+																style="display: block;" />
+															<!--<i class="fa fa-filter v_oper_advanced_search" title="高级"></i>-->
+															<i class="fa fa-search v_oper_click_quick_search"
+																title="搜索"></i>
+														</div>
+													</div>
+												</div>
+												<div class="filter-items hide p-border v_search">
+													<div class="filter-items-wrap">
+														<div class="row">
+															<div class="small-12 medium-6 large-6 columns">
+																<div class="row">
+																	<div class="small-12 medium-3 large-3 columns">
+																		<label for="label1" class="right" role="alert">商铺名称</label>
+																	</div>
+																	<div class="small-12 medium-9 large-9 columns">
+																		<label> <input type="text" name="storeName-lk"
+																			id="label1" placeholder="商铺名称" />
+
+																		</label>
+																	</div>
+																</div>
+															</div>
+															<div class="small-12 medium-6 large-6 columns">
+																<div class="row">
+																	<div class="small-12 medium-3 large-3 columns">
+																		<label for="label1" class="right" role="alert">审核状态</label>
+																	</div>
+																	<div class="small-12 medium-9 large-9 columns">
+																		<label> <select name="status">
+																				<option value="all">全部</option>
+																				<option value="0">待审核</option>
+																				<option value="1">通过</option>
+																				<option value="fail">审核不通过</option>
+
+																		</select>
+
+																		</label>
+																	</div>
+																</div>
+															</div>
+														</div>
+
+														<div class="row do-search">
+															<div class="small-12 columns">
+																<a class="button right tiny radius v_oper_do_search">搜索</a><a
+																	class="button right tiny margin-r secondary radius v_oper_reset_search">重置</a>
+															</div>
+														</div>
+													</div>
+													<div
+														class="table_bar hide-for-large clearfix bar_apply_wrap"
+														data-set="data_bar_apply"></div>
+
+												</div>
+												<div class="v_table simple">
+													<!--加载中...-->
+													<div class="v_page_processing row">
+														<div class="small-12 medium-6 large-6 columns"></div>
+														<div class="small-12 medium-6 large-6 columns"></div>
+														<div id="DataTables_Table_0_processing"
+															class="dataTables_processing">
+															<span class="fa-stack fa-lg"> <i
+																class="fa fa-square fa-stack-2x"></i> <i
+																class="fa fa-spinner fa-spin fa-stack-1x fa-inverse"></i>
+															</span><br /> <span>数据加载中...</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</section>
+										<!--添加-->
+
+										<!--编辑-->
+										<div id="edit-order"
+											class="reveal-modal large openModal v_edit_form"
+											data-reveal="" aria-labelledby="modalTitle"
+											aria-hidden="true" role="dialog">
+											<form data-abide="">
+												<h3>审核</h3>
+												<div class="modal_wrap">
+													<input type="hidden" name="storeId" />
+
+													<div class="row">
+														<div class="large-12 columns">
+															<label>商铺名称: <input type="text" name="storeName"
+																placeholder=""
+																data-th-value="${store} ? ${store.storeName}"
+																readonly="readonly" />
+															</label>
+														</div>
+													</div>
+				
+													<div class="row">
+														<div class="large-12 columns">
+															<label>商铺标志: <img alt="" src="" id="logoImg"
+																height="70" width="70"></img> <input type="hidden"
+																name="logo" id="logo" placeholder="" />
+															</label>
+														</div>
+													</div>
+													<div class="row">
+														<div class="large-12 columns">
+															<label>商铺简介: <input type="text"
+																name="description" placeholder="" readonly="readonly" />
+															</label>
+														</div>
+													</div>
+													<div class="row">
+														<div class="large-12 columns">
+															<label>经营类型: 个人全职：<input type="radio"
+																name="businessType" placeholder="" value='0'
+																disabled="disabled" /> 个人兼职：<input type="radio"
+																name="businessType" placeholder="" value='1'
+																disabled="disabled" /> 公司开店：<input type="radio"
+																name="businessType" placeholder="" value='2'
+																disabled="disabled" />
+															</label>
+														</div>
+													</div>
+													<div class="row">
+														<div class="large-12 columns">
+															<label>联系地址: <input type="text" name="address"
+																placeholder="" readonly="readonly" />
+															</label>
+														</div>
+													</div>
+													<div class="row">
+														<label> 主要资源： <input type="radio"
+															name="mainSources" value="0" id="radio21"
+															disabled="disabled" /><label for="radio21">线下批发市场</label>
+															<input type="radio" name="mainSources" value="1"
+															id="radio22" disabled="disabled" /><label for="radio22">实体店拿货</label>
+															<input type="radio" name="mainSources" value="2"
+															id="radio23" disabled="disabled" /><label for="radio23">分销/代销</label>
+															<input type="radio" name="mainSources" value="3"
+															id="radio24" disabled="disabled" /><label for="radio24">自己生产</label>
+															<input type="radio" name="mainSources" value="4"
+															id="radio25" disabled="disabled" /><label
+															for="radio25">代工生产</label>
+
+														</label>
+													</div>
+													<div class="row">
+														<div class="large-12 columns">
+															<label>店铺介绍: <textarea name="storeDescription"
+																	rows="" cols="" readonly="readonly"></textarea>
+															</label>
+														</div>
+													</div>
+
+													<div class="row">
+														<div class="large-12 columns">
+															<label> 是否拥有实体： 是：<input type="radio"
+																name="isentity" placeholder="" value='0'
+																disabled="disabled" /> 否：<input type="radio"
+																name="isentity" placeholder="" value='1'
+																disabled="disabled" />
+
+															</label>
+														</div>
+													</div>
+													<div class="row">
+														<div class="large-12 columns">
+															<label> 是否拥有工厂: 是：<input type="radio"
+																name="isfactory" placeholder="" value='0'
+																disabled="disabled" /> 否：<input type="radio"
+																name="isfactory" placeholder="" value='1'
+																disabled="disabled" />
+
+															</label>
+														</div>
+													</div>
+													<div class="row">
+														<div class="large-12 columns">
+															<label>所属用户:<span id='userName'></span> <input
+																type="hidden" name="userId" id="userId" />
+															</label>
+														</div>
+													</div>
+													<div class="row">
+														<div class="large-12 columns">
+															<label>审核状态 <select name="status">
+																	<option value='0'>待审核</option>
+																	<option value='1'>通过</option>
+																	<option value='2'>失败理由1</option>
+																	<option value='3'>失败理由2</option>
+																	<option value='4'>其他</option>
+															</select>
+
+															</label>
+														</div>
+													</div>
+												</div>
+												<div class="row confirm">
+													<div class="small-12 columns">
+														<a class="right button radius tiny v_oper_submit">保存</a> <a
+															class="close-reveal-modal right button radius tiny secondary margin-r"
+															aria-label="Close">取消</a>
+													</div>
+												</div>
+											</form>
+											<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+										</div>
+										<!--修改价格-->
+
+										<!--查询-->
+
+										<!--分享-->
+
+										<!--确认删除警告-->
+										<div id="delete_warning"
+											class="reveal-modal tiny v_del_waring warning-panel"
+											data-reveal="" aria-labelledby="modalTitle"
+											aria-hidden="true" role="dialog">
+											<div class="row">
+												<div class="small-4 columns">
+													<div class="row">
+														<div class="small-12 columns">
+															<i class="fa font-warning fa-warning font-i"></i>
+														</div>
+													</div>
+												</div>
+												<div class="small-8 columns">
+													<div class="row">
+														<div class="small-12 columns">确定要删除吗？</div>
+													</div>
+													<div class="row dele">
+														<div class="small-12 columns">
+															<a class="right button radius tiny v_oper_do_delete">确定</a>
+															<a
+																class="close-reveal-modal right button radius tiny secondary margin-r close_btn"
+																aria-label="Close">取消</a>
+														</div>
+													</div>
+												</div>
+											</div>
+											<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+										</div>
+										<!--操作成功提示框-->
+										<div class="fixed v_info_success">
+											<div class="row">
+												<div class="large-12 columns" id="operate_alert_into">
+													<div data-alert=""
+														class="success alert-box warning radius nomarg v_show_oper_info">
+														<div>
+															<i class="fa fa-fw fa-check"></i><span
+																class="v_show_info">操作成功.</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--未选中提示框-->
+										<div class="fixed v_info_fail">
+											<div class="row">
+												<div class="large-12 columns" id="error_alert_into">
+													<div data-alert=""
+														class="error alert-box warning radius nomarg v_show_oper_info">
+														<div>
+															<i class="fa fa-fw fa-exclamation-circle"></i><span
+																class="v_show_info">未选择.</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="fixed v_info_warning">
+											<div class="row">
+												<div class="large-12 columns" id="error_alert_into">
+													<div data-alert=""
+														class="error alert-box warning radius nomarg v_show_oper_info">
+														<div>
+															<i class="fa fa-fw fa-exclamation-circle"></i><span
+																class="v_show_info">未选择.</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--end main-->
+
+					<div class="footer" id="frame_footer" role="contentinfo"
+						include="include.html">
+						<div class="footer-subnav" id="frame_footer_subnav">
+							<div class="row" id="data_footer_subnav">
+								<div class="large-7 medium-7 small-12 columns">
+									<ul
+										class="large-block-grid-4 medium-block-grid-4 small-block-grid-2">
+										<li>
+											<h3 class="icon1">购物指南</h3>
+											<ul class="item">
+												<li><a href="">购物流程</a></li>
+												<li><a href="">会员介绍</a></li>
+												<li><a href="">生活旅行/团购</a></li>
+												<li><a href="">常见问题</a></li>
+												<li><a href="">联系客服</a></li>
+											</ul>
+										</li>
+										<li>
+											<h3 class="icon2">支付方式</h3>
+											<ul class="item">
+												<li><a href="">货到付款</a></li>
+												<li><a href="">在线支付</a></li>
+												<li><a href="">分期付款</a></li>
+												<li><a href="">邮局汇款</a></li>
+												<li><a href="">公司转账</a></li>
+											</ul>
+										</li>
+										<li>
+											<h3 class="icon3">天下保障</h3>
+											<ul class="item">
+												<li><a href="">售后政策</a></li>
+												<li><a href="">价格保护</a></li>
+												<li><a href="">退款说明</a></li>
+												<li><a href="">返修/退换货</a></li>
+												<li><a href="">取消订单</a></li>
+											</ul>
+										</li>
+										<li>
+											<h3 class="icon4">商家服务</h3>
+											<ul class="item">
+												<li><a href="">开店申请</a></li>
+												<li><a href="">商品发布</a></li>
+												<li><a href="">店铺设置</a></li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+								<div class="large-5 medium-5 small-12 columns">
+									<ul
+										class="footer-code large-block-grid-3 medium-block-grid-3 small-block-grid-1">
+										<li><img
+											data-th-src="|${tempPath}images/footer_code_01.gif|"
+											src="images/footer_code_01.gif" /><span>下载手机官方app</span></li>
+										<li><img
+											data-th-src="|${tempPath}images/footer_code_02.gif|"
+											src="images/footer_code_02.gif" /><span>关注微信公众号</span></li>
+										<li><a href="#"><img
+												data-th-src="|${tempPath}images/footer_code_03.gif|"
+												src="images/footer_code_03.gif" /><span>官方微博</span></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="copyright" id="frame_footer_copyright">
+							<div class="row" id="data_footer_copyright">
+								<span class="copyright-reserved">版权所有：北京文玩天下电子商务有限公司</span> <span>
+									公司地址：北京市朝阳区北辰路曹八里1号院6号楼 邮政编码：100029<br /> 文玩客服电话：4006-300-305
+									在线客服QQ：1395085594，398850964 Email：link@wwtx.cn 传真：010-64411002<br />
+									主要交易商品涉及<a href="#">文玩核桃</a>、<a href="#">菩提</a>、<a href="#">橄榄核雕</a>、<a
+									href="#">玉石翡翠</a>、<a href="#">琥珀蜜蜡</a>、竹雕木雕、白玉和田玉籽料、天珠、文玩狮子头等<br />
+									京ICP备05048109号 京公网安备110105006105<br />
+								</span>
+								<div class="img">
+									<img data-th-src="|${tempPath}images/footer_img_01.gif|"
+										src="images/footer_img_01.gif" /> <img
+										data-th-src="|${tempPath}images/footer_img_02.gif|"
+										src="images/footer_img_02.gif" /> <img
+										data-th-src="|${tempPath}images/footer_img_03.gif|"
+										src="images/footer_img_03.gif" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--end footer-->
+
+					<div class="go" id="frame_go">
+						<a title="返回顶部" class="gotop" id="goTop"></a> <a title="返回底部"
+							class="gobottom" id="goBottom"></a>
+					</div>
+
+					<div id="frame_exit_off">
+						<a class="exit-off-canvas"></a>
+					</div>
+				</div>
+			</div>
+			<div id="frame_javascript">
+			<div data-th-include="${tempInternalPath + 'include'} :: #base_javascript"></div>
+       		<div data-th-include="${tempInternalPath + 'include'} :: #datatable_javascript"></div>
+				<div id="data_javascript">
+					<script data-th-src="|${tempPath}javascript/jquery-2.1.3.js|"
+						src="javascript/jquery-2.1.3.js" type="text/javascript"
+						charset="utf8"></script>
+					<script data-th-src="|${tempPath}javascript/AppendAround.js|"
+						src="javascript/AppendAround.js" type="text/javascript"
+						charset="utf8"></script>
+					<script data-th-src="|${tempPath}javascript/wSelect.js|"
+						src="javascript/wSelect.js" type="text/javascript" charset="utf8"></script>
+					<script data-th-src="|${tempPath}javascript/swiper.min.js|"
+						src="javascript/swiper.min.js" type="text/javascript"
+						charset="utf8"></script>
+		
+					<script src="/emall/cij/datatables/js/jquery.dataTables.js"
+						type="text/javascript" charset="utf8"></script>
+					<script src="/emall/cij/datatables/js/dataTables.foundation.js"
+						type="text/javascript" charset="utf8"></script>
+					<script src="/emall/cij/foundation/js/foundation.min.js"></script>
+					<script src="/emall/cij/js/jquery.datatable.page.js"></script>
+					<script
+						data-th-src="|${tempPath}datatables-extend/js/foundation.extend.js|"
+						src="datatables-extend/js/foundation.extend.js"></script>
+					<script
+						data-th-src="|${tempPath}datatables-extend/js/moment.min.js|"
+						src="datatables-extend/js/moment.min.js"></script>
+					<script
+						data-th-src="|${tempPath}datatables-extend/js/daterangepicker.js|"
+						src="datatables-extend/js/daterangepicker.js"></script>
+					<script>
+						$(document).foundation();
+					</script>
+					<script data-th-src="@{/cij/js/rongji.js}"
+						src="/emall/cij/js/rongji.js"></script>
+
+
+					<script data-th-src="@{/cij/js/webuploader.min.js}" src=""></script>
+					<script data-th-src="@{/cij/js/m/fileupload.js}" src=""></script>
+					<script data-th-src="@{/cij/js/m/admin.store.js}"
+						src="/emall/cij/js/m/admin.store.js"></script>
+					<!-- 
+                <script src="/emall/cij/js/thymeleaf.js" ></script>
+                <script src="/emall/cij/thymol/thymol-full.js" ></script>
+                 -->
+
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

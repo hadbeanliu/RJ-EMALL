@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh" class="no-js">
+<head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta name="keywords" content=" " />
+    <meta name="description" content="" />
+	<title>专家认证</title>
+	<link data-th-href="|${tempPath}style/font-awesome.min.css|" href="style/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/themes.less|" href="style/themes.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="@{/cij/datatables/css/dataTables.foundation.css}" href="/emall/cij/datatables/css/dataTables.foundation.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}datatables-extend/css/dataTables.response.less|"  href="datatables-extend/css/dataTables.response.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}datatables-extend/css/daterangepicker-f5.less|"  href="datatables-extend/css/daterangepicker-f5.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}style/layout.css|"  href="style/layout.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/master.css|"  href="style/master.css" rel="stylesheet" type="text/css" />
+
+	<script data-th-src="|${tempPath}javascript/less-1.7.3.min.js|" src="javascript/less-1.7.3.min.js"></script>
+	<script data-th-src="|${tempPath}javascript/modernizr.js|" src="javascript/modernizr.js"></script>
+	<script data-th-inline="javascript">
+	Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/ '/emall';
+	Cfg.tempPath = /*[[ ${tempPath} ]]*/ '/emall/tpl/001/';
+	</script>
+</head>
+<body>
+<div id="layout">
+    <div class="wrapper" id="frame_wrapper">
+        <div class="off-canvas-wrap" data-offcanvas="" id="frame_canvas_wrap">
+            <div class="inner-wrap" id="frame_inner_wrap">  
+                <div class="left-off-canvas-menu hide-for-large" id="frame_canvas_menu" data-set="data_accordion"></div>
+                <div class="header" id="frame_header" include="include.html" data-th-include="${tempInternalPath + 'include-buyer'} :: #frame_header">
+                </div>
+                <!--end header-->
+                
+                <div class="main" role="main" aria-label="主体区块" id="frame_main">
+                    <div class="row" id="frame_main_row1">
+                        <div class="small-12 medium-2 large-2 columns" id="frame_main_col1">
+                            <div id="frame_accordion" include="include.html" data-th-include="${tempInternalPath + 'include-buyer'} :: #frame_accordion">
+                            </div>
+                        </div>
+                        <div class="small-12 medium-10 large-10 columns" id="frame_main_col2">
+                            <div class="list-position" id="frame_position">
+                                <div id="data_list_addr" class="c-addr">
+                                    <a href="#" target="_self">我是买家</a>&frasl;<a href="#" target="_self">专家管理</a>&frasl;<a href="#" target="_self">专家认证</a>
+                                </div>
+                            </div>
+                            <div id="data_datatable">
+                                <!--datatable-->
+                                <div id="expert">
+                                    <section class="panel">
+                                    <!-- 
+		                            	<ul class="tabs" data-tab="">
+											<li class="tab-title active"><a id="used_payment_tab" href="#used_payment">已开通支付方式</a></li>
+											<li class="tab-title"><a href="#providers">全部支付方式</a></li>
+										</ul>
+										<div class="tabs-content">
+											<div class="content active" id="used_payment">aaaa</div>
+											<div class="content" id="providers">bbbbb</div>
+										</div>
+                                     -->
+                                        <header class="panel-heading">
+                                           专家认证
+                                            <span class="tools right" style="display:none;">
+                                                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                                                <a href="javascript:;" class="fa fa-times"></a>
+                                             </span>
+                                             <div class="right">
+                        <!--                    
+                                                <div class="button radius tiny left v_oper_select_all" >全选</div>
+                                                <div class="button radius tiny left v_oper_delete" >删除</div>
+                                                <div class="button radius tiny left v_oper_add" >添加</div>
+                                                <div class="button radius tiny left v_oper_edit" >编辑</div>
+                                                <div class="button radius tiny left v_oper_search">搜索</div>
+                        -->
+<!--                                                 <a class="v_oper_refresh" title="刷新"></a> -->
+                                             </div>
+                                        </header> 
+                                        <div class="panel-body">
+<!--                                             <div class="table_bar"> -->
+<!--                                                 <div class="bar_left"> -->
+<!--                                                     <div class="left"> -->
+                                <!--                    
+                                                        <div class="button radius tiny left v_oper_add"><i class="fa fa-plus"></i><span>添加</span></div>
+                                -->
+                                                        <div class="apply">
+<!--                                                             <select id="select_change"> -->
+<!--                                                                 <option>批量操作</option> -->
+<!--                                                                 <option value="v_oper_edit">编辑</option> -->
+<!--                                                                 <option value="v_oper_del">删除</option> -->
+<!--                                                             </select> -->
+<!--                                                             <div class="button radius tiny left" data-v-oper-id="select_change">应用</div> -->
+                                                        </div>
+<!--                                                     </div> -->
+<!--                                                 </div> -->
+<!--                                                 <div class="more-filter"> -->
+<!--                                                     <a>筛选<i class="fa fa-caret-down"></i><i class="fa fa-caret-up"></i></a> -->
+<!--                                                 </div> -->
+<!--                                                 <div class="bar_right"> -->
+<!--                                                     <div class="search"> -->
+<!--                                                       <input name="goodsTitle-lk" class="inp v_oper_quick_search" id="topsearch" type="text" placeholder="请输入..." accesskey="s" title="请输入查询内容" x-webkit-speech="" x-webkit-grammar="builtin:translate" lang="zh-CN" style="display: block;" /> -->
+<!--                                                       <i class="fa fa-search v_oper_click_quick_search" title="搜索"></i> -->
+<!--                                                     </div> -->
+<!--                                                 </div> -->
+<!--                                             </div> -->
+                                            <div class="filter-items hide p-border v_search">
+                                                <div class="row">
+                                                    <div class="small-12 medium-4 large-4 columns">
+                                                        <div class="row">
+                                                            <div class="small-12 medium-4 large-4 columns">
+                                                                <label for="label1" class="right" role="alert">宝贝名称</label>
+                                                            </div>
+                                                            <div class="small-12 medium-8 large-8 columns">
+                                                                <label>
+                                                                    <input type="text" name="goodsTitle-lk" id="label1" placeholder="宝贝名称" data-invalid="" />
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="small-12 medium-8 large-8 columns">
+                                                        <div class="row">
+                                                            <div class="small-12 medium-2 large-2 columns">
+                                                                <label for="label1" class="right" role="alert">成交时间</label>
+                                                            </div>
+                                                            <div class="small-12 medium-4 large-4 columns">
+                                                                <label for="hdkssj" class="input-group with-tit">
+                                                                    <a class="input-group-addon right"><i class="fa fa-calendar fa-fw"></i></a>
+                                                                    <input class="active" type="text" id="hdkssj" placeholder="开始时间" name="createTime-gt" aria-invalid="false" />
+                                                                </label>
+                                                            </div>
+                                                            <div class="small-12 medium-1 large-1 columns">
+                                                                <label class="input-group with-tit">到</label>
+                                                            </div>
+                                                            <div class="small-12 medium-5 large-5 columns">
+                                                                <label for="hdjssj" class="input-group with-tit">
+                                                                    <a class="input-group-addon right"><i class="fa fa-calendar fa-fw"></i></a>
+                                                                    <input class="active" type="text" id="hdjssj" placeholder="结束时间" name="createTime-lt" aria-invalid="false" />
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="small-12 medium-4 large-4 columns">
+                                                        <div class="row">
+                                                            <div class="small-12 medium-4 large-4 columns">
+                                                                <label for="label1" class="right" role="alert">订单编号</label>
+                                                            </div>
+                                                            <div class="small-12 medium-8 large-8 columns">
+                                                                <label>
+                                                                    <input type="text" id="label1" placeholder="订单编号" data-invalid="" />
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="small-12 medium-8 large-8 columns">
+                                                        <div class="row">
+                                                            <div class="small-12 medium-6 large-6 columns">
+                                                                <div class="row">
+                                                                    <div class="small-12 medium-4 large-4 columns">
+                                                                        <label for="label1" class="right" role="alert">交易状态</label>
+                                                                    </div>
+                                                                    <div class="small-12 medium-8 large-8 columns">
+                                                                            <select class="medium" data-invalid="" aria-invalid="true">
+                                                                                <option value="买家已付款">买家已付款</option>
+                                                                                <option value="卖家未发货">卖家未发货</option>
+                                                                                <option value="卖家已发货">卖家已发货</option>
+                                                                                <option value="买家已收货">买家已收货</option>
+                                                                            </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="small-12 medium-6 large-6 columns">
+                                                                <div class="row">
+                                                                    <div class="small-12 medium-4 large-4 columns">
+                                                                        <label for="label1" class="right" role="alert">评价状态</label>
+                                                                    </div>
+                                                                    <div class="small-12 medium-8 large-8 columns">
+                                                                        <select class="medium" data-invalid="" aria-invalid="true">
+                                                                            <option value="双方已评">双方已评</option>
+                                                                            <option value="买家已评">买家已评</option>
+                                                                            <option value="买家未评">买家未评</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="small-12 columns">
+                                                        <a class="button right tiny radius v_oper_do_search">搜索</a><a class="button right tiny margin-r secondary radius v_oper_reset_search">重置</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+<!--                                             <div class="panel-tag"> -->
+<!--                                                 <a class="v_oper_click_search" name="purchaseQuantity" value="15">等待买家付款</a> -->
+<!--                                                 <a class="v_oper_click_search" name="purchaseQuantity" value="6">等待发货</a> -->
+<!--                                                 <a class="v_oper_click_search" name="purchaseQuantity" value="18">已发货</a> -->
+<!--                                                 <a class="v_oper_click_search" name="purchaseQuantity" value="5">退款中</a> -->
+<!--                                                 <a class="v_oper_click_search" name="purchaseQuantity" value="10">成功的订单</a> -->
+<!--                                                 <a>关闭的订单</a> -->
+<!--                                                 <a>三个月前的订单</a> -->
+<!--                                             </div> -->
+                                            <!--加载中...-->
+<!--                                             <div class="v_page_processing row"> -->
+<!--                                                 <div class="small-12 medium-6 large-6 columns"></div> -->
+<!--                                                 <div class="small-12 medium-6 large-6 columns"></div> -->
+<!--                                                 <div id="DataTables_Table_0_processing" class="dataTables_processing"> -->
+<!--                                                     <span class="fa-stack fa-lg"> -->
+<!--                                                       <i class="fa fa-square fa-stack-2x"></i> -->
+<!--                                                       <i class="fa fa-spinner fa-spin fa-stack-1x fa-inverse"></i> -->
+<!--                                                     </span><br/> -->
+<!--                                                     <span>数据加载中...</span> -->
+<!--                                                 </div> -->
+<!--                                             </div> -->
+<!--                                             <div class="v_table simple"></div> -->
+											   <div class="v_form" data-reveal="" aria-labelledby="modalTitle"
+													aria-hidden="true" role="dialog">
+										
+													<input type="hidden" name="authentications" title="认证指数" value="2" />
+													<!-- 用于修改用户 -->
+													<input type="hidden" id="uid" name="id" title="用户编号" data-th-value="${uid}" /> 
+													<form data-abide="ajax" id="form">
+                                                        <div class="row per-in-ma-row1 person_info">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>真实姓名：</p>
+                                                            </div>
+                                                            <div class="small-11 medium-4 large-4 columns columns-1 mar-top-10 left">
+                                                                <input type="text" name="realName" class="left " placeholder="" />
+                                                                <small class="error small-12 columns">真实姓名不能为空！</small>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1 person_info">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>身份证号：</p>
+                                                            </div>
+                                                            <div class="small-11 medium-4 large-4 columns columns-1 mar-top-10 left">
+                                                                <input type="text" name="cardId" class="left" placeholder="" />
+                                                                <small class="error small-12 columns">身份证号码格式不正确！</small>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1 person_info">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10 certifi-min-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>身份证正面：</p>
+                                                            </div>
+                                                            <div class="small-12 medium-6 large-6 columns columns-1 mar-top-10">
+                                                                <div id="data_modPic_con">
+                                                                     <div class="evaluate-uploaders left margin-l">
+                                                                         <div id="fileList1" class="uploader-list left">
+                                                                             <div class="no-bullet" id="sortable-list1"></div>
+                                                                         </div>
+                                                                         <div class="uploader">
+                                                                             <div class="bg-placeholder">
+                                                                                 <a class="add-pic" id="filePicker1" title="添加图片"></a>
+                                                                             </div>
+                                                                             <div class="bg-loading">
+                                                                                 <i class="fa fa-spinner fa-spin"></i>
+                                                                             </div>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class="row">
+                                                                         <div class="small-12 columns certification-idcard-des-p">
+                                                                             <p class="in-ma-p-grey">1.请上传身份证正面带有头像的扫描件或清晰照片</p>
+                                                                             <p class="in-ma-p-grey">2.照片要求格式为JPG/JPEG/GIF/PNG/BMP，大小不要超过1M</p>
+                                                                             <p class="in-ma-p-grey">注：我们将严格保密，请放心上传</p>
+                                                                         </div>
+                                                                     </div>
+                                                                     <input id="frontCard" name="frontCard" type="hidden"  />
+							                                         <small class="error">请上传您的身份证正面！</small>
+                                                                </div>
+                                                            </div>
+                                                            <div class="small-12 medium-4 large-4 columns columns-1 mar-top-10 text-center">
+                                                               <img class="mar-top-4 mar-bom-5" src="/emall/tpl/dsww/001/images/idcard-1.png" alt=""/>
+                                                                <p class="in-ma-p-grey">(身份证正面)</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1 person_info">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10 certifi-min-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>身份证反面：</p>
+                                                            </div>
+                                                            <div class="small-12 medium-6 large-6 columns columns-1 mar-top-10">
+                                                                <div id="data_modPic_con">
+                                                                     <div class="evaluate-uploaders left margin-l">
+                                                                         <div id="fileList2" class="uploader-list left">
+                                                                             <div class="no-bullet" id="sortable-list2"></div>
+                                                                         </div>
+                                                                         <div class="uploader">
+                                                                             <div class="bg-placeholder">
+                                                                                 <a class="add-pic" id="filePicker2" title="添加图片"></a>
+                                                                             </div>
+                                                                             <div class="bg-loading">
+                                                                                 <i class="fa fa-spinner fa-spin"></i>
+                                                                             </div>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class="row">
+                                                                         <div class="small-12 columns certification-idcard-des-p">
+                                                                             <p class="in-ma-p-grey">1.请上传身份证正面带有头像的扫描件或清晰照片</p>
+                                                                             <p class="in-ma-p-grey">2.照片要求格式为JPG/JPEG/GIF/PNG/BMP，大小不要超过1M</p>
+                                                                             <p class="in-ma-p-grey">注：我们将严格保密，请放心上传</p>
+                                                                         </div>
+                                                                     </div>
+                                                                     <input id="backCard" name="backCard" type="hidden"  />
+							                                         <small class="error">请上传您的证件照反面！</small>
+                                                                 </div>
+                                                            </div>
+                                                            <div class="small-12 medium-4 large-4 columns columns-1 mar-top-10 text-center">
+                                                               <img class="mar-top-4 mar-bom-5" src="/emall/tpl/dsww/001/images/idcard-2.png" alt=""/>
+                                                                <p class="in-ma-p-grey">(身份证反面)</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1 person_info">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>手机号码：</p>
+                                                            </div>
+                                                            <div class="small-11 medium-4 large-4 columns columns-1 mar-top-10 left">
+                                                                <input type="text" name="mobiletel" class="left " placeholder="" />
+                                                                <small class="error small-12 columns">请输入正确的手机号码</small>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10 certifi-min-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>真实头像：</p>
+                                                            </div>
+                                                            <div class="small-12 medium-6 large-6 columns columns-1 mar-top-10">
+                                                                <div id="data_modPic_con">
+                                                                    <div class="small-12 medium-2 large-2 columns"><label class="right"></label></div>
+					                                                    <div class="small-12 medium-10 large-10 columns">
+					                                                       <div class="evaluate-uploaders">
+								                                                <div id="fileList" class="uploader-list">
+								                                                    <div class="no-bullet" id="sortable-list"></div>
+								                                                </div>
+								                                                <div class="uploader">
+								                                                    <div class="bg-placeholder">
+								                                                        <a class="add-pic webuploader-container" id="filePicker" title="添加图片"><div class="webuploader-pick"></div><div id="rt_rt_19rgt5m2911e07p19e9u8g14jr1" style="position: absolute; top: 0px; left: 0px; width: 80%; height: 80%; overflow: hidden; bottom: auto; right: auto;"><input type="file" name="file" class="webuploader-element-invisible" multiple="multiple" accept="image/*"/><label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label></div></a>
+								                                                    </div>
+								                                                    <div class="bg-loading">
+								                                                        <i class="fa fa-spinner fa-spin"></i>
+								                                                    </div>
+								                                                </div>
+								                                                
+								                                            </div>
+					                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="small-12 columns certification-idcard-des-p">
+                                                                            <p class="in-ma-p-grey">注：照片要求格式为JPG/JPEG/GIF/PNG/BMP，大小不要超过1M</p>
+                                                                        </div>
+                                                                    </div>
+					                                                <input id="head" name="head" type="hidden"  />
+					                                                <small class="error">请上传您的真实头像！</small>
+                                                                </div>
+                                                            </div>
+                                                            <div class="small-12 medium-4 large-4 columns columns-1 mar-top-10 text-center">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10 certifi-min-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>证明材料：</p>
+                                                            </div>
+                                                            <div class="small-12 medium-6 large-6 columns columns-1 mar-top-10">
+                                                                <div id="data_modPic_con">
+                                                                    <div class="small-12 medium-2 large-2 columns"><label class="right"></label></div>
+					                                                    <div class="small-12 medium-10 large-10 columns">
+					                                                       <div class="evaluate-uploaders">
+								                                                <div id="fileList4" class="uploader-list">
+								                                                    <div class="no-bullet" id="sortable-list4"></div>
+								                                                </div>
+								                                                <div class="uploader">
+								                                                    <div class="bg-placeholder">
+								                                                        <a class="add-pic webuploader-container" id="filePicker4" title="添加图片"><div class="webuploader-pick"></div><div id="rt_rt_19rgt5m2911e07p19e9u8g14jr1" style="position: absolute; top: 0px; left: 0px; width: 80%; height: 80%; overflow: hidden; bottom: auto; right: auto;"><input type="file" name="file" class="webuploader-element-invisible" multiple="multiple" accept="image/*"/><label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label></div></a>
+								                                                    </div>
+								                                                    <div class="bg-loading">
+								                                                        <i class="fa fa-spinner fa-spin"></i>
+								                                                    </div>
+								                                                </div>
+								                                                
+								                                            </div>
+					                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="small-12 columns certification-idcard-des-p">
+                                                                            <p class="in-ma-p-grey">注：照片要求格式为JPG/JPEG/GIF/PNG/BMP，大小不要超过1M</p>
+                                                                        </div>
+                                                                    </div>
+					                                                <input id="userCredentials" name="userCredentials" type="hidden"  />
+					                                                <small class="error">请上传您的证明材料！</small>
+                                                                </div>
+                                                            </div>
+                                                            <div class="small-12 medium-4 large-4 columns columns-1 mar-top-10 text-center">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>认证领域：</p>
+                                                            </div>
+                                                            <div class="small-11 medium-4 large-4 columns columns-1 mar-top-10 left">
+                                                                <select class="medium" name="field"
+																	data-invalid="" aria-invalid="false" style="background-position: right center;">
+																	<option value="经济金融" selected="selected">经济金融</option>
+																	<option value="法律法规">法律法规</option>
+																	<option value="企业管理">企业管理</option>
+																	<option value="法律法规">法律法规</option>
+																	<option value="社会民生">社会民生</option>
+																	<option value="科学教育">科学教育</option>
+																	<option value="健康生活">健康生活</option>
+																	<option value="体育运动">体育运动</option>
+																	<option value="文化艺术">文化艺术</option>
+																	<option value="电子数码">电子数码</option>
+																	<option value="电脑网络">电脑网络</option>
+																	<option value="娱乐休闲">娱乐休闲</option>
+																	<option value="地区地域">地区地域</option>
+																	<option value="心理分析">心理分析</option>
+																	<option value="其他">其他</option>
+																</select>
+                                                                <small class="error small-12 columns">请选择认证领域</small>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>行家头衔：</p>
+                                                            </div>
+                                                            <div class="small-11 medium-4 large-4 columns columns-1 mar-top-10 left">
+                                                               	<select class="medium" name="rank"
+																		data-invalid="" aria-invalid="true" style="background-position: right center;">
+																		<option value="会计" selected="selected">会计</option>
+																		<option value="财务">财务</option>
+																		<option value="主管">主管</option>
+																		<option value="投资人">投资人</option>
+																		<option value="高级管理">高级管理</option>
+																		<option value="人事">人事</option>
+																		<option value="行政人员">行政人员</option>
+																		<option value="后勤人员">后勤人员</option>
+																		<option value="其他">其他</option>
+																</select> 
+																<small class="error">请上传您的行家头衔</small>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>工作单位：</p>
+                                                            </div>
+                                                            <div class="small-11 medium-4 large-4 columns columns-1 mar-top-10 left">
+                                                                <input type="text" name="work" class="left " placeholder="" />
+                                                                <small class="error small-12 columns">工作单位不能为空</small>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>办公电话：</p>
+                                                            </div>
+                                                            <div class="small-11 medium-4 large-4 columns columns-1 mar-top-10 left">
+                                                                <input type="text" name="expertMobile" class="left " placeholder="" />
+                                                                <small class="error small-12 columns">办公电话不能为空</small>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red">*</b>电子邮箱：</p>
+                                                            </div>
+                                                            <div class="small-11 medium-4 large-4 columns columns-1 mar-top-10 left">
+                                                                <input type="text" name="email" class="left " placeholder="" />
+                                                                <small class="error small-12 columns">请输入正确的电子邮箱</small>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1">
+                                                            <div class="small-12 medium-2 large-2 columns columns-1 mar-top-10">
+                                                                <p class="in-ma-p-body right"><b class="star-red"></b>QQ：</p>
+                                                            </div>
+                                                            <div class="small-11 medium-4 large-4 columns columns-1 mar-top-10 left">
+                                                                <input type="text" name="qq" class="left " placeholder="" />
+                                                                <small class="error small-12 columns">请输入正确格式的QQ号码</small>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row per-in-ma-row1">
+	                                                         <div class="small-12 columns columns-1 mar-top-20 certification-button">
+	                                                             <button type="submit" class="v_add_submit">提交审核</button>
+	                                                         </div>
+                                                        </div>
+                                                    </form>
+												</div>
+                                        </div>
+                                    </section>
+                                    <!--添加-->
+                                    <div id="add-order" class="reveal-modal large openModal v_add_form" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+                                      <form data-abide="">
+                                          <h3>添加商品</h3>
+                                          <div class="modal_wrap">
+                                              <div class="row">
+                                                <div class="small-12 columns">
+                                                    <label>商品标题
+                                                        <input type="text" name="goodsTitle" required="" pattern="[a-zA-Z]+" />
+                                                    </label>
+                                                    <small class="error">商品标题不能为空！</small>
+                                                </div>
+                                              </div>
+                                              <div class="row">
+                                                <div class="small-12 columns">
+                                                  <label>
+                                                    商品规格
+                                                      <div class="row">
+                                                        <div class="small-4 columns">
+                                                          <label for="customDropdown1">
+                                                            <select id="customDropdown1" class="medium" required="">
+                                                              <option value="">颜色分类</option>
+                                                              <option value="first">红色</option>
+                                                              <option value="second">黄色</option>
+                                                              <option value="third">蓝色</option>
+                                                              <option value="fourth">绿色</option>
+                                                              <option value="fifth">青色</option>
+                                                              <option value="sixth">橙色</option>
+                                                              <option value="seventh">紫色</option>
+                                                              <option value="eighth">赤色</option>
+                                                            </select>
+                                                          </label>
+                                                          <small class="error">未选择</small>
+                                                        </div>
+                                                        <div class="small-4 columns">
+                                                          <label for="customDropdown2">
+                                                            <select id="customDropdown2" class="medium" required="">
+                                                              <option value="">尺码分类</option>
+                                                              <option value="first">31</option>
+                                                              <option value="second">32</option>
+                                                              <option value="third">33</option>
+                                                              <option value="fourth">34</option>
+                                                              <option value="fifth">35</option>
+                                                              <option value="sixth">36</option>
+                                                              <option value="seventh">37</option>
+                                                              <option value="eighth">38</option>
+                                                              <option value="ninth">39</option>
+                                                              <option value="tenth">40</option>
+                                                              <option value="eleventh">41</option>
+                                                              <option value="twelvth">42</option>
+                                                              <option value="thirting">43</option>
+                                                            </select>
+                                                          </label>
+                                                          <small class="error">未选择</small>
+                                                        </div>
+                                                        <div class="small-4 columns">
+                                                          <label for="customDropdown3">
+                                                            <select id="customDropdown3" class="medium" required="">
+                                                              <option value="">面料分类</option>
+                                                              <option value="first">棉布</option>
+                                                              <option value="second">麻布</option>
+                                                              <option value="third">丝绸</option>
+                                                              <option value="fourth">尼龙</option>
+                                                              <option value="fifth">皮革</option>
+                                                              <option value="sixth">化纤</option>
+                                                              <option value="seventh">混纺</option>
+                                                            </select>
+                                                          </label>
+                                                          <small class="error">未选择</small>
+                                                        </div>
+                                                      </div>
+                                                  </label>
+                                                </div>
+                                              </div>
+                                              <div class="row">
+                                                <div class="small-6 columns">
+                                                    <label>订单号
+                                                        <input type="text" required="" pattern="[a-zA-Z]+" />
+                                                    </label>
+                                                    <small class="error">订单号不能为空！</small>
+                                                </div>
+                                                <div class="small-6 columns">
+                                                    <label>店铺名称
+                                                        <input type="text" required="" pattern="[a-zA-Z]+" />
+                                                    </label>
+                                                    <small class="error">店铺名称不能为空！</small>
+                                                </div>
+                                              </div>
+                                              <div class="row">
+                                                <div class="small-12 columns">
+                                                  <label>
+                                                    订单详情
+                                                      <div class="row">
+                                                        <div class="small-4 columns">
+                                                            <label>
+                                                                <input type="text" name="goodsPrice" placeholder="单价（元）" required="" pattern="[\d.]+" />
+                                                            </label>
+                                                            <small class="error">单价不能为空！</small>
+                                                        </div>
+                                                        <div class="small-4 columns">
+                                                            <label>
+                                                                <input type="text" name="purchaseQuantity" placeholder="购买数量" required="" pattern="\d+" />
+                                                            </label>
+                                                            <small class="error">购买数量不能为空！</small>
+                                                        </div>
+                                                        <div class="small-4 columns">
+                                                            <label>
+                                                                <input type="text" name="purchasePrice" placeholder="购买价格" required="" pattern="[\d.]+" />
+                                                            </label>
+                                                            <small class="error">购买价格不能为空！</small>
+                                                        </div>
+                                                      </div>
+                                                  </label>
+                                                </div>
+                                              </div>
+                                          </div>
+                                          <div class="row confirm">
+                                            <div class="small-12 columns">
+                                                <a class="right button radius tiny v_oper_submit margin-r">保存</a>
+                                                <a class="close-reveal-modal right button radius tiny secondary margin-r" aria-label="Close">取消</a>
+                                            </div>
+                                          </div>
+                                      </form>
+                                      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                                    </div>
+                                    <!--编辑-->
+                                    <div id="edit-order" class="reveal-modal large openModal v_edit_form" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+                                      <form data-abide="">
+                                          <h3>编辑订单</h3>
+                                          <div class="modal_wrap">
+                                              <input type="hidden" name="id" />
+                                              <div class="row">
+                                                <div class="small-12 columns">
+                                                    <label>商品标题
+                                                        <input type="text" name="goodsTitle" required="" pattern="\w+" />
+                                                    </label>
+                                                    <small class="error">商品标题不能为空！</small>
+                                                </div>
+                                              </div>
+                                              <div class="row">
+                                                <div class="small-12 columns">
+                                                  <label>
+                                                    商品规格
+                                                      <div class="row">
+                                                        <div class="small-4 columns">
+                                                          <label for="customDropdown1">
+                                                            <select id="customDropdown1" class="medium" required="">
+                                                              <option value="">颜色分类</option>
+                                                              <option value="first">红色</option>
+                                                              <option value="second">黄色</option>
+                                                              <option value="third">蓝色</option>
+                                                              <option value="fourth">绿色</option>
+                                                              <option value="fifth">青色</option>
+                                                              <option value="sixth">橙色</option>
+                                                              <option value="seventh">紫色</option>
+                                                              <option value="eighth">赤色</option>
+                                                            </select>
+                                                          </label>
+                                                          <small class="error">未选择</small>
+                                                        </div>
+                                                        <div class="small-4 columns">
+                                                          <label for="customDropdown2">
+                                                            <select id="customDropdown2" class="medium" required="">
+                                                              <option value="">尺码分类</option>
+                                                              <option value="first">31</option>
+                                                              <option value="second">32</option>
+                                                              <option value="third">33</option>
+                                                              <option value="fourth">34</option>
+                                                              <option value="fifth">35</option>
+                                                              <option value="sixth">36</option>
+                                                              <option value="seventh">37</option>
+                                                              <option value="eighth">38</option>
+                                                              <option value="ninth">39</option>
+                                                              <option value="tenth">40</option>
+                                                              <option value="eleventh">41</option>
+                                                              <option value="twelvth">42</option>
+                                                              <option value="thirting">43</option>
+                                                            </select>
+                                                          </label>
+                                                          <small class="error">未选择</small>
+                                                        </div>
+                                                        <div class="small-4 columns">
+                                                          <label for="customDropdown3">
+                                                            <select id="customDropdown3" class="medium" required="">
+                                                              <option value="">面料分类</option>
+                                                              <option value="first">棉布</option>
+                                                              <option value="second">麻布</option>
+                                                              <option value="third">丝绸</option>
+                                                              <option value="fourth">尼龙</option>
+                                                              <option value="fifth">皮革</option>
+                                                              <option value="sixth">化纤</option>
+                                                              <option value="seventh">混纺</option>
+                                                            </select>
+                                                          </label>
+                                                          <small class="error">未选择</small>
+                                                        </div>
+                                                      </div>
+                                                  </label>
+                                                </div>
+                                              </div>
+                                              <div class="row">
+                                                <div class="small-6 columns">
+                                                    <label>订单号
+                                                        <input type="text" required="" pattern="[a-zA-Z]+" />
+                                                    </label>
+                                                    <small class="error">订单号不能为空！</small>
+                                                </div>
+                                                <div class="small-6 columns int">
+                                                    <label>店铺名称
+                                                        <input type="text" required="" pattern="[a-zA-Z]+" />
+                                                    </label>
+                                                    <small class="error">店铺名称不能为空！</small>
+                                                </div>
+                                              </div>
+                                              <div class="row">
+                                                <div class="small-12 columns">
+                                                  <label>
+                                                    订单详情
+                                                      <div class="row">
+                                                        <div class="small-4 columns">
+                                                            <label>
+                                                                <input type="text" name="goodsPrice" placeholder="单价（元）" required="" pattern="[\d.]+" />
+                                                            </label>
+                                                            <small class="error">单价不能为空！</small>
+                                                        </div>
+                                                        <div class="small-4 columns">
+                                                            <label>
+                                                                <input type="text" name="purchaseQuantity" placeholder="购买数量" required="" pattern="\d+" />
+                                                            </label>
+                                                            <small class="error">购买数量不能为空！</small>
+                                                        </div>
+                                                        <div class="small-4 columns">
+                                                            <label>
+                                                                <input type="text" name="purchasePrice" placeholder="购买价格" required="" pattern="[\d.]+" />
+                                                            </label>
+                                                            <small class="error">购买价格不能为空！</small>
+                                                        </div>
+                                                      </div>
+                                                  </label>
+                                                </div>
+                                              </div>
+                                          </div>
+                                          <div class="row confirm">
+                                            <div class="small-12 columns">
+                                                <a class="right button radius tiny v_oper_submit margin-r">保存</a>
+                                                <a class="right button radius tiny v_oper_submit_and_edit_next">保存，并修改下一个</a>
+                                                <a class="close-reveal-modal right button radius tiny secondary margin-r" aria-label="Close">取消</a>
+                                            </div>
+                                          </div>
+                                      </form>
+                                      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                                    </div>
+                                    <!--查询-->
+                                    <!-- 
+                                    <div id="search-order" class="reveal-modal large openModal v_search" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+                                      <form>
+                                          <h3>查询订单</h3>
+                                          <div class="modal_wrap">
+                                              <div class="row">
+                                                <div class="small-12 columns">
+                                                    <label>商品标题
+                                                        <input type="text" name="goodsTitle" />
+                                                    </label>
+                                                </div>
+                                              </div>
+                                              <div class="row">
+                                                <div class="small-12 columns">
+                                                  <label>
+                                                    商品规格
+                                                      <div class="row">
+                                                        <div class="small-4 columns">
+                                                          <label for="customDropdown1">
+                                                            <select id="customDropdown1" class="medium">
+                                                              <option value="">颜色分类</option>
+                                                              <option value="first">红色</option>
+                                                              <option value="second">黄色</option>
+                                                              <option value="third">蓝色</option>
+                                                              <option value="fourth">绿色</option>
+                                                              <option value="fifth">青色</option>
+                                                              <option value="sixth">橙色</option>
+                                                              <option value="seventh">紫色</option>
+                                                              <option value="eighth">赤色</option>
+                                                            </select>
+                                                          </label>
+                                                        </div>
+                                                        <div class="small-4 columns">
+                                                          <label for="customDropdown2">
+                                                            <select id="customDropdown2" class="medium">
+                                                              <option value="">尺码分类</option>
+                                                              <option value="first">31</option>
+                                                              <option value="second">32</option>
+                                                              <option value="third">33</option>
+                                                              <option value="fourth">34</option>
+                                                              <option value="fifth">35</option>
+                                                              <option value="sixth">36</option>
+                                                              <option value="seventh">37</option>
+                                                              <option value="eighth">38</option>
+                                                              <option value="ninth">39</option>
+                                                              <option value="tenth">40</option>
+                                                              <option value="eleventh">41</option>
+                                                              <option value="twelvth">42</option>
+                                                              <option value="thirting">43</option>
+                                                            </select>
+                                                          </label>
+                                                        </div>
+                                                        <div class="small-4 columns">
+                                                          <label for="customDropdown3">
+                                                            <select id="customDropdown3" class="medium">
+                                                              <option value="">面料分类</option>
+                                                              <option value="first">棉布</option>
+                                                              <option value="second">麻布</option>
+                                                              <option value="third">丝绸</option>
+                                                              <option value="fourth">尼龙</option>
+                                                              <option value="fifth">皮革</option>
+                                                              <option value="sixth">化纤</option>
+                                                              <option value="seventh">混纺</option>
+                                                            </select>
+                                                          </label>
+                                                        </div>
+                                                      </div>
+                                                  </label>
+                                                </div>
+                                              </div>
+                                              <div class="row">
+                                                <div class="small-6 columns">
+                                                    <label>订单号
+                                                        <input type="text" />
+                                                    </label>
+                                                </div>
+                                                <div class="small-6 columns">
+                                                    <label>店铺名称
+                                                        <input type="text" />
+                                                    </label>
+                                                </div>
+                                              </div>
+                                              <div class="row">
+                                                <div class="small-12 columns">
+                                                  <label>
+                                                    订单详情
+                                                      <div class="row">
+                                                        <div class="small-4 columns">
+                                                            <label>
+                                                                <input type="text" name="goodsPrice" placeholder="单价（元）" />
+                                                            </label>
+                                                        </div>
+                                                        <div class="small-4 columns">
+                                                            <label>
+                                                                <input type="text" name="purchaseQuantity" placeholder="购买数量" />
+                                                            </label>
+                                                        </div>
+                                                        <div class="small-4 columns">
+                                                            <label>
+                                                                <input type="text" name="purchasePrice" placeholder="购买价格" />
+                                                            </label>
+                                                        </div>
+                                                      </div>
+                                                  </label>
+                                                </div>
+                                              </div>   
+                                          </div>           
+                                          <div class="row confirm">
+                                            <div class="small-12 columns">
+                                                <a class="right button radius tiny v_oper_do_search">查询</a>
+                                                <a class="close-reveal-modal right button radius tiny secondary margin-r" aria-label="Close">取消</a>
+                                            </div>
+                                          </div>
+                                      </form>
+                                      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                                    </div>
+                                     -->
+                                     
+                                    <!--分享-->
+                                    <div id="share-order" class="reveal-modal tiny openModal v_share" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+                                      <form>
+                                          <div class="row">
+                                            <div class="small-12 columns">
+                                                <div class="share-area">
+                                                    <ul class="small-block-grid-4 medium-block-grid-6 large-block-grid-6 ">
+                                                        <li><a href="# "><i class="share-icon weixin "></i><span>微信</span></a></li>
+                                                        <li><a href="# "><i class="share-icon yixin "></i><span>易信</span></a></li>
+                                                        <li><a href="# "><i class="share-icon sina "></i><span>新浪微博</span></a></li>
+                                                        <li><a href="# "><i class="share-icon qzone "></i><span>QQ空间</span></a></li>
+                                                        <li><a href="# "><i class="share-icon baidu "></i><span>百度贴吧</span></a></li>
+                                                        <li><a href="# "><i class="share-icon wangyi "></i><span>网易微博</span></a></li>
+                                                        <li><a href="# "><i class="share-icon renren "></i><span>人人网</span></a></li>
+                                                        <li><a href="# "><i class="share-icon tcweibo "></i><span>腾讯微博</span></a></li>
+                                                        <li><a href="# "><i class="share-icon qq "></i><span>QQ</span></a></li>
+                                                        <li><a href="# "><i class="share-icon souhu "></i><span>搜狐微博</span></a></li>
+                                                        <li><a href="# "><i class="share-icon kaixin "></i><span>开心网</span></a></li>
+                                                        <li><a href="# "><i class="share-icon reblog"></i><span>我的主页</span></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                          </div>
+                                      </form>
+                                      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                                    </div>
+                                    <!--确认删除警告-->
+                                    <div id="delete_warning" class="reveal-modal tiny v_del_waring warning-panel" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+                                      <div class="row">
+                                        <div class="small-4 columns">
+                                          <div class="row">
+                                            <div class="small-12 columns">
+                                                <i class="fa font-warning fa-warning font-i"></i>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="small-8 columns">
+                                          <div class="row">
+                                            <div class="small-12 columns">
+                                                确定要删除吗？
+                                            </div>
+                                          </div>
+                                          <div class="row dele">
+                                            <div class="small-12 columns">
+                                                <a class="right button radius tiny v_oper_do_delete">确定</a>
+                                                <a class="close-reveal-modal right button radius tiny secondary margin-r close_btn" aria-label="Close">取消</a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                                    </div>
+                                    <!--操作成功提示框-->
+                                    <div class="fixed v_info_success">
+                                        <div class="row">
+                                            <div class="large-12 columns" id="operate_alert_into">
+                                                <div data-alert="" class="success alert-box warning radius nomarg v_show_oper_info">
+                                                    <div><i class="fa fa-fw fa-check"></i><span class="v_show_info">操作成功.</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--未选中提示框-->
+                                    <div class="fixed v_info_fail">
+                                        <div class="row">
+                                            <div class="large-12 columns" id="error_alert_into">
+                                                <div data-alert="" class="error alert-box warning radius nomarg v_show_oper_info">
+                                                    <div><i class="fa fa-fw fa-exclamation-circle"></i><span class="v_show_info">未选择.</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fixed v_info_warning">
+                                        <div class="row">
+                                            <div class="large-12 columns" id="error_alert_into">
+                                                <div data-alert="" class="error alert-box warning radius nomarg v_show_oper_info">
+                                                    <div><i class="fa fa-fw fa-exclamation-circle"></i><span class="v_show_info">未选择.</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end main-->
+                
+                <div class="footer" id="frame_footer" role="contentinfo" include="include.html" data-th-include="${tempInternalPath + 'include'} :: #frame_footer">
+                </div>
+                <!--end footer--> 
+                
+                <div class="go" id="frame_go"><a title="返回顶部" class="gotop" id="goTop"></a> <a title="返回底部" class="gobottom" id="goBottom"></a></div>
+                
+                <div id="frame_exit_off"><a class="exit-off-canvas"></a></div>
+            </div>
+        </div>
+        <div id="frame_javascript">
+       		<div data-th-include="${tempInternalPath + 'include'} :: #base_javascript"></div>
+       		<div data-th-include="${tempInternalPath + 'include'} :: #datatable_javascript"></div>
+            <div id="data_javascript">
+ 
+ 				<script>$(document).foundation();</script>
+ 				<script data-th-src="|${tempPath}javascript/sortable.min.js|" src="javascript/sortable.min.js" type="text/javascript" charset="utf8"></script>
+				<script data-th-src="@{/cij/js/webuploader.min.js}" src="cij/js/webuploader.min.js"></script>
+				<script data-th-src="@{/cij/js/m/authentication.uploader.js}" src="cij/js/m/authentication.uploader.js"></script>
+				<script data-th-src="@{/cij/js/m/authentication.js}" src=""></script>
+				<script data-th-src="@{/cij/js/validate.js}" src=""></script>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

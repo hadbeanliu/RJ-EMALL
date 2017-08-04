@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>城市3级联动</title>
+<script src="javascript/vendor/jquery.js"></script>
+<script src="javascript/jquery.select-city.js"></script>
+<style>
+	.layout{
+		margin:0 auto;
+		width:600px;
+		height:500px;
+	}
+</style>
+</head>
+
+<body>
+
+<div class="layout">
+    <div class="area-select">
+        <select class="city-province"></select>
+        <select class="city-city"></select>
+        <select class="city-district"></select>
+    </div>
+    
+</div>
+<script>
+	$('.area-select').initArea('javascript/allareas.json');
+</script>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh"
+	class="no-js">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport"
+	content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui" />
+<meta name="apple-mobile-web-app-title" content="" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />
+<title>确认收货页</title>
+<link data-th-href="|${tempPath}style/select2.css|"
+	href="style/select2.css" rel="stylesheet" type="text/css" />
+<link data-th-href="|${tempPath}style/font-awesome.min.css|"
+	href="style/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link data-th-href="|${tempPath}style/wSelect.less|"
+	href="style/wSelect.less" rel="stylesheet" type="text/less" />
+<link data-th-href="|${tempPath}style/themes.less|"
+	href="style/themes.less" rel="stylesheet" type="text/less" />
+<link href="/emall/cij/datatables/css/dataTables.foundation.css"
+	rel="stylesheet" type="text/css" />
+<link
+	data-th-href="|${tempPath}datatables-extend/css/dataTables.response.less|"
+	href="datatables-extend/css/dataTables.response.less" rel="stylesheet"
+	type="text/less" />
+<link
+	data-th-href="|${tempPath}datatables-extend/css/daterangepicker-f5.less|"
+	href="datatables-extend/css/daterangepicker-f5.less" rel="stylesheet"
+	type="text/less" />
+<link data-th-href="|${tempPath}style/layout.css|"
+	href="style/layout.css" rel="stylesheet" type="text/css" />
+<link data-th-href="|${tempPath}style/master.css|"
+	href="style/master.css" rel="stylesheet" type="text/css" />
+<link data-th-href="|${tempPath}style/jquery.Jcrop.css|"
+	href="style/jquery.Jcrop.css" rel="stylesheet" type="text/css" />
+<link data-th-href="|${tempPath}style/new.css|" href="style/new.css"
+	rel="stylesheet" type="text/css" />
+
+<script data-th-src="|${tempPath}javascript/less-1.7.3.min.js|"
+	src="javascript/less-1.7.3.min.js"></script>
+<script data-th-src="|${tempPath}javascript/modernizr.js|"
+	src="javascript/modernizr.js"></script>
+<script data-th-inline="javascript">
+	Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/'/emall';
+	Cfg.tempPath = /*[[ ${tempPath} ]]*/'/emall/tpl/001/';
+</script>
+</head>
+<body>
+<div id="layout">
+    <div class="wrapper" id="frame_wrapper">
+        <div class="off-canvas-wrap" data-offcanvas="" id="frame_canvas_wrap">
+            <div class="inner-wrap" id="frame_inner_wrap">  
+                <div class="left-off-canvas-menu hide-for-large" id="frame_canvas_menu" data-set="data_accordion"></div>
+                <div class="header" id="frame_header" include="include.html"
+						data-th-include="${tempInternalPath + 'include-buyer'} :: #frame_header">
+				</div>
+                <!--end header-->
+                
+                <div class="main" role="main" aria-label="主体区块" id="frame_main">
+                    <div class="row" id="frame_main_row1">
+                        <div class="small-12 medium-10 large-10 columns" id="frame_main_r1_col1">
+                            <div class="list-position" id="frame_position">
+                                <div id="data_list_addr" class="c-addr margin-b">
+                                    <a href="#" target="_self">我是买家</a>&frasl;
+                                    <a href="#" target="_self">订单</a>&frasl;
+                                    <a href="#" target="_self">已购买商品</a>&frasl;
+                                    <a href="#" target="_self">确认收货</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="frame_main_row2">
+                        <div class="small-12 columns" id="frame_main_r2_col1">
+                            <div class="order-state clearfix" id="frame_position">
+                                <div class="stepflex ">
+                                    <dl class="past">
+                                        <dd class="s-text">拍下商品</dd>
+                                        <dt class="s-num">1</dt>
+                                        <dd class="s-time" data-th-text="${order.createTime}==null?'':${#dates.format(order.createTime, 'yyyy-MM-dd HH:mm:ss')}">2015-06-30 00:47:14</dd>
+                                    </dl>
+                                    <dl class="past">
+                                        <dd class="s-text">付款到支付宝</dd>
+                                        <dt class="s-num">2</dt>
+                                        <dd class="s-time" data-th-text="${order.paymentTime}==null?'':${#dates.format(order.paymentTime, 'yyyy-MM-dd HH:mm:ss')}">2015-06-30 00:47:14</dd>
+                                    </dl>
+                                    <dl class="doing">
+                                        <dd class="s-text">卖家发货</dd>
+                                        <dt class="s-num">3</dt>
+                                        <dd class="s-time" data-th-text="${order.logistics.createtime}==null?'':${#dates.format(order.logistics.createtime, 'yyyy-MM-dd HH:mm:ss')}">2015-06-30 00:47:14</dd>
+                                    </dl>
+                                    <dl class="normal">
+                                        <dd class="s-text">确认收货</dd>
+                                        <dt class="s-num">4</dt>
+                                        <dd class="s-time"></dd>
+                                    </dl>
+                                    <dl class="normal">
+                                        <dd class="s-text">评价</dd>
+                                        <dt class="s-num">5</dt>
+                                        <dd class="s-time"></dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="frame_main_row3">
+                        <div class="small-12 columns" id="frame_main_r3_col1">
+                        	<div class="bg-white clearfix" id="frame_detail_datatable">
+                                <div class="small-12 columns no-padding no-margin" id="frame_main_r3_c1_r1_c1">
+                                    <div id="user_page">
+                                        <section class="panel">
+                                            <div class="v_table margin-t">
+                                                <div class="dataTables_wrapper dt-foundation no-footer">
+                                                    <table class="display dataTable no-footer" style="width: 100%; min-height:100px;">
+                                                        <thead>
+                                                            <tr role="row">
+                                                                <th class="hide sorting_asc" tabindex="0" aria-controls="DataTables_Table_0"
+                                                                rowspan="1" colspan="1" aria-sort="ascending" aria-label="成交时间: 以降序排列此列"
+                                                                style="width: 0px;">
+                                                                    成交时间
+                                                                </th>
+                                                                <th class="hide sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                                rowspan="1" colspan="1" aria-label="订单编号: 以升序排列此列" style="width: 0px;">
+                                                                    订单编号
+                                                                </th>
+                                                                <th class="hide sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                                rowspan="1" colspan="1" aria-label="店铺: 以升序排列此列" style="width: 0px;">
+                                                                    店铺
+                                                                </th>
+                                                                <th class="small-table-cell sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                                rowspan="1" colspan="1" aria-label="宝贝: 以升序排列此列" style="width: 0px;">
+                                                                    宝贝
+                                                                </th>
+                                                                <th class="min_w90 sorting_disabled" rowspan="1" colspan="1" aria-label="单价（元）"
+                                                                style="width: 0px;">
+                                                                    单价（元）
+                                                                </th>
+                                                                <th class="min_w60 sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                                rowspan="1" colspan="1" aria-label="数量: 以升序排列此列" style="width: 0px;">
+                                                                    数量
+                                                                </th>
+                                                                <th class="min_w80 sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                                rowspan="1" colspan="1" aria-label="售后: 以升序排列此列" style="width: 0px;">
+                                                                    售后
+                                                                </th>
+                                                                <th class="min_w80 sorting_disabled" rowspan="1" colspan="1" aria-label="交易状态"
+                                                                style="width: 0px;">
+                                                                    交易状态
+                                                                </th>
+                                                                <th class="min_w110 sorting_disabled" rowspan="1" colspan="1" aria-label="实收款（元）"
+                                                                style="width: 0px;">
+                                                                    实收款（元）
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr role="row" data-th-id="${order.orderNo}">
+																<td class="dealtime small-pad10 hide-for-small sorting_1 margin-l">
+																	<div class="left" data-th-text="${order.createTime}==null?'':(${#dates.format(order.createTime, 'yyyy-MM-dd HH:mm:ss')})">
+																	2015-03-04 18:32:45</div>
+																</td>
+																<td class="data_id small-pad10 hide-for-small">
+																	<a class="p-color" title="订单详情" data-th-text="|订单编号：${order.orderNo}|">
+																			订单编号：00000002 </a>
+																</td>
+																<td class="store small-pad10">
+																	<a class="p-color" data-th-title="${order.store.storeName}"
+																		data-th-text="|店铺：${order.store.storeName}|"> 店铺：文玩天下 </a>
+																</td>
+                                                                <td class="goods padt50 td_block margin-l">
+                                                                    <div class="padb10 block max_h95" data-th-each="good : ${order.goods}">
+                                                                        <div class="img">
+                                                                            <a data-th-title="${good.goodsTitle}" title="Homestyle夏季真皮透气鞋男士运动休闲鞋英伦板鞋">
+                                                                                <img data-th-src="${good.goodsImage}" src="/emall/tpl/001/images/1.gif"/>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="des">
+                                                                            <a class="v_oper_edit margin-b p-color small-marb5" data-th-title="${good.goodsTitle}" data-th-text="${good.goodsTitle}" title="Homestyle夏季真皮透气鞋男士运动休闲鞋英伦板鞋">
+                                                                                Homestyle夏季真皮透气鞋男士运动休闲鞋英伦板鞋
+                                                                            </a>
+                                                                            <span class="classify"> 
+																					<a data-th-text="${good.sku}">颜色分类：黑色[系带] 尺码：44  尺码：44 </a>
+																			</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="max_h95 block" data-th-remove="all">
+                                                                        <div class="img">
+                                                                            <a title="Homestyle夏季真皮透气鞋男士运动休闲鞋英伦板鞋">
+                                                                                <img src="/emall/tpl/001/images/1.gif"/>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="des">
+                                                                            <a class="v_oper_edit margin-b small-marb5 p-color" title="Homestyle夏季真皮透气鞋男士运动休闲鞋英伦板鞋">
+                                                                                Homestyle夏季真皮透气鞋男士运动休闲鞋英伦板鞋
+                                                                            </a>
+                                                                            <span class="classify">
+                                                                                <a>
+                                                                                    颜色分类：黑色[系带]
+                                                                                </a>
+                                                                                <a>
+                                                                                    尺码：44
+                                                                                </a>
+                                                                                <a>
+                                                                                    尺码：44
+                                                                                </a>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="padt50 price hide-for-small">
+																		<div class="show-for-small left">单价：</div>
+																		<div class="min_h65"
+																			data-th-each="good : ${order.goods}"
+																			data-th-text="|${good.purchasePrice/100.0}0|">50.00</div>
+																	</td>
+																	<td class="hide-for-small font-bold padt50">
+																		<div class="min_h65"
+																			data-th-each="good : ${order.goods}"
+																			data-th-text="${good.purchaseQuantity}">6</div>
+																	</td>
+																	<td class="hide-for-small padt50">
+																	<a class="button small-marl10" data-th-href="@{/buyer/refund/toRefund.htm?orderId={oid}(oid=${order.id})}"> 申请退款 </a></td>
+																	<td
+																		class="td_tradingstatus padt50 small-marl65 small-marb5">
+																		<div class="show-for-small left">交易状态：</div>
+																		<div class="margin-b small-marb5 small-left">-</div>
+																	</td>
+																	<td
+																		class="td_realcollection padt50 small-marl65 small-marb5">
+																		<div class="show-for-small left">实收款：</div>
+																		<div class="font-bold small-left"
+																			data-th-text="|${(order.price + order.logisticsFee)/100.0}0|">24.70</div>
+																		<div class="font-gray margin-b small-left" data-th-text="|（含快递：${order.logisticsFee/100.0}0）|">（含快递：10）</div>
+																	</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>                                            
+                                            <div class="total-count-wrapper clearfix border-gray">
+                                                <div class="total-count-pay-result font-large">
+                                                    <div class="count-title-pay">
+                                                        实付款：
+                                                    </div>
+                                                    <div class="total-count-num">
+                                                        <strong>
+                                                            <em data-th-text="|${(order.price + order.logisticsFee)/100.0}0|">¥49.00</em>
+                                                        </strong>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+									</div>
+                                </div>
+                            </div>
+                        </div>   
+                    </div>
+                    <div class="row" id="frame_main_row4">
+                        <div class="small-12 columns" id="frame_main_r4_col1">
+                        	<div class="bg-white clearfix border-gray" id="frame_detail_con">
+                                <div class="small-12 columns no-padding no-margin" id="frame_main_r4_c1_r1_c1">
+                                    <div class="table-td confirm-trade">
+                                        <div class="trade-imfor-title border-b">
+                                            <h3>订单信息</h3>
+                                        </div>
+                                        <ul>
+                                            <li class="table-list">
+                                                <div class="trade-imfor-dt">订单编号：</div>
+                                                <div class="trade-imfor-dd">
+                                                    <div class="address-detail" data-th-text="${order.orderNo}">1111316034156508</div>
+                                                </div>
+                                            </li>
+                                            <li class="table-list">
+                                                <div class="trade-imfor-dt">支付宝交易号：</div>
+                                                <div class="trade-imfor-dd">
+                                                    <div class="address-detail" data-th-text="${order.tradeNo}">2015063021001001920281056243</div>
+                                                </div>
+                                            </li>
+                                            <li class="table-list">
+                                                <div class="trade-imfor-dt">卖家昵称：</div>
+                                                <div class="trade-imfor-dd">
+                                                    <div class="address-detail left" data-th-text="${order.store.storeName}">昕昕家居旗舰店<a class="contactseller" title="和我联系"></a></div>
+                                                </div>
+                                            </li>
+                                            <li class="table-list">
+                                                <div class="trade-imfor-dt">收货信息：</div>
+                                                <div class="trade-imfor-dd">
+                                                    <div class="address-detail" data-th-text="${order.logistics.receiver}+'，'+
+																		(${order.logistics.mobiletel}==null?'':${order.logistics.mobiletel})+'，'+
+																		(${order.logistics.areas})+'  '+
+																		(${order.logistics.address}==null?'':${order.logistics.address})+'，'+
+																		(${order.logistics.zipcode}==null?'':${order.logistics.zipcode})">
+                                                        XXX，189XXXXXXXXX ， 福建省 福州市 鼓楼区 软件大道A区15座榕基软件股份有限公司，350003
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="table-list">
+                                                <div class="trade-imfor-dt">成交时间：</div>
+                                                <div class="trade-imfor-dd">
+                                                    <div class="address-detail" data-th-text="${order.createTime}==null?'':(${#dates.format(order.createTime, 'yyyy-MM-dd HH:mm:ss')})">2015-06-30 00:47:14</div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>   
+                    </div>
+                    <div class="row" id="frame_main_row5">
+                        <div class="small-12 columns" id="frame_main_r5_col1">
+                        	<div class="bg-white clearfix confirm-con border-gray" id="frame_confirm_con">
+                                <ul>
+                                    <li class="alert-msg font-alert">请收到货后，再确认收货！否则您可能钱货两空！</li>
+                                    <li class="refund-tips">如果您想申请退款，<a class="font-info" data-th-href="@{/buyer/refund/toRefund.htm?orderId={oid}(oid=${order.id})}">请点击这里</a></li>
+                                </ul>
+                                <div class="confirm-code">
+                                	<input type="hidden" id="orderId" data-th-value="${order.id}"/>
+                                	<!-- <div class="code-pretect"><i class="fa fa-info-circle font-success"></i>安全设置检测成功！数字证书正在保护中。</div>
+                                    <div class="code-entry">支付宝支付密码：<input type="text" placeholder="请输入密码"/><a class="font-info margin-l">忘记密码？</a></div> -->
+                                    <div class="code-btn"><a class="button tiny bg-warning v_oper_confirm">确定</a></div>
+                                </div>
+                            </div>
+                        </div>   
+                    </div>
+                    <div class="fixed v_info_warning">
+                    	<div class="row">
+                            <div class="large-12 columns" id="error_alert_into">
+                                <div data-alert="" class="error alert-box warning  nomarg v_show_oper_info">
+                                    <div><i class="fa fa-fw fa-exclamation-circle"></i><span class="v_show_info">未选择.</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <!--end main-->
+                
+                <div class="footer" id="frame_footer" role="contentinfo"
+						include="include.html"
+						data-th-include="${tempInternalPath + 'include'} :: #frame_footer">
+					</div>
+                <!--end footer--> 
+                
+                <div class="go" id="frame_go"><a title="返回顶部" class="gotop" id="goTop"></a> <a title="返回底部" class="gobottom" id="goBottom"></a></div>
+                
+                <div id="frame_exit_off"><a class="exit-off-canvas"></a></div>
+            </div>
+        </div>
+        <div id="frame_javascript">
+			<div data-th-include="${tempInternalPath + 'include'} :: #base_javascript"></div>
+			<div data-th-include="${tempInternalPath + 'include'} :: #datatable_javascript"></div>
+            <div id="data_javascript">
+                <script data-th-src="@{/cij/js/m/buyer.order.confirm.js}"
+						src="/emall/cij/js/m/buyer.order.confirm.js"></script>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" class="no-js" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><!--PC端访问优先使用IE最新版本和Chrome-->
+    <meta name="renderer" content="webkit" /><!--优先采用webkit内核渲染-->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui" />
+    <title>register</title>
+    <link data-th-href="|${tempPath}css/main.css|"  href="css/main.css" rel="stylesheet" type="text/css" />
+    <link data-th-href="|${tempPath}css/foundation.css|"  href="css/foundation.css" rel="stylesheet" type="text/css" />
+    
+    <script data-th-src="|${tempPath}js/modernizr.js|" src="js/modernizr.js"></script>
+    <script data-th-src="|${tempPath}js/jquery.js|" src="js/jquery.js"></script>
+    <script data-th-src="|${tempPath}js/js/some.js|" src="js/some.js"></script>
+    <script data-th-inline="javascript">
+    Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/ '/emall';
+	Cfg.tempPath = /*[[ ${tempPath} ]]*/ '/emall/tpl/003/';
+	</script>
+  </head>
+  <body>
+
+
+  <div id="layout">
+    <div class="wrapper" id="frame_wrapper">
+      <div class="main">
+        <div class="row mar-top-50 ">
+          <div class="large-12 columns ">
+            <div class="title-position">
+              <img src="img/reg-1.png"  class="img-wenw" alt=""/>
+              <p class="font-24-b p-wel">欢迎注册</p>
+            </div>
+          </div>
+        </div>
+        <div class="row row1">
+            <div class="large-7 medium-7 small-12 columns ">
+              <img src="img/reg-2.png" class="bg-img" alt=""/>
+            </div>
+            <div class="large-5 medium-5 small-12 columns">
+              <div class="reg-box ">
+                    <div class="row">
+                      <div class="small-12 columns login-title">快速注册</div>
+                    </div>
+                    <div class="row">
+                      <div class="small-12 columns">
+                        <form data-abide="">
+                          <div class="name-field">
+                            <input class="input-reg user-bg" type="text" data-abide-validator="lengths" placeholder="请输入用户名" name="loginName" />
+                            <small class="error">登入账号格式不对！</small>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+
+                <div class="row">
+                  <div class="small-12 columns">
+                    <form data-abide="">
+                      <div class="name-field">
+                        <input class="input-reg lock-bg" type="password" name="password" id="password" data-abide-validator="lengths" placeholder="请输入密码" />
+                        <small class="error">用户密码不能为空！</small>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="small-12 columns">
+                    <form data-abide="">
+                      <div class="name-field">
+                        <input class="input-reg lock-bg" type="password" id="confirmPassword"  name="confirmPassword" data-equalto="password" placeholder="请再次输入密码" />
+                        <small class="error">确认密码不一致！</small>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="small-12 columns">
+                    <form data-abide="">
+                      <div class="name-field">
+                        <input class="input-reg phone-bg" type="text"  name="mobiletel" placeholder="请输入手机号码" />
+                        <small class="error">手机号码不能为空！</small>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="padding-right-none large-7 medium-7 small-7 columns" >
+                    <form data-abide="">
+                      <div class="name-field">
+                        <input class="input-reg checkcode" type="text" name="code" placeholder="请输入手机验证码" />
+                        <small class="error">请输入手机验证码！</small>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="large-5 medium-5 small-5 columns">
+                    <input type="button" id="btn-get-password" class="btn-get-password getcode" value="获取手机验证码" />
+                    <script type="text/javascript">
+                      $(function () {
+                        $('#btn-get-password').click(function () {
+                          var count = 60;
+                          var countdown = setInterval(CountDown, 1000);
+                          function CountDown() {
+                            $("#btn-get-password").attr("disabled", true);
+                            $("#btn-get-password").val('重新获取（'+count + "）");
+                            $("#btn-get-password").css({'background':'#f0f3f5','color':'#c9c9ca','border':'1px solid #c9c9ca','cursor':'not-allowed'});
+                            if (count == 0) {
+                              $("#btn-get-password").val("重新获取验证码").removeAttr("disabled");
+
+                              clearInterval(countdown);
+                            }
+                            count--;
+                          }
+                        })
+                      });
+                    </script>
+                  </div>
+                </div>
+                <div class="row ">
+                  <div class="small-12 columns check-agree">
+                    <input  type="checkbox" checked="true" aria-invalid="true" id="checkbox1" /><label class="label-position f-12" for="checkbox1">我已经阅读并同意《<a href="" class="f-12 a-decora"><b class="f-12 b-red">文玩天下网站服务条款</b></a>》</label>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="small-12 columns">
+                    <a href="#" class="btn-check mar-bom reg_ajax_submit">立即注册</a>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="small-12 columns row-last">
+                    <a href="#" class="f-12">已有账号？</a>
+                    <a href="login.html" class="f-12 b-red-in">点击登入</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="footer footer-bom">
+        <div class="row ">
+          <div class="large-12 columns footer-bo">
+            版权所有：北京文玩天下电子商务有限公司 <p style="width: 10px;float: left;">&nbsp;</p>
+            京ICP备05048109&nbsp;&nbsp;京公网安备110105006105
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div id="frame_javascript">
+  <div data-th-include="${tempInternalPath + 'include'} :: #base_javascript"></div>
+  <div data-th-include="${tempInternalPath + 'include'} :: #datatable_javascript"></div>
+  <div id="data_javascript">
+    <script data-th-src="|${tempPath}js/foundation.js|" src="js/foundation.js" type="text/javascript" charset="utf8"></script>
+    <script data-th-src="|${tempPath}js/foundation.abide.js|" src="js/foundation.abide.js" type="text/javascript" charset="utf8"></script>
+    <script data-th-src="@{/cij/js/m/reg.js}" src=""></script>
+    <script data-th-src="@{/cij/js/thymeleaf.js}" src=""></script>
+    <script data-th-src="@{/cij/js/validate.js}" src=""></script>
+    <script>
+    $(document).foundation();
+    </script>
+  </div>
+  </div>
+  </body>
+</html>

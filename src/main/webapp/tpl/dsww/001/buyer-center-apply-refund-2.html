@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh" class="no-js">
+<head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta name="keywords" content=" " />
+    <meta name="description" content="" />
+	<title>申请退款</title>
+	<link data-th-href="|${tempPath}style/font-awesome.min.css|" href="style/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/themes.less|"  href="style/themes.less" rel="stylesheet" type="text/less" />
+	<link href="/emall/cij/datatables/css/dataTables.foundation.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}datatables-extend/css/dataTables.response.less|"  href="datatables-extend/css/dataTables.response.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}datatables-extend/css/daterangepicker-f5.less|"  href="datatables-extend/css/daterangepicker-f5.less" rel="stylesheet" type="text/less" />
+	<link data-th-href="|${tempPath}style/layout.css|"  href="style/layout.css" rel="stylesheet" type="text/css" />
+	<link data-th-href="|${tempPath}style/master.css|"  href="style/master.css" rel="stylesheet" type="text/css" />
+
+	<script data-th-src="|${tempPath}javascript/less-1.7.3.min.js|" src="javascript/less-1.7.3.min.js"></script>
+	<script data-th-src="|${tempPath}javascript/modernizr.js|" src="javascript/modernizr.js"></script>
+	<script data-th-inline="javascript">
+	Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/ '/emall';
+	Cfg.tempPath = /*[[ ${tempPath} ]]*/ '/emall/tpl/001/';
+	</script>
+</head>
+<body>
+<div id="layout">
+    <div class="wrapper" id="frame_wrapper">
+        <div class="off-canvas-wrap" data-offcanvas="" id="frame_canvas_wrap">
+            <div class="inner-wrap" id="frame_inner_wrap">  
+                <div class="left-off-canvas-menu hide-for-large" id="frame_canvas_menu" data-set="data_accordion"></div>
+           <div class="header" id="frame_header" include="include.html" data-th-include="${tempInternalPath + 'include-buyer'} :: #frame_header">
+                </div>
+                <!--end header-->
+                <div class="main" role="main" aria-label="主体区块" id="frame_main">
+                    <div class="row" id="frame_main_row1">
+                        <div class="list-position" id="frame_position">
+                            <div id="data_list_addr" class="c-addr c-addr-ap-re">
+                                <a href="#" target="_self">我是买家</a>&frasl;<a href="#" target="_self">退款维权</a>&frasl;<a href="#" target="_self">退款管理</a>&frasl;<a href="#" target="_self">申请退款</a>
+                            </div>
+                        </div>
+                        <!--data块-->
+                        <div class="apply-refund-bg">
+                            <header class="panel-heading-apply-refund">
+                                申请退款
+                            </header>
+                            <div class="row" id="frame_main_row2">
+                                <div class="small-12 columns" id="frame_main_r2_col1">
+                                    <div class="order-state clearfix" id="frame_position">
+                                        <div class="stepflex three">
+                                            <dl class="past">
+                                                <dd class="s-text">买家申请仅退款</dd>
+                                                <dt class="s-num">1</dt>
+                                            
+                                            </dl>
+                                            <dl class="doing">
+                                                <dd class="s-text">买家处理退款申请</dd>
+                                                <dt class="s-num">2</dt>
+                                          
+                                            </dl>
+                                            <dl class="normal">
+                                                <dd class="s-text">退款完成</dd>
+                                                <dt class="s-num">3</dt>
+                                              
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row ap-re-row-2">
+                                <div class="small-12 columns">
+                                    <header>商品信息</header>
+                                </div>
+                                   <div class="small-12 columns">
+                                    <div class="v_table simple margin-t">
+                                        <div class="dataTables_wrapper dt-foundation no-footer">
+                                            <table class="display dataTable no-footer" style="width: 100%;">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="hide sorting_asc" tabindex="0" aria-controls="DataTables_Table_0"
+                                                        rowspan="1" colspan="1" aria-sort="ascending" aria-label="成交时间: 以降序排列此列"
+                                                        style="width: 0px;">
+                                                            成交时间
+                                                        </th>
+                                                        <th class="hide sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                        rowspan="1" colspan="1" aria-label="订单编号: 以升序排列此列" style="width: 0px;">
+                                                            订单编号
+                                                        </th>
+                                                        <th class="hide sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                        rowspan="1" colspan="1" aria-label="店铺: 以升序排列此列" style="width: 0px;">
+                                                            店铺
+                                                        </th>
+                                                        <th class="small-table-cell sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                        rowspan="1" colspan="1" aria-label="宝贝: 以升序排列此列" style="width: 0px;">
+                                                            宝贝
+                                                        </th>
+                                                        <th class="min_w90 sorting_disabled" rowspan="1" colspan="1" aria-label="单价（元）"
+                                                        style="width: 0px;">
+                                                            单价（元）
+                                                        </th>
+                                                        <th class="min_w60 sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                        rowspan="1" colspan="1" aria-label="数量: 以升序排列此列" style="width: 0px;">
+                                                            数量
+                                                        </th>
+                                                 
+                                                 
+                                               
+                                                        <th class="min_w110 sorting_disabled" rowspan="1" colspan="1" aria-label="实收款（元）"
+                                                        style="width: 0px;">
+                                                            实收款（元）
+                                                        </th>
+                                                 
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr role="row" class="odd" id="00000002">
+                                                        <td class="dealtime small-pad10 hide-for-small sorting_1 margin-l">
+                                                            <div class="left" data-th-text="${order.createTime}">
+                                                                2015-03-04 18:32:45
+                                                            </div>
+                                                        </td>
+                                                        <td class="data_id small-pad10 hide-for-small">
+                                                            <a class="p-color" title="订单详情" data-th-text="' 订单编号：'+${order.orderNo}" >
+                                                                订单编号：00000002
+                                                            </a>
+                                                        </td>
+                                                        <td class="store small-pad10">
+                                                            <a class="p-color" title="文玩天下" data-th-text="' 店铺：'+${order.store.storeName}" >
+                                                                店铺：文玩天下
+                                                            </a>
+                                                        </td>
+                                                        <td class="goods padt50 td_block margin-l" data-th-each="vo:${order.goods}">
+                                                            <div class="padb10 block max_h95">
+                                                                <div class="img">
+                                                                    <a title="Homestyle夏季真皮透气鞋男士运动休闲鞋英伦板鞋" data-th-title="${vo.goodsTitle}">
+                                                                        <img src="/emall/tpl/001/images/1.gif" data-th-src="${vo.goodsImage}"/>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="des">
+                                                                    <a class="v_oper_edit margin-b p-color small-marb5" title="Homestyle夏季真皮透气鞋男士运动休闲鞋英伦板鞋" data-th-text="${vo.goodsTitle}" data-th-title="${vo.goodsTitle}">
+                                                                        Homestyle夏季真皮透气鞋男士运动休闲鞋英伦板鞋
+                                                                    </a>
+                                                                    <span class="classify" >
+                                                                        <a data-th-text="${vo.sku}">
+                                                                            		颜色分类：黑色[系带]
+                                                                        </a>
+                                         
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                    
+                                                        </td>
+                                                        <td class="padt50 price hide-for-small" >
+                                                            <div class="show-for-small left" >
+                                                           	     单价：
+                                                            </div>
+                                                             <div data-th-each="vo:${order.goods}">
+                                                            <div class="min_h65 " data-th-text="${vo.goodsPriceString}">
+                                                                50.00
+                                                            </div>
+                                                           </div>
+                                                        </td>
+                                                        <td class="hide-for-small font-bold padt50" >
+                                                         <div data-th-each="vo:${order.goods}">
+                                                            <div class="min_h65" data-th-text="${vo.purchaseQuantity}">
+                                                                6
+                                                            </div>
+                                                        </div>
+                                                        </td>
+                                                   
+                                                  
+                                                
+                                                        <td class="td_realcollection padt50 small-marl65 small-marb5">
+                                                            <div class="show-for-small left">
+                                                              		  实收款：
+                                                            </div>
+                                                            <div class="font-bold small-left" data-th-text="${order.priceString}">
+                                                                24.70
+                                                            </div>
+                                                        
+                                                        </td>
+                                         
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                            
+                            <div class="row ap-re-row-4">
+                                <div class="large-8 columns">
+                                    <div class="small-12 columns">
+                                      
+                                        <b class="ap-re-2-b">请等待卖家处理</b>
+                                    </div>
+                                    <div class="small-12 column">
+                                        <ul>
+                                          <input type="hidden" id="refundId" data-th-value="${refund.refundId}"/>
+                                            <li>卖家同意或者在<b data-th-text="${refund.endTime}">3</b>前内未处理，系统将退款给您。</li>
+                                         
+                                            <li>如有人以“卡单、系统有问题”为由给您发送退款相关链接，请勿相信，以免钱财被骗。</li>
+                                        </ul>
+                                    </div>
+                                    <div class="small-12 column apply-refund-2-btn">
+                                        <a href="/emall/buyer/refund/toRefund.htm?refundId=0ic4jtmcz06y222w" data-th-href="'/emall/buyer/refund/toRefund.htm?refundId='+${refund.refundId}" class="">修改退款申请</a>
+                                        <a href="" data-th-href="'/emall/buyer/refund/del.htm?refundId='+${refund.refundId}">取消退款申请</a>
+                                        
+                                    </div>
+                                </div>
+                                <div class="large-4 columns apply-refund-2-right">
+                                    <div class="small-12 column">
+                                        <p>退款协议</p>
+                                       <ul>
+                                           <li>
+                                               <span>退款编号：</span>
+                                               <p data-th-text="${refund.refundId}">1123378292739130</p>
+                                           </li>
+                                           <li>
+                                               <span>退款金额：</span>
+                                               <p style="color:#da534f " data-th-text="${order.priceString}">190.00元</p>
+                                           </li>
+                                          
+                                           <li>
+                                               <span>要求：</span>
+                                               <p data-th-if="${refund.refundStatus}==0">退款</p>
+                                               <p data-th-if="${refund.refundStatus}==1">退货</p>
+                                           </li>
+                                         
+                                           <li>
+                                               <span>说明：</span>
+                                               <p data-th-text="${refund.buyerRefundReason}">不想要了</p>
+                                           </li>
+                                       </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row ap-re-row-3  ">
+                                <div class="small-12 columns">
+                                    <span>常见问题</span>
+                                </div>
+                                <div class="small-12 columns">
+                                    <b>联系不到卖家怎么办？</b>
+                                    <p>您已申请退款，如果卖家没有在48小时内操作“发货”，系统会自动退款给您。如卖家在未和您协商的情况下点击“发货”，您可以重新申请退款。</p>
+                                    <b>钱款什么时候退回？钱款退到哪里？</b>
+                                    <p>1.卖家操作“同意退款”后钱款立刻退回；</p>
+                                    <p>2.如果卖家一直不操作，系统也会在您申请退款的48小时后自动退款给您。（根据您的支付方式不同，退回的方式也会有所区别，<a class="ap-re-row-3-a" href="#">点击查看详情</a>）<a class="ap-re-row-3-a" href="#">更多帮助</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end main-->
+                
+                <div class="footer" id="frame_footer" role="contentinfo" include="include.html">
+                    <div class="footer-subnav" id="frame_footer_subnav">
+                        <div class="row" id="data_footer_subnav">
+                            <div class="large-7 medium-7 small-12 columns">
+                                <ul class="large-block-grid-4 medium-block-grid-4 small-block-grid-2">
+                                    <li>
+                                        <h3 class="icon1">购物指南</h3>
+                                        <ul class="item">
+                                            <li><a href="">购物流程</a></li>
+                                            <li><a href="">会员介绍</a></li>
+                                            <li><a href="">生活旅行/团购</a></li>
+                                            <li><a href="">常见问题</a></li>
+                                            <li><a href="">联系客服</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <h3 class="icon2">支付方式</h3>
+                                        <ul class="item">
+                                            <li><a href="">货到付款</a></li>
+                                            <li><a href="">在线支付</a></li>
+                                            <li><a href="">分期付款</a></li>
+                                            <li><a href="">邮局汇款</a></li>
+                                            <li><a href="">公司转账</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <h3 class="icon3">天下保障</h3>
+                                        <ul class="item">
+                                            <li><a href="">售后政策</a></li>
+                                            <li><a href="">价格保护</a></li>
+                                            <li><a href="">退款说明</a></li>
+                                            <li><a href="">返修/退换货</a></li>
+                                            <li><a href="">取消订单</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <h3 class="icon4">商家服务</h3>
+                                        <ul class="item">
+                                            <li><a href="">开店申请</a></li>
+                                            <li><a href="">商品发布</a></li>
+                                            <li><a href="">店铺设置</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="large-5 medium-5 small-12 columns">
+                                <ul class="footer-code large-block-grid-3 medium-block-grid-3 small-block-grid-1">
+                                    <li><img data-th-src="|${tempPath}images/footer_code_01.gif|" src="images/footer_code_01.gif" /><span>下载手机官方app</span></li>
+                                    <li><img data-th-src="|${tempPath}images/footer_code_02.gif|" src="images/footer_code_02.gif" /><span>关注微信公众号</span></li>
+                                    <li><a href="#"><img data-th-src="|${tempPath}images/footer_code_03.gif|" src="images/footer_code_03.gif" /><span>官方微博</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="copyright" id="frame_footer_copyright">
+                        <div class="row" id="data_footer_copyright">
+                        	<span class="copyright-reserved">版权所有：北京文玩天下电子商务有限公司</span>
+                            <span>
+                            公司地址：北京市朝阳区北辰路曹八里1号院6号楼  邮政编码：100029<br />
+                            文玩客服电话：4006-300-305  在线客服QQ：1395085594，398850964   Email：link@wwtx.cn  传真：010-64411002<br />
+                            主要交易商品涉及<a href="#">文玩核桃</a>、<a href="#">菩提</a>、<a href="#">橄榄核雕</a>、<a href="#">玉石翡翠</a>、<a href="#">琥珀蜜蜡</a>、竹雕木雕、白玉和田玉籽料、天珠、文玩狮子头等<br />
+                            京ICP备05048109号 京公网安备110105006105<br />
+                            </span>
+                            <div class="img">
+                                <img data-th-src="|${tempPath}images/footer_img_01.gif|" src="images/footer_img_01.gif" />
+                                <img data-th-src="|${tempPath}images/footer_img_02.gif|" src="images/footer_img_02.gif" />
+                                <img data-th-src="|${tempPath}images/footer_img_03.gif|" src="images/footer_img_03.gif" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end footer--> 
+                
+                <div class="go" id="frame_go"><a title="返回顶部" class="gotop" id="goTop"></a> <a title="返回底部" class="gobottom" id="goBottom"></a></div>
+                
+                <div id="frame_exit_off"><a class="exit-off-canvas"></a></div>
+            </div>
+        </div>
+        <div id="frame_javascript">
+          <div data-th-include="${tempInternalPath + 'include'} :: #base_javascript"></div>
+        	<div data-th-include="${tempInternalPath + 'include'} :: #datatable_javascript"></div>
+            <div id="data_javascript">
+                <script data-th-src="|${tempPath}javascript/jquery-2.1.3.js|" src="javascript/jquery-2.1.3.js" type="text/javascript" charset="utf8"></script>
+				<script data-th-src="|${tempPath}javascript/AppendAround.js|" src="javascript/AppendAround.js" type="text/javascript" charset="utf8"></script>
+                <script src="/emall/cij/datatables/js/jquery.dataTables.js" type="text/javascript" charset="utf8"></script>
+                <script src="/emall/cij/datatables/js/dataTables.foundation.js" type="text/javascript" charset="utf8"></script>
+                <script src="/emall/cij/foundation/js/foundation.min.js"></script>
+                <script src="/emall/cij/js/jquery.datatable.page.js"></script>
+                <script data-th-src="|${tempPath}datatables-extend/js/foundation.extend.js|" src="datatables-extend/js/foundation.extend.js"></script>
+                <script data-th-src="|${tempPath}datatables-extend/js/moment.min.js|" src="datatables-extend/js/moment.min.js"></script>
+                <script data-th-src="|${tempPath}datatables-extend/js/daterangepicker.js|" src="datatables-extend/js/daterangepicker.js"></script>
+                <script>
+                $(document).foundation();
+                </script>
+            </div>
+        </div>
+   </div>
+</div>
+</body>
+</html>

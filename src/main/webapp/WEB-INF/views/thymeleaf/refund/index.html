@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta charset="utf-8" />
+	
+	<!-- If you delete this meta tag World War Z will become a reality -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<title>电商订单demo</title>
+	<!-- If you are using the CSS version, only link these 2 files, you may add app.css to use for your overrides if you like -->
+	<link data-th-href="@{/cij/foundation/css/normalize.css}" rel="stylesheet" href="css/normalize.css" />
+	<link data-th-href="@{/cij/foundation/css/foundation.css}" rel="stylesheet" href="css/foundation.css" />
+	<link data-th-href="@{/cij/foundation-icons/foundation-icons.css}" rel="stylesheet" href="css/foundation.css" />
+    
+	<link data-th-href="@{/cij/css/font-awesome.min.css}" rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+	<link data-th-href="@{/cij/css/themes.less}" rel="stylesheet" type="text/less" href="css/themes.less" />
+
+	<!-- If you are using the gem version, you need this only -->
+	<link data-th-href="@{/cij/css/app.css}" rel="stylesheet" href="css/app.css" />
+
+	<!-- DataTables CSS
+	<link data-th-href="@{/cij/datatables-1.10.6/css/jquery.dataTables.css}" rel="stylesheet" type="text/css" href="/DataTables-1.10.6/media/css/jquery.dataTables.css" />
+	 -->
+	<link data-th-href="@{/cij/datatables/css/dataTables.foundation.css}" rel="stylesheet" type="text/css" href="dataTables.foundation.css" />
+	<link data-th-href="@{/cij/datatables-extend/css/dataTables.response.css}" rel="stylesheet" type="text/css" href="dataTables.response.css" />
+	<link data-th-href="@{/cij/datatables-extend/css/daterangepicker-f5.less}" rel="stylesheet" type="text/less" href="daterangepicker-f5.less" />
+	
+	<script data-th-inline="javascript">
+	Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/ '';
+	</script>
+	<script data-th-src="@{/cij/js/less-1.7.3.min.js}" src="js/less-1.7.3.min.js"></script>
+	<script data-th-src="@{/cij/foundation/js/vendor/modernizr.js}" src="js/vendor/modernizr.js"></script>
+</head>
+<body>
+<div class="button" onClick="showTip()" style="width:200px;margin:0 auto;display:block;">提示框</div>
+<div id="user_page">
+    <section class="panel">
+        <header class="panel-heading">
+            退款表格
+            <span class="tools right" style="display:none;">
+                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                <a href="javascript:;" class="fa fa-times"></a>
+             </span>
+        </header> 
+        <div class="panel-body">
+            <div class="table_bar">
+             
+                <div class="bar_right">
+                    <div class="search">
+                      <input name="id" class="inp v_oper_quick_search" id="topsearch" type="text" placeholder="请输入查询内容" accesskey="s" title="请输入查询内容" x-webkit-speech="" x-webkit-grammar="builtin:translate" lang="zh-CN" style="display: block;" />
+                      <i class="fa fa-search" title="搜索"></i>
+                      <i class="fa fa-filter v_oper_advanced_search" title="高级"></i>
+                    </div>
+                </div>
+            </div>
+            <!--加载中...-->
+            <div class="row" style="display:none;">
+                <div class="small-12 medium-6 large-6 columns"></div>
+                <div class="small-12 medium-6 large-6 columns"></div>
+                <div id="DataTables_Table_0_processing" class="dataTables_processing">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-square fa-stack-2x"></i>
+                      <i class="fa fa-spinner fa-spin fa-stack-1x fa-inverse"></i>
+                    </span><br></br>
+                    <span>数据加载中...</span>
+                </div>
+            </div>
+            <div class="v_table"></div>
+        </div>
+    </section>
+  
+    
+
+    <!--查询-->
+    <div id="search-order" class="reveal-modal large openModal v_search" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+      <form>
+          <h3>查询退款订单</h3>
+         <div class="modal_wrap">
+     
+          <div class="row">
+            <div class="small-6 columns int">
+                <label>商铺
+                    <input type="text" name="storeId" />
+                </label>
+            </div>
+            <div class="small-6 columns int">
+                <label>用户
+                    <input type="text" name="userId" />
+                </label>
+            </div>
+               <div class="small-6 columns int">
+                <label>退款编号
+                    <input type="text" name="refundId" />
+                </label>
+            </div>
+                <div class="small-6 columns int">
+                <label>订单编号
+                    <input type="text" name="orderNo" />
+                </label>
+            </div>
+          
+          </div>
+             
+          </div>         
+          <div class="row confirm">
+            <div class="small-12 columns">
+                <a class="right button radius tiny v_oper_do_search">查询</a>
+                <a class="close-reveal-modal right button radius tiny secondary margin-r" aria-label="Close">取消</a>
+            </div>
+          </div>
+      </form>
+      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+    <!--分享-->
+ 
+    <!--确认删除警告-->
+    <div id="delete_warning" class="reveal-modal tiny v_del_waring warning-panel" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+      <div class="row">
+        <div class="small-3 columns">
+          <div class="row">
+            <div class="small-12 columns">
+                <i class="fa font-warning fa-warning font-i"></i>
+            </div>
+          </div>
+        </div>
+        <div class="small-9 columns">
+          <div class="row">
+            <div class="small-12 columns">
+                确定要删除吗？
+            </div>
+          </div>
+          <div class="row dele">
+            <div class="small-12 columns">
+                <a class="right button radius tiny v_oper_do_delete">确定</a>
+                <a class="close-reveal-modal right button radius tiny secondary margin-r close_btn" aria-label="Close">取消</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+    <!--表单-->
+  <input id="userId" type="hidden" data-th-value="${userId}"/>
+  <input id="storeId" type="hidden" data-th-value="${storeId}"/>
+</div>
+<!--操作成功提示框-->
+<div class="fixed fbottom" style="display:none">
+    <div class="row">
+        <div class="large-12 columns" id="operate_alert_into">
+            <div data-alert="" class="success alert-box warning radius nomarg v_show_oper_info">
+                <div class="v_show_info"><i class="fa fa-fw fa-check"></i>操作成功.</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--未选中提示框-->
+<div class="fixed fbottom" style="display:none">
+    <div class="row">
+        <div class="large-12 columns" id="error_alert_into">
+            <div data-alert="" class="error alert-box warning radius nomarg v_show_oper_info">
+                <div class="v_show_info"><i class="fa fa-fw fa-exclamation-circle"></i>未选择.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	<script data-th-src="@{/cij/jquery/jquery-2.1.3.js}" src="js/vendor/jquery.js"></script>
+	
+	<!-- DataTables -->
+	<script data-th-src="@{/cij/datatables/js/jquery.dataTables.js}" type="text/javascript" charset="utf8" src="/DataTables-1.10.6/media/js/jquery.dataTables.js"></script>
+	<script data-th-src="@{/cij/datatables/js/dataTables.foundation.js}" type="text/javascript" charset="utf8" src="dataTables.foundation.js"></script>
+
+	<script data-th-src="@{/cij/foundation/js/foundation.min.js}" src="js/foundation.min.js"></script>
+	<script data-th-src="@{/cij/js/jquery.datatable.page.js}" src="js/jquery.datatable.page.js"></script>
+
+	<script data-th-src="@{/cij/datatables-extend/js/moment.min.js}" src="js/moment.min.js"></script>
+	<script data-th-src="@{/cij/datatables-extend/js/daterangepicker.js}" src="js/daterangepicker.js"></script>
+    
+	<script>
+	$(document).foundation();
+	$('#timeEnd').daterangepicker({ 
+		format: 'YYYY-MM-DD',
+		startDate: '2015-01-01',
+		minDate: '2015-01-01',
+		maxDate: '2100-01-10',
+		showWeekNumbers : true,
+		showDropdowns: true,
+		timePicker12Hour: false,
+		singleDatePicker: true
+	});
+	</script>
+		<script>
+		var urltemp;
+		if($("#userId").val()){
+			urltemp="/emall/refund/user/"+ $("#userId").val();
+		}else if($("#storeId").val()){
+			urltemp="/emall/refund/sell/"+ $("#storeId").val();
+		}else{
+			urltemp="/emall/refund";
+		}
+		$("#user_page").dataTablePage({
+			url: urltemp, // 请求地址
+			checkboxMode : true, // 是否出现多选框
+			columns: [{
+				
+					data: "refundId",
+					name: "退款编号",
+					orderable: true,
+					searchable: true,
+					display: function (td, value, vo, rowIndex, colIndex) {
+						$(td).html('<div class="inline-block"><div class="des"><span class="">'+ value +'</span></div></div>').addClass('goods');
+					}
+				
+			},
+			{
+				
+				data: "order",
+				name: "订单编号",
+				orderable: true,
+				searchable: true,
+				display: function (td, value, vo, rowIndex, colIndex) {
+					$(td).html('<div class="inline-block"><div class="des"><span class="">'+ vo.order.orderNo +'</span></div></div>').addClass('goods');				}
+			
+		},
+		{
+			
+			data: "order",
+			name: "商品名称",
+			orderable: true,
+			searchable: true,
+			display: function (td, value, vo, rowIndex, colIndex) {
+				$(td).html('<div class="inline-block"><div class="des"><span class="">'+ vo.refundId +'-Homestyle夏季真皮透气鞋男士运动休闲鞋英伦板鞋</span></div></div>').addClass('goods');				}
+		
+	},
+	{
+		
+		data: "order",
+		name: "店铺",
+		orderable: true,
+		searchable: true,
+		display: function (td, value, vo, rowIndex, colIndex) {
+			$(td).html('<div class="inline-block"><div class="des"><span class="">'+ vo.order.store.storeName +'</span></div></div>').addClass('goods');				}
+	
+},
+		{
+			
+			data: "order",
+			name: "退款金额",
+			orderable: true,
+			searchable: true,
+			display: function (td, value, vo, rowIndex, colIndex) {
+				$(td).html('<div class="inline-block"><div class="des"><span class="">'+ vo.order.price +'</span></div></div>').addClass('goods');				}
+		
+	},
+	{
+		
+		data: "buyerRefundReason",
+		name: "退款理由",
+		orderable: true,
+		searchable: true,
+		display: function (td, value, vo, rowIndex, colIndex) {
+			$(td).html('<div class="inline-block"><div class="des"><span class="">'+ vo.buyerRefundReason +'</span></div></div>').addClass('goods');				}
+	
+},
+		{
+			
+			data: "creatTime",
+			name: "创建时间",
+			orderable: true,
+			searchable: true,
+			display: function (td, value, vo, rowIndex, colIndex) {
+				$(td).html('<div class="inline-block"><div class="des"><span class="">'+ value +'</span></div></div>').addClass('goods');				}
+		
+	},
+	{
+		
+		data: "endTime",
+		name: "截止时间时间",
+		orderable: true,
+		searchable: true,
+		display: function (td, value, vo, rowIndex, colIndex) {
+			$(td).html('<div class="inline-block"><div class="des"><span class="">'+ value +'</span></div></div>').addClass('goods');				}
+	
+	},
+	{
+		
+		data: "status",
+		name: "状态",
+		orderable: true,
+		searchable: true,
+		display: function (td, value, vo, rowIndex, colIndex) {
+			var temp
+			if(value=='0'){
+				temp="正在办理"
+			}else if(value=='1'){
+				temp="退款成功";
+			}else{
+				temp="退款关闭";
+			}
+			$(td).html('<div class="inline-block"><div class="des"><span class="">'+ temp +'</span></div></div>').addClass('goods');				}	
+	}
+			]
+		
+		});
+	  function  cheakErroe(e){
+		  $(e).attr("src","http://tp4.sinaimg.cn/1746716343/180/40037138890/0");
+	  }
+	</script>
+	
+	<script data-th-src="@{/cij/js/thymeleaf.js}" src=""></script>
+	<script data-th-src="@{/cij/thymol/thymol-full.js}" src=""></script>
+</body>
+</html>

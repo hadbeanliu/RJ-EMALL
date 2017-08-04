@@ -1,0 +1,11 @@
+/.mymetadata
+/target
+/.settings
+/.classpath
+/.myhibernatedata
+/.project
+/hibernate.reveng.xml
+/bin
+/.externalToolBuilders
+/.idea
+/logs/

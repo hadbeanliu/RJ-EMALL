@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh"
+	class="no-js">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport"
+	content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui" />
+<meta name="apple-mobile-web-app-title" content="" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />
+<title>交易详情页</title>
+<link data-th-href="|${tempPath}style/select2.css|" href="style/select2.css" rel="stylesheet" type="text/css" />
+<link data-th-href="|${tempPath}style/font-awesome.min.css|" href="style/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link data-th-href="|${tempPath}style/wSelect.less|" href="style/wSelect.less" rel="stylesheet" type="text/less" />
+<link data-th-href="|${tempPath}style/themes.less|" href="style/themes.less" rel="stylesheet" type="text/less" />
+<link href="/emall/cij/datatables/css/dataTables.foundation.css" rel="stylesheet" type="text/css" />
+<link data-th-href="|${tempPath}datatables-extend/css/dataTables.response.less|" href="datatables-extend/css/dataTables.response.less" rel="stylesheet" type="text/less" />
+<link data-th-href="|${tempPath}datatables-extend/css/daterangepicker-f5.less|" href="datatables-extend/css/daterangepicker-f5.less" rel="stylesheet" type="text/less" />
+<link data-th-href="|${tempPath}style/layout.css|" href="style/layout.css" rel="stylesheet" type="text/css" />
+<link data-th-href="|${tempPath}style/master.css|" href="style/master.css" rel="stylesheet" type="text/css" />
+<link data-th-href="|${tempPath}style/jquery.Jcrop.css|" href="style/jquery.Jcrop.css" rel="stylesheet" type="text/css" />
+<link data-th-href="|${tempPath}style/new.css|" href="style/new.css" rel="stylesheet" type="text/css" />
+
+<script data-th-src="|${tempPath}javascript/less-1.7.3.min.js|" src="javascript/less-1.7.3.min.js"></script>
+<script data-th-src="|${tempPath}javascript/modernizr.js|" src="javascript/modernizr.js"></script>
+<script data-th-inline="javascript">
+	Cfg = {};
+	Cfg.contextPath = /*[[ ${#httpServletRequest.getContextPath()} ]]*/'/emall';
+	Cfg.tempPath = /*[[ ${tempPath} ]]*/'/emall/tpl/001/';
+</script>
+</head>
+<body>
+	<div id="layout">
+		<div class="wrapper" id="frame_wrapper">
+			<div class="off-canvas-wrap" data-offcanvas="" id="frame_canvas_wrap">
+				<div class="inner-wrap" id="frame_inner_wrap">
+					<div class="left-off-canvas-menu hide-for-large"
+						id="frame_canvas_menu" data-set="data_accordion"></div>
+					<div class="header" id="frame_header" include="include.html"
+						data-th-include="${tempInternalPath + 'include-buyer'} :: #frame_header">
+					</div>
+					<!--end header-->
+
+					<div class="main" role="main" aria-label="主体区块" id="frame_main">
+						<div class="row" id="frame_main_row1">
+							<div class="small-12 medium-10 large-10 columns"
+								id="frame_main_r1_col1">
+								<div class="list-position" id="frame_position">
+									<div id="data_list_addr" class="c-addr margin-b">
+										<a href="#" target="_self">我是买家</a>&frasl;
+										<a href="#" target="_self">订单</a>&frasl;
+										<a href="#" target="_self">已购买商品</a>&frasl;
+										<a href="#" target="_self">交易详情</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row" id="frame_main_row2">
+							<div class="small-12 columns" id="frame_main_r2_col1">
+
+								<div class="order-state clearfix" id="frame_position">
+									<div class="stepflex ">
+										<dl data-th-class="${order.status=='1'? 'doing' : 'past'}">
+											<dd class="s-text">拍下商品</dd>
+											<dt class="s-num">1</dt>
+											<dd class="s-time" data-th-text="${order.createTime}==null?'':${#dates.format(order.createTime, 'yyyy-MM-dd HH:mm:ss')}">2015-06-30
+												00:47:14</dd>
+										</dl>
+										<dl
+											data-th-class="${order.status=='2'? 'doing' : (order.status=='1' ? 'normal' : 'past')}">
+											<dd class="s-text">付款到支付宝</dd>
+											<dt class="s-num">2</dt>
+											<dd class="s-time" data-th-text="${order.paymentTime}==null?'':${#dates.format(order.paymentTime, 'yyyy-MM-dd HH:mm:ss')}">2015-06-30
+												00:47:14</dd>
+										</dl>
+										<dl
+											data-th-class="${order.status=='3'? 'doing half' : (order.status=='1' or order.status=='2' ? 'normal' : 'past')}">
+											<dd class="s-text">卖家发货</dd>
+											<dt class="s-num">3</dt>
+											<dd class="s-time"
+												data-th-text="${order.logistics.createtime}==null?'':${#dates.format(order.logistics.createtime, 'yyyy-MM-dd HH:mm:ss')}">2015-06-30
+												00:47:14</dd>
+										</dl>
+										<dl
+											data-th-class="${order.status=='4'? 'doing' : (order.status=='1' or order.status=='2' or order.status=='3' ? 'normal' : 'past')}">
+											<dd class="s-text">确认收货</dd>
+											<dt class="s-num">4</dt>
+											<dd class="s-time" data-th-text="${order.doneTime}==null?'':(${#dates.format(order.doneTime, 'yyyy-MM-dd HH:mm:ss')})">2015-06-30
+												00:47:14</dd>
+										</dl>
+										<dl class="normal">
+											<dd class="s-text">评价</dd>
+											<dt class="s-num">5</dt>
+											<dd class="s-time"></dd>
+										</dl>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row" id="frame_main_row3">
+							<div class="small-12 columns" id="frame_main_r3_col1">
+								<div class="bg-white clearfix border-gray" id="frame_detail_con">
+									<div
+										class="small-12 medium-3 large-3 columns no-padding no-margin"
+										id="frame_main_r3_c1_r1_c1">
+										<div class="table-td">
+											<div class="trade-imfor-title border-b">
+												<h3>订单信息</h3>
+											</div>
+											<ul>
+												<li class="table-list">
+													<div class="trade-imfor-dt">收货地址：</div>
+													<div class="trade-imfor-dd" data-th-if="${order.status} !='1' and ${order.status} !='2'">
+														<div class="address-detail"
+															data-th-text="${order.logistics.receiver}+'，'+
+																		(${order.logistics.mobiletel}==null?'':${order.logistics.mobiletel})+'，'+
+																		(${order.logistics.areas})+'  '+
+																		(${order.logistics.address}==null?'':${order.logistics.address})+'，'+
+																		(${order.logistics.zipcode}==null?'':${order.logistics.zipcode})">
+															XXX，189XXXXXXXXX ， 福建省 福州市 鼓楼区 软件大道A区15座榕基软件股份有限公司，350003
+														</div>
+													</div>
+													<div class="trade-imfor-dd" data-th-if="${order.status} == '1' or ${order.status} == '2'">
+														<div class="address-detail"
+															data-th-text="${order.address.receiver}+'，'+
+																		(${order.address.mobiletel}==null?'':${order.address.mobiletel})+'，'+
+																		(${order.address.areas})+'  '+
+																		(${order.address.address}==null?'':${order.address.address})+'，'+
+																		(${order.address.zipcode}==null?'':${order.address.zipcode})">
+															XXX，189XXXXXXXXX ， 福建省 福州市 鼓楼区 软件大道A区15座榕基软件股份有限公司，350003
+														</div>
+													</div>
+												</li>
+												<li class="table-list">
+													<div class="trade-imfor-dt">买家留言：</div>
+													<div class="trade-imfor-dd message-detail"
+														style="visibility: visible;">
+														<span class="no-content">-</span>
+													</div>
+												</li>
+												<li class="table-list separate-top clearfix">
+													<div class="trade-imfor-dt">订单编号：</div>
+													<input type="hidden" id="orderStatus" data-th-value="${order.status}"/>
+													<input type="hidden" id="mailno" data-th-value="${order.logistics.mailno}"/>
+													<input type="hidden" id="comcode" data-th-value="${order.logistics.logiscompanycode}"/>
+													<input type="hidden" id="orderNo" data-th-value="${order.orderNo}"/>
+													<div class="imfor-short-dd" data-th-text="${order.orderNo}">1111316034156508</div>
+													<div class="drop-down-container order-number">
+														<a class="more-detail" data-dropdown="drop1"
+															aria-controls="drop1" aria-expanded="false">更多</a>
+														<ul id="drop1" class="f-dropdown" data-dropdown-content="">
+															<li data-th-if="${order.tradeNo}"><a href="#"><span
+																	class="trade-dropdown-title">支付交易号：</span><span
+																	class="trade-dropdown-data"
+																	data-th-text="${order.tradeNo}">2015063021001001920281056243</span></a></li>
+															<li data-th-if="${order.createTime}"><a href="#"><span
+																	class="trade-dropdown-title">成交时间：</span><span
+																	class="trade-dropdown-data"
+																	data-th-text="${order.createTime}==null?'':(${#dates.format(order.createTime, 'yyyy-MM-dd HH:mm:ss')})">2015-06-30
+																		00:47:14</span></a></li>
+															<li data-th-if="${order.paymentTime}"><a href="#"><span
+																	class="trade-dropdown-title">付款时间：</span><span
+																	class="trade-dropdown-data"
+																	data-th-text="${order.paymentTime}==null?'':${#dates.format(order.paymentTime, 'yyyy-MM-dd HH:mm:ss')}">2015-06-30
+																		00:47:14</span></a></li>
+															<li data-th-if="${order.logistics.createtime}"><a href="#"> <span
+																	class="trade-dropdown-title">发货时间：</span> <span
+																	class="trade-dropdown-data"
+																	data-th-text="${order.logistics.createtime}==null?'':${#dates.format(order.logistics.createtime, 'yyyy-MM-dd HH:mm:ss')}">2015-06-30
+																		00:47:14</span></a></li>
+														</ul>
+													</div>
+												</li>
+												<li class="table-list merchant-list">
+													<div class="trade-imfor-dt imfor-dt-merchant">
+														商<span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>家：
+													</div>
+													<div class="imfor-short-dd">
+														<span class="short-dd-nick"
+															data-th-title="${order.store.storeName}"> <span
+															data-th-text="${order.store.storeName}">昕昕家居旗舰店</span> <span
+															class="ww-light ww-small"> <a href="#"
+																target="_blank" class="" title="点此可以直接和卖家交流选好的宝贝。">
+																	<img src="images/new_msg.gif"
+																	data-th-src="|${tempPath}images/new_msg.gif|" />
+															</a>
+														</span>
+														</span>
+													</div>
+													<div class="drop-down-container order-number">
+														<a class="more-detail" data-dropdown="drop2"
+															aria-controls="drop2" aria-expanded="false">更多</a>
+														<ul id="drop2" class="f-dropdown" data-dropdown-content="">
+															<li><a href="#"><span
+																	class="trade-dropdown-title">真实姓名：</span><span
+																	class="trade-dropdown-data"
+																	data-th-text="${order.store.storeName}">永康市尚动工贸有限公司</span></a></li>
+															<li><a href="#"><span
+																	class="trade-dropdown-title">城&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;市：</span><span
+																	class="trade-dropdown-data"
+																	data-th-text="${order.store.address}">金华市</span></a></li>
+															<li><a href="#"><span
+																	class="trade-dropdown-title">联系电话：</span><span
+																	class="trade-dropdown-data"
+																	data-th-text="${order.store.user.mobiletel}">15268676553</span></a></li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div class="small-12 medium-9 large-9 columns clearfix border-l"
+										id="frame_main_r3_c1_r1_c2">
+										<div class="table-td">
+											<dl class="trade-detail-imfor clearfix">
+												<dt class="imfor-icon clearfix">
+													<img src="images/warning.png"
+														data-th-src="|${tempPath}images/warning.png|" />
+												</dt>
+												<dd class="imfor-title clearfix">
+													<h3 data-th-text="${order.status}=='1'?'订单状态：商品已拍下，等待买家付款':(${order.status}=='2'?'订单状态：买家已付款，等待卖家发货':(${order.status}=='3'?'订单状态：商家已发货，等待买家确认':'订单状态：交易成功'))">订单状态： 商家已发货，等待买家确认</h3>
+												</dd>
+											</dl>
+											<ul class="trade-detail-prompt">
+												<li class="clearfix" data-th-if="${order.status}=='1' or ${order.status}=='3'">
+												<input type="hidden" id="createTime" 
+												data-th-value="${order.status}=='1'? ${order.createTime} : ${order.logistics.createtime}" /> 
+													<span
+													class="dotted-node"> &nbsp; </span> <span
+													class="countdown-timer full-format timer">还有&nbsp;
+														<span class="days-wrapper"> <span
+															class="ui-cd-timed font-alert days"> 7 </span> <span
+															class="ui-cd-formatd font-alert"> 天 </span>
+													</span> <span class="hours-wrapper"> <span
+															class="ui-cd-timeh font-alert hours"> 16 </span> <span
+															class="ui-cd-formath font-alert"> 小时 </span>
+													</span> <span class="minutes-wrapper"> <span
+															class="ui-cd-timem font-alert minutes"> 53 </span> <span
+															class="ui-cd-formatm font-alert"> 分 </span>
+													</span> <span class="seconds-wrapper"> <span
+															class="ui-cd-times font-alert seconds"> 10 </span> <span
+															class="ui-cd-formats font-alert"> 秒 </span>
+													</span> &nbsp;
+													<span data-th-text="${order.status}=='1'?'来付款，超时订单自动关闭':'来确认收货,超时订单自动确认收货'">来确认收货,超时订单自动确认收货</span>
+												</span></li>
+												<li class="clearfix" id="v_logInfo" data-th-if="${order.status} eq '3' or ${order.status} eq '4'"></li>
+												<li class="clearfix" id="v_logInfo" data-th-remove="all">
+													<span class="dotted-node"> &nbsp; </span> 
+													<span> 物流： </span>
+													<div class="trade-detail-logistic package-main">
+														<span class="package-detail logcode"
+															data-th-text="${order.logistics.logiscompanycode}">
+															中通快递 </span> 
+														<span class="package-detail"> 运单号码: </span> 
+														<span class="mailno" data-th-text="${order.logistics.mailno}">364208089387</span>
+														<div class="logistic-detail">
+															<span  data-th-text="${order.logistics.createtime}==null?'':${#dates.format(order.logistics.createtime, 'yyyy-MM-dd HH:mm:ss')}"> 2015-07-01 22:33:12 </span> <span
+																class="package-detail package-address-detail font-warning">
+																买家已发货 </span>
+														</div>
+													</div>
+												</li>
+											</ul>
+											<dl class="trade-detail-operate">
+												<dt>您可以</dt>
+												<dd data-th-if="${order.status}=='3'">
+													<a class="button tiny secondary"
+														data-th-href="@{/buyer/order/confirm-goods.htm?orderId={oid}(oid=${order.id})}">
+														确认收货 </a>
+												</dd>
+												<dd data-th-if="${order.status}=='1'">
+													<a class="button tiny secondary"
+														data-th-href="@{/pay/order/{oid}.htm(oid=${order.id})}">
+														立即付款 </a>
+												</dd>
+												<dd data-th-if="${order.status}=='1'">
+													<a class="font-alert"
+														href="#">
+														取消订单 </a>
+												</dd>
+												<dd data-th-if="${order.status} ne '1'">
+													<a class="font-alert"
+														data-th-href="@{/buyer/refund/toRefund.htm?orderId={oid}(oid=${order.id})}"
+														target="_blank"> 申请退款 </a>
+												</dd>
+												<dd data-th-if="${order.status}=='3'">
+													<a class="font-alert" target="_blank" href="#"> 延长收货时间
+													</a>
+												</dd>
+												<dd>
+													<a class="font-alert" href="#"> 备忘 </a>
+												</dd>
+											</dl>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row" id="frame_main_row4">
+							<div class="small-12 columns" id="frame_main_r4_col1">
+								<div class="bg-white clearfix" id="frame_detail_datatable">
+									<div class="small-12 columns no-margin no-padding"
+										id="frame_main_r3_c1_r1_c1">
+										<div id="user_page">
+											<section class="panel">
+												<div class="v_table margin-t">
+													<div class="dataTables_wrapper dt-foundation no-footer">
+														<table class="display dataTable no-footer"
+															style="width: 100%; min-height:100px;">
+															<thead>
+																<tr role="row">
+																	<th class="small-table-cell" rowspan="1" colspan="1"
+																		style="width: 0px;">宝贝</th>
+																	<th class="min_w90" rowspan="1" colspan="1"
+																		style="width: 0px;">单价（元）</th>
+																	<th class="min_w60" x="0" rowspan="1" colspan="1"
+																		style="width: 0px;">数量</th>
+																	<th class="min_w80" rowspan="1" colspan="1"
+																		style="width: 0px;">售后</th>
+																	<th class="min_w80" rowspan="1" colspan="1"
+																		style="width: 0px;">交易状态</th>
+																	<th class="min_w110" rowspan="1" colspan="1"
+																		style="width: 0px;">实付款（元）</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr role="row" data-th-id="${order.orderNo}">
+																	<td
+																		class="dealtime small-pad10 hide-for-small sorting_1 margin-l">
+																		<div class="left" data-th-text="${order.createTime}==null?'':(${#dates.format(order.createTime, 'yyyy-MM-dd HH:mm:ss')})">2015-03-04
+																			18:32:45</div>
+																	</td>
+																	<td class="data_id small-pad10 hide-for-small"><a
+																		class="p-color" title="订单详情"
+																		data-th-text="|订单编号：${order.orderNo}|">
+																			订单编号：00000002 </a></td>
+																	<td class="store small-pad10"><a class="p-color"
+																		data-th-title="${order.store.storeName}"
+																		data-th-text="|店铺：${order.store.storeName}|"> 店铺：文玩天下 </a></td>
+																	<td class="goods padt50 td_block margin-l">
+																		<div class="padb10 block max_h95"
+																			data-th-each="good : ${order.goods}">
+																			<div class="img">
+																				<a data-th-title="${good.goodsTitle}"> 
+																				<img data-th-src="${good.goodsImage}"/>
+																				</a>
+																			</div>
+																			<div class="des">
+																				<a class="margin-b p-color small-marb5"
+																					data-th-title="${good.goodsTitle}"
+																					data-th-text="${good.goodsTitle}">
+																					Homestyle夏季真皮透气鞋男士运动休闲鞋英伦板鞋 </a> 
+																				<span class="classify"> 
+																					<a data-th-text="${good.sku}">颜色分类：黑色[系带] 尺码：44  尺码：44 </a>
+																				</span>
+																			</div>
+																		</div>
+																	</td>
+																	<td class="padt50 price hide-for-small">
+																		<div class="show-for-small left">单价：</div>
+																		<div class="min_h65"
+																			data-th-each="good : ${order.goods}"
+																			data-th-text="|${good.purchasePrice/100.0}0|">50.00</div>
+																	</td>
+																	<td class="hide-for-small font-bold padt50">
+																		<div class="min_h65"
+																			data-th-each="good : ${order.goods}"
+																			data-th-text="${good.purchaseQuantity}">6</div>
+																	</td>
+																	<td class="hide-for-small padt50">
+																	<a class="button small-marl10" data-th-href="@{/buyer/refund/toRefund.htm?orderId={oid}(oid=${order.id})}"
+																	 data-th-if="${order.status} ne'1' and ${order.status} ne '6'"> 申请退款 </a></td>
+																	<td
+																		class="td_tradingstatus padt50 small-marl65 small-marb5">
+																		<div class="show-for-small left">交易状态：</div>
+																		<div class="margin-b small-marb5 small-left"
+																			data-th-text="${order.status}==1?'未付款':
+																			(${order.status}==2?'未发货':
+																			(${order.status}==3?'待确认收货':
+																			(${order.status}==4?'交易成功':'已确认收货')))">买家已付款</div>
+																	</td>
+																	<td
+																		class="td_realcollection padt50 small-marl65 small-marb5">
+																		<div class="show-for-small left">实收款：</div>
+																		<div class="font-bold small-left"
+																			data-th-text="${order.status}=='1' ? '0.00' : |${(order.price + order.logisticsFee)/100.0}0|">24.70</div>
+																		<div class="font-gray margin-b small-left" data-th-text="${order.status}=='1' ? '0.00' : |（含快递：${order.logisticsFee/100.0}0）|">（含快递：10）</div>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+
+													<div class="dataTables_wrapper dt-foundation no-footer"
+														data-th-remove="all">
+														<table class="display dataTable no-footer"
+															style="width: 100%; min-height:100px;">
+															<thead>
+																<tr role="row">
+																	<th class="hide sorting_asc" tabindex="0"
+																		aria-controls="DataTables_Table_0" rowspan="1"
+																		colspan="1" aria-sort="ascending"
+																		aria-label="成交时间: 以降序排列此列" style="width: 0px;">
+																		成交时间</th>
+																	<th class="hide sorting" tabindex="0"
+																		aria-controls="DataTables_Table_0" rowspan="1"
+																		colspan="1" aria-label="订单编号: 以升序排列此列"
+																		style="width: 0px;">订单编号</th>
+																	<th class="hide sorting" tabindex="0"
+																		aria-controls="DataTables_Table_0" rowspan="1"
+																		colspan="1" aria-label="店铺: 以升序排列此列"
+																		style="width: 0px;">店铺</th>
+																	<th class="small-table-cell sorting" tabindex="0"
+																		aria-controls="DataTables_Table_0" rowspan="1"
+																		colspan="1" aria-label="宝贝: 以升序排列此列"
+																		style="width: 0px;">宝贝</th>
+																	<th class="min_w90 sorting_disabled" rowspan="1"
+																		colspan="1" aria-label="单价（元）" style="width: 0px;">
+																		单价（元）</th>
+																	<th class="min_w60 sorting" tabindex="0"
+																		aria-controls="DataTables_Table_0" rowspan="1"
+																		colspan="1" aria-label="数量: 以升序排列此列"
+																		style="width: 0px;">数量</th>
+																	<th class="min_w80 sorting" tabindex="0"
+																		aria-controls="DataTables_Table_0" rowspan="1"
+																		colspan="1" aria-label="售后: 以升序排列此列"
+																		style="width: 0px;">售后</th>
+																	<th class="min_w120 sorting" tabindex="0"
+																		aria-controls="DataTables_Table_0" rowspan="1"
+																		colspan="1" aria-label="买家: 以升序排列此列"
+																		style="width: 0px;">买家</th>
+																	<th class="min_w80 sorting_disabled" rowspan="1"
+																		colspan="1" aria-label="交易状态" style="width: 0px;">
+																		交易状态</th>
+																	<th class="min_w110 sorting_disabled" rowspan="1"
+																		colspan="1" aria-label="实收款（元）" style="width: 0px;">
+																		实收款（元）</th>
+																	<th class="sorting_disabled" rowspan="1" colspan="1"
+																		aria-label="评价" style="width: 0px;">评价</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr role="row" class="odd" id="00000002">
+																	<td
+																		class="dealtime small-pad10 hide-for-small sorting_1 margin-l">
+																		<div class="left">2015-03-04 18:32:45</div>
+																	</td>
+																	<td class="data_id small-pad10 hide-for-small"><a
+																		class="p-color" title="订单详情"> 订单编号：00000002 </a></td>
+																	<td class="store small-pad10"><a class="p-color"
+																		title="文玩天下"> 店铺：文玩天下 </a></td>
+																	<td class="goods padt50 td_block margin-l">
+																		<div class="padb10 block max_h95">
+																			<div class="img">
+																				<a title="Homestyle夏季真皮透气鞋男士运动休闲鞋英伦板鞋"> 
+																				<img src="/emall/tpl/001/images/1.gif" data-th-src="|${tempPath}images/1.gif|" />
+																				</a>
+																			</div>
+																			<div class="des">
+																				<a class="v_oper_edit margin-b p-color small-marb5"
+																					title="Homestyle夏季真皮透气鞋男士运动休闲鞋英伦板鞋">
+																					Homestyle夏季真皮透气鞋男士运动休闲鞋英伦板鞋 </a> <span class="classify">
+																					<a> 颜色分类：黑色[系带] </a> <a> 尺码：44 </a> <a> 尺码：44 </a>
+																				</span>
+																			</div>
+																		</div>
+																		<div class="max_h95 block">
+																			<div class="img">
+																				<a title="Homestyle夏季真皮透气鞋男士运动休闲鞋英伦板鞋"> 
+																				<img src="/emall/tpl/001/images/1.gif" data-th-src="|${tempPath}images/1.gif|" />
+																				</a>
+																			</div>
+																			<div class="des">
+																				<a class="v_oper_edit margin-b small-marb5 p-color"
+																					title="Homestyle夏季真皮透气鞋男士运动休闲鞋英伦板鞋">
+																					Homestyle夏季真皮透气鞋男士运动休闲鞋英伦板鞋 </a> <span class="classify">
+																					<a> 颜色分类：黑色[系带] </a> <a> 尺码：44 </a> <a> 尺码：44 </a>
+																				</span>
+																			</div>
+																		</div>
+																	</td>
+																	<td class="padt50 price hide-for-small">
+																		<div class="show-for-small left">单价：</div>
+																		<div class="min_h65">50.00</div>
+																		<div>50.00</div>
+																	</td>
+																	<td class="hide-for-small font-bold padt50">
+																		<div class="min_h65">6</div>
+																		<div class="">6</div>
+																	</td>
+																	<td class="hide-for-small padt50"><a
+																		class="button small-marl10"> 申请售后 </a></td>
+																	<td
+																		class="td_buyer padt50 small-marl65 small-marb5 clearfix">
+																		<div class="small-left">
+																			<a class="p-color" title="买家tb66881213">
+																				tb66881213 </a> <a title="查询该买家订单"> </a>
+																		</div>
+																		<div class="hide-for-small">------</div>
+																	</td>
+																	<td
+																		class="td_tradingstatus padt50 small-marl65 small-marb5">
+																		<div class="show-for-small left">交易状态：</div>
+																		<div class="margin-b small-marb5 small-left">
+																			买家已付款</div> <a class="button small-marl10"> 发货 </a>
+																	</td>
+																	<td
+																		class="td_realcollection padt50 small-marl65 small-marb5">
+																		<div class="show-for-small left">实收款：</div>
+																		<div class="font-bold small-left">24.70</div>
+																		<div class="font-gray margin-b small-left">
+																			（含快递：10）</div>
+																		<div>
+																			<a class="button small-marl10 v_oper_edit"> 修改价格
+																			</a>
+																		</div>
+																	</td>
+																	<td
+																		class="td_evaluate padt50 small-marl65 small-marb10">
+																		<span class="label secondary round"> 双方已评 </span>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+												<div class="total-count-wrapper clearfix border-gray" data-th-if="${order.status} ne '1'">
+													<div class="total-count-pay-result">
+														<div class="count-title-pay">实付款：</div>
+														<div class="total-count-num">
+															<strong> <em data-th-text="|¥${(order.price + order.logisticsFee)/100.0}0|">¥49.00</em>
+															</strong>
+														</div>
+													</div>
+												</div>
+											</section>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--end main-->
+
+					<div class="footer" id="frame_footer" role="contentinfo"
+						include="include.html"
+						data-th-include="${tempInternalPath + 'include'} :: #frame_footer">
+					</div>
+					<!--end footer-->
+
+					<div class="go" id="frame_go">
+						<a title="返回顶部" class="gotop" id="goTop"></a> <a title="返回底部"
+							class="gobottom" id="goBottom"></a>
+					</div>
+
+					<div id="frame_exit_off">
+						<a class="exit-off-canvas"></a>
+					</div>
+				</div>
+			</div>
+			<div id="frame_javascript">
+				<div data-th-include="${tempInternalPath + 'include'} :: #base_javascript"></div>
+				<div data-th-include="${tempInternalPath + 'include'} :: #datatable_javascript"></div>
+				<div id="data_javascript">
+					<script data-th-src="@{/cij/js/jquery.countdown.js}"
+						src="/emall/cij/js/jquery.countdown.js"></script>
+					<script data-th-src="@{/cij/js/m/buyer.detail.js}"
+						src="/emall/cij/js/m/buyer.detail.js"></script>
+					<script data-th-src="@{/cij/js/m/logistics.js}"
+						src="/emall/cij/js/m/logistics.js"></script>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

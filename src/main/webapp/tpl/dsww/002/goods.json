@@ -1,0 +1,176 @@
+{
+	"modelCode" : "phone",
+	"goodsId" : "2015061215000001",
+	"goodsTitle" : "苹果 iPhone 5c  粉色 16G",
+	"goodsSellPoint" : "官方正品全新未拆封未激活 标配版",
+	"goodsDesc" : "",
+	"goodsPrice" : 1920.0,
+	"goodsNum" : 48,
+	"brank" : "1400000042",
+	"shopCatalogs" : ["2015061115000007"],
+	"goodsCatalog" : "2015051315002365",
+	"brankParams" : ["1500000028", "1500000031"],
+	"goodsTags" : ["使用", "iphone5c", "色彩", "ios", "我们"],
+	"wsStandardData" : {
+		"standardCount" : 4,
+		"selectedStandards" : [{
+				"id" : "1500000041",
+				"alias" : "s-bodyColor",
+				"title" : "机身颜色",
+				"itemList" : [{
+						"id" : "1400000053",
+						"title" : "白色",
+						"icon" : "#FFFFFF",
+						"uploadImageThumb" : "http://192.168.14.95/res_base/rjcms/application/2015/06/23/5588f5ae0417963ca122c0df_140x140.jpg",
+						"uploadImage" : "http://192.168.14.95/res_base/rjcms/application/2015/06/23/5588f5ae0417963ca122c0df_600x600_m.jpg"
+					}, {
+						"id" : "1400000055",
+						"title" : "蓝色",
+						"icon" : "#0000FF",
+						"uploadImageThumb" : "http://192.168.14.95/res_base/rjcms/application/2015/06/18/558263e404171963cd9827d7_140x140.jpg",
+						"uploadImage" : "http://192.168.14.95/res_base/rjcms/application/2015/06/18/558263e404171963cd9827d7_600x600_m.jpg"
+					}
+				]
+			}, {
+				"id" : "1500000042",
+				"alias" : "s-packageType",
+				"title" : "套餐类型",
+				"itemList" : [{
+						"id" : "1500000149",
+						"title" : "官方标配",
+						"icon" : "",
+						"uploadImageThumb" : "",
+						"uploadImage" : ""
+					}, {
+						"id" : "1500000151",
+						"title" : "套餐二",
+						"icon" : "",
+						"uploadImageThumb" : "",
+						"uploadImage" : ""
+					}
+				]
+			}, {
+				"id" : "1500000043",
+				"alias" : "s-memory",
+				"title" : "机身内存",
+				"itemList" : [{
+						"id" : "1500000175",
+						"title" : "4MB",
+						"icon" : "",
+						"uploadImageThumb" : "",
+						"uploadImage" : ""
+					}, {
+						"id" : "1500000173",
+						"title" : "32MB",
+						"icon" : "",
+						"uploadImageThumb" : "",
+						"uploadImage" : ""
+					}, {
+						"id" : "1500000174",
+						"title" : "64MB",
+						"icon" : "",
+						"uploadImageThumb" : "",
+						"uploadImage" : ""
+					}
+				]
+			}, {
+				"id" : "1500000044",
+				"alias" : "s-versionType",
+				"title" : "版本类型",
+				"itemList" : [{
+						"id" : "1500000144",
+						"title" : "阿里通信",
+						"icon" : "",
+						"uploadImageThumb" : "",
+						"uploadImage" : ""
+					}
+				]
+			}
+		],
+		"relationDatas" : {
+			"S_bind_1400000053_1500000151_1500000173_1500000144" : {
+				"count" : 4,
+				"price" : 412.0
+			},
+			"S_bind_1400000053_1500000149_1500000175_1500000144" : {
+				"count" : 4,
+				"price" : 412.0
+			},
+			"S_bind_1400000055_1500000151_1500000174_1500000144" : {
+				"count" : 4,
+				"price" : 412.0
+			},
+			"S_bind_1400000055_1500000149_1500000175_1500000144" : {
+				"count" : 4,
+				"price" : 412.0
+			},
+			"S_bind_1400000055_1500000149_1500000174_1500000144" : {
+				"count" : 4,
+				"price" : 412.0
+			},
+			"S_bind_1400000053_1500000151_1500000175_1500000144" : {
+				"count" : 4,
+				"price" : 412.0
+			},
+			"S_bind_1400000053_1500000149_1500000174_1500000144" : {
+				"count" : 4,
+				"price" : 412.0
+			},
+			"S_bind_1400000055_1500000151_1500000173_1500000144" : {
+				"count" : 4,
+				"price" : 412.0
+			},
+			"S_bind_1400000053_1500000149_1500000173_1500000144" : {
+				"count" : 4,
+				"price" : 412.0
+			},
+			"S_bind_1400000055_1500000149_1500000173_1500000144" : {
+				"count" : 4,
+				"price" : 412.0
+			},
+			"S_bind_1400000055_1500000151_1500000175_1500000144" : {
+				"count" : 4,
+				"price" : 412.0
+			},
+			"S_bind_1400000053_1500000151_1500000174_1500000144" : {
+				"count" : 4,
+				"price" : 412.0
+			}
+		}
+	},
+	"wsDetailParam" : {
+		"groupInfoList" : {
+			"基本信息" : {
+				"groupName" : "基本信息",
+				"list" : [["核心数", "四核"], ["操作系统", "iOS"], ["网络类型", "联通4G/电信4G(FDD-LTE),联通3G(WCDMA)"], ["分辨率", "1920x1080"], ["厚度", "9mm以下"], ["手机类型", "拍照手机,女性手机,老人手机"], ["运营商", "中国联通"], ["附加功能", "光线感应"], ["售后服务", "全国联保"], ["尺寸", "11"], ["cpu频率", "1.9GHz"], ["商品成色", "1231"], ["键盘类型", "虚拟触屏键盘"], ["电池类型", "不可拆卸式电池"], ["后置摄像头", "2222"], ["摄像头类型", "双摄像头（前后）"], ["触摸屏类型", "电阻式触摸屏"], ["款式", "滑盖"], ["上市时间 ", "2015-06-12 18:07:33"], ["网络模式", "单卡双模"]]
+			},
+			"规格信息" : {
+				"groupName" : "规格信息",
+				"list" : [["机身颜色", "白色"], ["套餐类型", "官方标配"], ["机身内存", "2GB,4GB"], ["版本类型", "阿里通信"]]
+			}
+		}
+	},
+	"cusProperties" : {},
+	"goodsProperties" : {
+		"p-touchScreenType" : "1500000093",
+		"p-operators" : "1500000147",
+		"p-style" : "1500000047",
+		"p-service" : "1500000089",
+		"p-addFeatures" : "1500000079",
+		"p-batteryType" : "1500000120",
+		"p-cpuFrequency" : "443",
+		"p-thickness" : "1500000103",
+		"p-os" : "1500000055",
+		"p-listingTime" : "",
+		"p-rearCamera" : "32",
+		"p-keyboardType" : "1500000097",
+		"p-cameraType" : "1500000122",
+		"p-networkMode" : "1500000134",
+		"p-fineness" : "3",
+		"p-netType" : "1500000036,1500000037",
+		"p-size" : "43.0",
+		"p-phoneType" : "1500000106,1500000107,1500000108",
+		"p-coreNum" : "1500000140",
+		"p-resolution" : "23"
+	}
+}
